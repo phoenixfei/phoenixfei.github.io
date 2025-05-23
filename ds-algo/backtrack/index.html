@@ -349,9 +349,9 @@
 </span><span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="k">return</span>
     <span class="c1"># 前序遍历代码写在这
-</span>    <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
+</span>    <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
     <span class="c1"># 中序遍历代码写在这 
-</span>    <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
+</span>    <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
     <span class="c1"># 后序遍历代码写在这
 </span>
 <span class="c1"># N 叉树遍历框架
@@ -359,7 +359,7 @@
     <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="k">return</span>
     <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="p">.</span><span class="n">children</span><span class="p">:</span>
         <span class="c1"># 前序遍历代码写在这
-</span>        <span class="nf">traverse</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+</span>        <span class="n">traverse</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
         <span class="c1"># 后序遍历代码写在这
 </span></code></pre></div></div>
 
@@ -371,19 +371,19 @@
 
 <p>言归正传，回溯算法就是N叉树的遍历，这个N等于当前可做的选择（choices）的总数，同时，在前序遍历的位置作出当前选择（choose过程），然后开始递归。最后，在后序遍历的位置取消当前选择（unchoose过程）。回溯算法伪代码模板如下所示：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sh">"""</span><span class="s">
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"""
 choiceList：当前可以进行的选择列表
 track：可以理解为决策路径，即已经做出一系列选择
 answer：用来储存我们的符合条件决策路径
-</span><span class="sh">"""</span>
+"""</span>
 
 <span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">choiceList</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">track</span> <span class="ow">is</span> <span class="n">OK</span><span class="p">:</span>
-        <span class="n">answer</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">track</span><span class="p">)</span>
+        <span class="n">answer</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">track</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">choiceList</span><span class="p">:</span>
             <span class="c1"># choose：选择一个 choice 加入 track
-</span>            <span class="nf">backtrack</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">answer</span><span class="p">)</span>
+</span>            <span class="n">backtrack</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">answer</span><span class="p">)</span>
             <span class="c1"># unchoose：从 track 中撤销上面的选择
 </span></code></pre></div></div>
 
