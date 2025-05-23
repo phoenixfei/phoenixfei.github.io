@@ -1,6 +1,6 @@
 ---
-title: "数据结构与算法思路"
-permalink: /ds-algo/
+title: "数据结构与算法题单"
+permalink: /leetcode/
 
 layout: single
 author_profile: true
@@ -12,7 +12,7 @@ toc_sticky: true
 
 这是一份个人笔记，适用于系统刷题、知识图谱构建、错题回顾。
 
-👉 [点击这里查看相关文章](/ds-algo/posts/)
+👉 [点击这里查看相关文章](/leetcode/posts/)
 
 ---
 

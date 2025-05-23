@@ -19,12 +19,13 @@ locale                   : "en-US"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "技术与思维笔记"
 theme                    : minimal-mistakes-jekyll
+mathjax                  : true
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "phoenixfei"
 description              : "记录算法、大数据、数学等知识，持续学习与沉淀。"
 url                      : "https://yourusername.github.io"
-baseurl                  : # the subpath of your site, e.g. "/blog"
+baseurl                  : ""
 repository               : "phoenixfei/phoenixfei.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
@@ -212,6 +213,7 @@ incremental: false
 # Markdown Processing
 kramdown:
   input: GFM
+  math_engine: mathjax
   hard_wrap: false
   auto_ids: true
   footnote_nr: 1
@@ -314,6 +316,7 @@ compress_html:
   ignore:
     envs: development
 
+navigation: true
 
 # Defaults
 defaults:
@@ -328,9 +331,9 @@ defaults:
       comments: # true
       share: true
       related: true
+      header:
+        sticky: true
 
 head:
   custom: custom.html
 
-header:
-  sticky: true 
