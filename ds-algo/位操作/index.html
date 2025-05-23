@@ -1,0 +1,712 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.1 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>位操作技巧 - 技术与思维笔记</title>
+<meta name="description" content="对整数的二进制位进行操作，如与（AND）、或（OR）、异或（XOR）、左移、右移等操作。">
+
+
+  <meta name="author" content="phoenixfei">
+  
+  <meta property="article:author" content="phoenixfei">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="技术与思维笔记">
+<meta property="og:title" content="位操作技巧">
+<meta property="og:url" content="https://yourusername.github.io/ds-algo/%E4%BD%8D%E6%93%8D%E4%BD%9C/">
+
+
+  <meta property="og:description" content="对整数的二进制位进行操作，如与（AND）、或（OR）、异或（XOR）、左移、右移等操作。">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2024-05-21T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://yourusername.github.io/ds-algo/%E4%BD%8D%E6%93%8D%E4%BD%9C/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术与思维笔记 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<!-- Ref:TeX Input Processor Options: https://docs.mathjax.org/en/latest/options/input/tex.html -->
+
+
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术与思维笔记
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/"
+                
+                
+              >首页</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/ds-algo/"
+                
+                
+              >数据结构与算法</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/leetcode/"
+                
+                
+              >LeetCode</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bigdata/"
+                
+                
+              >大数据</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/math/"
+                
+                
+              >数学</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                
+                
+              >关于我</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://yourusername.github.io/" itemprop="url">phoenixfei</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>专注于算法、大数据、数学等领域的学习与分享</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">南京</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="位操作技巧">
+    <meta itemprop="description" content="对整数的二进制位进行操作，如与（AND）、或（OR）、异或（XOR）、左移、右移等操作。">
+    <meta itemprop="datePublished" content="2024-05-21T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="https://yourusername.github.io/ds-algo/%E4%BD%8D%E6%93%8D%E4%BD%9C/" itemprop="url">位操作技巧
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#原码反码和补码">原码、反码和补码</a></li><li><a href="#常见整数的计算机表示形式">常见整数的计算机表示形式</a></li><li><a href="#基本位操作符">基本位操作符</a></li><li><a href="#常用位操作小技巧">常用位操作小技巧</a><ul><li><a href="#判断奇偶性">判断奇偶性</a></li><li><a href="#交换两数">交换两数</a></li><li><a href="#变换符号正变负负变正">变换符号（正变负，负变正）</a></li><li><a href="#求绝对值">求绝对值</a></li><li><a href="#获取int类型最大最小值">获取int类型最大最小值</a></li><li><a href="#乘以2除以2运算">乘以2、除以2运算</a></li><li><a href="#计算n是否为2的幂">计算n是否为2的幂</a></li></ul></li><li><a href="#经典例题">经典例题</a><ul><li><a href="#利用位操作实现加法">利用位操作实现加法</a></li><li><a href="#234的幂">2、3、4的幂</a></li><li><a href="#二进制中-1-的个数">二进制中 1 的个数</a></li><li><a href="#利用位操作来压缩空间">利用位操作来压缩空间</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <p>对整数的二进制位进行操作，如与（AND）、或（OR）、异或（XOR）、左移、右移等操作。</p>
+
+<h2 id="原码反码和补码">原码、反码和补码</h2>
+
+<p>在Java中，所有数据的表示方法都是以补码的形式表示。</p>
+
+<p>正数的原码、反码和补码一致</p>
+
+<p>负数的原码位对应正数的原码，最高位位符号位，为1。</p>
+
+<p>反码为原码符号位不变，按位取反。补码为反码末位加1。</p>
+
+<h2 id="常见整数的计算机表示形式">常见整数的计算机表示形式</h2>
+
+<p>在计算机中，采用二进制补码的储存数据。<a href="https://blog.csdn.net/y12345678904/article/details/52854230">参考链接</a>。</p>
+
+<p>Java的int是32位。范围是-2^31^ ~ 2^31^-1。下面以8位为例，给出特殊整数的原码、反码和补码。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>整数</th>
+      <th>原码</th>
+      <th>反码</th>
+      <th>补码</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>0000-0001</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>-1</td>
+      <td>1000-0001</td>
+      <td>1111-1110</td>
+      <td>1111-1111</td>
+    </tr>
+    <tr>
+      <td>-127</td>
+      <td>1111-1111</td>
+      <td>1000-0000</td>
+      <td>1000-0001</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0000-0000</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>-128</td>
+      <td> </td>
+      <td> </td>
+      <td>1000-0000</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>在二进制中，0有正0与负0两种表示方法。<strong>但是，0只需要一个。</strong>因此，-0被人为拿来表示一个最小的数。</p>
+
+<p>-128的补码为1000-0000。这个补码不是真正的补码（人为规定），且没有原码与反码。</p>
+
+<h2 id="基本位操作符">基本位操作符</h2>
+
+<p><a href="https://www.jianshu.com/p/b677858bc085">参考链接</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>符号</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">位运算规则</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&amp;</td>
+      <td style="text-align: left">与</td>
+      <td style="text-align: left">两个位都为1时，结果才为1</td>
+    </tr>
+    <tr>
+      <td>|</td>
+      <td style="text-align: left">或</td>
+      <td style="text-align: left">两个位都为0时，结果才为0</td>
+    </tr>
+    <tr>
+      <td>^</td>
+      <td style="text-align: left">异或</td>
+      <td style="text-align: left">两个位<strong>相异时为1，相同时为0</strong></td>
+    </tr>
+    <tr>
+      <td>~</td>
+      <td style="text-align: left">取反（单目运算符）</td>
+      <td style="text-align: left">0 变 1，1 变 0</td>
+    </tr>
+    <tr>
+      <td>«</td>
+      <td style="text-align: left">左移</td>
+      <td style="text-align: left">各二进位全部左移若干位，高位丢弃，低位补 0</td>
+    </tr>
+    <tr>
+      <td>&gt;&gt;</td>
+      <td style="text-align: left">右移</td>
+      <td style="text-align: left">各二进位全部右移若干位，<strong>高位补符号位</strong></td>
+    </tr>
+    <tr>
+      <td>&gt;&gt;&gt;</td>
+      <td style="text-align: left">无符号右移</td>
+      <td style="text-align: left">各二进位全部右移若干位，<strong>高位补0</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>注意：</strong></p>
+
+<ol>
+  <li>
+    <p>位操作只能用于<strong>整形（字符）</strong>数据。</p>
+  </li>
+  <li>
+    <p>位操作的优先级比较低，因此尽量使用<strong>扩号</strong>来确保运算顺序。</p>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>另外位操作还有一些复合操作符，如 &amp;=、</td>
+          <td>=、 ^=、«=、»=</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+
+<h2 id="常用位操作小技巧">常用位操作小技巧</h2>
+
+<p>下面对位操作的一些常见应用作个总结，有判断奇偶、交换两数、变换符号及求绝对值。这些小技巧应用易记，应当熟练掌握。</p>
+
+<h3 id="判断奇偶性">判断奇偶性</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="c1">// 偶数</span>
+</code></pre></div></div>
+
+<h3 id="交换两数">交换两数</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">^=</span> <span class="n">b</span><span class="o">;</span>
+<span class="n">b</span> <span class="o">^=</span> <span class="n">a</span><span class="o">;</span>
+<span class="n">a</span> <span class="o">^=</span> <span class="n">b</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="变换符号正变负负变正">变换符号（正变负，负变正）</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 按位取反，末位加1</span>
+<span class="o">~</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="求绝对值">求绝对值</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">sign</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="o">;</span> <span class="c1">// 取得符号位,sign值为0或者-1</span>
+<span class="n">abs</span> <span class="o">=</span> <span class="n">sign</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="o">~</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">//方法一</span>
+<span class="c1">// 方法二：sign为0时，与0异或为a,-0不变；</span>
+<span class="c1">// sign为-1时，与-1异或相当于按位取反（包括符号位），末位加1</span>
+<span class="n">abs</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span> <span class="o">^</span> <span class="n">sign</span><span class="o">)</span> <span class="o">-</span> <span class="n">sign</span><span class="err">；</span>
+<span class="c1">// 方法二简写为：</span>
+<span class="n">abs</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span> <span class="o">^</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="o">))</span> <span class="o">-</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="获取int类型最大最小值">获取int类型最大最小值</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">~(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="o">)</span> <span class="c1">// int最大值： 0111-1111</span>
+   <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span>  <span class="c1">// int最小值： 1000-0000</span>
+</code></pre></div></div>
+
+<h3 id="乘以2除以2运算">乘以2、除以2运算</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span> <span class="c1">// 乘以2</span>
+<span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">m</span> <span class="c1">// 乘以2的m次方</span>
+<span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span> <span class="c1">// 除以2，（负奇数不可用）</span>
+<span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">m</span> <span class="c1">// 除以2的m次方，（负奇数不可用）</span>
+</code></pre></div></div>
+
+<h3 id="计算n是否为2的幂">计算n是否为2的幂</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 去掉0的情况</span>
+<span class="n">n</span> <span class="o">&amp;</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="c1">// 或</span>
+<span class="o">(</span><span class="n">n</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">n</span><span class="o">)</span> <span class="o">==</span> <span class="n">n</span>
+</code></pre></div></div>
+
+<h2 id="经典例题">经典例题</h2>
+
+<h3 id="利用位操作实现加法">利用位操作实现加法</h3>
+
+<p>首先看十进制是如何做的： 5+7=12，三步走</p>
+
+<ul>
+  <li>第一步：相加各位的值，不算进位，得到2。</li>
+  <li>第二步：计算进位值，得到10. 如果这一步的进位值为0，那么第一步得到的值就是最终结果。</li>
+  <li>第三步：重复上述两步，只是相加的值变成上述两步的得到的结果2和10，得到12。</li>
+</ul>
+
+<p>同样我们可以用三步走的方式计算二进制值相加： 5-101，7-111</p>
+
+<ul>
+  <li>第一步：相加各位的值，不算进位，得到010，<strong>二进制每位相加就相当于各位做异或操作</strong>，101^111。</li>
+  <li>第二步：计算进位值，得到1010，<strong>相当于各位进行与操作得到101，再向左移一位得到1010</strong>，(101&amp;111)«1。</li>
+  <li>第三步重复上述两步， 各位相加 010^1010=1000，进位值为100=(010&amp;1010)«1。 继续重复上述两步：1000^100 = 1100，进位值为0，跳出循环，1100为最终结果。</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSum</span><span class="o">(</span><span class="kt">int</span> <span class="n">num1</span><span class="o">,</span><span class="kt">int</span> <span class="n">num2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">num2</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">){</span>
+        <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">^</span> <span class="n">num2</span><span class="o">;</span>
+        <span class="n">num2</span> <span class="o">=</span> <span class="o">(</span><span class="n">num1</span> <span class="o">&amp;</span> <span class="n">num2</span><span class="o">)</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="n">num1</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">num1</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="234的幂">2、3、4的幂</h3>
+
+<p>给定一个整数，写一个函数来判断它是否是2、 3或4 的幂次方。（3道题）</p>
+
+<p><strong>2的幂次方</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isPowerOfTwo</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">return</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">n</span> <span class="o">&amp;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>3的幂次方</strong></p>
+
+<p><a href="https://leetcode-cn.com/problems/power-of-three/solution/3de-mi-by-leetcode/">常规解法</a>：找出数字 n 是否是数字 b 的幂的一个简单方法是，n%3 只要余数为 0，就一直将 n 除以 b。
+\(\begin{aligned} n &amp;= b^x \\ n &amp;= b \times b \times \ldots \times b \end{aligned}\)
+因此，应该可以将 $n/b$ 除上x 次，每次都有 0 的余数，最终结果是 1。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isPowerOfThree</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="o">){</span> <span class="c1">// 重点</span>
+        <span class="n">n</span> <span class="o">/=</span> <span class="mi">3</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>整数限制：</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isPowerOfThree</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="mi">1162261467</span> <span class="o">%</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In particular, n is of type int. In Java, this means it is a 4 byte, signed integer. The maximum value of this data type is 2147483467. Three ways of calculating this value are:</p>
+
+<ul>
+  <li>
+    <p><a href="https://stackoverflow.com/questions/15004944/max-value-of-integer">Google</a></p>
+  </li>
+  <li>
+    <blockquote>
+      <p>System.out.println(Integer.MAX_VALUE);</p>
+    </blockquote>
+  </li>
+  <li>$MaxInt = 2^{32}/2 - 1$. Since we use 32 bits to represent the number, half of the range is used for negative numbers and 0 is part of the positive numbers.</li>
+</ul>
+
+<p>Knowing the limitation of n, we can now deduce that the maximun value of n that is also a power of three is 1162261467. We can calculate this as:</p>
+
+<p>$3^{log_3 MaxInt} = 3^{19.56} = 3 ^{19} = 1162261467$</p>
+
+<p>Trerefore, the possible values of n where we should return true are $3^0, 3^1 … 3^{19}$. Since 3 is a <strong>prime</strong> number, the only divisor of $3^{19}$ are  $3^0, 3^1 … 3^{19}$, therefore all we need to do is divide  $ 3^{19}$ by n. A remainder of 0 means n is a divisor of  $3^{19}$ and therefore a power of three.</p>
+
+<h3 id="二进制中-1-的个数">二进制中 1 的个数</h3>
+
+<p>输入一个整数，输出该数二进制表示中 1 的个数。</p>
+
+<p>该位运算去除 n 的位级表示中最低的那一位。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>n       : 10110100
+n-1     : 10110011
+n&amp;(n-1) : 10110000
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">NumberOf1</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">n</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">cnt</span><span class="o">++;</span>
+        <span class="n">n</span> <span class="o">&amp;=</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">cnt</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="利用位操作来压缩空间">利用位操作来压缩空间</h3>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#ds-algo" class="page__taxonomy-item p-category" rel="tag">ds-algo</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-05-21T00:00:00+00:00">May 21, 2024</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="pagination--pager" title="二分查找">Previous</a>
+    
+    
+      <a href="/leetcode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E9%A2%98%E5%8D%95/" class="pagination--pager" title="动态规划-题单">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="https://yourusername.github.io">技术与思维笔记</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

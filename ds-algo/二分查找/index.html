@@ -11,7 +11,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>二分查找 - 技术与思维笔记</title>
-<meta name="description" content="基本概念">
+<meta name="description" content="虽然二分查找的基本思想相对简单，但其细节却可能出人意料地棘手。">
 
 
   <meta name="author" content="phoenixfei">
@@ -24,10 +24,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="技术与思维笔记">
 <meta property="og:title" content="二分查找">
-<meta property="og:url" content="https://yourusername.github.io/ds-algo/binary_search/">
+<meta property="og:url" content="https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
 
 
-  <meta property="og:description" content="基本概念">
+  <meta property="og:description" content="虽然二分查找的基本思想相对简单，但其细节却可能出人意料地棘手。">
 
 
 
@@ -46,7 +46,7 @@
   
 
 
-<link rel="canonical" href="https://yourusername.github.io/ds-algo/binary_search/">
+<link rel="canonical" href="https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
 
 
 
@@ -85,6 +85,14 @@
 <!-- end custom head snippets -->
 <!-- Ref:TeX Input Processor Options: https://docs.mathjax.org/en/latest/options/input/tex.html -->
 
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 
 
   </head>
@@ -278,7 +286,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="二分查找">
-    <meta itemprop="description" content="基本概念">
+    <meta itemprop="description" content="虽然二分查找的基本思想相对简单，但其细节却可能出人意料地棘手。">
     <meta itemprop="datePublished" content="2024-05-21T00:00:00+00:00">
     
 
@@ -286,7 +294,7 @@
       
         <header>
           <h1 id="page-title" class="page__title" itemprop="headline">
-            <a href="https://yourusername.github.io/ds-algo/binary_search/" itemprop="url">二分查找
+            <a href="https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" itemprop="url">二分查找
 </a>
           </h1>
           
@@ -304,13 +312,11 @@
             </nav>
           </aside>
         
-        <h2 id="基本概念">基本概念</h2>
+        <p>虽然二分查找的基本思想相对简单，但其细节却可能出人意料地棘手。</p>
 
-<blockquote>
-  <p>Although the basic idea of binary search is comparatively straightforward, the details can be surprisingly tricky…</p>
-</blockquote>
+<h2 id="基本概念">基本概念</h2>
 
-<p>二分查找，也称为折半查找。每次查找都将查找区间减半，因此时间复杂度为$O(logn)$</p>
+<p>二分查找（Binary Search）是算法中非常经典的一种技巧，适用于在<strong>有序数据</strong>中快速定位目标，时间复杂度为 $O(\log n)$。</p>
 
 <ol>
   <li>
@@ -320,7 +326,7 @@
     <p>防止<strong>加法溢出</strong>，也就是说加法的结果大于整型能够表示的范围。</p>
 
     <blockquote>
-      <p>mid = (right + left) / 2; 这种情况可能出现加法溢出，即 和超出int范围。</p>
+      <p><strong>mid = (right + left) / 2</strong>; 这种情况可能出现加法溢出，即 和超出int范围。</p>
 
       <p>应使用 <strong>mid = left + (right - left) / 2</strong></p>
 
@@ -649,7 +655,7 @@
 
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&amp;mid=2653198327&amp;idx=1&amp;sn=74187f72a03db8fcad3c234d61c7bad7&amp;chksm=8c99e52dbbee6c3b1e35ea8b2a8d57fa9fa72c098fa91e9f76a3228596922ef062fbf6f3e103&amp;mpshare=1&amp;scene=24&amp;srcid=&amp;key=8095bafaf3e0360ff8c483252809c708471b25b3132dfca15fc4fa317ce5a66a56b291e0765ef078fc6867cb252f15403be711523cc6f76c4529ff5f1a814dcd04e7e9b7b46de0bf232957784929fb2e&amp;ascene=14&amp;uin=Nzg0MDI3NjA3&amp;devicetype=Windows+7&amp;version=62060833&amp;lang=zh_CN&amp;pass_ticket=UCWR8ioDtSHS%2BoL3Soe2IMjeckYJhDTfT4OLISM%2Bbekc4zA7JbB3bv2fNQXx173b">在一个旋转有序数组中，如何查找一个整数呢？</a>注意这里有一个前提：<strong>我们并不直接知道给定数组的旋转点。</strong></p>
 
-<p><img src="assets/640.jpg" alt="640" /></p>
+<p><img src="/assets/images//640.jpg" alt="640" /></p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">rotatedBinarySearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">){</span>
     <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
@@ -712,10 +718,10 @@
       
   <nav class="pagination">
     
-      <a href="/ds-algo/backtrack/" class="pagination--pager" title="回溯">Previous</a>
+      <a href="/ds-algo/binary_search/" class="pagination--pager" title="二分查找">Previous</a>
     
     
-      <a href="/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="pagination--pager" title="二分查找">Next</a>
+      <a href="/ds-algo/%E4%BD%8D%E6%93%8D%E4%BD%9C/" class="pagination--pager" title="位操作技巧">Next</a>
     
   </nav>
 

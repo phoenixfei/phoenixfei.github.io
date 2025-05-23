@@ -11,7 +11,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>回溯 - 技术与思维笔记</title>
-<meta name="description" content="如何理解回溯法">
+<meta name="description" content="回溯法（backtracking）是暴力搜索法中的一种。">
 
 
   <meta name="author" content="phoenixfei">
@@ -24,10 +24,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="技术与思维笔记">
 <meta property="og:title" content="回溯">
-<meta property="og:url" content="https://yourusername.github.io/ds-algo/backtrack/">
+<meta property="og:url" content="https://yourusername.github.io/ds-algo/%E5%9B%9E%E6%BA%AF/">
 
 
-  <meta property="og:description" content="如何理解回溯法">
+  <meta property="og:description" content="回溯法（backtracking）是暴力搜索法中的一种。">
 
 
 
@@ -46,7 +46,7 @@
   
 
 
-<link rel="canonical" href="https://yourusername.github.io/ds-algo/backtrack/">
+<link rel="canonical" href="https://yourusername.github.io/ds-algo/%E5%9B%9E%E6%BA%AF/">
 
 
 
@@ -85,6 +85,14 @@
 <!-- end custom head snippets -->
 <!-- Ref:TeX Input Processor Options: https://docs.mathjax.org/en/latest/options/input/tex.html -->
 
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 
 
   </head>
@@ -278,7 +286,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="回溯">
-    <meta itemprop="description" content="如何理解回溯法">
+    <meta itemprop="description" content="回溯法（backtracking）是暴力搜索法中的一种。">
     <meta itemprop="datePublished" content="2024-05-21T00:00:00+00:00">
     
 
@@ -286,7 +294,7 @@
       
         <header>
           <h1 id="page-title" class="page__title" itemprop="headline">
-            <a href="https://yourusername.github.io/ds-algo/backtrack/" itemprop="url">回溯
+            <a href="https://yourusername.github.io/ds-algo/%E5%9B%9E%E6%BA%AF/" itemprop="url">回溯
 </a>
           </h1>
           
@@ -304,11 +312,13 @@
             </nav>
           </aside>
         
-        <h2 id="如何理解回溯法">如何理解回溯法</h2>
+        <p><strong>回溯法</strong>（backtracking）是暴力搜索法中的一种。</p>
 
-<p><strong>回溯法</strong>（backtracking）是暴力搜索法中的一种。</p>
+<h2 id="如何理解回溯法">如何理解回溯法</h2>
 
-<p>对于某些计算问题而言，回溯法是一种可以找到所有（或一部分）解的一般性算法，尤其适用于约束满足问题。（在解决约束满足问题时，我们逐步构造更多的候选解，并且在确定某一部分候选解不可能补全成正解之后放弃继续搜索这个部分候选解本身及其可以拓展出的子候选解，转而测试其他的部分候选解）。</p>
+<p>对于某些计算问题而言，回溯法是一种可以找到所有（或一部分）解的一般性算法，尤其适用于约束满足问题。</p>
+
+<p>在解决约束满足问题时，我们逐步构造更多的候选解，并且在确定某一部分候选解不可能补全成正解之后放弃继续搜索这个部分候选解本身及其可以拓展出的子候选解，转而测试其他的部分候选解。</p>
 
 <hr />
 
@@ -440,10 +450,10 @@ answer：用来储存我们的符合条件决策路径
       
   <nav class="pagination">
     
-      <a href="#" class="pagination--pager disabled">Previous</a>
+      <a href="/leetcode/%E5%9B%9E%E6%BA%AF-%E9%A2%98%E5%8D%95/" class="pagination--pager" title="回溯-题单">Previous</a>
     
     
-      <a href="/ds-algo/binary_search/" class="pagination--pager" title="二分查找">Next</a>
+      <a href="/ds-algo/%E5%9B%BE%E8%AE%BA/" class="pagination--pager" title="图论">Next</a>
     
   </nav>
 
