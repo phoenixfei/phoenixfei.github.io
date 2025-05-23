@@ -4,4 +4,10 @@ var store = [{
         "tags": [],
         "url": "/ds-algo/backtrack/",
         "teaser": null
+      },{
+        "title": "二分查找",
+        "excerpt":"基本概念 Although the basic idea of binary search is comparatively straightforward, the details can be surprisingly tricky… 二分查找，也称为折半查找。每次查找都将查找区间减半，因此时间复杂度为$O(logn)$ 查找区间有序 防止加法溢出，也就是说加法的结果大于整型能够表示的范围。 mid = (right + left) / 2; 这种情况可能出现加法溢出，即 和超出int范围。 应使用 mid = left + (right - left) / 2 当然，除以2可以用右移一位代替，也是官方推荐：mid = left + (right - left) » 1 更高级，防止减法溢出：mid = (left...","categories": ["ds-algo"],
+        "tags": [],
+        "url": "/ds-algo/binary_search/",
+        "teaser": null
       }]

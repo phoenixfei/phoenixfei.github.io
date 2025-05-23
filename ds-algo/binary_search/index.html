@@ -1,104 +1,307 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://yourusername.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yourusername.github.io/" rel="alternate" type="text/html" /><updated>2025-05-23T12:47:43+00:00</updated><id>https://yourusername.github.io/feed.xml</id><title type="html">技术与思维笔记</title><subtitle>记录算法、大数据、数学等知识，持续学习与沉淀。</subtitle><author><name>phoenixfei</name></author><entry><title type="html">回溯</title><link href="https://yourusername.github.io/ds-algo/backtrack/" rel="alternate" type="text/html" title="回溯" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/backtrack</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/backtrack/"><![CDATA[<h2 id="如何理解回溯法">如何理解回溯法</h2>
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.1 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
 
-<p><strong>回溯法</strong>（backtracking）是暴力搜索法中的一种。</p>
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
 
-<p>对于某些计算问题而言，回溯法是一种可以找到所有（或一部分）解的一般性算法，尤其适用于约束满足问题。（在解决约束满足问题时，我们逐步构造更多的候选解，并且在确定某一部分候选解不可能补全成正解之后放弃继续搜索这个部分候选解本身及其可以拓展出的子候选解，转而测试其他的部分候选解）。</p>
+<!-- begin _includes/seo.html --><title>二分查找 - 技术与思维笔记</title>
+<meta name="description" content="基本概念">
 
-<hr />
 
-<h2 id="基本思想">基本思想</h2>
+  <meta name="author" content="phoenixfei">
+  
+  <meta property="article:author" content="phoenixfei">
+  
 
-<p>回溯法解决的问题都可以抽象为树形结构！集合的大小就构成了树的宽度，递归的深度就构成了树的深度。</p>
 
-<p>在包含问题的所有解的空间树树中，按照<strong>深度优先搜索</strong>的策略，从根节点出发深度搜索解空间树。当搜索到某一结点时，要判断该结点是否包含问题的解，如果包含，就从该结点出发继续探索下去，如果该结点不包含问题的解，则逐层向其祖先结点回溯。</p>
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="技术与思维笔记">
+<meta property="og:title" content="二分查找">
+<meta property="og:url" content="https://yourusername.github.io/ds-algo/binary_search/">
 
-<p>若用回溯法求问题的所有解时，要回溯到根，且根结点的所有可行的子树都要已被搜索遍才结束。</p>
 
-<p>若用回溯法求解问题的任一解时，只要搜索到问题的一个解就可以结束。</p>
+  <meta property="og:description" content="基本概念">
 
-<hr />
 
-<h2 id="求解步骤">求解步骤</h2>
 
-<ol>
+
+
+
+
+  <meta property="article:published_time" content="2024-05-21T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://yourusername.github.io/ds-algo/binary_search/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术与思维笔记 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术与思维笔记
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/"
+                
+                
+              >首页</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/ds-algo/"
+                
+                
+              >数据结构与算法</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/leetcode/"
+                
+                
+              >LeetCode</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bigdata/"
+                
+                
+              >大数据</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/math/"
+                
+                
+              >数学</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                
+                
+              >关于我</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://yourusername.github.io/" itemprop="url">phoenixfei</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>专注于算法、大数据、数学等领域的学习与分享</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">南京</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
   <li>
-    <p>针对所有问题，确定问题的解空间：</p>
-
-    <p>首先应明确定义问题的解空间，问题的解空间应至少包含问题的一个（最优）解。</p>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
   </li>
-  <li>
-    <p>确定结点的扩展搜索规则</p>
-  </li>
-  <li>
-    <p>以深度优先方式搜索解空间，并在搜索过程中用剪枝函数避免无效搜索</p>
-  </li>
-</ol>
+-->
+    </ul>
+  </div>
+</div>
 
-<hr />
+  
+  </div>
 
-<h2 id="算法框架">算法框架</h2>
 
-<p><strong>实际上，回溯算法就是一个N叉树的前序遍历加上后续遍历而已。</strong></p>
 
-<p>同时，回溯算法是有模板的。用递归表示N叉树的深度遍历，在每次深度遍历的过程中，又横向遍历每一层所有的条件。</p>
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="二分查找">
+    <meta itemprop="description" content="基本概念">
+    <meta itemprop="datePublished" content="2024-05-21T00:00:00+00:00">
+    
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 二叉树遍历框架
-</span><span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="k">return</span>
-    <span class="c1"># 前序遍历代码写在这
-</span>    <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
-    <span class="c1"># 中序遍历代码写在这 
-</span>    <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
-    <span class="c1"># 后序遍历代码写在这
-</span>
-<span class="c1"># N 叉树遍历框架
-</span><span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="k">return</span>
-    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="p">.</span><span class="n">children</span><span class="p">:</span>
-        <span class="c1"># 前序遍历代码写在这
-</span>        <span class="n">traverse</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
-        <span class="c1"># 后序遍历代码写在这
-</span></code></pre></div></div>
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="https://yourusername.github.io/ds-algo/binary_search/" itemprop="url">二分查找
+</a>
+          </h1>
+          
 
-<p>补充：树的遍历框架虽然简答，但是再怎么强调都不为过。因为见的算法多了之后，你会发现，有关递归的算法，都离不开“树”的遍历这一抽象模型。<strong>只不过对于不同的算法，在前（中）后序遍历的时候，所做的事不同</strong>。</p>
 
-<blockquote>
-  <p>比如，斐波拉契的例子就是一个二叉树，凑零钱的例子就是个N叉树，N为硬币面值的种数。看他们的递归解法代码，就会发现，都是上述代码模板的变形而已。</p>
-</blockquote>
+        </header>
+      
 
-<p>言归正传，回溯算法就是N叉树的遍历，这个N等于当前可做的选择（choices）的总数，同时，在前序遍历的位置作出当前选择（choose过程），然后开始递归。最后，在后序遍历的位置取消当前选择（unchoose过程）。回溯算法伪代码模板如下所示：</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"""
-choiceList：当前可以进行的选择列表
-track：可以理解为决策路径，即已经做出一系列选择
-answer：用来储存我们的符合条件决策路径
-"""</span>
-
-<span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">choiceList</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">track</span> <span class="ow">is</span> <span class="n">OK</span><span class="p">:</span>
-        <span class="n">answer</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">track</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">choiceList</span><span class="p">:</span>
-            <span class="c1"># choose：选择一个 choice 加入 track
-</span>            <span class="n">backtrack</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">answer</span><span class="p">)</span>
-            <span class="c1"># unchoose：从 track 中撤销上面的选择
-</span></code></pre></div></div>
-
-<hr />
-
-<h2 id="回溯法解决的问题">回溯法解决的问题</h2>
-
-<p>回溯法，一般可以解决如下几种问题：</p>
-
-<ul>
-  <li>组合问题：N个数里面按一定规则找出k个数的集合</li>
-  <li>切割问题：一个字符串按一定规则有几种切割方式</li>
-  <li>子集问题：一个N个数的集合里有多少符合条件的子集</li>
-  <li>排列问题：N个数按一定规则全排列，有几种排列方式</li>
-  <li>棋盘问题：N皇后，解数独等等</li>
-</ul>
-
-<hr />]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[如何理解回溯法]]></summary></entry><entry><title type="html">二分查找</title><link href="https://yourusername.github.io/ds-algo/binary_search/" rel="alternate" type="text/html" title="二分查找" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/binary_search</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/binary_search/"><![CDATA[<h2 id="基本概念">基本概念</h2>
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#基本概念">基本概念</a></li><li><a href="#基本框架">基本框架</a></li><li><a href="#简单二分查找">简单二分查找</a></li><li><a href="#寻找左侧边界">寻找左侧边界</a></li><li><a href="#寻找右侧边界">寻找右侧边界</a></li><li><a href="#总结">总结</a></li><li><a href="#经典例题">经典例题</a><ul><li><a href="#x-的平方根">x 的平方根</a></li><li><a href="#有序数组中的单一元素">有序数组中的单一元素</a></li><li><a href="#旋转有序数组的最小数字">旋转有序数组的最小数字</a></li><li><a href="#旋转有序数组查找">旋转有序数组查找</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h2 id="基本概念">基本概念</h2>
 
 <blockquote>
   <p>Although the basic idea of binary search is comparatively straightforward, the details can be surprisingly tricky…</p>
@@ -469,4 +672,113 @@ answer：用来储存我们的符合条件决策路径
     <span class="o">}</span>
     <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[基本概念]]></summary></entry></feed>
+</code></pre></div></div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#ds-algo" class="page__taxonomy-item p-category" rel="tag">ds-algo</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-05-21T00:00:00+00:00">May 21, 2024</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/ds-algo/backtrack/" class="pagination--pager" title="回溯">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="https://yourusername.github.io">技术与思维笔记</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
