@@ -4,7 +4,7 @@ layout: category
 permalink: /ds-algo/posts/
 taxonomy: ds-algo
 
-author_profile: true
+author_profile: false
 toc: true
 toc_sticky: true
 ---

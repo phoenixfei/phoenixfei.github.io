@@ -4,7 +4,7 @@ layout: category
 permalink: /leetcode/posts/
 taxonomy: leetcode
 
-author_profile: true
+author_profile: false
 toc: true
 toc_sticky: true
 ---

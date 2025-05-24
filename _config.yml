@@ -17,7 +17,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 # Site Settings
 locale                   : "en-US"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
-title                    : "技术与思维笔记"
+title                    : ""
 theme                    : minimal-mistakes-jekyll
 mathjax                  : true
 title_separator          : "-"
@@ -326,14 +326,11 @@ defaults:
       type: pages
     values:
       layout: single
-      author_profile: true
+      author_profile: false # 全站默认关闭 author_profile
       read_time: true
       comments: # true
       share: true
       related: true
       header:
         sticky: true
-
-head:
-  custom: custom.html
 

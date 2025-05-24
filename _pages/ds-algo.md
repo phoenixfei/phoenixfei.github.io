@@ -3,7 +3,7 @@ title: "数据结构与算法思路"
 permalink: /ds-algo/
 
 layout: single
-author_profile: true
+author_profile: false
 toc: true
 toc_sticky: true
 ---

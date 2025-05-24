@@ -1,0 +1,21 @@
+// 扩展文章主内容宽度（适用于大屏）
+.page {
+  max-width: 1600px;  // 原默认约为 800px
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
+// 可选：扩展单篇文章正文宽度
+.page__content {
+  max-width: 100%;
+}
+
+// 如果是主页文章列表：
+.archive {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+// xxx
