@@ -1,475 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://yourusername.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yourusername.github.io/" rel="alternate" type="text/html" /><updated>2025-05-23T15:49:41+00:00</updated><id>https://yourusername.github.io/feed.xml</id><title type="html">技术与思维笔记</title><subtitle>记录算法、大数据、数学等知识，持续学习与沉淀。</subtitle><author><name>phoenixfei</name></author><entry><title type="html">回溯</title><link href="https://yourusername.github.io/ds-algo/backtrack/" rel="alternate" type="text/html" title="回溯" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/backtrack</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/backtrack/"><![CDATA[<h2 id="如何理解回溯法">如何理解回溯法</h2>
-
-<p><strong>回溯法</strong>（backtracking）是暴力搜索法中的一种。</p>
-
-<p>对于某些计算问题而言，回溯法是一种可以找到所有（或一部分）解的一般性算法，尤其适用于约束满足问题。（在解决约束满足问题时，我们逐步构造更多的候选解，并且在确定某一部分候选解不可能补全成正解之后放弃继续搜索这个部分候选解本身及其可以拓展出的子候选解，转而测试其他的部分候选解）。</p>
-
-<hr />
-
-<h2 id="基本思想">基本思想</h2>
-
-<p>回溯法解决的问题都可以抽象为树形结构！集合的大小就构成了树的宽度，递归的深度就构成了树的深度。</p>
-
-<p>在包含问题的所有解的空间树树中，按照<strong>深度优先搜索</strong>的策略，从根节点出发深度搜索解空间树。当搜索到某一结点时，要判断该结点是否包含问题的解，如果包含，就从该结点出发继续探索下去，如果该结点不包含问题的解，则逐层向其祖先结点回溯。</p>
-
-<p>若用回溯法求问题的所有解时，要回溯到根，且根结点的所有可行的子树都要已被搜索遍才结束。</p>
-
-<p>若用回溯法求解问题的任一解时，只要搜索到问题的一个解就可以结束。</p>
-
-<hr />
-
-<h2 id="求解步骤">求解步骤</h2>
-
-<ol>
-  <li>
-    <p>针对所有问题，确定问题的解空间：</p>
-
-    <p>首先应明确定义问题的解空间，问题的解空间应至少包含问题的一个（最优）解。</p>
-  </li>
-  <li>
-    <p>确定结点的扩展搜索规则</p>
-  </li>
-  <li>
-    <p>以深度优先方式搜索解空间，并在搜索过程中用剪枝函数避免无效搜索</p>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="算法框架">算法框架</h2>
-
-<p><strong>实际上，回溯算法就是一个N叉树的前序遍历加上后续遍历而已。</strong></p>
-
-<p>同时，回溯算法是有模板的。用递归表示N叉树的深度遍历，在每次深度遍历的过程中，又横向遍历每一层所有的条件。</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 二叉树遍历框架
-</span><span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="k">return</span>
-    <span class="c1"># 前序遍历代码写在这
-</span>    <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
-    <span class="c1"># 中序遍历代码写在这 
-</span>    <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
-    <span class="c1"># 后序遍历代码写在这
-</span>
-<span class="c1"># N 叉树遍历框架
-</span><span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="k">return</span>
-    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="p">.</span><span class="n">children</span><span class="p">:</span>
-        <span class="c1"># 前序遍历代码写在这
-</span>        <span class="n">traverse</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
-        <span class="c1"># 后序遍历代码写在这
-</span></code></pre></div></div>
-
-<p>补充：树的遍历框架虽然简答，但是再怎么强调都不为过。因为见的算法多了之后，你会发现，有关递归的算法，都离不开“树”的遍历这一抽象模型。<strong>只不过对于不同的算法，在前（中）后序遍历的时候，所做的事不同</strong>。</p>
-
-<blockquote>
-  <p>比如，斐波拉契的例子就是一个二叉树，凑零钱的例子就是个N叉树，N为硬币面值的种数。看他们的递归解法代码，就会发现，都是上述代码模板的变形而已。</p>
-</blockquote>
-
-<p>言归正传，回溯算法就是N叉树的遍历，这个N等于当前可做的选择（choices）的总数，同时，在前序遍历的位置作出当前选择（choose过程），然后开始递归。最后，在后序遍历的位置取消当前选择（unchoose过程）。回溯算法伪代码模板如下所示：</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"""
-choiceList：当前可以进行的选择列表
-track：可以理解为决策路径，即已经做出一系列选择
-answer：用来储存我们的符合条件决策路径
-"""</span>
-
-<span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">choiceList</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">track</span> <span class="ow">is</span> <span class="n">OK</span><span class="p">:</span>
-        <span class="n">answer</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">track</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">choiceList</span><span class="p">:</span>
-            <span class="c1"># choose：选择一个 choice 加入 track
-</span>            <span class="n">backtrack</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="n">answer</span><span class="p">)</span>
-            <span class="c1"># unchoose：从 track 中撤销上面的选择
-</span></code></pre></div></div>
-
-<hr />
-
-<h2 id="回溯法解决的问题">回溯法解决的问题</h2>
-
-<p>回溯法，一般可以解决如下几种问题：</p>
-
-<ul>
-  <li>组合问题：N个数里面按一定规则找出k个数的集合</li>
-  <li>切割问题：一个字符串按一定规则有几种切割方式</li>
-  <li>子集问题：一个N个数的集合里有多少符合条件的子集</li>
-  <li>排列问题：N个数按一定规则全排列，有几种排列方式</li>
-  <li>棋盘问题：N皇后，解数独等等</li>
-</ul>
-
-<hr />]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[如何理解回溯法]]></summary></entry><entry><title type="html">二分查找</title><link href="https://yourusername.github.io/ds-algo/binary_search/" rel="alternate" type="text/html" title="二分查找" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/binary_search</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/binary_search/"><![CDATA[<h2 id="基本概念">基本概念</h2>
-
-<blockquote>
-  <p>Although the basic idea of binary search is comparatively straightforward, the details can be surprisingly tricky…</p>
-</blockquote>
-
-<p>二分查找，也称为折半查找。每次查找都将查找区间减半，因此时间复杂度为$O(logn)$</p>
-
-<ol>
-  <li>
-    <p>查找<strong>区间有序</strong></p>
-  </li>
-  <li>
-    <p>防止<strong>加法溢出</strong>，也就是说加法的结果大于整型能够表示的范围。</p>
-
-    <blockquote>
-      <p>mid = (right + left) / 2; 这种情况可能出现加法溢出，即 和超出int范围。</p>
-
-      <p>应使用 <strong>mid = left + (right - left) / 2</strong></p>
-
-      <p>当然，除以2可以用右移一位代替，也是官方推荐：<strong>mid = left + (right - left) » 1</strong></p>
-
-      <p>更高级，防止减法溢出：<strong>mid = (left + right） »&gt; 1</strong></p>
-    </blockquote>
-  </li>
-  <li>
-    <p><strong>使用else if</strong>。不要出现else，而是把所有情况用else if写清楚，这样可以清楚地展现所有细节。</p>
-  </li>
-</ol>
-
-<h2 id="基本框架">基本框架</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">binarySearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">...;</span>
-    
-    <span class="k">while</span><span class="o">(...)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">right</span> <span class="o">+</span> <span class="n">left</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="o">...</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="o">...</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="o">...</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="o">...;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h2 id="简单二分查找">简单二分查找</h2>
-<p>TODO 推荐开区间实现。相比其他二分写法，开区间写法不需要思考加一减一等细节，更简单。推荐使用开区间写二分。</p>
-
-<p>这个场景是最简答的。即，搜索一个数，如果存在，返回其索引；否则，返回$-1$.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">binarySearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">mid</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">while</span><span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">){</span>
-        <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">right</span> <span class="o">+</span> <span class="n">left</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">key</span><span class="o">)</span> <span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">key</span><span class="o">)</span> <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="o">)</span> <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="o">}</span>
-	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-    <span class="c1">//return left; 待插入位置</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h2 id="寻找左侧边界">寻找左侧边界</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">left_bound</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="c1">// 注意</span>
-
-    <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 注意</span>
-        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="o">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="o">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span><span class="o">;</span> <span class="c1">// 注意</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">left</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<ol>
-  <li>
-    <p>为什么 while(left &lt; right) 而不是 &lt;= ?</p>
-
-    <blockquote>
-      <p>答：用相同的方法分析，因为初始化 right = nums.length 而不是 nums.length - 1 。因此每次循环的<strong>「搜索区间」</strong>是 [left, right) 左闭右开。while(left &lt; right) 终止的条件是 left == right，此时搜索区间 [left, left) 恰巧为空，所以可以正确终止。</p>
-    </blockquote>
-  </li>
-  <li>
-    <p>为什么没有返回 -1 的操作？如果 nums 中不存在 target 这个值，怎么办？</p>
-
-    <blockquote>
-      <p>答：函数的返回值（即 left 变量的值）取值区间是闭区间，[0, nums.length]。</p>
-
-      <p>所以我们简单添加两行代码就能在正确的时候 return -1：</p>
-
-      <p><code class="language-plaintext highlighter-rouge">// target 比所有数都大</code>
-<code class="language-plaintext highlighter-rouge">if (left == nums.length) return -1;</code>
-<code class="language-plaintext highlighter-rouge">// 其它情况，包括 left = 0</code>
-<code class="language-plaintext highlighter-rouge">return nums[left] == target ? left : -1;</code></p>
-    </blockquote>
-  </li>
-  <li>
-    <p>为什么 left = mid + 1，right = mid ？和之前的算法不一样？</p>
-
-    <blockquote>
-      <p>答：这个很好解释，因为我们的「搜索区间」是 [left, right) 左闭右开，所以当 nums[mid] 被检测之后，下一步的搜索区间应该去掉 mid 分割成两个区间，即 [left, mid) 或 [mid + 1, right)。</p>
-    </blockquote>
-  </li>
-  <li>
-    <p>为什么该算法能够搜索左侧边界？</p>
-
-    <blockquote>
-      <p>答：关键在于对于 nums[mid] == target 这种情况的处理：</p>
-
-      <p>​	<code class="language-plaintext highlighter-rouge">if (nums[mid] == target) right = mid</code></p>
-
-      <p>可见，找到 target 时不要立即返回，而是缩小「搜索区间」的上界 right，在区间 [left, mid) 中继续搜索，即不断向左收缩，达到锁定左侧边界的目的。</p>
-    </blockquote>
-  </li>
-  <li>
-    <p>为什么返回 left 而不是 right？</p>
-
-    <blockquote>
-      <p>答：都是一样的，因为 while 终止的条件是 left == right。</p>
-    </blockquote>
-  </li>
-</ol>
-
-<h2 id="寻找右侧边界">寻找右侧边界</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">right_bound</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
-
-    <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="o">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 注意</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">left</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 注意</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<ol>
-  <li>
-    <p>为什么这个算法能够找到右侧边界？</p>
-
-    <blockquote>
-      <p>类似地，关键点还是这里：<code class="language-plaintext highlighter-rouge">if (nums[mid] == target)  left = mid + 1;</code>当 nums[mid] == target 时，不要立即返回，而是增大「搜索区间」的下界 left，使得区间不断向右收缩，达到锁定右侧边界的目的。</p>
-    </blockquote>
-  </li>
-  <li>
-    <p>为什么最后返回 left - 1 而不像左边界返回 left ？而且这里既然搜索右侧边界，应该返回 right 才对。</p>
-
-    <blockquote>
-      <p>首先，while 循环的终止条件是 left == right，所以 left 和 right 是一样的，你非要体现右侧的特点，返回 right - 1 好了。</p>
-
-      <p>因为我们对 left 的更新必须是 left = mid + 1，就是说 while 循环结束时，nums[left] 一定不等于 target 了，而 nums[left - 1] 可能是 target。</p>
-    </blockquote>
-  </li>
-  <li>
-    <p>为什么没有返回 -1 的操作？如果 nums 中不存在 target 这个值，怎么办？</p>
-
-    <blockquote>
-      <p>答：类似之前的左侧边界搜索，因为 while 的终止条件是 left == right，就是说 left 的取值范围是 [0, nums.length]，所以可以添加两行代码，正确地返回 -1：</p>
-
-      <p><code class="language-plaintext highlighter-rouge">// target比所有数小</code></p>
-
-      <p><code class="language-plaintext highlighter-rouge">if (left == 0) return -1;</code></p>
-
-      <p><code class="language-plaintext highlighter-rouge">// 其它情况，包括target比所有数大；由于取left - 1，所有可以综合考虑</code></p>
-
-      <p><code class="language-plaintext highlighter-rouge">return nums[left-1] == target ? (left-1) : -1;</code></p>
-    </blockquote>
-  </li>
-</ol>
-
-<h2 id="总结">总结</h2>
-
-<p>若想了解上述三个算法，最核心的思想是必须记住「<strong>搜索区间</strong>」。</p>
-
-<p>第一个，最基本的二分查找算法：</p>
-
-<blockquote>
-  <p>因为我们初始化 right = nums.length - 1
-所以决定了我们的「搜索区间」是 [left, right]
-所以决定了 while (left &lt;= right)
-同时也决定了 left = mid+1 和 right = mid-1</p>
-
-  <p>因为我们只需找到一个 target 的索引即可
-所以当 nums[mid] == target 时可以立即返回</p>
-</blockquote>
-
-<p>第二个，寻找左侧边界的二分查找：</p>
-
-<blockquote>
-  <p>因为我们初始化 right = nums.length
-所以决定了我们的「搜索区间」是 [left, right)
-所以决定了 while (left &lt; right)
-同时也决定了 left = mid+1 和 right = mid</p>
-
-  <p>因为我们需找到 target 的最左侧索引
-所以当 nums[mid] == target 时不要立即返回
-而要收紧右侧边界以锁定左侧边界</p>
-</blockquote>
-
-<p>第三个，寻找右侧边界的二分查找：</p>
-
-<blockquote>
-  <p>因为我们初始化 right = nums.length
-所以决定了我们的「搜索区间」是 [left, right)
-所以决定了 while (left &lt; right)
-同时也决定了 left = mid+1 和 right = mid</p>
-
-  <p>因为我们需找到 target 的最右侧索引
-所以当 nums[mid] == target 时不要立即返回
-而要收紧左侧边界以锁定右侧边界</p>
-
-  <p>又因为收紧左侧边界时必须 left = mid + 1
-所以最后无论返回 left 还是 right，必须减一</p>
-</blockquote>
-
-<font color="Crimson">***因为 h 的赋值表达式为 h = m，那么循环条件也就只能使用 l &lt; h 这种形式。***</font>
-
-<p><a href="https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/">补充</a></p>
-
-<h2 id="经典例题">经典例题</h2>
-
-<h3 id="x-的平方根">x 的平方根</h3>
-
-<p><a href="https://leetcode-cn.com/problems/sqrtx/">计算并返回 <em>x</em> 的平方根</a>。其中 <em>x</em> 是非负整数，结果只保留整数的部分。</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">mySqrt</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">x</span><span class="o">&lt;=</span><span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="n">x</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">sqrt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// 不要用乘法，用除法</span>
-    <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">m</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="o">(</span><span class="n">h</span><span class="o">-</span><span class="n">l</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="n">sqrt</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">m</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">sqrt</span> <span class="o">==</span> <span class="n">x</span><span class="o">)</span> <span class="k">return</span> <span class="n">m</span><span class="o">;</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">sqrt</span> <span class="o">&gt;</span> <span class="n">m</span><span class="o">)</span> <span class="n">h</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">sqrt</span> <span class="o">&lt;</span> <span class="n">m</span><span class="o">)</span> <span class="n">l</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">h</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="有序数组中的单一元素">有序数组中的单一元素</h3>
-
-<p><a href="https://leetcode-cn.com/problems/single-element-in-a-sorted-array/">有序数组中的单一元素</a>：给定一个只包含整数的有序数组，每个元素都会出现两次，唯有一个数只会出现一次，找出这个数。</p>
-
-<p><strong>思路</strong>：</p>
-
-<p>要求以 O(logN) 时间复杂度进行求解，因此不能遍历数组并进行异或操作来求解，这么做的时间复杂度为 O(N)。</p>
-
-<p>令 index 为 Single Element 在数组中的位置。在 index 之后，数组中原来存在的成对状态被改变。如果 m 为偶数，并且 m + 1 &lt; index，那么 nums[m] == nums[m + 1]；m + 1 &gt;= index，那么 nums[m] != nums[m + 1]。</p>
-
-<p>从上面的规律可以知道，如果 nums[m] == nums[m + 1]，那么 index 所在的数组位置为 [m + 2, h]，此时令 l = m + 2；如果 nums[m] != nums[m + 1]，那么 index 所在的数组位置为 [l, m]，此时令 h = m。</p>
-
-<font color="Crimson">***因为 h 的赋值表达式为 h = m，那么循环条件也就只能使用 l &lt; h 这种形式。***</font>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">singleNonDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="o">(</span><span class="n">h</span> <span class="o">-</span> <span class="n">l</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">m</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">m</span><span class="o">--;</span>   <span class="c1">// 保证 l/h/m 都在偶数位，使得查找区间大小一直都是奇数</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">m</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="o">{</span>
-            <span class="n">l</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="n">h</span> <span class="o">=</span> <span class="n">m</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">nums</span><span class="o">[</span><span class="n">l</span><span class="o">];</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="旋转有序数组的最小数字">旋转有序数组的最小数字</h3>
-
-<p><strong>题目描述</strong>：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p>
-
-<p>此时问题的关键在于确定对半分得到的两个数组哪一个是旋转数组，哪一个是非递减数组。我们很容易知道非递减数组的第一个元素一定小于等于最后一个元素。</p>
-
-<p>通过修改二分查找算法进行求解（l 代表 low，m 代表 mid，h 代表 high）：</p>
-
-<ul>
-  <li>当 nums[m] &lt;= nums[h] 时，表示 [m, h] 区间内的数组是非递减数组，[l, m] 区间内的数组是旋转数组，此时令 h = m；</li>
-  <li>否则 [m + 1, h] 区间内的数组是旋转数组，令 l = m + 1。</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">minNumberInRotateArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="o">(</span><span class="n">h</span> <span class="o">-</span> <span class="n">l</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">m</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">nums</span><span class="o">[</span><span class="n">h</span><span class="o">])</span>
-            <span class="n">h</span> <span class="o">=</span> <span class="n">m</span><span class="o">;</span>
-        <span class="k">else</span>
-            <span class="n">l</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">nums</span><span class="o">[</span><span class="n">l</span><span class="o">];</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><strong>解释</strong>：为什么上述代码中l&lt;h能够成功呢？个人解释如下：如果区间是左闭右闭时，而while条件为l&lt;h时，确实有一个值没有参与if条件判断。但是，某种意义上，我们已经默认这个l，或者h角标的数就是我们要的答案。</p>
-
-<p>扩展1：<strong>如果数组元素允许重复</strong>，会出现一个特殊的情况：nums[l] == nums[m] == nums[h]，此时无法确定解在哪个区间，需要切换到顺序查找。例如对于数组 {1,1,1,0,1}，l、m 和 h 指向的数都为 1，此时无法知道最小数字 0 在哪个区间。</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">minNumberInRotateArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="o">(</span><span class="n">h</span> <span class="o">-</span> <span class="n">l</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">l</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">m</span><span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="o">[</span><span class="n">m</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">h</span><span class="o">])</span>
-            <span class="k">return</span> <span class="nf">minNumber</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
-        <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">m</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">nums</span><span class="o">[</span><span class="n">h</span><span class="o">])</span>
-            <span class="n">h</span> <span class="o">=</span> <span class="n">m</span><span class="o">;</span>
-        <span class="k">else</span>
-            <span class="n">l</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">nums</span><span class="o">[</span><span class="n">l</span><span class="o">];</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="旋转有序数组查找">旋转有序数组查找</h3>
-
-<p><a href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&amp;mid=2653198327&amp;idx=1&amp;sn=74187f72a03db8fcad3c234d61c7bad7&amp;chksm=8c99e52dbbee6c3b1e35ea8b2a8d57fa9fa72c098fa91e9f76a3228596922ef062fbf6f3e103&amp;mpshare=1&amp;scene=24&amp;srcid=&amp;key=8095bafaf3e0360ff8c483252809c708471b25b3132dfca15fc4fa317ce5a66a56b291e0765ef078fc6867cb252f15403be711523cc6f76c4529ff5f1a814dcd04e7e9b7b46de0bf232957784929fb2e&amp;ascene=14&amp;uin=Nzg0MDI3NjA3&amp;devicetype=Windows+7&amp;version=62060833&amp;lang=zh_CN&amp;pass_ticket=UCWR8ioDtSHS%2BoL3Soe2IMjeckYJhDTfT4OLISM%2Bbekc4zA7JbB3bv2fNQXx173b">在一个旋转有序数组中，如何查找一个整数呢？</a>注意这里有一个前提：<strong>我们并不直接知道给定数组的旋转点。</strong></p>
-
-<p><img src="assets/640.jpg" alt="640" /></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">rotatedBinarySearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">){</span>
-    <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">while</span><span class="o">(</span><span class="n">start</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">){</span>
-        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="o">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
-        <span class="c1">// 情况1：中位数位于旋转点左侧</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">array</span><span class="o">[</span><span class="n">start</span><span class="o">]){</span>
-            <span class="c1">// 最左侧元素 &lt;= 查找目标 &lt; 中位数</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">start</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">[</span><span class="n">mid</span><span class="o">]){</span>
-                <span class="n">end</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-            <span class="o">}</span><span class="k">else</span><span class="o">{</span> <span class="c1">// 中位数 &lt; 查找目标(查找目标位于中位数右侧)</span>
-                <span class="n">start</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">}</span><span class="k">else</span><span class="o">{</span> <span class="c1">// 情况2：中位数位于旋转点右侧，或与旋转点重合</span>
-            <span class="c1">// 中位数 &lt; 查找目标 &lt;= 最右侧元素</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;=</span> <span class="n">array</span><span class="o">[</span><span class="n">end</span><span class="o">]){</span>
-                <span class="n">start</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-            <span class="o">}</span><span class="k">else</span><span class="o">{</span> <span class="c1">// 查找目标 &gt; 中位数（查找目标位于中位数左侧）</span>
-                <span class="n">end</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[基本概念]]></summary></entry><entry><title type="html">二分查找</title><link href="https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="alternate" type="text/html" title="二分查找" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"><![CDATA[<p>虽然二分查找的基本思想相对简单，但其细节却可能出人意料地棘手。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://yourusername.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yourusername.github.io/" rel="alternate" type="text/html" /><updated>2025-05-24T05:45:05+00:00</updated><id>https://yourusername.github.io/feed.xml</id><title type="html">phoenixfei</title><subtitle>记录算法、大数据、数学等知识，持续学习与沉淀。</subtitle><author><name>phoenixfei</name></author><entry><title type="html">二分查找</title><link href="https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="alternate" type="text/html" title="二分查找" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"><![CDATA[<p>虽然二分查找的基本思想相对简单，但其细节却可能出人意料地棘手。</p>
 
 <h2 id="基本概念">基本概念</h2>
 
@@ -812,7 +341,7 @@ answer：用来储存我们的符合条件决策路径
 
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&amp;mid=2653198327&amp;idx=1&amp;sn=74187f72a03db8fcad3c234d61c7bad7&amp;chksm=8c99e52dbbee6c3b1e35ea8b2a8d57fa9fa72c098fa91e9f76a3228596922ef062fbf6f3e103&amp;mpshare=1&amp;scene=24&amp;srcid=&amp;key=8095bafaf3e0360ff8c483252809c708471b25b3132dfca15fc4fa317ce5a66a56b291e0765ef078fc6867cb252f15403be711523cc6f76c4529ff5f1a814dcd04e7e9b7b46de0bf232957784929fb2e&amp;ascene=14&amp;uin=Nzg0MDI3NjA3&amp;devicetype=Windows+7&amp;version=62060833&amp;lang=zh_CN&amp;pass_ticket=UCWR8ioDtSHS%2BoL3Soe2IMjeckYJhDTfT4OLISM%2Bbekc4zA7JbB3bv2fNQXx173b">在一个旋转有序数组中，如何查找一个整数呢？</a>注意这里有一个前提：<strong>我们并不直接知道给定数组的旋转点。</strong></p>
 
-<p><img src="/assets/images//640.jpg" alt="640" /></p>
+<p><img src="/assets/images/640.jpg" alt="640" /></p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">rotatedBinarySearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">){</span>
     <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
@@ -1134,7 +663,66 @@ n&amp;(n-1) : 10110000
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h3 id="利用位操作来压缩空间">利用位操作来压缩空间</h3>]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[对整数的二进制位进行操作，如与（AND）、或（OR）、异或（XOR）、左移、右移等操作。]]></summary></entry><entry><title type="html">动态规划-题单</title><link href="https://yourusername.github.io/leetcode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E9%A2%98%E5%8D%95/" rel="alternate" type="text/html" title="动态规划-题单" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/leetcode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E9%A2%98%E5%8D%95</id><content type="html" xml:base="https://yourusername.github.io/leetcode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E9%A2%98%E5%8D%95/"><![CDATA[<p>动态规划经典题单分享</p>
+<h3 id="利用位操作来压缩空间">利用位操作来压缩空间</h3>]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[对整数的二进制位进行操作，如与（AND）、或（OR）、异或（XOR）、左移、右移等操作。]]></summary></entry><entry><title type="html">差分数组</title><link href="https://yourusername.github.io/ds-algo/%E5%89%8D%E7%BC%80%E5%92%8C-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/" rel="alternate" type="text/html" title="差分数组" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/%E5%89%8D%E7%BC%80%E5%92%8C-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/%E5%89%8D%E7%BC%80%E5%92%8C-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/"><![CDATA[<p>差分数组（Difference Array）是一种用于高效处理区间更新的算法技巧。
+通过差分数组，可以将原数组上<strong>区间加法操作</strong>的时间复杂度从 $O(n)$ 降低到 $O(1)$，从而达到优化整体性能的目的。</p>
+
+<hr />
+
+<h2 id="举例">举例</h2>
+
+<p>考虑数组 $a=[1,3,3,5,8]$，对其中的相邻元素两两作差（右边减左边），得到数组 $[2,0,2,3]$。然后在开头补上 $a[0]$，得到差分数组：</p>
+
+\[d = [1,2,0,2,3]\]
+
+<p>这有什么用呢？如果从左到右累加 d 中的元素，我们就「还原」回了 a 数组 $[1,3,3,5,8]$。</p>
+
+<p>这又有什么用呢？现在把连续子数组 $a[1]$, $a[2]$, $a[3]$ 都加上 10，得到 $a′=[1,13,13,15,8]$ 。再次两两作差，并在开头补上 $a′[0]$，得到差分数组：</p>
+
+\[d′ = [1,12,0,2,−7]\]
+
+<p>对比 $d$ 和 $d′$ ，可以发现只有 $d[1]$ 和 $d[4]$ 变化了，这意味着对 $a$ 中连续子数组的操作，可以转变成对差分数组 $d$ 中两个数的操作。</p>
+
+<hr />
+
+<h2 id="定义和性质">定义和性质</h2>
+
+<p>对于数组 $a$, 定义其<strong>差分数组 (difference array)</strong> $d$ 为:</p>
+
+\[d[i] = \begin{cases}
+a[0], &amp; i = 0 \\
+a[i] - a[i-1], &amp; i \ge 1
+\end{cases}\]
+
+<p><strong>性质 1:</strong> 从左到右累加 $d$ 的元素, 可以得到数组 $a$。</p>
+
+<p><strong>性质 2:</strong> 如下两个操作是等价的。</p>
+
+<ul>
+  <li>把 $a$ 的子数组 $a[i], a[i+1], \dots, a[j]$ 都加上 $x$。</li>
+  <li>把 $d[i]$ 增加 $x$, 把 $d[j+1]$ 减少 $x$。</li>
+</ul>
+
+<p>利用性质 2, 我们只需要 $O(1)$ 的时间就可以完成对 $a$ 的子数组的操作。最后利用性质 1 从差分数组复原出数组 $a$。</p>
+
+<p><strong>注:</strong> 也可以这样理解, $d[i]$ 表示把下标 $\ge i$ 的数都加上 $d[i]$。</p>
+
+<p><img src="/assets/images/1747885435-uDDcwT-lc1094-c.png" alt="差分数组图示" /></p>
+
+<hr />
+
+<h2 id="常见应用">常见应用</h2>
+
+<p><strong>差分数组的常见应用：</strong></p>
+<ul>
+  <li>区间加法问题</li>
+  <li>模拟前缀变化</li>
+  <li>一维转二维的“二维差分”技巧（用于快速处理矩形区域更新）</li>
+</ul>
+
+<p><strong>参考链接</strong></p>
+<ul>
+  <li><a href="https://leetcode.cn/problems/car-pooling/solutions/2550264/suan-fa-xiao-ke-tang-chai-fen-shu-zu-fu-9d4ra/">灵神的题解</a></li>
+</ul>]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[差分数组（Difference Array）是一种用于高效处理区间更新的算法技巧。 通过差分数组，可以将原数组上区间加法操作的时间复杂度从 $O(n)$ 降低到 $O(1)$，从而达到优化整体性能的目的。]]></summary></entry><entry><title type="html">动态规划-题单</title><link href="https://yourusername.github.io/leetcode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E9%A2%98%E5%8D%95/" rel="alternate" type="text/html" title="动态规划-题单" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/leetcode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E9%A2%98%E5%8D%95</id><content type="html" xml:base="https://yourusername.github.io/leetcode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E9%A2%98%E5%8D%95/"><![CDATA[<p>动态规划经典题单分享</p>
 
 <h2 id="斐波拉切数列类">斐波拉切数列类</h2>
 
@@ -1821,7 +1409,7 @@ sum(P) + sum(N) + sum(P) - sum(N) &amp;=&amp; target + sum(P) + sum(N) \\
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p><img src="assets/20181113215740939.png" alt="20181113215740939" /></p>
+<p><img src="/assets/images/20181113215740939.png" alt="20181113215740939" /></p>
 
 <p>下面看看算法的执行流程，假如输入6，那么执行的递归树如下所示。上面的每个节点都会被执行一次，导致同样的节点被重复的执行，比如fib(2)被执行了5次。这样导致时间上的浪费，如果递归调用也会导致空间的浪费，导致栈溢出的问题。</p>
 
@@ -1896,7 +1484,7 @@ sum(P) + sum(N) + sum(P) - sum(N) &amp;=&amp; target + sum(P) + sum(N) \\
 
 <h3 id="钢条切割">钢条切割</h3>
 
-<p><img src="assets/20170715221117648.png" alt="20170715221117648" /></p>
+<p><img src="/assets/images/20170715221117648.png" alt="20170715221117648" /></p>
 
 <p>解法思路：</p>
 
@@ -1982,7 +1570,7 @@ sum(P) + sum(N) + sum(P) - sum(N) &amp;=&amp; target + sum(P) + sum(N) \\
 <p>题目描述：</p>
 
 <p>有一个国家发现了 5 座金矿，每座金矿的黄金储量不同，需要参与挖掘的工人数也不同。参与挖矿工人的总数是 10 人。每座金矿要么全挖，要么不挖，不能派出一半人挖取一半金矿。要求用程序求解出，要想得到尽可能多的黄金，应该选择挖取哪几座金矿？
-<img src="assets/2412606803-5c2439799f9b1_articlex.png" alt="2412606803-5c2439799f9b1_articlex" /></p>
+<img src="/assets/images/2412606803-5c2439799f9b1_articlex.png" alt="2412606803-5c2439799f9b1_articlex" /></p>
 
 <p>分析思路：</p>
 
@@ -2273,7 +1861,7 @@ Output:
     <span class="o">}</span>
     <span class="k">return</span> <span class="n">j</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[双指针，指的是在遍历对象的过程中，不是普通的使用单个指针进行访问，而是使用两个相同方向或者相反方向的指针进行扫描，从而达到相应的目的。]]></summary></entry><entry><title type="html">回溯-题单</title><link href="https://yourusername.github.io/leetcode/%E5%9B%9E%E6%BA%AF-%E9%A2%98%E5%8D%95/" rel="alternate" type="text/html" title="回溯-题单" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/leetcode/%E5%9B%9E%E6%BA%AF-%E9%A2%98%E5%8D%95</id><content type="html" xml:base="https://yourusername.github.io/leetcode/%E5%9B%9E%E6%BA%AF-%E9%A2%98%E5%8D%95/"><![CDATA[<p>回溯法，一般可以解决如下几种问题：</p>
+</code></pre></div></div>]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[双指针，指的是在遍历对象的过程中，不是普通的使用单个指针进行访问，而是使用两个相同方向或者相反方向的指针进行扫描，从而达到相应的目的。]]></summary></entry><entry><title type="html">回溯-基础题单</title><link href="https://yourusername.github.io/leetcode/%E5%9B%9E%E6%BA%AF-%E5%9F%BA%E7%A1%80%E9%A2%98%E5%8D%95/" rel="alternate" type="text/html" title="回溯-基础题单" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/leetcode/%E5%9B%9E%E6%BA%AF-%E5%9F%BA%E7%A1%80%E9%A2%98%E5%8D%95</id><content type="html" xml:base="https://yourusername.github.io/leetcode/%E5%9B%9E%E6%BA%AF-%E5%9F%BA%E7%A1%80%E9%A2%98%E5%8D%95/"><![CDATA[<p>本题单介绍使用回溯法解决组合、切割、子集、排列和棋盘类问题。</p>
 <ul>
   <li>组合问题：N个数里面按一定规则找出k个数的集合</li>
   <li>切割问题：一个字符串按一定规则有几种切割方式</li>
@@ -2286,24 +1874,36 @@ Output:
 
 <h2 id="组合问题">组合问题</h2>
 
-<p><a href="../LeetCode/backtracking/combination.py">RTL</a></p>
-
-<hr />
-
 <h3 id="组合">组合</h3>
 <p><a href="https://leetcode.cn/problems/combinations/description/">77. 组合</a></p>
 
 <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给定两个整数 n 和 k，返回 1 ... n 中所有可能的 k 个数的组合。你可以按 任何顺序 返回答案。
 示例: 输入: n = 4, k = 2 输出: [ [2,4], [3,4], [2,3], [1,2], [1,3], [1,4], ]
 </code></pre></div></div>
-<p>剪枝：当[start_index,n]中的元素个数不足k-path.size个时，后续无论如何选择，都不足K个元素。
-即，区间内元素个数需大于等于path中还需的个数。</p>
+<p>剪枝：当[startIndex,n]中的元素个数不足k-path.size个时，后续无论如何选择，都不足K个元素。
+即，区间内元素个数需大于等于path中还需的个数，即$n-startIndex+1&gt;=k-path.size$。</p>
 
-<p>$n-start_index+1&gt;=k-path.size$。化简可得，$start_index&lt;=n+1-(k-path.size)$。</p>
+<p>化简可得，$startIndex&lt;=n+1-(k-path.size)$。</p>
 
 <p>因此在遍历区间时，区间上限不必设为n。从而减少每一层的遍历次数，达到剪枝效果。</p>
 
 <p><img src="/assets/images/20210130194335207-20230310134409532.png" alt="回溯剪枝" style="width:800px; height:auto;" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start_index</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">==</span> <span class="n">k</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+                <span class="k">return</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
 
 <hr />
 
@@ -2326,6 +1926,24 @@ Output:
   <li>由于数字都是正整数，当path中数字之和已经大于n时，无需再往下回溯。</li>
 </ul>
 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">combinationSum3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="n">left_val</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">left_val</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">==</span> <span class="n">k</span> <span class="ow">and</span> <span class="n">left_val</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+                <span class="k">return</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="mi">10</span> <span class="o">-</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">left_val</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
 <hr />
 
 <h3 id="电话号码的字母组合">电话号码的字母组合</h3>
@@ -2341,8 +1959,27 @@ Output:
 
 <p>思路：</p>
 <ul>
-  <li>本题digital每一个数字代表着不同的集合，也就是求不同集合之间的组合。因此层次遍历中，start_index固定从0开始，遍历整个集合。</li>
+  <li>本题digital每一个数字代表着不同的集合，也就是求不同集合之间的组合。因此层次遍历中，startIndex固定从0开始，遍历整个集合。</li>
 </ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">letterCombinations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">digits</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">digits</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">call</span> <span class="o">=</span> <span class="p">[</span><span class="s">""</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="p">,</span> <span class="s">"ghi"</span><span class="p">,</span> <span class="s">"jkl"</span><span class="p">,</span> <span class="s">"mno"</span><span class="p">,</span> <span class="s">"pqrs"</span><span class="p">,</span> <span class="s">"tuv"</span><span class="p">,</span> <span class="s">"wxyz"</span><span class="p">]</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">depth</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">depth</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">):</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">""</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+                <span class="k">return</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">call</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">digits</span><span class="p">[</span><span class="n">depth</span><span class="p">])]:</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
 
 <hr />
 
@@ -2352,12 +1989,12 @@ Output:
 
   <p>上述题77和题216中，针对同一个集合选择不同的组合。当第一轮遍历（深度遍历）后，第二轮遍历所选择的元素不能与第一轮相同，所以，第二轮的层次遍历的索引，需额外处理，避免与上一轮重复。</p>
 
-  <p>体现在代码中，即在每一轮深度遍历时，将start_index（集合的起始索引）手动处理后传到下一轮遍历中。然后在下一轮的层次遍历中，使用此start_index作为for循环遍历的起始索引。</p>
+  <p>体现在代码中，即在每一轮深度遍历时，将startIndex（集合的起始索引）手动处理后传到下一轮遍历中。然后在下一轮的层次遍历中，使用此startIndex作为for循环遍历的起始索引。</p>
 
-  <p>上述题17中，每轮遍历处理的都是不同的集合，互相无干扰。因此，每轮的层次遍历覆盖自己的集合即可（start_index固定0），不需要考虑上一轮遍历对本轮的影响。</p>
+  <p>上述题17中，每轮遍历处理的都是不同的集合，互相无干扰。因此，每轮的层次遍历覆盖自己的集合即可（startIndex固定0），不需要考虑上一轮遍历对本轮的影响。</p>
 
-  <p>体现在代码中，start_index可以固定为0，但是每轮遍历时，需要知道本轮应该操作哪个集合。因此，dfs()方法也传入了一个depth参数，且每轮遍历后，也将depth+1传入下一轮遍历。
-虽然，depth的处理方式与start_index一致，但是，含义不同，depth指的是每一轮遍历应该选择哪个集合；start_index指的是每一轮遍历应该从同一个集合哪个索引开始选择。</p>
+  <p>体现在代码中，startIndex可以固定为0，但是每轮遍历时，需要知道本轮应该操作哪个集合。因此，dfs()方法也传入了一个depth参数，且每轮遍历后，也将depth+1传入下一轮遍历。
+虽然，depth的处理方式与startIndex一致，但是，含义不同，depth指的是每一轮遍历应该选择哪个集合；startIndex指的是每一轮遍历应该从同一个集合哪个索引开始选择。</p>
 
   <p>综上所述，层次遍历的集合选择尤其重要，不同的选择方式对应不同的处理结果。需根据不同的题目要求分别设计，才能定义递归函数的参数，得到想要的结果。</p>
 </blockquote>
@@ -2384,12 +2021,29 @@ candidates 中的数字可以无限制重复被选取。
 <blockquote>
   <p>本题中，最重要的影响因素是元素可以重复选择。</p>
 
-  <p>既然可以重复选择，有些同学可能觉得这说明对start_index没有约束，那么dfs()方法是不是不要传入start_index呢？</p>
+  <p>既然可以重复选择，有些同学可能觉得这说明对startIndex没有约束，那么dfs()方法是不是不要传入startIndex呢？</p>
 
-  <p>其实不然，同一个元素可以重复选择，表明的是，下一轮选择可以接着上一轮的start_index继续选择，即不用start_index+1了。</p>
+  <p>其实不然，同一个元素可以重复选择，表明的是，下一轮选择可以接着上一轮的startIndex继续选择，即不用startIndex+1了。</p>
 
-  <p>如果本题，start_index从0开始选择，那么就会出现重复的组合。也就是排列。具体细节等到排列章节再讲。</p>
+  <p>如果本题，startIndex从0开始选择，那么就会出现重复的组合。也就是排列。具体细节等到排列章节再讲。</p>
 </blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">combinationSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="n">left_val</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">left_val</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="n">left_val</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)):</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">left_val</span><span class="o">-</span><span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
 
 <hr />
 
@@ -2425,15 +2079,15 @@ candidates 中的每个数字在每个组合中只能使用一次。
   <p>一般地，不对同一树枝上的重复元素进行去重，这样实现复杂，且效率低（所有树枝都要展开）。</p>
 </blockquote>
 
-<p><strong>去重方法一：start_index去重（树层）（横向）</strong></p>
+<p><strong>去重方法一：startIndex去重（树层）（横向）</strong></p>
 
-<p>体现在代码中，限制条件<code class="language-plaintext highlighter-rouge">if i &gt; start_index and candidates[i] == candidates[i-1]:</code>是对重复元素进行过滤。
-<code class="language-plaintext highlighter-rouge">i&gt;start_index</code>而不是<code class="language-plaintext highlighter-rouge">i&gt;0</code>是因为我们选择在层次遍历时，对元素进行去重。而层次的遍历起始索引就是start_index。</p>
+<p>体现在代码中，限制条件<code class="language-plaintext highlighter-rouge">if i &gt; startIndex and candidates[i] == candidates[i-1]:</code>是对重复元素进行过滤。
+<code class="language-plaintext highlighter-rouge">i&gt;startIndex</code>而不是<code class="language-plaintext highlighter-rouge">i&gt;0</code>是因为我们选择在层次遍历时，对元素进行去重。而层次的遍历起始索引就是startIndex。</p>
 
 <p><em>*去重方法二：used数组去重（树层）（横向）</em></p>
 
 <p>体现在代码中，限制条件<code class="language-plaintext highlighter-rouge">if i &gt; 0 and candidates[i] == candidates[i-1] and used[i-1] == False:</code>也是对重复元素进行过滤。
-此时只需要判断i从大于0开始，而非start_index。因为used数组是所有递归公用的，能够全局表示集合的使用状态。</p>
+此时只需要判断i从大于0开始，而非startIndex。因为used数组是所有递归公用的，能够全局表示集合的使用状态。</p>
 
 <p>为什么是 <code class="language-plaintext highlighter-rouge">used[i - 1] == False</code> 。因为选择的是同一树层。在同一树层，<code class="language-plaintext highlighter-rouge">used[i - 1] == False</code> 才能表示，当前取的 candidates[i] 是从 candidates[i - 1] 回溯而来的。</p>
 
@@ -2441,12 +2095,71 @@ candidates 中的每个数字在每个组合中只能使用一次。
 
 <p><img src="/assets/images/20230310000918.png" alt="使用used数组进行树层去重" style="width:800px; height:auto;" /></p>
 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">combinationSum2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">candidates</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="n">left_val</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">left_val</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="n">left_val</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">start_index</span> <span class="ow">and</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                    <span class="k">continue</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">left_val</span><span class="o">-</span><span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+
+    <span class="c1"># 使用used数组对元素进行去重
+</span>    <span class="k">def</span> <span class="nf">combinationSum2_2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">candidates</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">used</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="n">left_val</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">left_val</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="n">left_val</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">left_val</span><span class="o">-</span><span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+    
+    <span class="c1"># 每层都是用一个set集合去重
+</span>    <span class="k">def</span> <span class="nf">combinationSum2_3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="n">left_val</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">left_val</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="n">left_val</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+            <span class="n">used</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">used</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">used</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">left_val</span><span class="o">-</span><span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
 <hr />
 
 <h2 id="切割问题">切割问题</h2>
-<p><a href="../LeetCode/backtracking/split.py">RTL</a></p>
-
-<hr />
 
 <h3 id="分割回文串">分割回文串</h3>
 <p><a href="https://leetcode.cn/problems/palindrome-partitioning/description/">131. 分割回文串</a></p>
@@ -2466,11 +2179,29 @@ candidates 中的每个数字在每个组合中只能使用一次。
 <blockquote>
   <p>本题最重要是理解字符串切割问题其实就是从集合（字符串）中选取某个（某组）元素。</p>
 
-  <p>递归用来纵向遍历，表示以任一字符开头（start_index）来切割字符串；for循环用来从start_index开始横向往字符串结尾遍历，针对<code class="language-plaintext highlighter-rouge">s[start_index:i+1]</code>子串，如果是回文字符串，则加入path。
-当start_index遍历到字符串结尾，则将path将入到ans中。</p>
+  <p>递归用来纵向遍历，表示以任一字符开头（startIndex）来切割字符串；for循环用来从startIndex开始横向往字符串结尾遍历，针对<code class="language-plaintext highlighter-rouge">s[startIndex:i+1]</code>子串，如果是回文字符串，则加入path。
+当startIndex遍历到字符串结尾，则将path将入到ans中。</p>
 </blockquote>
 
 <p><img src="/assets/images/131.分割回文串.jpg" alt="字符串切割" style="width:800px; height:auto;" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start_index</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">start_index</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+                <span class="k">return</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">start_index</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">start_index</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                    <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">start_index</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
 
 <hr />
 
@@ -2495,12 +2226,36 @@ candidates 中的每个数字在每个组合中只能使用一次。
   <p>每一轮的树层遍历，最多遍历3个字符。</p>
 </blockquote>
 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">restoreIpAddresses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="n">ip</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">ip</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'0'</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">return</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">255</span>
+
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start_index</span><span class="p">):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="c1"># 超过4个整数，或者剩余的字符 比 剩余的整数都按最大个数统计 都要多的时候，剪枝
+</span>            <span class="k">if</span> <span class="n">n</span> <span class="o">-</span> <span class="n">start_index</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="n">c</span><span class="p">):</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="n">start_index</span> <span class="o">==</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">'.'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+                <span class="k">return</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">start_index</span><span class="o">+</span><span class="mi">3</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">check</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">start_index</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">start_index</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
 <hr />
 
 <h2 id="子集问题">子集问题</h2>
-<p><a href="../LeetCode/backtracking/subset.py">RTL</a></p>
-
-<hr />
 
 <h3 id="子集">子集</h3>
 <p><a href="https://leetcode.cn/problems/subsets/description/">78. 子集</a></p>
@@ -2515,6 +2270,20 @@ candidates 中的每个数字在每个组合中只能使用一次。
 </blockquote>
 
 <p><img src="/assets/images/78.子集.png" alt="字符串切割" style="width:800px; height:auto;" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">subsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start_index</span><span class="p">):</span>
+            <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
 
 <hr />
 
@@ -2535,8 +2304,25 @@ candidates 中的每个数字在每个组合中只能使用一次。
 
   <p>先要对集合进行排序。</p>
 
-  <p>可以用start_index进行去重，也可以使用used数组去重。</p>
+  <p>可以用startIndex进行去重，也可以使用used数组去重。</p>
 </blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">subsetsWithDup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">nums</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start_index</span><span class="p">):</span>
+            <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">start_index</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                    <span class="k">continue</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
 
 <hr />
 
@@ -2553,16 +2339,35 @@ candidates 中的每个数字在每个组合中只能使用一次。
   <p>利用set对树层进行去重。</p>
 
   <p>虽然集合有重复元素，但是由于题目要求，不能提前对集合进行排序。
-因此，上述题目《子集2》和《组合总和2》中，用到的start_index和全局used数组无法使用。
+因此，上述题目《子集2》和《组合总和2》中，用到的startIndex和全局used数组无法使用。
 只能用最基本的set对树层进行去重。</p>
 </blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findSubsequences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start_index</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+                <span class="c1"># 注意这里不要加return，因为要取树上的所有节点
+</span>            <span class="n">used</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">path</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">used</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">used</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
 
 <hr />
 
 <h2 id="排列问题">排列问题</h2>
-<p><a href="../LeetCode/backtracking/permutation.py">RTL</a></p>
-
-<hr />
 
 <h3 id="全排列">全排列</h3>
 <p><a href="https://leetcode.cn/problems/permutations/description/">46. 全排列</a></p>
@@ -2574,12 +2379,33 @@ candidates 中的每个数字在每个组合中只能使用一次。
 </code></pre></div></div>
 
 <blockquote>
-  <p>由于是排列问题，元素位置可以不尽相同。因此，每一次的树层遍历，start_index都是从0开始。</p>
+  <p>由于是排列问题，元素位置可以不尽相同。因此，每一次的树层遍历，startIndex都是从0开始。</p>
 
   <p>used数组记录每一个元素是否使用，全局状态。</p>
 
   <p>在每一轮的树枝遍历时，<strong>判断该元素在之前递归过程中是否使用</strong>。注意：不是该树层是否使用过。</p>
 </blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">used</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+                <span class="k">return</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                    <span class="k">continue</span>
+                <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">dfs</span><span class="p">()</span>
+                <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
 
 <hr />
 
@@ -2609,15 +2435,63 @@ candidates 中的每个数字在每个组合中只能使用一次。
 
 <p><img src="/assets/images/20201124201331223.png" alt="全排列重复元素处理" style="width:800px; height:auto;" /></p>
 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">permuteUnique</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">nums</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">used</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+                <span class="k">return</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                    <span class="k">continue</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">dfs</span><span class="p">()</span>
+                <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ans</span>
+
+    <span class="k">def</span> <span class="nf">permuteUnique2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="n">nums</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">used</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
+                <span class="k">return</span>
+            <span class="n">cur_used</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">cur_used</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">cur_used</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">dfs</span><span class="p">()</span>
+                <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">dfs</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
 <hr />
 
-<h2 id="重复元素问题">重复元素问题</h2>
+<h2 id="重复元素问题分析">重复元素问题分析</h2>
 
 <ul>
   <li>在问题
 <a href="#组合总和-ii">组合总和-II</a>中，提供三种方法进行去重。每种方法都是对树层进行去重，但实现方式互不相同。
     <ul>
-      <li>start_index关系（推荐）</li>
+      <li>startIndex关系（推荐）</li>
       <li>全局的used数组</li>
       <li>每一层的set集合</li>
     </ul>
@@ -2630,13 +2504,12 @@ candidates 中的每个数字在每个组合中只能使用一次。
     </ul>
   </li>
   <li>在问题
-<a href="#递增子序列">递增子序列</a>中，由于该题不能对集合进行排序，故start_index关系和全局的used数组都不可用，只能使用每一层的set集合进行树层之间的去重。</li>
+<a href="#递增子序列">递增子序列</a>中，由于该题不能对集合进行排序，故startIndex关系和全局的used数组都不可用，只能使用每一层的set集合进行树层之间的去重。</li>
 </ul>
 
 <hr />
 
 <h2 id="二维回溯">“二维”回溯</h2>
-<p><a href="../LeetCode/backtracking/2D_matrix.py">RTL</a></p>
 
 <p>二维矩阵的回溯问题。</p>
 
@@ -2657,6 +2530,48 @@ candidates 中的每个数字在每个组合中只能使用一次。
   <p>矩阵的行，代表回溯的树枝遍历；矩阵的列，代表回溯的树层遍历。</p>
 </blockquote>
 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">solveNQueens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[[</span><span class="s">"."</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="c1"># 从第0行开始往下走，故不需要行check
+</span>            <span class="c1"># 列check
+</span>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">==</span> <span class="s">'Q'</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+            <span class="c1"># 右上角check
+</span>            <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'Q'</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+                <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="c1"># 左上角check
+</span>            <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'Q'</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+                <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="bp">True</span>
+
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="s">""</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">path</span><span class="p">])</span>
+                <span class="k">return</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">check</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+                    <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s">'Q'</span>
+                    <span class="n">dfs</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s">'.'</span>
+
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
 <hr />
 
 <h3 id="解数独">解数独</h3>
@@ -2674,12 +2589,82 @@ candidates 中的每个数字在每个组合中只能使用一次。
   <p>由于只需要求一个解，当某个分支的回溯成功后，即可结束所有的递归过程。体现在rtl中，可以给dfs()方法加一个返回值，当返回值为True时，结束递归。</p>
 </blockquote>
 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">solveSudoku</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">board</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
+        <span class="n">rn</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+        <span class="n">cn</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+        <span class="n">xn</span> <span class="o">=</span> <span class="p">[[[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">//</span><span class="mi">3</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+        <span class="n">space</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'.'</span><span class="p">:</span>
+                    <span class="n">space</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">d</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+                    <span class="n">rn</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">cn</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">xn</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">3</span><span class="p">][</span><span class="n">j</span><span class="o">//</span><span class="mi">3</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cnt</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">space</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">space</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">rn</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">==</span> <span class="n">cn</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">==</span> <span class="n">xn</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">3</span><span class="p">][</span><span class="n">j</span><span class="o">//</span><span class="mi">3</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+                    <span class="n">rn</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">cn</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">xn</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span> <span class="o">//</span> <span class="mi">3</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">dfs</span><span class="p">(</span><span class="n">cnt</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                        <span class="k">return</span> <span class="bp">True</span>
+                    <span class="n">rn</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">cn</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">xn</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span> <span class="o">//</span> <span class="mi">3</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
 <hr />
 
 <h2 id="其他回溯问题">其他回溯问题</h2>
-<p>【图论中的欧拉路径问题】<a href="https://leetcode.cn/problems/reconstruct-itinerary/description/">332. 重新安排行程</a></p>
+<h3 id="332-重新安排行程"><a href="https://leetcode.cn/problems/reconstruct-itinerary/description/">332. 重新安排行程</a></h3>
 
-<hr />]]></content><author><name>phoenixfei</name></author><category term="leetcode" /><summary type="html"><![CDATA[回溯法，一般可以解决如下几种问题： 组合问题：N个数里面按一定规则找出k个数的集合 切割问题：一个字符串按一定规则有几种切割方式 子集问题：一个N个数的集合里有多少符合条件的子集 排列问题：N个数按一定规则全排列，有几种排列方式 棋盘问题：N皇后，解数独等等]]></summary></entry><entry><title type="html">回溯</title><link href="https://yourusername.github.io/ds-algo/%E5%9B%9E%E6%BA%AF/" rel="alternate" type="text/html" title="回溯" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/%E5%9B%9E%E6%BA%AF</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/%E5%9B%9E%E6%BA%AF/"><![CDATA[<p><strong>回溯法</strong>（backtracking）是暴力搜索法中的一种。</p>
+<p>涉及回溯思想。但题目是【图论中的欧拉路径问题】，标准解法是【Hierholzer算法】。</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给你一份航线列表 tickets ，其中 <span class="sb">`tickets[i] = [from_i, to_i]`</span> 表示飞机出发和降落的机场地点。请你对该行程进行重新规划排序。
+
+所有这些机票都属于一个从 JFK（肯尼迪国际机场）出发的先生，所以该行程必须从 JFK 开始。如果存在多种有效的行程，请你按字典排序返回最小的行程组合。
+
+例如，行程 ["JFK", "LGA"] 与 ["JFK", "LGB"] 相比就更小，排序更靠前。
+假定所有机票至少存在一种合理的行程。且所有的机票 必须都用一次 且 只能用一次。
+
+示例 1：
+输入：tickets = [["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]]
+输出：["JFK","MUC","LHR","SFO","SJC"]
+示例 2：
+输入：tickets = [["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]
+输出：["JFK","ATL","JFK","SFO","ATL","SFO"]
+解释：另一种有效的行程是 ["JFK","SFO","ATL","JFK","ATL","SFO"] ，但是它字典排序更大更靠后。
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findItinerary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tickets</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">ft</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tickets</span><span class="p">:</span>
+            <span class="n">ft</span><span class="p">[</span><span class="n">f</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ft</span><span class="p">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">heapq</span><span class="p">.</span><span class="n">heapify</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start</span><span class="p">):</span>
+            <span class="n">arrives</span> <span class="o">=</span> <span class="n">ft</span><span class="p">[</span><span class="n">start</span><span class="p">]</span>
+            <span class="k">while</span> <span class="n">arrives</span><span class="p">:</span>
+                <span class="n">cur</span> <span class="o">=</span> <span class="n">heapq</span><span class="p">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">arrives</span><span class="p">)</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
+            <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        
+        <span class="n">dfs</span><span class="p">(</span><span class="s">"JFK"</span><span class="p">)</span>        
+        <span class="k">return</span> <span class="n">ans</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<hr />]]></content><author><name>phoenixfei</name></author><category term="leetcode" /><summary type="html"><![CDATA[本题单介绍使用回溯法解决组合、切割、子集、排列和棋盘类问题。 组合问题：N个数里面按一定规则找出k个数的集合 切割问题：一个字符串按一定规则有几种切割方式 子集问题：一个N个数的集合里有多少符合条件的子集 排列问题：N个数按一定规则全排列，有几种排列方式 棋盘问题：N皇后，解数独等等]]></summary></entry><entry><title type="html">回溯</title><link href="https://yourusername.github.io/ds-algo/%E5%9B%9E%E6%BA%AF/" rel="alternate" type="text/html" title="回溯" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/%E5%9B%9E%E6%BA%AF</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/%E5%9B%9E%E6%BA%AF/"><![CDATA[<p><strong>回溯法</strong>（backtracking）是暴力搜索法中的一种。</p>
 
 <h2 id="如何理解回溯法">如何理解回溯法</h2>
 
@@ -2948,7 +2933,7 @@ answer：用来储存我们的符合条件决策路径
 
 <p>例如，下面这个图，它是一个DGA图，那么如何写出它的拓扑排序呢？</p>
 
-<p><img src="assets/20150507001028284.jpg" alt="20150507001028284" /></p>
+<p><img src="/assets/images20150507001028284.jpg" alt="20150507001028284" /></p>
 
 <p>方法步骤为：</p>
 
@@ -2958,7 +2943,7 @@ answer：用来储存我们的符合条件决策路径
   <li>重复1和2直到当前的<strong>DAG图为空</strong>或<strong>不存在无前驱的顶点为止</strong>。后一种情况说明有向图中必然存在环。</li>
 </ol>
 
-<p><img src="assets/20150507001759702.jpg" alt="20150507001759702" /></p>
+<p><img src="/assets/images20150507001759702.jpg" alt="20150507001759702" /></p>
 
 <h2 id="经典例题">经典例题</h2>
 
@@ -3235,4 +3220,108 @@ answer：用来储存我们的符合条件决策路径
 
 <h2 id="参考链接-1">参考链接</h2>
 
-<p><a href="https://www.cnblogs.com/yangecnu/p/Introduce-Undirected-Graphs.html">无向图相关算法基础</a></p>]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[图论（Graph Theory）是离散数学的一个重要分支，广泛应用于计算机科学（如网络、图像处理、路径规划）、运筹学等领域。]]></summary></entry></feed>
+<p><a href="https://www.cnblogs.com/yangecnu/p/Introduce-Undirected-Graphs.html">无向图相关算法基础</a></p>]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[图论（Graph Theory）是离散数学的一个重要分支，广泛应用于计算机科学（如网络、图像处理、路径规划）、运筹学等领域。]]></summary></entry><entry><title type="html">字符串-题单</title><link href="https://yourusername.github.io/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2-%E9%A2%98%E5%8D%95/" rel="alternate" type="text/html" title="字符串-题单" /><published>2024-05-21T00:00:00+00:00</published><updated>2024-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2-%E9%A2%98%E5%8D%95</id><content type="html" xml:base="https://yourusername.github.io/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2-%E9%A2%98%E5%8D%95/"><![CDATA[<p>字符串是算法中非常基础且高频考察的类型，涵盖了模式匹配、字符串哈希、双指针、前缀和、动态规划等多种技术。</p>
+
+<p>字符串是算法中非常基础且高频考察的类型，涵盖了模式匹配、字符串哈希、双指针、前缀和、动态规划等多种技术。以下是系统的<strong>字符串专题整理</strong>，附带<strong>子分类、核心算法说明与典型题目链接</strong>，便于系统学习。</p>
+
+<hr />
+
+<h2 id="字符串专题分类附典型题目">字符串专题分类（附典型题目）</h2>
+
+<h3 id="1-基础操作--双指针">1. <strong>基础操作 &amp; 双指针</strong></h3>
+
+<ul>
+  <li>描述：字符串反转、判断回文、去重等基础题。</li>
+  <li>技巧：双指针、滑动窗口。</li>
+  <li>🔗 <a href="https://leetcode.cn/problems/reverse-string/">Leetcode 344. 反转字符串</a></li>
+  <li>🔗 <a href="https://leetcode.cn/problems/valid-palindrome/">Leetcode 125. 验证回文串</a></li>
+</ul>
+
+<hr />
+
+<h3 id="2-滑动窗口">2. <strong>滑动窗口</strong></h3>
+
+<ul>
+  <li>描述：处理子串问题，常用于最长/最短子串、包含/匹配问题。</li>
+  <li>技巧：左右指针移动、哈希计数。</li>
+  <li>🔗 <a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/">Leetcode 3. 无重复字符的最长子串</a></li>
+  <li>🔗 <a href="https://leetcode.cn/problems/minimum-window-substring/">Leetcode 76. 最小覆盖子串</a></li>
+</ul>
+
+<hr />
+
+<h3 id="3-字符串匹配">3. <strong>字符串匹配</strong></h3>
+
+<ul>
+  <li>描述：在文本中查找模式串。</li>
+  <li>技巧：KMP、Rabin-Karp、Boyer-Moore。</li>
+  <li>🔗 <a href="https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/">Leetcode 28. 找出字符串中第一个匹配项的下标（KMP）</a></li>
+  <li>🔗 <a href="https://www.acwing.com/problem/content/833/">AcWing 831. KMP字符串</a></li>
+</ul>
+
+<hr />
+
+<h3 id="4-前缀和与哈希">4. <strong>前缀和与哈希</strong></h3>
+
+<ul>
+  <li>描述：快速判断子串出现次数、相同字符集等。</li>
+  <li>技巧：前缀哈希、字符计数数组。</li>
+  <li>🔗 <a href="https://leetcode.cn/problems/subarray-sum-equals-k/">Leetcode 560. 和为K的子数组（数组版）</a></li>
+  <li>🔗 <a href="https://leetcode.cn/problems/find-all-anagrams-in-a-string/">Leetcode 438. 找到字符串中所有字母异位词</a></li>
+</ul>
+
+<hr />
+
+<h3 id="5-回文串相关">5. <strong>回文串相关</strong></h3>
+
+<ul>
+  <li>描述：判断是否为回文串，找最长回文子串、回文划分。</li>
+  <li>技巧：中心扩展、动态规划、Manacher。</li>
+  <li>🔗 <a href="https://leetcode.cn/problems/longest-palindromic-substring/">Leetcode 5. 最长回文子串</a></li>
+  <li>🔗 <a href="https://leetcode.cn/problems/palindrome-partitioning/">Leetcode 131. 分割回文串</a></li>
+</ul>
+
+<hr />
+
+<h3 id="6-字符串哈希">6. <strong>字符串哈希</strong></h3>
+
+<ul>
+  <li>描述：快速判断两个子串是否相等。</li>
+  <li>技巧：滚动哈希（Rabin-Karp）、双哈希防冲突。</li>
+  <li>🔗 <a href="https://www.acwing.com/problem/content/843/">AcWing 841. 字符串哈希</a></li>
+  <li>🔗 <a href="https://leetcode.cn/problems/longest-duplicate-substring/">Leetcode 1044. 最长重复子串</a></li>
+</ul>
+
+<hr />
+
+<h3 id="7-字典树trie">7. <strong>字典树（Trie）</strong></h3>
+
+<ul>
+  <li>描述：多字符串高效插入与查找，常用于前缀匹配。</li>
+  <li>技巧：树结构、哈希表/数组实现。</li>
+  <li>🔗 <a href="https://leetcode.cn/problems/implement-trie-prefix-tree/">Leetcode 208. 实现 Trie</a></li>
+  <li>🔗 <a href="https://leetcode.cn/problems/replace-words/">Leetcode 648. 单词替换</a></li>
+</ul>
+
+<hr />
+
+<h3 id="8-分组变形题">8. <strong>分组变形题</strong></h3>
+
+<ul>
+  <li>描述：字母异位词分组、相同结构字符分组。</li>
+  <li>技巧：计数排序、哈希编码。</li>
+  <li>🔗 <a href="https://leetcode.cn/problems/group-anagrams/">Leetcode 49. 字母异位词分组</a></li>
+</ul>
+
+<hr />
+
+<h3 id="9-动态规划高级">9. <strong>动态规划（高级）</strong></h3>
+
+<ul>
+  <li>描述：求两个字符串之间的最小变换（编辑距离等）。</li>
+  <li>技巧：二维 DP。</li>
+  <li>🔗 <a href="https://leetcode.cn/problems/edit-distance/">Leetcode 72. 编辑距离</a></li>
+  <li>🔗 <a href="https://leetcode.cn/problems/distinct-subsequences/">Leetcode 115. 不同的子序列</a></li>
+</ul>
+
+<hr />]]></content><author><name>phoenixfei</name></author><category term="leetcode" /><summary type="html"><![CDATA[字符串是算法中非常基础且高频考察的类型，涵盖了模式匹配、字符串哈希、双指针、前缀和、动态规划等多种技术。]]></summary></entry></feed>

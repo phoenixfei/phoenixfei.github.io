@@ -1,0 +1,1148 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.1 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>数学算法知识</title>
+<meta name="description" content="数学算法知识，如求素数、最大公约数、组合数、快速幂等。">
+
+
+  <meta name="author" content="phoenixfei">
+  
+  <meta property="article:author" content="phoenixfei">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="">
+<meta property="og:title" content="数学算法知识">
+<meta property="og:url" content="https://yourusername.github.io/ds-algo/%E6%95%B0%E5%AD%A6%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">
+
+
+  <meta property="og:description" content="数学算法知识，如求素数、最大公约数、组合数、快速幂等。">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2024-05-21T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://yourusername.github.io/ds-algo/%E6%95%B0%E5%AD%A6%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title=" Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<!-- Ref:TeX Input Processor Options: https://docs.mathjax.org/en/latest/options/input/tex.html -->
+
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/"
+                
+                
+              >首页</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/ds-algo/"
+                
+                
+              >数据结构与算法</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/leetcode/"
+                
+                
+              >LeetCode</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bigdata/"
+                
+                
+              >大数据</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/math/"
+                
+                
+              >数学</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                
+                
+              >关于我</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="数学算法知识">
+    <meta itemprop="description" content="数学算法知识，如求素数、最大公约数、组合数、快速幂等。">
+    <meta itemprop="datePublished" content="2024-05-21T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="https://yourusername.github.io/ds-algo/%E6%95%B0%E5%AD%A6%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86/" itemprop="url">数学算法知识
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#数学算法知识">数学算法知识</a><ul><li><a href="#素数质数">素数（质数）</a></li><li><a href="#求素数算法">求素数算法</a></li><li><a href="#最大公约数">最大公约数</a><ul><li><a href="#欧几里得算法辗转相除法">欧几里得算法（辗转相除法）</a></li><li><a href="#stein算法">Stein算法</a></li></ul></li><li><a href="#最小公倍数">最小公倍数</a></li><li><a href="#平方数">平方数</a></li><li><a href="#剪绳子">剪绳子</a></li></ul></li><li><a href="#进制转换">进制转换</a><ul><li><a href="#数字转换为十六进制数">数字转换为十六进制数</a></li><li><a href="#excel表列名称">Excel表列名称</a></li></ul></li><li><a href="#统计个数">统计个数</a><ul><li><a href="#统计阶乘尾部有多少个-0">统计阶乘尾部有多少个 0</a></li><li><a href="#整数中1出现的次数">整数中1出现的次数</a></li><li><a href="#第n个数字">第N个数字</a></li></ul></li><li><a href="#改变数组元素使所有的数组元素都相等">改变数组元素使所有的数组元素都相等</a></li><li><a href="#多数投票问题">多数投票问题</a></li><li><a href="#除自身以外数组的乘积">除自身以外数组的乘积</a></li><li><a href="#买卖股票问题">买卖股票问题</a><ul><li><a href="#买卖股票的最佳时机">买卖股票的最佳时机</a></li><li><a href="#买卖股票的最佳时机-ii">买卖股票的最佳时机 II</a></li><li><a href="#买卖股票的最佳时机-iii">买卖股票的最佳时机 III</a></li><li><a href="#买卖股票的最佳时机-iv">买卖股票的最佳时机 IV</a></li><li><a href="#买卖股票的最佳时机含手续费">买卖股票的最佳时机含手续费</a></li><li><a href="#最佳买卖股票时机含冷冻期">最佳买卖股票时机含冷冻期</a></li></ul></li><li><a href="#约瑟夫环">约瑟夫环</a></li><li><a href="#汉诺塔">汉诺塔</a></li><li><a href="#前缀中缀后缀表达式">前缀、中缀、后缀表达式</a><ul><li><a href="#中缀变前缀">中缀变前缀</a></li><li><a href="#前缀计算机求值">前缀计算机求值</a></li><li><a href="#中缀变后缀todo">中缀变后缀（TODO）</a></li><li><a href="#后缀计算机求值todo">后缀计算机求值（TODO）</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <p>数学算法知识，如求素数、最大公约数、组合数、快速幂等。</p>
+
+<h2 id="数学算法知识">数学算法知识</h2>
+
+<h3 id="素数质数">素数（质数）</h3>
+
+<p><strong>每一个数都可以分解成素数的乘积</strong>，例如</p>
+
+<blockquote>
+  <p>$84 = 2^2 * 3^1 * 5^0 * 7^1 * 11^0 * 13^0 * 17^0 * …$</p>
+</blockquote>
+
+<p><strong>如果x整除y（y mod x = 0），则对所有$i$，$m_i &lt; n_i$。</strong>其中，</p>
+
+<blockquote>
+  <p>$x = 2^{m0} * 3^{m1} * 5^{m2} * 7^{m3} * 11^{m4} * …$</p>
+
+  <p>$y = 2^{n0} * 3^{n1} * 5^{n2} * 7^{n3} * 11^{n4} * …$</p>
+</blockquote>
+
+<p><strong>最大公约数（greatest common divisor）最小公倍数（least common multiple）</strong></p>
+
+<blockquote>
+  <p>x和y的最大公约数为：$gcd(x, y) = 2^{min(m0, n0)} * 3^{min(m1, n1)} * 5^{min(m2, n2)} * …$</p>
+
+  <p>x和y的最小公倍数为：$lcm(x, y) = 2^{max(m0, n0)} * 3^{max(m1, n1)} * 5^{max(m3, n3)} * …$</p>
+</blockquote>
+
+<h3 id="求素数算法">求素数算法</h3>
+
+<ol>
+  <li>
+    <p>最笨的方法</p>
+
+    <p>挨个循环用n除以2到n-1之间的所有整数，如果期间有一个能被整除，那么n是合数（不是素数）。</p>
+  </li>
+  <li>
+    <p>利用定理：如果一个数是合数，那么它的最小质因数肯定小于等于它的平方根。</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isPrime</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">n</span><span class="o">);</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>  
+        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>  
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>  
+        <span class="o">}</span>  
+    <span class="o">}</span>   
+    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>  
+<span class="o">}</span>  
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>筛选法求素数：在每次找到一个素数时，将能被素数整除的数排除掉。便于求i-j之间的质数。</p>
+
+    <p><a href="https://leetcode.com/problems/count-primes/">统计所有小于非负整数 <em>n</em> 的质数的数量</a></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">countPrimes</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kt">boolean</span><span class="o">[]</span> <span class="n">notPrimes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+        <span class="k">if</span><span class="o">(</span> <span class="n">notPrimes</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">)</span> <span class="k">continue</span><span class="o">;</span>
+        <span class="n">count</span> <span class="o">++;</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">long</span> <span class="n">j</span> <span class="o">=</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span> <span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">*</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span> <span class="o">+=</span> <span class="n">i</span><span class="o">){</span>
+            <span class="n">notPrimes</span><span class="o">[(</span><span class="kt">int</span><span class="o">)</span> <span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">count</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="最大公约数">最大公约数</h3>
+
+<h4 id="欧几里得算法辗转相除法">欧几里得算法（辗转相除法）</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">gcd</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">){</span>
+    <span class="k">return</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">gcd</span><span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="stein算法">Stein算法</h4>
+
+<p>对于 a 和 b 的最大公约数 f(a, b)，有：</p>
+
+<ul>
+  <li>如果 a 和 b 均为偶数，f(a, b) = 2*f(a/2, b/2);</li>
+  <li>如果 a 是偶数 b 是奇数，f(a, b) = f(a/2, b);</li>
+  <li>如果 b 是偶数 a 是奇数，f(a, b) = f(a, b/2);</li>
+  <li>如果 a 和 b 均为奇数，f(a, b) = f(b, a-b);</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">gcd</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">)</span> <span class="k">return</span> <span class="n">gcd</span><span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="n">a</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+    <span class="kt">boolean</span> <span class="n">isAEven</span> <span class="o">=</span> <span class="n">isEven</span><span class="o">(</span><span class="n">a</span><span class="o">),</span> <span class="n">isBEven</span> <span class="o">=</span> <span class="n">isEven</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isAEven</span> <span class="o">&amp;&amp;</span> <span class="n">isBEven</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">gcd</span><span class="o">(</span><span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="o">,</span> <span class="n">b</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">isAEven</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">isBEven</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">gcd</span><span class="o">(</span><span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(!</span><span class="n">isAEven</span> <span class="o">&amp;&amp;</span> <span class="n">isBEven</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">gcd</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">gcd</span><span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">);</span>
+        <span class="c1">// return gcd((a+b)&gt;&gt;1, (a-b)&gt;&gt;1);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">// 利用位操作判断是否为偶数</span>
+<span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isEven</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">){</span>
+    <span class="k">return</span> <span class="n">num</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="最小公倍数">最小公倍数</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">lcm</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">){</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">/</span> <span class="n">gcd</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="平方数">平方数</h3>
+
+<p>给定一个正整数 <em>num</em>，编写一个函数，如果 <em>num</em> 是一个完全平方数，则返回 True，否则返回 False。</p>
+
+<p>平方序列：1,4,9,16,..</p>
+
+<p>间隔：1,3,5,7,…</p>
+
+<p>间隔为等差数列，使用这个特性可以得到从 1 开始的平方序列。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isPerfectSquare</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">subNum</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">num</span> <span class="o">-=</span> <span class="n">subNum</span><span class="o">;</span>
+        <span class="n">subNum</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><a href="https://leetcode-cn.com/problems/power-of-four/solution/e-you-shi-yi-dao-zhuang-bi-jie-fa-de-suan-fa-ti-2/"><strong>4的幂次方</strong></a></p>
+
+<p>既要是4的幂次方，又要是2的幂次方</p>
+
+<h3 id="剪绳子">剪绳子</h3>
+
+<p>把一根绳子剪成多段，并且使得每段的长度乘积最大。</p>
+
+<p><strong>解题思路</strong>：利用<strong>贪心算法</strong>，本题应尽可能多剪长度为 3 的绳子，并且不允许有长度为 1 的绳子出现。如果出现了，就从已经切好长度为 3 的绳子中拿出一段与长度为 1 的绳子重新组合，把它们切成两段长度为 2 的绳子。</p>
+
+<p>证明：当 n &gt;= 5 时，3(n - 3) - n = 2n - 9 &gt; 0，且 2(n - 2) - n = n - 4 &gt; 0。因此在 n &gt;= 5 的情况下，将绳子剪成一段为 2 或者 3，得到的乘积会更大。又因为 3(n - 3) - 2(n - 2) = n - 5 &gt;= 0，所以剪成一段长度为 3 比长度为 2 得到的乘积更大。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">integerBreak</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span>
+        <span class="k">return</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">timesOf3</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">3</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">timesOf3</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>
+        <span class="n">timesOf3</span><span class="o">--;</span>
+    <span class="kt">int</span> <span class="n">timesOf2</span> <span class="o">=</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">timesOf3</span> <span class="o">*</span> <span class="mi">3</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="n">timesOf3</span><span class="o">))</span> <span class="o">*</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="n">timesOf2</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>或利用<strong>动态规划</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">integerBreak</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+    <span class="n">dp</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
+            <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">j</span> <span class="o">*</span> <span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="o">),</span> <span class="n">dp</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">*</span> <span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="o">)));</span>
+    <span class="k">return</span> <span class="n">dp</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="进制转换">进制转换</h2>
+
+<h3 id="数字转换为十六进制数">数字转换为十六进制数</h3>
+
+<p><a href="https://leetcode-cn.com/problems/convert-a-number-to-hexadecimal/">数字转换为十六进制数</a>：给定一个整数，编写一个算法将这个数转换为十六进制数。对于负整数，我们通常使用 补码运算方法。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">String</span> <span class="nf">toHex</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">char</span><span class="o">[]</span> <span class="n">map</span> <span class="o">=</span> <span class="o">{</span><span class="sc">'0'</span><span class="o">,</span> <span class="sc">'1'</span><span class="o">,</span> <span class="sc">'2'</span><span class="o">,</span> <span class="sc">'3'</span><span class="o">,</span> <span class="sc">'4'</span><span class="o">,</span> <span class="sc">'5'</span><span class="o">,</span> <span class="sc">'6'</span><span class="o">,</span> <span class="sc">'7'</span><span class="o">,</span> <span class="sc">'8'</span><span class="o">,</span> <span class="sc">'9'</span><span class="o">,</span> <span class="sc">'a'</span><span class="o">,</span> <span class="sc">'b'</span><span class="o">,</span> <span class="sc">'c'</span><span class="o">,</span> <span class="sc">'d'</span><span class="o">,</span> <span class="sc">'e'</span><span class="o">,</span> <span class="sc">'f'</span><span class="o">};</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">"0"</span><span class="o">;</span>
+    <span class="nc">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">num</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">map</span><span class="o">[</span><span class="n">num</span> <span class="o">&amp;</span> <span class="mb">0b1111</span><span class="o">]);</span>
+        <span class="c1">// 因为考虑的是补码形式，因此符号位就不能有特殊的意义，需要使用无符号右移，左边填0</span>
+        <span class="n">num</span> <span class="o">&gt;&gt;&gt;=</span> <span class="mi">4</span><span class="o">;</span> 
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">reverse</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>补充</strong>：</p>
+
+<blockquote>
+  <p>System.out.println(0b101);	//二进制:5  （0b开头的）</p>
+
+  <p>System.out.println(011);	//八进制:9   (0开头的)   数字零</p>
+
+  <p>System.out.println(11);	//十进制:11</p>
+
+  <p>System.out.println(0x11C);	//十六进制:284   （0x开头的）</p>
+</blockquote>
+
+<h3 id="excel表列名称">Excel表列名称</h3>
+
+<p><a href="https://leetcode-cn.com/problems/excel-sheet-column-title/">Excel表列名称</a>：给定一个正整数，返回它在 Excel 表中相对应的列名称。</p>
+
+<p>例如，</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 -&gt; A
+2 -&gt; B
+3 -&gt; C
+...
+26 -&gt; Z
+27 -&gt; AA
+28 -&gt; AB 
+... 示例 :
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入: 1,	28,	701
+输出: "A",	"AB",	"ZY"
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">String</span> <span class="nf">convertToTitle</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span><span class="o">;</span>
+    <span class="nc">StringBuffer</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">n</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">==</span> <span class="mi">0</span><span class="o">){</span>
+            <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Z"</span><span class="o">);</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">26</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+            <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">-</span> <span class="mi">1</span><span class="o">));</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">26</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">reverse</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="统计个数">统计个数</h2>
+
+<h3 id="统计阶乘尾部有多少个-0">统计阶乘尾部有多少个 0</h3>
+
+<p>尾部的 0 由 2 * 5 得来，2 的数量明显多于 5 的数量，因此只要统计有多少个 5 即可。</p>
+
+<p>对于一个数 N，它所包含 5 的个数为：$N/5 + N/5^2 + N/5^3 + …$，其中 N/5 表示不大于 N 的数中 5 的倍数贡献一个 5，$N/5^2$表示不大于 N 的数中 $5^2$ 的倍数再贡献一个 5 …。<strong>即，25贡献两个5</strong>。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">trailingZeroes</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">trailingZeroes</span><span class="o">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">5</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>补充</strong>：</p>
+
+<p>如果统计的是 N! 的二进制表示中最低位 1 的位置，只要统计有多少个 2 即可，该题目出自编程之美：2.2。</p>
+
+<p>和求解有多少个 5 一样，2 的个数为 $N/2 + N/2^2 + N/2^3 + …$</p>
+
+<h3 id="整数中1出现的次数">整数中1出现的次数</h3>
+
+<p>给定n，求从1到n的整数中，1出现的次数。如1~13中包含1的数字有1、10、11、12、13，因此共出现6次。</p>
+
+<p><strong>思路</strong>：设N = abcde ,其中abcde分别为十进制中各位上的数字。 如果要计算百位上1出现的次数，它要受到3方面的影响：百位上的数字，百位以下（低位）的数字，百位以上（高位）的数字。</p>
+
+<ol>
+  <li>如果百位上数字为0，百位上可能出现1的次数由更高位决定。比如：12013，则可以知道百位出现1的情况可能是：100-199，1100-1199, 2100-2199，，…，11100-11199，一共1200个。可以看出是由更高位数字（12）决定，并且等于更高位数字（12）乘以 当前位数（100）。</li>
+  <li>如果百位上数字为1，百位上可能出现1的次数不仅受更高位影响还受低位影响。比如：12113，则可以知道百位受高位影响出现的情况是：100-199，1100-1199,2100-2199，，….，11100-11199，一共1200个。和上面情况一样，并且等于更高位数字（12）乘以 当前位数（100）。但同时它还受低位影响，百位出现1的情况是：12100~12113,一共114个，等于低位数字（113）+1。</li>
+  <li>如果百位上数字大于1（2-9），则百位上出现1的情况仅由更高位决定，比如12213，则百位出现1的情况是：100-199, 1100-1199，2100-2199，…，11100-11199, 12100-12199，一共有1300个，并且等于更高位数字+1（12+1）乘以当前位数（100）。</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">NumberOf1Between1AndN_Solution</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// 1的个数</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 当前位</span>
+    <span class="kt">int</span> <span class="n">current</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span><span class="n">after</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span><span class="n">before</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">while</span><span class="o">((</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">){</span>           
+        <span class="n">current</span> <span class="o">=</span> <span class="o">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span><span class="o">)</span> <span class="o">%</span> <span class="mi">10</span><span class="o">;</span> <span class="c1">// 当前位数字</span>
+        <span class="n">before</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="o">(</span><span class="n">i</span> <span class="o">*</span> <span class="mi">10</span><span class="o">);</span> <span class="c1">// 高位数字</span>
+        <span class="n">after</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="o">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span><span class="o">)</span> <span class="o">*</span> <span class="n">i</span><span class="o">;</span> <span class="c1">// 低位数字</span>
+        <span class="c1">//如果为0,出现1的次数由高位决定,等于高位数字 * 当前位数</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">current</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="n">before</span> <span class="o">*</span> <span class="n">i</span><span class="o">;</span>
+        <span class="c1">//如果为1,出现1的次数由高位和低位决定,高位*当前位+低位+1</span>
+        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">current</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="n">before</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">after</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="c1">//如果大于1,出现1的次数由高位决定,//（高位数字+1）* 当前位数</span>
+        <span class="k">else</span><span class="o">{</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="o">(</span><span class="n">before</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">*</span> <span class="n">i</span><span class="o">;</span>
+        <span class="o">}</span>                
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">10</span><span class="o">;</span> <span class="c1">//前移一位</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">count</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="第n个数字">第N个数字</h3>
+
+<p><a href="https://leetcode-cn.com/problems/nth-digit/">第N个数字</a>：在无限的整数序列 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, …中找到第 <em>n</em> 个数字。<em>n</em> 是正数且在32为整形范围内 ( $n &lt; 2^{31}$)。</p>
+
+<div class="language-tex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入:11		输出:0
+说明:
+第11个数字在序列 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ... 里是0，它是10的一部分。
+</code></pre></div></div>
+
+<ul>
+  <li>1-9有9个数，10-99有20X9个数字，100-999有300X9个数字，1000-9999有4000X9个数字；以此类推；</li>
+  <li>设置一个标志位i，每一个区间都有固定的标志位，例如1-9是1，10–99是2，以此类推；然后用n减去每个区间的值，知道确定n在哪个区间；</li>
+  <li>在得到区间中确定的数字，将其变为string型，然后就可以得到确定的数字。</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">findNthDigit</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="n">i</span> <span class="o">*</span> <span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">*</span> <span class="mi">9</span><span class="o">){</span>
+        <span class="n">n</span> <span class="o">-=</span> <span class="n">i</span> <span class="o">*</span> <span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">*</span> <span class="mi">9</span><span class="o">;</span> <span class="c1">//小于区间的值要减去，知道得到确定的区间</span>
+        <span class="n">i</span><span class="o">++;</span> <span class="c1">//标志位++；</span>
+    <span class="o">}</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">((</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="n">i</span> <span class="o">+</span> <span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">));</span> <span class="c1">//确定区间中数字；</span>
+    <span class="nc">String</span> <span class="n">a</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">num</span><span class="o">);</span> <span class="c1">//将数字变为string，好取得确定的数字；</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">a</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="改变数组元素使所有的数组元素都相等">改变数组元素使所有的数组元素都相等</h2>
+
+<p><a href="https://leetcode-cn.com/problems/minimum-moves-to-equal-array-elements-ii/">最少移动次数使数组元素相等</a>：给定一个非空整数数组，找到使所有数组元素相等所需的最小移动数，其中每次移动可将选定的一个元素加1或减1。</p>
+
+<div class="language-tex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input:[1,2,3]	Output:2
+
+Explanation:
+Only two moves are needed (remember each move increments or decrements one element):
+[1,2,3]  =&gt;  [2,2,3]  =&gt;  [2,2,2]
+</code></pre></div></div>
+
+<p>每次可以对一个数组元素加一或者减一，求最小的改变次数。</p>
+
+<p>这是个典型的<strong>相遇问题</strong>，移动距离最小的方式是所有元素都移动到<strong>中位数</strong>，理由如下：</p>
+
+<p>设m为中位数。a和b是m两边的两个元素，且b&gt;a。要使a和b相等，它们总共移动次数为b-a。这个值等于$(b-x)+(x-a)$。要使总移动次数最小，必须满足x=m。即，把这两个数移动到中位数。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 先排序，在利用双指针。</span>
+<span class="c1">// 时间复杂度为O(NlgN)。也可以利用快排降低至O(N)</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">minMoves2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">nums</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">move</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">move</span> <span class="o">+=</span> <span class="n">nums</span><span class="o">[</span><span class="n">h</span><span class="o">]</span> <span class="o">-</span> <span class="n">nums</span><span class="o">[</span><span class="n">l</span><span class="o">];</span>
+        <span class="n">l</span><span class="o">++;</span>
+        <span class="n">h</span><span class="o">--;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">move</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>补充</strong>：给定一个长度为 <em>n</em> 的<strong>非空</strong>整数数组，找到让数组所有元素相等的最小移动次数。每次移动可以使 <em>n</em> - 1 个元素增加 1。</p>
+
+<p>题意可理解位每次让一个值减去1，使得所有的值相等，那理想情况就是每个值最终等于最小值。 那么题目就转换为所有值减去最小值的和。</p>
+
+<h2 id="多数投票问题">多数投票问题</h2>
+
+<p><a href="https://leetcode-cn.com/problems/majority-element/">数组中出现次数多于 n / 2 的元素</a></p>
+
+<p>解法1：先对数组排序，最中间那个数出现次数一定多于 n / 2。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">majorityElement</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">nums</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">nums</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">2</span><span class="o">];</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>解法2：利用<strong>Boyer-Moore Majortiy Vote Algorithm</strong>来解决这个问题，使得时间复杂度为O(N)。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">majorityElement</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">majority</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">num</span> <span class="o">:</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">majority</span> <span class="o">=</span> <span class="o">(</span><span class="n">cnt</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">num</span> <span class="o">:</span> <span class="n">majority</span><span class="o">;</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="o">(</span><span class="n">majority</span> <span class="o">==</span> <span class="n">num</span><span class="o">)</span> <span class="o">?</span> <span class="n">cnt</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">:</span> <span class="n">cnt</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">majority</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>算法思路</strong>：使用cnt来统计一个元素出现的次数，当遍历到的元素和统计元素不相等时，令cnt–。假设频次大于N/2的对象值为A，如果cnt等于零，则可以确定在数组已经扫描过的部分，A的出现频率少于等于1/2。（如果A或者任意其他值在已经扫描部分大于1/2，则cnt不能为0）。那么未扫描部分，则A的频率仍然是大于等于1/2，问题规模得以减小，但性质保持不变。</p>
+
+<p>对于确定存在频次大于N/2的对象的情况下，算法到此结束了。
+对于不能确定是否存在频次大于N/2的对象的情况下，还需要额外一次数组扫描。对其出现次数进行计数，如果大于N/2,则为结果值，否则没有频次大于N/2的对象。</p>
+
+<p><strong>提升</strong>：</p>
+
+<p>http://liuyang1.github.io/2015/12/30/vote/</p>
+
+<p>http://yelinsheng.top/post/majority-voting-algorithm/</p>
+
+<h2 id="除自身以外数组的乘积">除自身以外数组的乘积</h2>
+
+<p><a href="https://leetcode-cn.com/problems/product-of-array-except-self/">除自身以外数组的乘积</a>：给定长度为 n 的整数数组 nums，其中 n &gt; 1，返回输出数组 output ，其中 output[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积。</p>
+
+<p><strong>示例:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入: [1,2,3,4]
+输出: [24,12,8,6]
+</code></pre></div></div>
+
+<p><strong>说明:</strong> 请<strong>不要使用除法，</strong>且在 O(<em>n</em>) 时间复杂度内完成此题。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">productExceptSelf</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">length</span><span class="o">];</span>
+        <span class="n">answer</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">answer</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">*</span> <span class="n">answer</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="o">}</span>
+        <span class="kt">int</span> <span class="no">R</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+            <span class="n">answer</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">answer</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">*</span> <span class="no">R</span><span class="o">;</span>
+            <span class="no">R</span> <span class="o">*=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="买卖股票问题">买卖股票问题</h2>
+
+<h3 id="买卖股票的最佳时机">买卖股票的最佳时机</h3>
+
+<p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/">买卖股票的最佳时机</a>：给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。</p>
+
+<p>如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。</p>
+
+<p>注意你不能在买入股票前卖出股票。</p>
+
+<div class="language-tex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入: [7,1,5,3,6,4]
+输出: 5
+解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格。
+
+输入: [7,6,4,3,1]
+输出: 0
+解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
+</code></pre></div></div>
+
+<p>一次遍历：通过维持两个变量——minPrice和maxProfit，它们分别对应迄今为止所得到的最小谷值和最大的利润。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxProfit</span><span class="o">(</span><span class="kt">int</span> <span class="n">prices</span><span class="o">[])</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">minprice</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">maxprofit</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">prices</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">minprice</span><span class="o">)</span>
+            <span class="n">minprice</span> <span class="o">=</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">minprice</span> <span class="o">&gt;</span> <span class="n">maxprofit</span><span class="o">)</span>
+            <span class="n">maxprofit</span> <span class="o">=</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">minprice</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">maxprofit</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="买卖股票的最佳时机-ii">买卖股票的最佳时机 II</h3>
+
+<p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/">买卖股票的最佳时机 II</a>：给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。</p>
+
+<p>设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖股票）。</p>
+
+<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+
+<div class="language-tex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入: [7,1,5,3,6,4]
+输出: 7
+解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxProfit</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">prices</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">maxProfit</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">prices</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">){</span>
+            <span class="n">maxProfit</span> <span class="o">+=</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">maxProfit</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/6eaf01901108809ca5dfeaef75c9417d6b287c841065525083d1e2aac0ea1de4-file_1555699697692.png" width="500px" /></p>
+
+<h3 id="买卖股票的最佳时机-iii">买卖股票的最佳时机 III</h3>
+
+<p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/">买卖股票的最佳时机 III</a>：给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。</p>
+
+<p>设计一个算法来计算你所能获取的最大利润。你最多可以完成 两笔 交易。</p>
+
+<p>注意: 你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+
+<div class="language-tex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入: [3,3,5,0,0,3,1,4]
+输出: 6
+解释: 在第 4 天（股票价格 = 0）的时候买入，在第 6 天（股票价格 = 3）的时候卖出，这笔交易所能获得利润 = 3-0 = 3 。随后，在第 7 天（股票价格 = 1）的时候买入，在第 8 天 （股票价格 = 4）的时候卖出，这笔交易所能获得利润 = 4-1 = 3 。
+</code></pre></div></div>
+
+<p><strong>状态机</strong>：每天我们其实是有四个状态，</p>
+
+<ul>
+  <li>买入当前价格的股票；</li>
+  <li>以当前价格的股票卖出；</li>
+  <li>第二次买入股票；</li>
+  <li>第二次卖出股票。</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">s0</code>代表初始状态，初始时钱是 <code class="language-plaintext highlighter-rouge">0</code>。<code class="language-plaintext highlighter-rouge">s1</code>代表第一次买入后当前的钱，<code class="language-plaintext highlighter-rouge">s2</code>代表第一次卖出后当前的前，<code class="language-plaintext highlighter-rouge">s3</code>代表第二次买入后当前的钱，<code class="language-plaintext highlighter-rouge">s4</code>代表第二次卖出后当前的钱。</p>
+
+<p><img src="/assets/images/70b91be6eda6bb3b50a697cae0a26246aa78a7ae0f9c5045d18eaef81a4556ef.jpg" alt="" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxProfit</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">prices</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">prices</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">s1</span> <span class="o">=</span> <span class="o">-</span> <span class="n">prices</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>    <span class="kt">int</span> <span class="n">s2</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">s3</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>    <span class="kt">int</span> <span class="n">s4</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">prices</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+        <span class="n">s1</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">s1</span><span class="o">,</span> <span class="o">-</span><span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="n">s2</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">s2</span><span class="o">,</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">s1</span><span class="o">);</span>
+        <span class="n">s3</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">s3</span><span class="o">,</span> <span class="n">s2</span> <span class="o">-</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="n">s4</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">s4</span><span class="o">,</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">s3</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">s4</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="买卖股票的最佳时机-iv">买卖股票的最佳时机 IV</h3>
+
+<p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/">买卖股票的最佳时机 IV</a>：给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。</p>
+
+<p>设计一个算法来计算你所能获取的最大利润。你最多可以完成 k 笔交易。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxProfit</span><span class="o">(</span><span class="kt">int</span> <span class="n">max_k</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">prices</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">max_k</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="o">){</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">cash</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">max_k</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">hold</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">max_k</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">max_k</span><span class="o">;</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span><span class="o">--){</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="o">){</span>
+                    <span class="n">cash</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+                    <span class="n">hold</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+                <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+                    <span class="n">cash</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">cash</span><span class="o">[</span><span class="n">k</span><span class="o">],</span> <span class="n">hold</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+                    <span class="n">hold</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">hold</span><span class="o">[</span><span class="n">k</span><span class="o">],</span> <span class="n">cash</span><span class="o">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">cash</span><span class="o">[</span><span class="n">max_k</span><span class="o">];</span>
+    <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+        <span class="kt">int</span> <span class="n">cash</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">hold</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">cash</span><span class="o">;</span>
+            <span class="n">cash</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">cash</span><span class="o">,</span> <span class="n">hold</span> <span class="o">+</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+            <span class="n">hold</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">hold</span><span class="o">,</span> <span class="n">cash</span> <span class="o">-</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">cash</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="买卖股票的最佳时机含手续费">买卖股票的最佳时机含手续费</h3>
+
+<p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/">买卖股票的最佳时机含手续费</a>：给定一个整数数组 prices，其中第 i 个元素代表了第 i 天的股票价格 ；非负整数 fee 代表了交易股票的手续费用。</p>
+
+<p>你可以无限次地完成交易，但是你每次交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。返回获得利润的最大值。</p>
+
+<div class="language-tex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入: prices = [1, 3, 2, 8, 4, 9], fee = 2
+输出: 8
+解释: 能够达到的最大利润:  
+在此处买入 prices[0] = 1
+在此处卖出 prices[3] = 8
+在此处买入 prices[4] = 4
+在此处卖出 prices[5] = 9
+总利润: ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
+</code></pre></div></div>
+
+<p><strong>动态规划</strong>：通过维护两个变量cash和hold，</p>
+
+<ul>
+  <li>cash：不持有股票时的最大利润；</li>
+  <li>hold：当我们持有股票时的最大利润。</li>
+</ul>
+
+<p>在第$i$天时，我们需要根据$i-1$天的状态来更新cash和hold的值。</p>
+
+<ul>
+  <li>
+    <p>对于cash，我们可以保持不变，或者以此时的价格将手上的股票卖出：</p>
+
+    <p><code class="language-plaintext highlighter-rouge">cash = Math.max(cash, hold + prices[i] - fee);</code></p>
+  </li>
+  <li>
+    <p>对于hold，我们可以保持不变（继续持有），或者买入这一天的股票：</p>
+
+    <p><code class="language-plaintext highlighter-rouge">hold = Math.max(hold, cash - prices[i]);</code></p>
+  </li>
+</ul>
+
+<p>在计算这两个状态转移方程时，我们可以不使用临时变量来存储$i-1$天的cash和hold值，而是可以通过<strong>先计算cash再计算hold</strong>，原因在于<strong>同一天卖出再买入（亏了一笔手续费）一定不会比不进行任何操作好</strong>。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxProfit</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">prices</span><span class="o">,</span> <span class="kt">int</span> <span class="n">fee</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">cash</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">hold</span> <span class="o">=</span> <span class="o">-</span><span class="n">prices</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">prices</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+        <span class="n">cash</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">cash</span><span class="o">,</span> <span class="n">hold</span> <span class="o">+</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">fee</span><span class="o">);</span>
+        <span class="n">hold</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">hold</span><span class="o">,</span> <span class="n">cash</span> <span class="o">-</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">cash</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="最佳买卖股票时机含冷冻期">最佳买卖股票时机含冷冻期</h3>
+
+<p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/">最佳买卖股票时机含冷冻期</a>：给定一个整数数组，其中第 i 个元素代表了第 i 天的股票价格 。</p>
+
+<p>设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:</p>
+
+<ul>
+  <li>你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</li>
+  <li>卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。</li>
+</ul>
+
+<div class="language-tex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入: [1,2,3,0,2]
+输出: 3 
+解释: 对应的交易状态为: [买入, 卖出, 冷冻期, 买入, 卖出]
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxProfit</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">prices</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">cash</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">hold</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">cold</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// 记录前一天的cash</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">prices</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+        <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">cash</span><span class="o">;</span>
+        <span class="n">cash</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">cash</span><span class="o">,</span> <span class="n">hold</span> <span class="o">+</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="n">hold</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">hold</span><span class="o">,</span> <span class="n">cold</span> <span class="o">-</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span> <span class="c1">// 不能立马卖</span>
+        <span class="n">cold</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">cash</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="约瑟夫环">约瑟夫环</h2>
+
+<p>Josephus有过的故事：39 个犹太人与Josephus及他的朋友躲到一个洞中，39个犹太人决定宁愿死也不要被敌人抓。于是决定了自杀方式，41个人排成一个圆圈，由第1个人开始报数，每报数到第3人该人就必须自杀。然后下一个重新报数，直到所有人都自杀身亡为止。然而Josephus 和他的朋友并不想遵从，Josephus要他的朋友先假装遵从，他将朋友与自己安排在第16个与第31个位置，于是逃过了这场死亡游戏。
+<strong>公式</strong>：（人数编号从0开始，与数组下标一致）
+\(\begin{align}
+f(1) = &amp; \ 0;\quad(i = 1) \\
+f(i) = &amp; \ (f(n-1) + m) \ \% \ i; \quad (i &gt; 1)
+\end{align}\)
+<a href="https://www.nowcoder.com/practice/f78a359491e64a50bce2d89cff857eb6?tpId=13&amp;tqId=11199&amp;tPage=3&amp;rp=3&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking">剑指offer</a></p>
+
+<p><a href="https://blog.csdn.net/OKasy/article/details/79503398">参考链接</a></p>
+
+<h2 id="汉诺塔">汉诺塔</h2>
+
+<p>有三根杆子A，B，C。A杆上有 N 个 (N&gt;1) 穿孔圆盘，盘的尺寸由下到上依次变小。要求按下列规则将所有圆盘移至 C 杆：</p>
+
+<ol>
+  <li>每次只能移动一个圆盘；</li>
+  <li>大盘不能叠在小盘上面。</li>
+</ol>
+
+<p>提示：可将圆盘临时置于 B 杆，也可将从 A 杆移出的圆盘重新移回 A 杆，但都必须遵循上述两条规则。</p>
+
+<p>问：如何移？最少要移动多少次？</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// 移动次数</span>
+<span class="c1">// 递归实现哈诺塔问题</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">hanoi</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">char</span> <span class="n">a</span><span class="o">,</span> <span class="kt">char</span> <span class="n">b</span><span class="o">,</span> <span class="kt">char</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+    <span class="n">hanoi</span><span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">c</span> <span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"第"</span> <span class="o">+</span> <span class="o">++</span><span class="n">count</span> <span class="o">+</span> <span class="s">"次移动：把"</span> <span class="o">+</span> <span class="n">n</span> <span class="o">+</span> <span class="s">"号盘从"</span> <span class="o">+</span> <span class="n">a</span> <span class="o">+</span> <span class="s">"移动到"</span> <span class="o">+</span> <span class="n">c</span><span class="o">);</span>
+    <span class="n">hanoi</span><span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="前缀中缀后缀表达式">前缀、中缀、后缀表达式</h2>
+
+<p><a href="https://blog.csdn.net/Antineutrino/article/details/6763722">前缀、中缀、后缀表达式</a>：它们都是对表达式的记法，区别在于运算符相对于操作数的位置。</p>
+
+<div class="language-tex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>中缀表达式	(3 + 4) × 5 - 6
+前缀表达式	× + 3 4 5 6
+后缀表达式	3 4 + 5 × 6 -
+</code></pre></div></div>
+
+<h3 id="中缀变前缀">中缀变前缀</h3>
+
+<ol>
+  <li>初始化两个栈：<strong>运算符栈</strong>S1和<strong>中间结果栈</strong>S2；</li>
+  <li>从<strong>右到左</strong>扫描中缀表达式；</li>
+  <li>遇到操作数，将其压入S2；</li>
+  <li>遇到运算符，比较其与S1栈顶运算符的优先级；
+    <ol>
+      <li>如果S1为空，或栈顶元素为右括号”）“，则直接入栈；</li>
+      <li>否则，若优先级<strong>高于或等于</strong>栈顶元素，也直接入栈；</li>
+      <li>否则，将S1栈顶的运算符弹出并压入S2中，再次转到（4-1）与S1中新的栈顶元素比较；</li>
+    </ol>
+  </li>
+  <li>遇到括号时：
+    <ol>
+      <li>如果是右括号“）”，直接压入S1中；</li>
+      <li>如果是左括号“（”，则依次弹出S1栈顶元素，并压入S2中，直到遇到右括号位置，此时将这一对括号丢弃；</li>
+    </ol>
+  </li>
+  <li>重复步骤（2）至（5），直到表达式的最左边；</li>
+  <li>将S1中剩余的元素依次弹出并压入S2；</li>
+  <li>依次弹出S2中的元素并输出，结果即为对应的前缀表达式。</li>
+</ol>
+
+<p>例如，将中缀表达式“1+((2+3)×4)-5”转换为前缀表达式的过程如下：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>扫描到的元素</th>
+      <th>S2(栈底-&gt;栈顶)</th>
+      <th>S1 (栈底-&gt;栈顶)</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5</td>
+      <td>5</td>
+      <td>空</td>
+      <td>数字，直接入栈</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>5</td>
+      <td>-</td>
+      <td>S1为空，运算符直接入栈</td>
+    </tr>
+    <tr>
+      <td>)</td>
+      <td>5</td>
+      <td>- )</td>
+      <td>右括号直接入栈</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>5 4</td>
+      <td>- )</td>
+      <td>数字直接入栈</td>
+    </tr>
+    <tr>
+      <td>×</td>
+      <td>5 4</td>
+      <td>- ) ×</td>
+      <td>S1栈顶是右括号，直接入栈</td>
+    </tr>
+    <tr>
+      <td>)</td>
+      <td>5 4</td>
+      <td>- ) × )</td>
+      <td>右括号直接入栈</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>5 4 3</td>
+      <td>- ) × )</td>
+      <td>数字</td>
+    </tr>
+    <tr>
+      <td>+</td>
+      <td>5 4 3</td>
+      <td>- ) × ) +</td>
+      <td>S1栈顶是右括号，直接入栈</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>5 4 3 2</td>
+      <td>- ) × ) +</td>
+      <td>数字</td>
+    </tr>
+    <tr>
+      <td>(</td>
+      <td>5 4 3 2 +</td>
+      <td>- ) ×</td>
+      <td>左括号，弹出运算符直至遇到右括号</td>
+    </tr>
+    <tr>
+      <td>(</td>
+      <td>5 4 3 2 + ×</td>
+      <td>-</td>
+      <td>同上</td>
+    </tr>
+    <tr>
+      <td>+</td>
+      <td>5 4 3 2 + ×</td>
+      <td>- +</td>
+      <td>优先级与-相同，入栈</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>5 4 3 2 + × 1</td>
+      <td>- +</td>
+      <td>数字</td>
+    </tr>
+    <tr>
+      <td>到达最左端</td>
+      <td>5 4 3 2 + × 1 + -</td>
+      <td>空</td>
+      <td>S1中剩余的运算符</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>因此结果为“- + 1 × + 2 3 4 5”。</p>
+<h3 id="前缀计算机求值">前缀计算机求值</h3>
+
+<p>从<strong>右至左扫描</strong>表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数，用运算符对它们做相应的计算（栈顶元素 op 次顶元素），并将结果入栈；重复上述过程直至表达式的最左端，最后运算得出的值即为表达式的结果。</p>
+
+<p>例如，上述前缀表达式“- + 1 × + 2 3 4 5”。</p>
+
+<ol>
+  <li>从右至左扫描，将5、4、3、2入栈；</li>
+  <li>遇到+运算符，因此弹出2和3，计算2+3，并将结果5入栈；</li>
+  <li>接下里是x运算符，因此弹出5和4，计算结果20入栈；</li>
+  <li>1入栈；</li>
+  <li>弹出1和20，计算1+20=21入栈；</li>
+  <li>最后是-运算，计算出21-5 = 16。由此也得出最终结果。</li>
+</ol>
+
+<p>可以看出，计算机计算前缀表达式的值是很容易的。</p>
+
+<p>TODO</p>
+
+<h3 id="中缀变后缀todo">中缀变后缀（TODO）</h3>
+
+<h3 id="后缀计算机求值todo">后缀计算机求值（TODO）</h3>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#ds-algo" class="page__taxonomy-item p-category" rel="tag">ds-algo</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-05-21T00:00:00+00:00">May 21, 2024</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/ds-algo/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="pagination--pager" title="排序算法">Previous</a>
+    
+    
+      <a href="/leetcode/%E6%95%B0%E7%BB%84-%E9%A2%98%E5%8D%95/" class="pagination--pager" title="数组-基础题单">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="https://yourusername.github.io"></a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

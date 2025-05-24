@@ -10,7 +10,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>二分查找 - 技术与思维笔记</title>
+<!-- begin _includes/seo.html --><title>二分查找</title>
 <meta name="description" content="虽然二分查找的基本思想相对简单，但其细节却可能出人意料地棘手。">
 
 
@@ -22,7 +22,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="技术与思维笔记">
+<meta property="og:site_name" content="">
 <meta property="og:title" content="二分查找">
 <meta property="og:url" content="https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
 
@@ -63,7 +63,7 @@
 
 
 
-  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术与思维笔记 Feed">
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title=" Feed">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
@@ -114,7 +114,7 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">
-          技术与思维笔记
+          
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
@@ -175,113 +175,6 @@
 
 <div id="main" role="main">
   
-  <div class="sidebar sticky">
-  
-
-
-<div itemscope itemtype="https://schema.org/Person" class="h-card">
-
-  
-
-  <div class="author__content">
-    <h3 class="author__name p-name" itemprop="name">
-      <a class="u-url" rel="me" href="https://yourusername.github.io/" itemprop="url">phoenixfei</a>
-    </h3>
-    
-      <div class="author__bio p-note" itemprop="description">
-        <p>专注于算法、大数据、数学等领域的学习与分享</p>
-
-      </div>
-    
-  </div>
-
-  <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">Follow</button>
-    <ul class="author__urls social-icons">
-      
-        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">南京</span>
-        </li>
-      
-
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      <!--
-  <li>
-    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
-      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
-    </a>
-  </li>
--->
-    </ul>
-  </div>
-</div>
-
-  
-  </div>
-
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
@@ -655,7 +548,7 @@
 
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&amp;mid=2653198327&amp;idx=1&amp;sn=74187f72a03db8fcad3c234d61c7bad7&amp;chksm=8c99e52dbbee6c3b1e35ea8b2a8d57fa9fa72c098fa91e9f76a3228596922ef062fbf6f3e103&amp;mpshare=1&amp;scene=24&amp;srcid=&amp;key=8095bafaf3e0360ff8c483252809c708471b25b3132dfca15fc4fa317ce5a66a56b291e0765ef078fc6867cb252f15403be711523cc6f76c4529ff5f1a814dcd04e7e9b7b46de0bf232957784929fb2e&amp;ascene=14&amp;uin=Nzg0MDI3NjA3&amp;devicetype=Windows+7&amp;version=62060833&amp;lang=zh_CN&amp;pass_ticket=UCWR8ioDtSHS%2BoL3Soe2IMjeckYJhDTfT4OLISM%2Bbekc4zA7JbB3bv2fNQXx173b">在一个旋转有序数组中，如何查找一个整数呢？</a>注意这里有一个前提：<strong>我们并不直接知道给定数组的旋转点。</strong></p>
 
-<p><img src="/assets/images//640.jpg" alt="640" /></p>
+<p><img src="/assets/images/640.jpg" alt="640" /></p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">rotatedBinarySearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">){</span>
     <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
@@ -718,7 +611,7 @@
       
   <nav class="pagination">
     
-      <a href="/ds-algo/binary_search/" class="pagination--pager" title="二分查找">Previous</a>
+      <a href="#" class="pagination--pager disabled">Previous</a>
     
     
       <a href="/ds-algo/%E4%BD%8D%E6%93%8D%E4%BD%9C/" class="pagination--pager" title="位操作技巧">Next</a>
@@ -773,7 +666,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2025 <a href="https://yourusername.github.io">技术与思维笔记</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2025 <a href="https://yourusername.github.io"></a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
