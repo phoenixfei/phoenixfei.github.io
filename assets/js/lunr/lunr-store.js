@@ -107,14 +107,14 @@ var store = [{
         "url": "/leetcode/%E9%93%BE%E8%A1%A8-%E9%A2%98%E5%8D%95/",
         "teaser": null
       },{
-        "title": "最大公约数与最小公倍数",
-        "excerpt":"LCD 与 LCM的定义、原理与 Python 实现。 GCD Greatest Common Divisor，最大公约数。 两个整数 $a$ 和 $b$ 的最大公约数（GCD）是能同时整除这两个数的最大正整数，记作： \\[\\gcd(a, b)\\] 实现原理 通过欧几里得算法（辗转相除法）得到。 欧几里得算法基于以下性质： \\[\\gcd(a, b) = \\gcd(b, a \\bmod b)\\] 当 $b = 0$ 时，最大公约数为 $a$。 Python 实现 def gcd(a, b): while b: a, b = b, a % b return a 或使用 Python...","categories": ["math"],
+        "title": "GCD与LCM",
+        "excerpt":"最大公约数（GCD）和最小公倍数（LCM） GCD与LCM是整数运算中最基本且常用的数论工具，广泛用于整除判断与数值关系建模。 GCD Greatest Common Divisor，最大公约数。 两个整数 $a$ 和 $b$ 的最大公约数（GCD）是能同时整除这两个数的最大正整数，记作： \\[\\gcd(a, b)\\] 实现原理 通过欧几里得算法（辗转相除法）得到。 欧几里得算法基于以下性质： \\[\\gcd(a, b) = \\gcd(b, a \\bmod b)\\] 当 $b = 0$ 时，最大公约数为 $a$。 Python 实现 def gcd(a, b): while b: a, b = b, a % b return a 或使用 Python 内置函数（推荐）： from math...","categories": ["math"],
         "tags": [],
         "url": "/math/%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8E%E5%85%AC%E5%80%8D%E6%95%B0/",
         "teaser": null
       },{
-        "title": "什么是素数？",
-        "excerpt":"算法中的素数求解与应用总结。 📌 什么是素数？ 素数（质数）是指大于 1 的自然数，只能被 1 和它本身整除。 常见的素数有： 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, ... 1 不是素数。 2 是唯一的偶数素数。 🔍 如何求解素数？ 方法一：试除法（暴力） 【常用｜需记住模板】用于判断单个数是否为素数： 如果n &lt; 2, 返回False 从2开始遍历，直到 $\\sqrt{n}$。注意，要包括开根号之后的数。因此，python实现时，先开根号再+1处理，可保证该数一定能遍历到。 中途出现整除情况（有因子），返回False 最后返回True def is_prime(n): if n &lt; 2: return False for i in range(2, int(n **...","categories": ["math"],
+        "title": "素数？",
+        "excerpt":"素数是整数的基石，它们构成了所有自然数的“原子”。 📌 什么是素数？ 素数（质数）是指大于 1 的自然数，只能被 1 和它本身整除。 常见的素数有： 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, ... 1 不是素数。 2 是唯一的偶数素数。 🔍 如何求解素数？ 方法一：试除法（暴力） 【常用｜需记住模板】用于判断单个数是否为素数： 如果n &lt; 2, 返回False 从2开始遍历，直到 $\\sqrt{n}$。注意，要包括开根号之后的数。因此，python实现时，先开根号再+1处理，可保证该数一定能遍历到。 中途出现整除情况（有因子），返回False 最后返回True def is_prime(n): if n &lt; 2: return False for i in range(2, int(n **...","categories": ["math"],
         "tags": [],
         "url": "/math/%E7%B4%A0%E6%95%B0/",
         "teaser": null
