@@ -1,0 +1,540 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.1 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>什么是素数？</title>
+<meta name="description" content="算法中的素数求解与应用总结。">
+
+
+  <meta name="author" content="phoenixfei">
+  
+  <meta property="article:author" content="phoenixfei">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="">
+<meta property="og:title" content="什么是素数？">
+<meta property="og:url" content="https://yourusername.github.io/math/%E7%B4%A0%E6%95%B0/">
+
+
+  <meta property="og:description" content="算法中的素数求解与应用总结。">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2024-06-21T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://yourusername.github.io/math/%E7%B4%A0%E6%95%B0/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title=" Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<!-- Ref:TeX Input Processor Options: https://docs.mathjax.org/en/latest/options/input/tex.html -->
+
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/"
+                
+                
+              >首页</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/ds-algo/"
+                
+                
+              >数据结构与算法</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/leetcode/"
+                
+                
+              >LeetCode</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/bigdata/"
+                
+                
+              >大数据</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/math/"
+                
+                
+              >数学</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                
+                
+              >关于我</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="什么是素数？">
+    <meta itemprop="description" content="算法中的素数求解与应用总结。">
+    <meta itemprop="datePublished" content="2024-06-21T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="https://yourusername.github.io/math/%E7%B4%A0%E6%95%B0/" itemprop="url">什么是素数？
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#-什么是素数">📌 什么是素数？</a></li><li><a href="#-如何求解素数">🔍 如何求解素数？</a><ul><li><a href="#方法一试除法暴力">方法一：试除法（暴力）</a></li><li><a href="#方法二埃拉托色尼筛法">方法二：埃拉托色尼筛法</a></li><li><a href="#方法三线性筛法">方法三：线性筛法</a></li><li><a href="#三种方法对比">三种方法对比</a></li></ul></li><li><a href="#-质因数分解">🚀 质因数分解</a><ul><li><a href="#方法一试除法">方法一：试除法</a></li><li><a href="#方法二线性筛">方法二：线性筛</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <p>算法中的素数求解与应用总结。</p>
+
+<h2 id="-什么是素数">📌 什么是素数？</h2>
+
+<p><strong>素数（质数）</strong>是指大于 1 的自然数，<strong>只能被 1 和它本身整除</strong>。<br />
+常见的素数有：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2, 3, 5, 7, 11, 13, 17, 19, 23, 29, ...
+</code></pre></div></div>
+<ul>
+  <li>1 不是素数。</li>
+  <li>2 是唯一的偶数素数。</li>
+</ul>
+
+<hr />
+
+<h2 id="-如何求解素数">🔍 如何求解素数？</h2>
+
+<h3 id="方法一试除法暴力">方法一：试除法（暴力）</h3>
+<p>【常用｜需记住模板】用于判断单个数是否为素数：</p>
+<ul>
+  <li>如果n &lt; 2, 返回False</li>
+  <li>从2开始遍历，直到 $\sqrt{n}$。注意，要包括开根号之后的数。因此，python实现时，先开根号再+1处理，可保证该数一定能遍历到。</li>
+  <li>中途出现整除情况（有因子），返回False</li>
+  <li>最后返回True
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+      <span class="k">return</span> <span class="bp">False</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+      <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="k">return</span> <span class="bp">False</span>
+  <span class="k">return</span> <span class="bp">True</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="方法二埃拉托色尼筛法">方法二：埃拉托色尼筛法</h3>
+<p>【常用｜需记住模板】用于一次性找出 [2, n] 之间所有素数，常用于数论类题目的预处理。
+具体步骤如下：</p>
+<ol>
+  <li><strong>列出从 2 到 $n$ 的所有整数</strong>（因为 1 不是素数，从 2 开始）。</li>
+  <li><strong>从第一个素数 2 开始</strong>，把 2 的所有倍数（即大于 2 的 $2 \times 2, 2 \times 3, 2 \times 4 \dots$）标记为“合数”（非素数）。</li>
+  <li><strong>找到下一个未被标记的数</strong>（如 3），它就是下一个素数。接着，<strong>标记它的所有倍数</strong>（即 $3 \times 2, 3 \times 3, 3 \times 4 \dots$）为合数。</li>
+  <li><strong>重复此过程</strong>，直到处理到不超过 $\sqrt{n}$ 的数为止。因为一个合数如果没有小于等于它平方根的因子，就已经在前面被标记过了。</li>
+  <li><strong>剩下没有被标记的数就是素数</strong>。</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sieve</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">is_prime</span> <span class="o">=</span> <span class="p">[</span><span class="bp">True</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">is_prime</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">is_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+                <span class="n">is_prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">prime</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">is_prime</span><span class="p">)</span> <span class="k">if</span> <span class="n">prime</span><span class="p">]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="方法三线性筛法">方法三：线性筛法</h3>
+<p>线性筛法（Linear Sieve），也叫<strong>欧拉筛法（Euler’s Sieve）</strong>，是对埃拉托色尼筛法的优化，
+目标是让每个合数<strong>只被它的最小质因子筛掉一次</strong>，从而将整体时间复杂度降为<strong>线性 $O(n)$</strong>。</p>
+
+<hr />
+
+<p><strong>原理概述：</strong></p>
+
+<p>埃拉托色尼筛法中，一个合数可能被多个素数反复标记（例如 30 会被 2、3、5 都筛掉），因此效率并非最优。 而线性筛法的核心思想是：</p>
+
+<blockquote>
+  <p>对于每个数 $i$，只用它的<strong>最小质因子</strong>（即最小的能整除它的素数）去筛掉它生成的合数，确保每个合数只被标记一次。</p>
+</blockquote>
+
+<hr />
+
+<p><strong>算法实现：</strong></p>
+<ol>
+  <li>初始化 <code class="language-plaintext highlighter-rouge">is_prime[0] = is_prime[1] = False</code>，其余为 <code class="language-plaintext highlighter-rouge">True</code>。</li>
+  <li>从 2 开始遍历到 $n$：
+    <ul>
+      <li>如果 <code class="language-plaintext highlighter-rouge">is_prime[i] == True</code>，说明 $i$ 是素数，加入 <code class="language-plaintext highlighter-rouge">primes[]</code>。</li>
+      <li>遍历所有已知素数 $p \in primes[]$，并执行：
+        <ul>
+          <li>若 $p \times i &gt; n$，终止。</li>
+          <li>标记 $p \times i$ 为合数：<code class="language-plaintext highlighter-rouge">is_prime[p * i] = False</code></li>
+          <li>如果 $p$ 是 $i$ 的最小质因子（即 $p \mid i$），就<strong>终止当前内层循环</strong>，防止重复标记。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">linear_sieve</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">is_prime</span> <span class="o">=</span> <span class="p">[</span><span class="bp">True</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">primes</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">is_prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">is_prime</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>  <span class="c1"># 0 和 1 不是素数
+</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">is_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">primes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># 找到一个新的素数
+</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">primes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">is_prime</span><span class="p">[</span><span class="n">p</span> <span class="o">*</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>  <span class="c1"># p 是 i 的最小质因子，停止筛这个 i
+</span>
+    <span class="k">return</span> <span class="n">primes</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>💡 为什么能做到每个数只被筛一次？</p>
+
+<p>因为每个合数 $x = p \times q$（其中 $p$ 是质数，$q$ 是某个数），只会在处理 $q$ 时被筛掉，前提是 $p \leq q$ 且 $p$ 是 $q$ 的最小质因子。这样，<strong>每个合数只会被它的最小质因子对应的乘法筛掉一次</strong>。</p>
+
+<hr />
+
+<h3 id="三种方法对比">三种方法对比</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>筛法 / 方法</th>
+      <th>时间复杂度</th>
+      <th>是否重复标记合数</th>
+      <th>特点说明</th>
+      <th>适合范围</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>试除法</strong></td>
+      <td>$O(n \sqrt{n})$</td>
+      <td>—</td>
+      <td>枚举每个数，逐个除以比它小的数；效率低但通用</td>
+      <td>极小范围，适合教学或特殊用途</td>
+    </tr>
+    <tr>
+      <td><strong>埃拉托色尼筛法</strong></td>
+      <td>$O(n \log \log n)$</td>
+      <td>是</td>
+      <td>简单易实现，但一个合数可能被多个素数反复筛掉</td>
+      <td>中小范围（~$10^7$）</td>
+    </tr>
+    <tr>
+      <td><strong>线性筛法（欧拉筛）</strong></td>
+      <td>$O(n)$</td>
+      <td>否</td>
+      <td>每个合数只被最小质因子筛一次，效率更高</td>
+      <td>大范围（~$10^8$）</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-质因数分解">🚀 质因数分解</h2>
+
+<p><strong>基本定义：</strong></p>
+
+<p>将一个整数表示为若干个质数的乘积。例如：</p>
+
+\[60 = 2^2 \times 3^1 \times 5^1\]
+
+<h3 id="方法一试除法">方法一：试除法</h3>
+
+<p>适合单个小整数</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">prime_factors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">factors</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">factors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">factors</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">n</span> <span class="o">//=</span> <span class="n">i</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">factors</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">factors</span>
+</code></pre></div></div>
+
+<ul>
+  <li>时间复杂度：$O(\sqrt{n})$</li>
+  <li>适合范围：单个 $n \leq 10^9$</li>
+</ul>
+
+<hr />
+
+<h3 id="方法二线性筛">方法二：线性筛</h3>
+
+<p>如果需要对多个数进行分解，推荐先线性筛出每个数的最小质因子（Min Prime Factor），再快速分解。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">linear_sieve_with_factors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">min_prime</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">primes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">min_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">min_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="n">primes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">primes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="n">min_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">min_prime</span><span class="p">[</span><span class="n">p</span> <span class="o">*</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span>
+    <span class="k">return</span> <span class="n">min_prime</span>
+
+<span class="c1"># 分解单个数
+</span><span class="k">def</span> <span class="nf">factorize</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">min_prime</span><span class="p">):</span>
+    <span class="n">factors</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">min_prime</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">factors</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">factors</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">n</span> <span class="o">//=</span> <span class="n">p</span>
+    <span class="k">return</span> <span class="n">factors</span>
+</code></pre></div></div>
+
+<ul>
+  <li>时间复杂度：预处理 $O(n)$，单次分解 $O(\log n)$</li>
+  <li>适合范围：处理多个 $n \leq 10^7$ 的质因数分解</li>
+</ul>
+
+<hr />
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#math" class="page__taxonomy-item p-category" rel="tag">math</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-06-21T00:00:00+00:00">June 21, 2024</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/math/%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8E%E5%85%AC%E5%80%8D%E6%95%B0/" class="pagination--pager" title="最大公约数与最小公倍数">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="https://yourusername.github.io"></a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
