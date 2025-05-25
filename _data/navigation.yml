@@ -2,13 +2,13 @@
 main:
   - title: "首页"
     url: "/"
-  - title: "数据结构与算法"
+  - title: "DSA"
     url: /ds-algo/
-  - title: "LeetCode"
+  - title: "题单"
     url: /leetcode/
-  - title: "大数据"
-    url: /bigdata/
   - title: "数学"
     url: /math/
-  - title: "关于我"
-    url: /about/
+#  - title: "大数据"
+#    url: /bigdata/
+#  - title: "关于我"
+#    url: /about/
