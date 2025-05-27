@@ -1,0 +1,446 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.1 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>单调栈</title>
+<meta name="description" content="单调栈是指栈内元素单调递增或递减的栈结构，常用于解决“下一个更大元素”、“最大矩形面积”等问题。">
+
+
+  <meta name="author" content="phoenixfei">
+  
+  <meta property="article:author" content="phoenixfei">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="">
+<meta property="og:title" content="单调栈">
+<meta property="og:url" content="https://yourusername.github.io/ds-algo/%E5%8D%95%E8%B0%83%E6%A0%88/">
+
+
+  <meta property="og:description" content="单调栈是指栈内元素单调递增或递减的栈结构，常用于解决“下一个更大元素”、“最大矩形面积”等问题。">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2025-05-21T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://yourusername.github.io/ds-algo/%E5%8D%95%E8%B0%83%E6%A0%88/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title=" Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<!-- Ref:TeX Input Processor Options: https://docs.mathjax.org/en/latest/options/input/tex.html -->
+
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/"
+                
+                
+              >首页</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/ds-algo/"
+                
+                
+              >DSA</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/leetcode/"
+                
+                
+              >题单</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/math/"
+                
+                
+              >数学</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="单调栈">
+    <meta itemprop="description" content="单调栈是指栈内元素单调递增或递减的栈结构，常用于解决“下一个更大元素”、“最大矩形面积”等问题。">
+    <meta itemprop="datePublished" content="2025-05-21T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="https://yourusername.github.io/ds-algo/%E5%8D%95%E8%B0%83%E6%A0%88/" itemprop="url">单调栈
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#常见类型">常见类型</a></li><li><a href="#举例说明">举例说明</a><ul><li><a href="#思路回顾">思路回顾</a></li><li><a href="#算法过程演示">算法过程演示</a></li><li><a href="#python-实现">python 实现</a></li></ul></li><li><a href="#常见应用场景">常见应用场景</a></li><li><a href="#题单链接">题单链接</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>单调栈是指栈内元素单调递增或递减的栈结构，常用于解决“下一个更大元素”、“最大矩形面积”等问题。</p>
+
+<hr />
+
+<h2 id="常见类型">常见类型</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>类型</th>
+      <th>特点</th>
+      <th>适用场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>单调递增栈</td>
+      <td>栈内元素从栈底到栈顶递增（小→大）</td>
+      <td>寻找<strong>下一个更小元素</strong>、维护最小值</td>
+    </tr>
+    <tr>
+      <td>单调递减栈</td>
+      <td>栈内元素从栈底到栈顶递减（大→小）</td>
+      <td>寻找<strong>下一个更大元素</strong>、维护最大值</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="举例说明">举例说明</h2>
+
+<p>以数组 <code class="language-plaintext highlighter-rouge">[2, 1, 5, 6, 2, 3]</code> 为例，<strong>寻找每个元素右侧第一个比它大的元素</strong>，若不存在，则记为 -1。</p>
+
+<hr />
+
+<h3 id="思路回顾">思路回顾</h3>
+
+<p>维护一个 <strong>单调递减栈</strong>，栈中存的是<strong>索引</strong>。遍历数组时，如果当前元素比栈顶对应的元素大，就说明找到了“下一个更大的元素”。</p>
+
+<hr />
+
+<h3 id="算法过程演示">算法过程演示</h3>
+
+<p><strong>输入数组：</strong> <code class="language-plaintext highlighter-rouge">nums = [2, 1, 5, 6, 2, 3]</code></p>
+
+<p>遍历过程：</p>
+
+<ol>
+  <li>
+    <p>i = 0, nums[0] = 2
+→ 栈空，入栈 [0]</p>
+  </li>
+  <li>
+    <p>i = 1, nums[1] = 1
+→ 栈顶 nums[0]=2 &gt; 1，不满足条件，入栈 [0, 1]</p>
+  </li>
+  <li>
+    <p>i = 2, nums[2] = 5</p>
+
+    <ul>
+      <li>栈顶 nums[1]=1 &lt; 5 → 弹出，res[1] = 5</li>
+      <li>栈顶 nums[0]=2 &lt; 5 → 弹出，res[0] = 5
+→ 入栈 [2]</li>
+    </ul>
+  </li>
+  <li>
+    <p>i = 3, nums[3] = 6</p>
+
+    <ul>
+      <li>栈顶 nums[2]=5 &lt; 6 → 弹出，res[2] = 6
+→ 入栈 [3]</li>
+    </ul>
+  </li>
+  <li>
+    <p>i = 4, nums[4] = 2
+→ 栈顶 nums[3]=6 &gt; 2，不弹出，入栈 [3, 4]</p>
+  </li>
+  <li>
+    <p>i = 5, nums[5] = 3</p>
+
+    <ul>
+      <li>栈顶 nums[4]=2 &lt; 3 → 弹出，res[4] = 3
+→ 栈顶 nums[3]=6 &gt; 3，不弹出，入栈 [3, 5]</li>
+    </ul>
+  </li>
+</ol>
+
+<p>最终结果：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="python-实现">python 实现</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">next_greater</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="常见应用场景">常见应用场景</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>应用场景</th>
+      <th>简要描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>下一个更大元素（或更小元素）</td>
+      <td>从一个数组中找到每个元素右边第一个比它大的数</td>
+    </tr>
+    <tr>
+      <td>柱状图中最大的矩形</td>
+      <td>求解每根柱子左右第一个比它矮的柱子，计算最大面积</td>
+    </tr>
+    <tr>
+      <td>滑动窗口最值</td>
+      <td>单调队列变形</td>
+    </tr>
+    <tr>
+      <td>某个元素的左/右边界</td>
+      <td>找到数组中每个元素左边第一个比它小/大的数</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="题单链接">题单链接</h2>
+<p><a href="/leetcode/单调栈-题单/">单调栈基础题单</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#ds-algo" class="page__taxonomy-item p-category" rel="tag">ds-algo</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2025-05-21T00:00:00+00:00">May 21, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/math/%E7%B4%A0%E6%95%B0/" class="pagination--pager" title="素数">Previous</a>
+    
+    
+      <a href="/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88-%E9%A2%98%E5%8D%95/" class="pagination--pager" title="单调栈-题单">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="https://yourusername.github.io"></a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
