@@ -189,7 +189,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#最短路径">最短路径</a><ul><li><a href="#参考链接">参考链接</a></li><li><a href="#刷题">刷题</a></li></ul></li><li><a href="#拓扑排序">拓扑排序</a></li><li><a href="#经典例题">经典例题</a><ul><li><a href="#判断二分图">判断二分图</a></li><li><a href="#课程表">课程表</a></li><li><a href="#课程表ii">课程表II</a></li></ul></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#图的遍历算法题单">图的遍历算法题单</a></li><li><a href="#最短路径算法题单">最短路径算法题单</a></li><li><a href="#拓扑排序典型题目推荐">拓扑排序典型题目推荐</a></li></ul>
             </nav>
           </aside>
         
@@ -197,19 +197,55 @@
 
 <hr />
 
-<h2 id="最短路径">最短路径</h2>
+<h2 id="图的遍历算法题单">图的遍历算法题单</h2>
 
-<h3 id="参考链接">参考链接</h3>
-<ul>
-  <li><a href="https://www.freecodecamp.org/chinese/news/dijkstras-shortest-path-algorithm-visual-introduction/" title="图文详解 Dijkstra 最短路径算法">图文详解 Dijkstra 最短路径算法</a></li>
-  <li><a href="https://www.cnblogs.com/goldsunshine/p/12978305.html" title="一篇文章讲透Dijkstra最短路径算法">一篇文章讲透Dijkstra最短路径算法</a></li>
-  <li><a href="https://leetcode.cn/problems/find-minimum-time-to-reach-last-room-ii/solutions/2975554/dijkstra-zui-duan-lu-pythonjavacgo-by-en-alms/" title="Dijkstra 最短路 灵茶山艾府">Dijkstra 最短路 灵茶山艾府</a></li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>题目名</th>
+      <th>类型</th>
+      <th>链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>200. 岛屿数量</td>
+      <td>DFS/BFS</td>
+      <td><a href="https://leetcode.cn/problems/number-of-islands">力扣 200</a></td>
+    </tr>
+    <tr>
+      <td>733. 图像渲染（Flood Fill）</td>
+      <td>DFS/BFS</td>
+      <td><a href="https://leetcode.cn/problems/flood-fill">力扣 733</a></td>
+    </tr>
+    <tr>
+      <td>542. 01矩阵</td>
+      <td>BFS</td>
+      <td><a href="https://leetcode.cn/problems/01-matrix">力扣 542</a></td>
+    </tr>
+    <tr>
+      <td>785. 判断二分图</td>
+      <td>BFS/DFS</td>
+      <td><a href="https://leetcode.cn/problems/is-graph-bipartite">力扣 785</a></td>
+    </tr>
+    <tr>
+      <td>207. 课程表（拓扑排序）</td>
+      <td>DFS/BFS</td>
+      <td><a href="https://leetcode.cn/problems/course-schedule">力扣 207</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 
-<h3 id="刷题">刷题</h3>
+<h2 id="最短路径算法题单">最短路径算法题单</h2>
+<p><strong>参考链接</strong></p>
 <ul>
+  <li><a href="https://www.freecodecamp.org/chinese/news/dijkstras-shortest-path-algorithm-visual-introduction/" title="图文详解 Dijkstra 最短路径算法">图文详解 Dijkstra 最短路径算法</a></li>
+  <li><a href="https://www.cnblogs.com/goldsunshine/p/12978305.html" title="一篇文章讲透Dijkstra最短路径算法">一篇文章讲透Dijkstra最短路径算法</a></li>
+  <li>
+    <p><a href="https://leetcode.cn/problems/find-minimum-time-to-reach-last-room-ii/solutions/2975554/dijkstra-zui-duan-lu-pythonjavacgo-by-en-alms/" title="Dijkstra 最短路 灵茶山艾府">Dijkstra 最短路 灵茶山艾府</a></p>
+  </li>
   <li>【模板题】<a href="https://leetcode.cn/problems/network-delay-time/description/">网络延迟时间</a></li>
   <li><a href="https://leetcode.cn/problems/find-minimum-time-to-reach-last-room-ii/">到达最后一个房间的最少时间 II</a></li>
   <li>【0-1 BFS】<a href="https://leetcode.cn/problems/grid-teleportation-traversal/description/">3552. 网格传送门旅游</a></li>
@@ -217,312 +253,38 @@
 
 <hr />
 
-<h2 id="拓扑排序">拓扑排序</h2>
+<h2 id="拓扑排序典型题目推荐">拓扑排序典型题目推荐</h2>
 
-<p>在图论中，拓扑排序（Topological Sorting）是一个<strong>有向无环图</strong>（DAG，Directed Acyclic Graph）的所有顶点的线性序列。且该序列满足下面两个条件：</p>
-
-<ol>
-  <li>每个顶点出现且仅出现一次</li>
-  <li>若存在一条从顶点A到顶点B的路劲，那么在序列中顶点A出现在顶点B的前面</li>
-</ol>
-
-<p>有向无环图（DAG）才有拓扑排序，非DGA图没有拓扑排序一说。</p>
-
-<p>例如，下面这个图，它是一个DGA图，那么如何写出它的拓扑排序呢？</p>
-
-<p><img src="/assets/images20150507001028284.jpg" alt="20150507001028284" /></p>
-
-<p>方法步骤为：</p>
-
-<ol>
-  <li>从DAG图中选择一个没有前驱（即入度为0）的顶点并输出；</li>
-  <li>从图中删除该顶点和所有以它为起点的有向边；</li>
-  <li>重复1和2直到当前的<strong>DAG图为空</strong>或<strong>不存在无前驱的顶点为止</strong>。后一种情况说明有向图中必然存在环。</li>
-</ol>
-
-<p><img src="/assets/images20150507001759702.jpg" alt="20150507001759702" /></p>
-
-<hr />
-
-<h2 id="经典例题">经典例题</h2>
-
-<hr />
-
-<h4 id="判断二分图">判断二分图</h4>
-
-<p><a href="https://leetcode-cn.com/problems/is-graph-bipartite/">判断二分图</a>：</p>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给定一个无向图graph，当这个图为二分图时返回true。
-如果我们能将一个图的节点集合分割成两个独立的子集A和B，并使图中的每一条边的两个节点一个来自A集合，一个来自B集合，我们就将这个图称为二分图。
-
-示例 1:	输入: [[1,3], [0,2], [1,3], [0,2]]	输出: true
-解释: 	无向图如下:
-0----1
-|    |
-|    |
-3----2
-我们可以将节点分成两组: {0, 2} 和 {1, 3}。
-
-示例 2:	输入: [[1,2,3], [0,2], [0,1,3], [0,2]]	输出: false
-解释: 	无向图如下:
-0----1
-| <span class="se">\ </span> |
-|  <span class="se">\ </span>|
-3----2
-我们不能将节点分割成两个独立的子集。
-</code></pre></div></div>
-
-<p><strong><a href="https://leetcode.com/problems/is-graph-bipartite/discuss/115487/Java-Clean-DFS-solution-with-Explanation">解题思路</a></strong>：</p>
-
-<blockquote>
-  <p>我们首先使用两种颜色来标记图结点的颜色，然后，通过判断邻接结点中是否有相同颜色来判断二分图。</p>
-
-  <ol>
-    <li>初始化一个color[]，对于每个结点，有三种状态：
-      <ul>
-        <li>0: Haven’t been colored yet.</li>
-        <li>1: Blue.</li>
-        <li>-1: Red</li>
-      </ul>
-    </li>
-    <li>对于每个结点：
-      <ul>
-        <li>对于一个没有被标记的节点，我们选择一种颜色标记它，然后用另一种颜色标记它的邻接结点</li>
-        <li>如果已经被标记了，判断该颜色是否为我们打算标记的颜色</li>
-      </ul>
-    </li>
-  </ol>
-</blockquote>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isBipartite</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">graph</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span><span class="o">[]</span> <span class="n">colors</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">graph</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">colors</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">isBipartite</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">colors</span><span class="o">,</span> <span class="n">graph</span><span class="o">)){</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-<span class="o">}</span>
-<span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isBipartite</span><span class="o">(</span><span class="kt">int</span> <span class="n">curNode</span><span class="o">,</span> <span class="kt">int</span> <span class="n">curColor</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">colors</span><span class="o">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">graph</span><span class="o">){</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">colors</span><span class="o">[</span><span class="n">curNode</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">){</span>
-        <span class="k">return</span> <span class="n">colors</span><span class="o">[</span><span class="n">curNode</span><span class="o">]</span> <span class="o">==</span> <span class="n">curColor</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="n">colors</span><span class="o">[</span><span class="n">curNode</span><span class="o">]</span> <span class="o">=</span> <span class="n">curColor</span><span class="o">;</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">next</span> <span class="o">:</span> <span class="n">graph</span><span class="o">[</span><span class="n">curNode</span><span class="o">]){</span>
-        <span class="k">if</span><span class="o">(!</span><span class="n">isBipartite</span><span class="o">(</span><span class="n">next</span><span class="o">,</span> <span class="o">-</span><span class="n">curColor</span><span class="o">,</span> <span class="n">colors</span><span class="o">,</span> <span class="n">graph</span><span class="o">)){</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h4 id="课程表">课程表</h4>
-<p><a href="https://leetcode-cn.com/problems/course-schedule/">课程表</a></p>
-
-<p><a href="https://leetcode-cn.com/problems/course-schedule/solution/course-schedule-tuo-bu-pai-xu-bfsdfsliang-chong-fa/">解题思路参考</a></p>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code> n 门课需要选，记为 0 到 n-1。
-在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们: [0,1]
-
-示例 :
-输入: 2, [[1,0]]	输出: true
-解释: 总共有 2 门课程。学习课程 1 之前，你需要完成课程 0。所以这是可能的。
-输入: 2, [[1,0],[0,1]]	输出: false
-解释: 总共有 2 门课程。学习课程 1 之前，你需要先完成课程 0；并且学习课程 0 之前，你还应先完成课程 1。这是不可能的。
-</code></pre></div></div>
-
-<blockquote>
-  <p>本题可简化为：课程安排图是否是<strong>有向无环图(DAG)</strong>。即课程间规定了前置条件，但不能构成任何环路，否则课程前置条件不成立。</p>
-
-  <p><strong>拓扑排序</strong>是对DAG的顶点进行排序，使得对每一条有向边（u，v），均有u（在排序记录中）比v先出现。亦可理解为，对某点v而言，只有当v的所有源点均出现了，v才能出现。</p>
-
-</blockquote>
-
-<p><strong>方法1</strong>：<strong>入度表（广度优先遍历）</strong></p>
-<blockquote>
-
-  <p><strong>算法流程</strong>：</p>
-
-  <ol>
-    <li>统计课程安排图中每个结点的入度，生成入度表indegrees；</li>
-    <li>借助一个队列queue，将所有入度为0的队列入度；</li>
-    <li>当queue非空时，依次将队列首结点出队，在课程安排图中，删除此结点pre：
-      <ul>
-        <li>并不是真正从领接表中删除此结点，而是将此结点对应的所有邻接结点cur的入度减1；</li>
-        <li>当入度减1后，邻接结点cur的入度为0，说明cur所有前驱结点已被“删除”，此时cur入队；</li>
-      </ul>
-    </li>
-    <li>在每次pre出队时，执行numCourse–；
-      <ul>
-        <li>若整个课程安排图是有向无环图，则所有结点一定都入队并出队，即完成拓扑排序。换个角度，若图中存在环，一定有结点的入度始终不为0；</li>
-        <li>因此，拓扑排序出队次数等于课程个人，返回numCourses == 0判断课程是否可以安排成功。</li>
-      </ul>
-    </li>
-  </ol>
-</blockquote>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">canFinishBFS</span><span class="o">(</span><span class="kt">int</span> <span class="n">numCourses</span><span class="o">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">prerequisites</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 利用队列实现BFS</span>
-    <span class="nc">Queue</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">&lt;&gt;();</span>
-    <span class="c1">// 每个结点的入度</span>
-    <span class="kt">int</span><span class="o">[]</span> <span class="n">indegrees</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">numCourses</span><span class="o">];</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">cp</span> <span class="o">:</span> <span class="n">prerequisites</span><span class="o">){</span>
-        <span class="n">indegrees</span><span class="o">[</span><span class="n">cp</span><span class="o">[</span><span class="mi">0</span><span class="o">]]++;</span>
-    <span class="o">}</span>
-    <span class="c1">// 将入度为0的结点初始化到队列中</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numCourses</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">indegrees</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="c1">// 拓扑排序</span>
-    <span class="k">while</span><span class="o">(!</span><span class="n">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()){</span>
-        <span class="kt">int</span> <span class="n">pre</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-        <span class="n">numCourses</span> <span class="o">--;</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">req</span> <span class="o">:</span> <span class="n">prerequisites</span><span class="o">){</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">req</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">!=</span> <span class="n">pre</span><span class="o">)</span> <span class="k">continue</span><span class="o">;</span>
-            <span class="k">if</span><span class="o">(--</span><span class="n">indegrees</span><span class="o">[</span><span class="n">req</span><span class="o">[</span><span class="mi">0</span><span class="o">]]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">req</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">numCourses</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><strong>方法2</strong>：<strong>深度优先遍历</strong></p>
-
-<blockquote>
-  <p><strong>算法流程</strong>：通过DFS判断图中是否有环</p>
-
-  <ol>
-    <li>借助一个标志列表flags，用于判断每个结点i（课程）的访问状态：
-      <ul>
-        <li>未被 DFS 访问：<code class="language-plaintext highlighter-rouge">i == 0</code>；</li>
-        <li>已被其他节点启动的DFS访问：<code class="language-plaintext highlighter-rouge">i == -1</code>；</li>
-        <li>已被当前节点启动的DFS访问：<code class="language-plaintext highlighter-rouge">i == 1</code>。</li>
-      </ul>
-    </li>
-    <li>对numCourses个结点依次执行DFS，判断每个结点起步DFS是否存在环，若存在环直接返回false。
-      <ol>
-        <li>终止条件：
-          <ul>
-            <li>当flags[i] == -1，说明当前访问结点已被其他结点启动的DFS访问，无需再重复搜索，直接返回true；</li>
-            <li>当flags[i] == 1，说明本轮DFS搜索中，结点i被第二次访问，即<strong>课程安排图有环</strong>，直接返回false</li>
-          </ul>
-        </li>
-        <li>将当前访问结点i对应flags[i]置1，即标记其被本轮DFS访问过；</li>
-        <li>递归访问当前节点i的所有邻接结点j，当发现环直接返回false；</li>
-        <li>当前节点所有邻接结点已被遍历，并没有发现环，则将当前节点flag置为-1，并返回true。</li>
-      </ol>
-    </li>
-    <li>若整个图DFS结束，未发现环，返回true。</li>
-  </ol>
-</blockquote>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">canFinishDFS</span><span class="o">(</span><span class="kt">int</span> <span class="n">numCourses</span><span class="o">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">prerequisites</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 构建邻接矩阵</span>
-    <span class="kt">int</span><span class="o">[][]</span> <span class="n">adjacency</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">numCourses</span><span class="o">][</span><span class="n">numCourses</span><span class="o">];</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">cp</span> <span class="o">:</span> <span class="n">prerequisites</span><span class="o">){</span>
-        <span class="n">adjacency</span><span class="o">[</span><span class="n">cp</span><span class="o">[</span><span class="mi">1</span><span class="o">]][</span><span class="n">cp</span><span class="o">[</span><span class="mi">0</span><span class="o">]]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="c1">// flags与dfs</span>
-    <span class="kt">int</span><span class="o">[]</span> <span class="n">flags</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">numCourses</span><span class="o">];</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numCourses</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(!</span><span class="n">dfs</span><span class="o">(</span><span class="n">adjacency</span><span class="o">,</span> <span class="n">flags</span><span class="o">,</span> <span class="n">i</span><span class="o">)){</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-<span class="o">}</span>
-<span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">adjacency</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">flags</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">flags</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">flags</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="n">flags</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">adjacency</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">adjacency</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">dfs</span><span class="o">(</span><span class="n">adjacency</span><span class="o">,</span> <span class="n">flags</span><span class="o">,</span> <span class="n">j</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="n">flags</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="课程表ii">课程表II</h4>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>现在你总共有 numCourses 门课需要选，记为 0 到 numCourses - 1。给你一个数组 prerequisites ，其中 prerequisites[i] = [ai, bi] ，表示在选修课程 ai 前 必须 先选修 bi 。
-例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示：[0,1] 。
-返回你为了学完所有课程所安排的学习顺序。可能会有多个正确的顺序，你只要返回 任意一种 就可以了。如果不可能完成所有课程，返回 一个空数组 。
-
-示例 1：
-输入：numCourses = 2, prerequisites = [[1,0]]
-输出：[0,1]
-解释：总共有 2 门课程。要学习课程 1，你需要先完成课程 0。因此，正确的课程顺序为 [0,1] 。
-示例 2：
-输入：numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]
-输出：[0,2,1,3]
-解释：总共有 4 门课程。要学习课程 3，你应该先完成课程 1 和课程 2。并且课程 1 和课程 2 都应该排在课程 0 之后。
-因此，一个正确的课程顺序是 [0,1,2,3] 。另一个正确的排序是 [0,2,1,3] 。
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">findOrderBFS</span><span class="o">(</span><span class="kt">int</span> <span class="n">numCourses</span><span class="o">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">prerequisites</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span><span class="o">[]</span> <span class="n">ret</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">numCourses</span><span class="o">];</span>
-    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="c1">// 利用队列实现BFS</span>
-    <span class="nc">Queue</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">&lt;&gt;();</span>
-    <span class="c1">// 每个结点的入度</span>
-    <span class="kt">int</span><span class="o">[]</span> <span class="n">indegrees</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">numCourses</span><span class="o">];</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">cp</span> <span class="o">:</span> <span class="n">prerequisites</span><span class="o">){</span>
-        <span class="n">indegrees</span><span class="o">[</span><span class="n">cp</span><span class="o">[</span><span class="mi">0</span><span class="o">]]++;</span>
-    <span class="o">}</span>
-    <span class="c1">// 将入度为0的结点初始化到队列中</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numCourses</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">indegrees</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">while</span><span class="o">(!</span><span class="n">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()){</span>
-        <span class="kt">int</span> <span class="n">pre</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-        <span class="n">ret</span><span class="o">[</span><span class="n">count</span><span class="o">++]</span> <span class="o">=</span> <span class="n">pre</span><span class="o">;</span>
-        <span class="n">numCourses</span> <span class="o">--;</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">req</span> <span class="o">:</span> <span class="n">prerequisites</span><span class="o">){</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">req</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">!=</span> <span class="n">pre</span><span class="o">)</span> <span class="k">continue</span><span class="o">;</span>
-            <span class="k">if</span><span class="o">(--</span><span class="n">indegrees</span><span class="o">[</span><span class="n">req</span><span class="o">[</span><span class="mi">0</span><span class="o">]]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">req</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">numCourses</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">ret</span> <span class="o">:</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">ret</span><span class="o">;</span>
-<span class="kd">private</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
-<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">findOrderDFS</span><span class="o">(</span><span class="kt">int</span> <span class="n">numCourses</span><span class="o">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">prerequisites</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">numCourses</span><span class="o">];</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="n">numCourses</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="c1">// 构建邻接矩阵</span>
-    <span class="c1">// 同样可以用邻接表，HashSet&lt;Integer&gt;[] graph = new HashSet[numCourses];</span>
-    <span class="kt">int</span><span class="o">[][]</span> <span class="n">adjacency</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">numCourses</span><span class="o">][</span><span class="n">numCourses</span><span class="o">];</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">cp</span> <span class="o">:</span> <span class="n">prerequisites</span><span class="o">){</span>
-        <span class="n">adjacency</span><span class="o">[</span><span class="n">cp</span><span class="o">[</span><span class="mi">1</span><span class="o">]][</span><span class="n">cp</span><span class="o">[</span><span class="mi">0</span><span class="o">]]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="c1">// flags与dfs</span>
-    <span class="kt">int</span><span class="o">[]</span> <span class="n">flags</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">numCourses</span><span class="o">];</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numCourses</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(!</span><span class="n">dfs</span><span class="o">(</span><span class="n">adjacency</span><span class="o">,</span> <span class="n">flags</span><span class="o">,</span> <span class="n">i</span><span class="o">)){</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">ret</span><span class="o">;</span>
-<span class="o">}</span>
-<span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">adjacency</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">flags</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">flags</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">flags</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="n">flags</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">adjacency</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">adjacency</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">dfs</span><span class="o">(</span><span class="n">adjacency</span><span class="o">,</span> <span class="n">flags</span><span class="o">,</span> <span class="n">j</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="n">flags</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-    <span class="n">ret</span><span class="o">[</span><span class="n">count</span><span class="o">--]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="c1">// 添加顺序</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-<span class="o">}</span>
-
-</code></pre></div></div>
+<table>
+  <thead>
+    <tr>
+      <th>题目名</th>
+      <th>平台</th>
+      <th>类型</th>
+      <th>链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>207. 课程表</td>
+      <td>LeetCode</td>
+      <td>Kahn/DFS</td>
+      <td><a href="https://leetcode.cn/problems/course-schedule">题目链接</a></td>
+    </tr>
+    <tr>
+      <td>210. 课程表 II</td>
+      <td>LeetCode</td>
+      <td>拓扑排序输出</td>
+      <td><a href="https://leetcode.cn/problems/course-schedule-ii">题目链接</a></td>
+    </tr>
+    <tr>
+      <td>1203. 项目管理排序</td>
+      <td>LeetCode</td>
+      <td>多层拓扑排序</td>
+      <td><a href="https://leetcode.cn/problems/sort-items-by-groups-respecting-dependencies">题目链接</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 
@@ -560,7 +322,7 @@
       
   <nav class="pagination">
     
-      <a href="/ds-algo/%E5%9B%BE%E8%AE%BA/" class="pagination--pager" title="图论">Previous</a>
+      <a href="/ds-algo/%E5%9B%BE%E8%AE%BA2/" class="pagination--pager" title="图论-常用算法">Previous</a>
     
     
       <a href="/math/%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8E%E5%85%AC%E5%80%8D%E6%95%B0/" class="pagination--pager" title="GCD与LCM">Next</a>

@@ -1,0 +1,654 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.1 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>图论-常用算法</title>
+<meta name="description" content="本篇博客将系统整理图论中的常用算法，结合原理讲解与代码模板，助力全面掌握图论基础与实战技巧。">
+
+
+  <meta name="author" content="phoenixfei">
+  
+  <meta property="article:author" content="phoenixfei">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="">
+<meta property="og:title" content="图论-常用算法">
+<meta property="og:url" content="https://yourusername.github.io/ds-algo/%E5%9B%BE%E8%AE%BA2/">
+
+
+  <meta property="og:description" content="本篇博客将系统整理图论中的常用算法，结合原理讲解与代码模板，助力全面掌握图论基础与实战技巧。">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2024-06-21T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://yourusername.github.io/ds-algo/%E5%9B%BE%E8%AE%BA2/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title=" Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<!-- Ref:TeX Input Processor Options: https://docs.mathjax.org/en/latest/options/input/tex.html -->
+
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/"
+                
+                
+              >首页</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/ds-algo/"
+                
+                
+              >DSA</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/leetcode/"
+                
+                
+              >题单</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/math/"
+                
+                
+              >数学</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="图论-常用算法">
+    <meta itemprop="description" content="本篇博客将系统整理图论中的常用算法，结合原理讲解与代码模板，助力全面掌握图论基础与实战技巧。">
+    <meta itemprop="datePublished" content="2024-06-21T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="https://yourusername.github.io/ds-algo/%E5%9B%BE%E8%AE%BA2/" itemprop="url">图论-常用算法
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#遍历算法">遍历算法</a><ul><li><a href="#深度优先搜索dfs">深度优先搜索（DFS）</a></li><li><a href="#广度优先搜索bfs">广度优先搜索（BFS）</a></li></ul></li><li><a href="#拓扑排序">拓扑排序</a><ul><li><a href="#dfs--逆后序排列法">DFS + 逆后序排列法</a></li><li><a href="#kahn-算法bfs--入度处理">Kahn 算法（BFS + 入度处理）</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <p>本篇博客将系统整理图论中的常用算法，结合原理讲解与代码模板，助力全面掌握图论基础与实战技巧。</p>
+
+<hr />
+
+<h2 id="遍历算法">遍历算法</h2>
+
+<p>图的遍历指的是：<strong>从图中的某个起点出发，按照一定的规则访问图中所有能达到的节点，每个节点访问一次</strong>。
+这是几乎所有图论算法的基础，如连通性判断、路径搜索、最短路径、拓扑排序、连通分量判定等。</p>
+
+<p><strong>常见的两种遍历方式</strong>：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>遍历方式</th>
+      <th>名称</th>
+      <th>基本结构</th>
+      <th>常用于</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DFS</td>
+      <td>深度优先搜索</td>
+      <td>栈 / 递归</td>
+      <td>连通性、拓扑排序、路径搜索</td>
+    </tr>
+    <tr>
+      <td>BFS</td>
+      <td>广度优先搜索</td>
+      <td>队列</td>
+      <td>最短路径（无权图）、层次遍历</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="深度优先搜索dfs">深度优先搜索（DFS）</h3>
+
+<p><strong>原理</strong>：</p>
+
+<p>从起始节点开始，一直访问一个邻接节点直到不能继续，再回溯回来继续走未访问的分支。</p>
+
+<p>类似“走迷宫”，一条路走到黑，走不通再返回。 使用递归或栈实现。</p>
+
+<p><strong>适用场景：</strong></p>
+<ul>
+  <li>连通性判断</li>
+  <li>拓扑排序（逆后序）</li>
+  <li>判断环</li>
+  <li>强连通分量（Tarjan）</li>
+  <li>路径构造（回溯类）</li>
+</ul>
+
+<p><strong>Python 模板（递归）</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">visited</span><span class="p">):</span>
+    <span class="n">visited</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]:</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">neighbor</span><span class="p">,</span> <span class="n">visited</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Python 模板（非递归）</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dfs_iterative</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+            <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="c1"># 注意：后进先出，所以邻接点要倒序入栈
+</span>            <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]):</span>
+                <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="广度优先搜索bfs">广度优先搜索（BFS）</h3>
+
+<p><strong>原理</strong></p>
+
+<p>从起点出发，先访问距离近的所有节点，再逐层扩展到更远的节点。</p>
+
+<p>使用队列实现，先进先出。 本质上是“层序遍历”，每一轮都扩展当前层。</p>
+
+<p><strong>适用场景</strong></p>
+<ul>
+  <li>求最短路径（无权图）</li>
+  <li>迷宫最小步数</li>
+  <li>判断二分图（染色）</li>
+  <li>多源同时扩散（如最短传播）</li>
+</ul>
+
+<p><strong>Python 模板</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+
+<span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">start</span><span class="p">])</span>
+    <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">neighbor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+                <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<p><strong>DFS vs BFS 对比表</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>特性</th>
+      <th>DFS</th>
+      <th>BFS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>数据结构</td>
+      <td>栈 / 递归</td>
+      <td>队列</td>
+    </tr>
+    <tr>
+      <td>实现方式</td>
+      <td>通常递归</td>
+      <td>通常迭代</td>
+    </tr>
+    <tr>
+      <td>访问顺序</td>
+      <td>一条路走到底再回溯</td>
+      <td>一层层向外扩展</td>
+    </tr>
+    <tr>
+      <td>路径性质</td>
+      <td>不保证最短路径</td>
+      <td>可用于无权图最短路径</td>
+    </tr>
+    <tr>
+      <td>空间复杂度</td>
+      <td>O(节点数)（递归栈）</td>
+      <td>O(节点数)（队列）</td>
+    </tr>
+    <tr>
+      <td>适用图类型</td>
+      <td>有向图/无向图均可</td>
+      <td>有向图/无向图均可</td>
+    </tr>
+    <tr>
+      <td>常见用途</td>
+      <td>连通性、拓扑排序、强连通分量</td>
+      <td>最短路径、层级扩展、染色判断</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="拓扑排序">拓扑排序</h2>
+
+<p><strong>拓扑排序（Topological Sorting）</strong>是对一个**有向无环图（DAG）**中的节点进行排序，使得对于图中每一条有向边 $u \rightarrow v$，节点 $u$ 都排在 $v$ 前面。</p>
+
+<p>假设有如下图：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    5 → 0 ← 4
+    ↓   ↑
+    2 → 3
+    ↑
+    1
+</code></pre></div></div>
+<p>拓扑排序结果可能为：
+<code class="language-plaintext highlighter-rouge">[4, 5, 0, 2, 3, 1]</code> 或其他合法顺序（只要满足依赖顺序即可）。</p>
+
+<p>它是“先做什么，再做什么”的抽象模型，广泛应用于：</p>
+<ul>
+  <li>课程安排（某课前置依赖）</li>
+  <li>编译顺序（某模块依赖其他模块）</li>
+  <li>任务调度（任务依赖图）</li>
+  <li>构建系统依赖关系（如 makefile）</li>
+</ul>
+
+<p><strong>使用前提条件</strong></p>
+<ul>
+  <li>图必须是 <strong>有向无环图（DAG）</strong></li>
+  <li>如果图中存在<strong>环路</strong>，则<strong>不存在有效的拓扑排序</strong></li>
+</ul>
+
+<p><strong>拓扑排序的性质</strong></p>
+<ul>
+  <li>拓扑排序可能<strong>不唯一</strong></li>
+  <li>如果图中有环，<strong>无法构建拓扑排序</strong>，可用于<strong>检测有向图是否有环</strong></li>
+</ul>
+
+<p><strong>两种实现方式</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>实现方式</th>
+      <th>数据结构</th>
+      <th>特点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DFS</td>
+      <td>逆后序遍历</td>
+      <td>栈（或递归）</td>
+      <td>更适合图遍历模型</td>
+    </tr>
+    <tr>
+      <td>Kahn 算法</td>
+      <td>入度处理法</td>
+      <td>队列 + 入度数组</td>
+      <td>逻辑清晰，易于检测环路</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="dfs--逆后序排列法">DFS + 逆后序排列法</h3>
+
+<p><strong>原理</strong>：
+使用 DFS 深度优先遍历图，在每个节点<strong>完成访问后</strong>将其加入结果列表，最后<strong>逆序输出</strong>即为拓扑排序。</p>
+
+<p><strong>实现步骤</strong></p>
+<ol>
+  <li>初始化访问标记数组</li>
+  <li>从任一未访问节点出发递归 DFS</li>
+  <li>遍历完成后把该节点加入结果栈</li>
+  <li>最终将栈倒序输出即为排序</li>
+</ol>
+
+<p><strong>Python 实现</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">topological_sort_dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+        <span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 逆后序即为拓扑排序
+</span></code></pre></div></div>
+
+<p><strong>带环检测的 DFS 拓扑排序</strong></p>
+<blockquote>
+  <p>我们需要在 DFS 过程中使用三个状态标记每个节点：</p>
+  <ul>
+    <li>0：未访问</li>
+    <li>1：正在递归栈中（即当前路径上）</li>
+    <li>2：递归已完成</li>
+  </ul>
+
+  <p>只要在遍历过程中再次访问到状态为 1 的节点，就说明存在回边 → 有环。</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">topological_sort_with_cycle_detection</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>  <span class="c1"># 0: 未访问，1: 访问中，2: 已完成
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">has_cycle</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+        <span class="k">nonlocal</span> <span class="n">has_cycle</span>
+        <span class="n">state</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 标记为访问中
+</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">has_cycle</span><span class="p">:</span>
+                    <span class="k">return</span>
+            <span class="k">elif</span> <span class="n">state</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># 回边 -&gt; 有环
+</span>                <span class="n">has_cycle</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">return</span>
+        <span class="n">state</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 标记为已完成
+</span>        <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">has_cycle</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[]</span>  <span class="c1"># 拓扑排序不存在（有环）
+</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 返回拓扑序
+</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="kahn-算法bfs--入度处理">Kahn 算法（BFS + 入度处理）</h3>
+
+<p><strong>原理</strong>： 不断从入度为 0 的节点中选出一个加入结果，并更新其邻接节点的入度。</p>
+
+<p><strong>实现步骤</strong></p>
+<ol>
+  <li>统计每个节点的入度</li>
+  <li>将所有入度为 0 的节点入队</li>
+  <li>出队节点并加入结果列表</li>
+  <li>每次出队时，将其邻接点入度减 1</li>
+  <li>如果邻接点入度减为 0，加入队列</li>
+  <li>如果所有点都被加入，排序成功；否则存在环</li>
+</ol>
+
+<p><strong>Python 实现</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+
+<span class="k">def</span> <span class="nf">topological_sort_kahn</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">indegree</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+            <span class="n">indegree</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">indegree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+            <span class="n">indegree</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">indegree</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span> <span class="k">else</span> <span class="p">[]</span>  <span class="c1"># 有环时返回空
+</span></code></pre></div></div>
+
+<p><strong>如果存在环，最终拓扑排序的结果节点数会少于图中节点总数</strong></p>
+<blockquote>
+  <p>在 Kahn 算法中：
+我们只从 入度为 0 的节点开始入队。
+每加入一个节点到拓扑序，就减少其邻接节点的入度。
+若图中有环，则某些节点的入度永远不为 0，永远无法入队和被处理。</p>
+</blockquote>
+
+<hr />
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#ds-algo" class="page__taxonomy-item p-category" rel="tag">ds-algo</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-06-21T00:00:00+00:00">June 21, 2024</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/ds-algo/%E5%9B%BE%E8%AE%BA/" class="pagination--pager" title="图论">Previous</a>
+    
+    
+      <a href="/leetcode/%E5%9B%BE%E8%AE%BA-%E9%A2%98%E5%8D%95/" class="pagination--pager" title="图论-题单">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="https://yourusername.github.io"></a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
