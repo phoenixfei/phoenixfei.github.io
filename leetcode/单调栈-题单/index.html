@@ -95,6 +95,18 @@
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 
 
+<!-- open link in another page -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll('a[href^="http"]');
+    links.forEach(link => {
+      if (!link.href.includes(window.location.hostname)) {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      }
+    });
+  });
+</script>
   </head>
 
   <body class="layout--single" dir="ltr">
@@ -220,12 +232,6 @@
 <span class="p">-</span> 4 ，用加粗斜体标识，nums2 = [1,2,3,4]。不存在下一个更大元素，所以答案是 -1 。
 </code></pre></div></div>
 
-<blockquote>
-  <p>记录结果的数据结构不一定是模板中提到的数组，而是要根据题目要求，灵活应用。</p>
-
-  <p>本题用字典记录每一个元素下一个更大的元素是什么，方便nums1索引。</p>
-</blockquote>
-
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">nextGreaterElement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">nums2</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
         <span class="n">nxt_big</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -237,6 +243,8 @@
             <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">nxt_big</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">nums1</span><span class="p">]</span>
 </code></pre></div></div>
+<p><strong>总结：</strong>
+本题用字典记录每一个元素的下一个更大的元素，方便nums1索引。</p>
 
 <hr />
 
@@ -258,10 +266,6 @@
 输出: [2,3,4,-1,4]
 </code></pre></div></div>
 
-<blockquote>
-  <p>用两次遍历来达到循环找最大值的效果。</p>
-</blockquote>
-
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">nextGreaterElements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
@@ -274,6 +278,8 @@
             <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="n">n</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong>
+用两次遍历来达到循环找最大值的效果。</p>
 
 <hr />
 
@@ -290,42 +296,34 @@
 </code></pre></div></div>
 <p><img src="https://assets.leetcode.com/uploads/2021/01/04/histogram.jpg" alt="" /></p>
 
-<blockquote>
-  <p>三次遍历数组。</p>
-
-  <p>前两次分别在当前元素左侧、右侧，求解小于当前元素的最近一个元素的下标。
-即表示，以当前元素为高度，矩形的宽可以左延和右延的极限。</p>
-
-  <p>第三次遍历，表示将数组中每一个元素当作高度，然后求解面积。</p>
-
-  <p>更有优秀解法，参考<a href="https://leetcode.cn/problems/largest-rectangle-in-histogram/solutions/2695467/dan-diao-zhan-fu-ti-dan-pythonjavacgojsr-89s7/">灵神题解</a></p>
-</blockquote>
-
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">largestRectangleArea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heights</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
-        <span class="n">nxt_small</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
-        <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">heights</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">heights</span><span class="p">):</span>
             <span class="k">while</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">h</span> <span class="o">&lt;</span> <span class="n">heights</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
                 <span class="n">cur</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
-                <span class="n">nxt_small</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="n">width</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">width</span> <span class="o">*</span> <span class="n">heights</span><span class="p">[</span><span class="n">cur</span><span class="p">])</span>
             <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-
-        <span class="n">nxt_small2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="k">while</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">heights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">heights</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
-                <span class="n">cur</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
-                <span class="n">nxt_small2</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-            <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-          
-        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-            <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="p">(</span><span class="n">nxt_small</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">nxt_small2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">heights</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong></p>
+<ul>
+  <li>最直接的思路是分别通过单调栈计算下标i的左侧和右侧小于h的元素。</li>
+  <li>进一步地，由于栈顶下面的元素恰好就是栈顶的左边界，所以甚至连 left 和 right 数组都可以不要，直接在出栈的时候计算矩形面积。</li>
+</ul>
+
+<p>具体做法：</p>
+<ul>
+  <li>把 −1 入栈，当作哨兵。在栈中只有一个数的时候，栈顶的「下面那个数」刚好就是 −1，对应 <code class="language-plaintext highlighter-rouge">left[i]=−1</code> 的情况。</li>
+  <li>heights 末尾加一个 −1。如果不加 −1，循环结束的时候，栈中还有数据，这些数据也要计算矩形面积。</li>
+  <li>更多信息，参考<a href="https://leetcode.cn/problems/largest-rectangle-in-histogram/solutions/2695467/dan-diao-zhan-fu-ti-dan-pythonjavacgojsr-89s7/">灵神题解</a></li>
+</ul>
 
 <hr />
+
 <h3 id="42-接雨水">42. 接雨水</h3>
 <p><a href="https://leetcode.cn/problems/trapping-rain-water/">42. 接雨水</a></p>
 <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
@@ -335,10 +333,30 @@
 输出：6
 解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 
 </code></pre></div></div>
-<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/22/rainwatertrap.png" alt="" /></p>
+<p><img src="/assets/images/rainwatertrap.png" alt="接雨水" style="width:800px; height:auto;" /></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">trap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+            <span class="k">while</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">h</span> <span class="o">&gt;</span> <span class="n">height</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
+                <span class="n">cur</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">stack</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="n">cur_width</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="n">cur_height</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span> <span class="o">-</span> <span class="n">height</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span>
+                <span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">cur_width</span> <span class="o">*</span> <span class="n">cur_height</span><span class="p">)</span>
+            <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong></p>
+<ul>
+  <li>思路同矩形的最大面积，可以用多个单调栈分别计算元素i左右的最大值，也可以巧妙用一个单调栈来实现（利用栈中元素保存左侧信息）。</li>
+  <li>更多信息，参考<a href="https://leetcode.cn/problems/trapping-rain-water/solutions/692342/jie-yu-shui-by-leetcode-solution-tuvc/">LeetCode官方题解</a></li>
+</ul>
+
+<hr />
 
 <h3 id="239-滑动窗口最大值">239. 滑动窗口最大值</h3>
 <p><a href="https://leetcode.cn/problems/sliding-window-maximum/description/">239. 滑动窗口最大值</a></p>
@@ -360,8 +378,25 @@
  1  3  -1  -3  5 [3  6  7]      7
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maxSlidingWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dq</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">deque</span><span class="p">([])</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+            <span class="k">while</span> <span class="n">dq</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="n">nums</span><span class="p">[</span><span class="n">dq</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
+                <span class="n">dq</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">dq</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">dq</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="n">k</span><span class="p">:</span> 
+                <span class="n">dq</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">dq</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong></p>
+<ul>
+  <li>求滑动窗口的最大值时，由于左侧边界也要变化，因此要使用双端队列实现。</li>
+  <li>要与构造的是“单调递减栈”，因此最大值位于栈的左侧。</li>
+</ul>
 
 <hr />
 

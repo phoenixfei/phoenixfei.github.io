@@ -95,6 +95,18 @@
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 
 
+<!-- open link in another page -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll('a[href^="http"]');
+    links.forEach(link => {
+      if (!link.href.includes(window.location.hostname)) {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      }
+    });
+  });
+</script>
   </head>
 
   <body class="layout--single" dir="ltr">
@@ -189,7 +201,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#一图论的基本知识">一、图论的基本知识</a></li><li><a href="#二图的组成">二、图的组成</a><ul><li><a href="#1-顶点vertex">1. 顶点（Vertex）</a></li><li><a href="#2-边edge">2. 边（Edge）</a></li><li><a href="#3-边的权重weight">3. 边的权重（Weight）</a></li></ul></li><li><a href="#三图的分类">三、图的分类</a></li><li><a href="#四图的构造方式实现方法">四、图的构造方式（实现方法）</a><ul><li><a href="#1-邻接矩阵adjacency-matrix">1. 邻接矩阵（Adjacency Matrix）</a></li><li><a href="#2-邻接表adjacency-list">2. 邻接表（Adjacency List）</a></li><li><a href="#3-边列表edge-list">3. 边列表（Edge List）</a></li></ul></li><li><a href="#五常见术语">五、常见术语</a></li><li><a href="#六常用算法">六、常用算法</a><ul><li><a href="#dijkstra-算法">Dijkstra 算法</a></li><li><a href="#0-1-bfs">0-1 BFS</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#一图论的基本知识">一、图论的基本知识</a></li><li><a href="#二图的组成">二、图的组成</a><ul><li><a href="#1-顶点vertex">1. 顶点（Vertex）</a></li><li><a href="#2-边edge">2. 边（Edge）</a></li><li><a href="#3-边的权重weight">3. 边的权重（Weight）</a></li><li><a href="#4-负环negative-weight-cycle">4. 负环（Negative Weight Cycle）</a></li></ul></li><li><a href="#三图的分类">三、图的分类</a></li><li><a href="#四图的构造方式实现方法">四、图的构造方式（实现方法）</a><ul><li><a href="#1-邻接矩阵adjacency-matrix">1. 邻接矩阵（Adjacency Matrix）</a></li><li><a href="#2-邻接表adjacency-list">2. 邻接表（Adjacency List）</a></li><li><a href="#3-边列表edge-list">3. 边列表（Edge List）</a></li></ul></li><li><a href="#五常见术语">五、常见术语</a></li></ul>
             </nav>
           </aside>
         
@@ -243,8 +255,22 @@
 <h3 id="3-边的权重weight">3. <strong>边的权重（Weight）</strong></h3>
 
 <ul>
-  <li>某些图中的边可能带有权重，用于表示距离、时间、费用等量化信息，形成<strong>加权图（Weighted Graph）</strong>。</li>
+  <li>某些图中的边可能带有权重，用于表示距离、时间、费用等量化信息，形成<strong>加权图（Weighted Graph）</strong>。
+    <blockquote>
+      <p>当一条边的权重大于 0（比如 2、5、100），我们称为正权边；</p>
+
+      <p>当一条边的权重小于 0（比如 -3、-1），我们称为负边权（或负权边）；</p>
+    </blockquote>
+  </li>
 </ul>
+
+<h3 id="4-负环negative-weight-cycle">4. <strong>负环（Negative Weight Cycle）</strong></h3>
+<p>负环是指：图中存在一个环形路径，使得这个环的总权重 &lt; 0。
+也就是说，你可以一直绕这个环，路径总长度会无限减小！</p>
+
+<blockquote>
+  <p>负环意味着，从某个点出发，不断绕负环一圈又一圈，让总代价无限小（趋近负无穷），导致最短路径根本不存在！</p>
+</blockquote>
 
 <hr />
 
@@ -414,42 +440,6 @@
     </tr>
   </tbody>
 </table>
-
-<hr />
-
-<h2 id="六常用算法">六、常用算法</h2>
-
-<h3 id="dijkstra-算法">Dijkstra 算法</h3>
-
-<p><strong>dijkstra的算法思想是从以上最短距离数组中每次选择一个最近的点，将其作为下一个点，然后重新计算从起始点经过该点到其他所有点的距离，更新最短距离数据。已经选取过的点就是确定了最短路径的点，不再参与下一次计算。</strong></p>
-
-<p>知识点：</p>
-<ul>
-  <li><strong>求最小路径，可以用堆进行优化</strong></li>
-  <li>需要用vst数组记录每个节点的访问情况，初始化为False每次取最短路径对应节点后，将vst置为True</li>
-  <li>需要用dis数组记录从源节点到每个节点的最短路径，初始化源节点到源节点路径为0</li>
-</ul>
-
-<hr />
-
-<h3 id="0-1-bfs">0-1 BFS</h3>
-<p>0-1 BFS 是一种专门用于处理 边权为 0 或 1 的图 的最短路径算法。它比 Dijkstra 更快，时间复杂度为 O(V + E)，适用于图中边权只有 0 和 1 的情况。</p>
-
-<p><strong>核心思想：</strong>
-使用 双端队列（deque） 替代普通队列或优先队列，根据边权选择从队头或队尾插入新的结点：</p>
-
-<ul>
-  <li>如果当前边权是 0，把目标结点加入队列的 前端（优先处理）。</li>
-  <li>如果当前边权是 1，把目标结点加入队列的 后端（正常顺序）。</li>
-</ul>
-
-<p>这样保证：先处理代价小的路径，实现一个类似 Dijkstra 的效果，但效率更高。</p>
-
-<blockquote>
-  <p>在 0-1 BFS 中，不需要 vst（访问标记）数组。</p>
-
-  <p>用 dist[v] &gt; dist[u] + w 来判断是否值得访问 v。 如果更短，就更新并加入队列；否则不更新也不访问</p>
-</blockquote>
 
 <hr />
 

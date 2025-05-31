@@ -95,6 +95,18 @@
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 
 
+<!-- open link in another page -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll('a[href^="http"]');
+    links.forEach(link => {
+      if (!link.href.includes(window.location.hostname)) {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      }
+    });
+  });
+</script>
   </head>
 
   <body class="layout--single" dir="ltr">
@@ -189,7 +201,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#遍历算法">遍历算法</a><ul><li><a href="#深度优先搜索dfs">深度优先搜索（DFS）</a></li><li><a href="#广度优先搜索bfs">广度优先搜索（BFS）</a></li></ul></li><li><a href="#拓扑排序">拓扑排序</a><ul><li><a href="#dfs--逆后序排列法">DFS + 逆后序排列法</a></li><li><a href="#kahn-算法bfs--入度处理">Kahn 算法（BFS + 入度处理）</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#遍历算法">遍历算法</a><ul><li><a href="#深度优先搜索dfs">深度优先搜索（DFS）</a></li><li><a href="#广度优先搜索bfs">广度优先搜索（BFS）</a></li></ul></li><li><a href="#拓扑排序">拓扑排序</a><ul><li><a href="#dfs--逆后序排列法">DFS + 逆后序排列法</a></li><li><a href="#kahn-算法bfs--入度处理">Kahn 算法（BFS + 入度处理）</a></li></ul></li><li><a href="#单源最短路径算法">单源最短路径算法</a><ul><li><a href="#dijkstra-算法">Dijkstra 算法</a></li><li><a href="#bellman-ford-算法">Bellman-Ford 算法</a></li><li><a href="#bfs">BFS</a></li><li><a href="#0-1-bfs">0-1 BFS</a></li><li><a href="#总结">总结</a></li></ul></li></ul>
             </nav>
           </aside>
         
@@ -360,7 +372,7 @@
 
 <h2 id="拓扑排序">拓扑排序</h2>
 
-<p><strong>拓扑排序（Topological Sorting）</strong>是对一个**有向无环图（DAG）**中的节点进行排序，使得对于图中每一条有向边 $u \rightarrow v$，节点 $u$ 都排在 $v$ 前面。</p>
+<p><strong>拓扑排序</strong>（Topological Sorting）是对一个<strong>有向无环图</strong>（DAG）中的节点进行排序，使得对于图中每一条有向边 $u \rightarrow v$，节点 $u$ 都排在 $v$ 前面。</p>
 
 <p>假设有如下图：</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    5 → 0 ← 4
@@ -542,6 +554,284 @@
 每加入一个节点到拓扑序，就减少其邻接节点的入度。
 若图中有环，则某些节点的入度永远不为 0，永远无法入队和被处理。</p>
 </blockquote>
+
+<hr />
+
+<h2 id="单源最短路径算法">单源最短路径算法</h2>
+
+<p>单源最短路径问题在图论中极其常见，目标是在图中找到起点到各点之间路径总权重最小的路径。</p>
+
+<hr />
+
+<h3 id="dijkstra-算法">Dijkstra 算法</h3>
+
+<p><strong>适用</strong>：
+边权非负的图</p>
+
+<p><strong>原理</strong>：
+采用<strong>贪心策略</strong>，每次选取当前距离最小的节点“锁定”其最短路径，然后松弛其邻居。使用<strong>小根堆</strong>优化效率。</p>
+
+<p><strong>流程</strong></p>
+
+<p>定义 $g[i][j]$ 表示节点 i 到节点 j 这条边的边权。如果没有 i 到 j 的边，则 $g[i][j]=∞$。
+定义 $dis[i]$ 表示起点 k 到节点 i 的最短路长度，一开始 $dis[k]=0$，其余 $dis[i]=∞$ 表示尚未计算出。</p>
+
+<p>我们的目标是计算出最终的 dis 数组。</p>
+<ul>
+  <li>首先更新起点 k 到其邻居 y 的最短路，即更新 $dis[y] 为 g[k][y]$。</li>
+  <li>然后取除了起点 k 以外的 $dis[i]$ 的最小值，假设最小值对应的节点是 3。</li>
+</ul>
+
+<blockquote>
+  <p>此时可以断言：$dis[3]$ 已经是 k 到 3 的最短路长度，不可能有其它 k 到 3 的路径更短！
+反证法：假设存在更短的路径，那我们一定会从 k 出发经过一个点 u，它的 $dis[u]$ 比 $dis[3]$ 还要小，然后再经过一些边到达 3，得到更小的 $dis[3]$。
+但 $dis[3]$ 已经是最小的了，并且图中没有负数边权，所以 u 是不存在的，矛盾。故原命题成立，此时我们得到了 $dis[3]$ 的最终值。</p>
+</blockquote>
+
+<ul>
+  <li>用节点 3 到其邻居 y 的边权 $g[3][y]$ 更新 $dis[y]$：如果 $dis[3]+g[3][y]&lt;dis[y]$，那么更新 $dis[y]$ 为 $dis[3]+g[3][y]$，否则不更新。</li>
+  <li>然后取除了节点 k,3 以外的 $dis[i]$ 的最小值，重复上述过程。</li>
+  <li>由数学归纳法可知，这一做法可以得到每个点的最短路。当所有点的最短路都已确定时，算法结束。</li>
+</ul>
+
+<p><a href="https://leetcode.cn/problems/network-delay-time/solutions/2668220/liang-chong-dijkstra-xie-fa-fu-ti-dan-py-ooe8/">参考链接</a></p>
+
+<p><strong>Python 实现（优先队列实现）</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">heapq</span>
+
+<span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">heap</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="p">)]</span>  <span class="c1"># (dist, node)
+</span>
+    <span class="k">while</span> <span class="n">heap</span><span class="p">:</span>
+        <span class="n">d</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="n">heapq</span><span class="p">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span> <span class="c1"># u 已经处理过。之前的d大于当前的dist[u]，故弹出的该节点无需处理
+</span>            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>  <span class="c1"># v: neighbor, w: weight
+</span>            <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span><span class="p">:</span>
+                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span>
+                <span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">v</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">dist</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="bellman-ford-算法">Bellman-Ford 算法</h3>
+
+<p><strong>适用</strong></p>
+<ul>
+  <li>能够处理边权重为负数的图</li>
+  <li>检测图中是否存在负权重环</li>
+</ul>
+
+<p><strong>原理</strong>：
+Bellman-Ford 算法基于“松弛（Relaxation）”操作。
+在图中（没有负环的情况下），一个最短路径最多只包含 $V - 1$ 条边（V 为顶点个数），因此只需对所有边进行 $V-1$ 次“松弛”操作，即可得到所有最短路径。</p>
+
+<p><strong>流程</strong></p>
+<ul>
+  <li>第一次迭代，找到不超过1条边的最短路径</li>
+  <li>第二次迭代，找到不超过2条边的最短路径</li>
+  <li>第三次迭代，找到不超过3条边的最短路径</li>
+  <li>第四次迭代，找到不超过4条边的最短路径</li>
+  <li>以此类推…，可迭代次数是无数次的。但是如果不存在负环，在迭代 $V-1$ 次后（“松弛”操作），最短路径不再变化。</li>
+</ul>
+
+<p><a href="https://zhuanlan.zhihu.com/p/352724346">参考链接</a></p>
+
+<p><strong>Python 实现</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">bellman_ford</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span>
+
+    <span class="c1"># 第n轮检测负环
+</span>    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="p">[]</span>  <span class="c1"># 有负环
+</span>    <span class="k">return</span> <span class="n">dist</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="bfs">BFS</h3>
+
+<p><strong>适用</strong>：
+所有边权为 1（或等权）</p>
+
+<p><strong>原理</strong>：
+BFS 按照层级扩展的方式遍历图，每次从当前点扩展到所有未访问的相邻点，其访问顺序保证第一次访问即是最短路径。</p>
+<blockquote>
+  <p>因为 BFS 是“按层推进”的，先到达的点一定是路径最短的那个（因为边权都是 1，不存在更优选择）。</p>
+</blockquote>
+
+<p><strong>Python 实现</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+
+<span class="k">def</span> <span class="nf">bfs_shortest_path</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>         <span class="c1"># -1 表示未访问
+</span>    <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">start</span><span class="p">])</span>
+
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dist</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="0-1-bfs">0-1 BFS</h3>
+
+<p><strong>适用</strong>：
+所有边权为 0 或 1</p>
+
+<p><strong>原理</strong></p>
+
+<p>使用双端队列（deque）代替优先队列：</p>
+<ul>
+  <li>如果经过的边权是 0，将新点放入队列前端 → 优先访问</li>
+  <li>如果边权是 1，将新点放入队列后端 → 正常访问</li>
+</ul>
+
+<p>这样就保证了：队列中靠前的点距离小，能像 Dijkstra 一样保证第一次出队即为最短路径。</p>
+
+<p><strong>算法流程</strong></p>
+
+<p>以图中起点 <code class="language-plaintext highlighter-rouge">s</code> 为例：</p>
+<ol>
+  <li>初始化 <code class="language-plaintext highlighter-rouge">dist[s] = 0</code></li>
+  <li>建一个双端队列 <code class="language-plaintext highlighter-rouge">deque([s])</code></li>
+  <li>当队列不空：
+    <ul>
+      <li>弹出当前点 <code class="language-plaintext highlighter-rouge">u</code></li>
+      <li>遍历 <code class="language-plaintext highlighter-rouge">u</code> 的每条边 <code class="language-plaintext highlighter-rouge">(v, w)</code>（权值只能是 0 或 1）
+        <ul>
+          <li>如果能更新 <code class="language-plaintext highlighter-rouge">v</code>：
+            <ul>
+              <li>若 <code class="language-plaintext highlighter-rouge">w == 0</code>：把 <code class="language-plaintext highlighter-rouge">v</code> 加入队列左端（优先处理）</li>
+              <li>若 <code class="language-plaintext highlighter-rouge">w == 1</code>：把 <code class="language-plaintext highlighter-rouge">v</code> 加入队列右端</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Python 实现</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+
+<span class="k">def</span> <span class="nf">zero_one_bfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">dq</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">start</span><span class="p">])</span>
+
+    <span class="k">while</span> <span class="n">dq</span><span class="p">:</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">dq</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>  <span class="c1"># w ∈ {0, 1}
+</span>            <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span><span class="p">:</span>
+                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span>
+                <span class="k">if</span> <span class="n">w</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">dq</span><span class="p">.</span><span class="n">appendleft</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dq</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dist</span>
+</code></pre></div></div>
+
+<h3 id="总结">总结</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>算法</th>
+      <th>适用边权</th>
+      <th>是否支持负权</th>
+      <th>是否检测负环</th>
+      <th>时间复杂度</th>
+      <th>数据结构</th>
+      <th>是否可恢复路径</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Dijkstra</strong></td>
+      <td>正权（<code class="language-plaintext highlighter-rouge">w ≥ 0</code>）</td>
+      <td>❌ 不支持负权</td>
+      <td>❌</td>
+      <td>O((V + E)logV)</td>
+      <td>优先队列 (heapq)</td>
+      <td>✅ 支持</td>
+    </tr>
+    <tr>
+      <td><strong>Bellman-Ford</strong></td>
+      <td>任意权</td>
+      <td>✅ 支持</td>
+      <td>✅ 支持</td>
+      <td>O(V × E)</td>
+      <td>数组 + 遍历边集</td>
+      <td>✅ 支持</td>
+    </tr>
+    <tr>
+      <td><strong>BFS</strong></td>
+      <td>边权恒为 1</td>
+      <td>❌</td>
+      <td>❌</td>
+      <td>O(V + E)</td>
+      <td>队列（Queue）</td>
+      <td>✅ 支持</td>
+    </tr>
+    <tr>
+      <td><strong>0-1 BFS</strong></td>
+      <td>边权仅为 0/1</td>
+      <td>❌</td>
+      <td>❌</td>
+      <td><strong>O(V + E)</strong></td>
+      <td>双端队列（deque）</td>
+      <td>✅ 支持</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>适用场景与特点总结</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>算法</th>
+      <th>典型适用场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Dijkstra</strong></td>
+      <td>- 一般图中求最短路径（无负权）<br />- 网络延迟、城市导航、图上最短路径问题</td>
+    </tr>
+    <tr>
+      <td><strong>Bellman-Ford</strong></td>
+      <td>- 有负边权的图<br />- 需要检测负环，如货币兑换套利、金融网络等</td>
+    </tr>
+    <tr>
+      <td><strong>BFS</strong></td>
+      <td>- 无权图或所有边权为 1 的最短路径<br />- 网格图/迷宫中步数最短问题</td>
+    </tr>
+    <tr>
+      <td><strong>0-1 BFS</strong></td>
+      <td>- 图中边权只为 0/1 的特殊图<br />- 有传送门、代价切换等二值状态转移问题</td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 

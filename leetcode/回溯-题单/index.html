@@ -95,6 +95,18 @@
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 
 
+<!-- open link in another page -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll('a[href^="http"]');
+    links.forEach(link => {
+      if (!link.href.includes(window.location.hostname)) {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      }
+    });
+  });
+</script>
   </head>
 
   <body class="layout--single" dir="ltr">
@@ -189,7 +201,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#组合问题">组合问题</a><ul><li><a href="#组合">组合</a></li><li><a href="#组合总和-iii">组合总和 III</a></li><li><a href="#电话号码的字母组合">电话号码的字母组合</a></li><li><a href="#前三题小结">前三题小结</a></li><li><a href="#组合总和">组合总和</a></li><li><a href="#组合总和-ii">组合总和 II</a></li></ul></li><li><a href="#切割问题">切割问题</a><ul><li><a href="#分割回文串">分割回文串</a></li><li><a href="#复原ip地址">复原IP地址</a></li></ul></li><li><a href="#子集问题">子集问题</a><ul><li><a href="#子集">子集</a></li><li><a href="#子集-ii">子集 II</a></li><li><a href="#递增子序列">递增子序列</a></li></ul></li><li><a href="#排列问题">排列问题</a><ul><li><a href="#全排列">全排列</a></li><li><a href="#全排列-ii">全排列 II</a></li></ul></li><li><a href="#重复元素问题分析">重复元素问题分析</a></li><li><a href="#二维回溯">“二维”回溯</a><ul><li><a href="#n皇后">N皇后</a></li><li><a href="#解数独">解数独</a></li></ul></li><li><a href="#其他回溯问题">其他回溯问题</a><ul><li><a href="#332-重新安排行程">332. 重新安排行程</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#组合问题">组合问题</a><ul><li><a href="#组合">组合</a></li><li><a href="#组合总和-iii">组合总和 III</a></li><li><a href="#电话号码的字母组合">电话号码的字母组合</a></li><li><a href="#前三题小结">前三题小结</a></li><li><a href="#组合总和">组合总和</a></li><li><a href="#组合总和-ii">组合总和 II</a></li></ul></li><li><a href="#切割问题">切割问题</a><ul><li><a href="#分割回文串">分割回文串</a></li><li><a href="#复原ip地址">复原IP地址</a></li></ul></li><li><a href="#子集问题">子集问题</a><ul><li><a href="#子集">子集</a></li><li><a href="#子集-ii">子集 II</a></li><li><a href="#递增子序列">递增子序列</a></li></ul></li><li><a href="#排列问题">排列问题</a><ul><li><a href="#全排列">全排列</a></li><li><a href="#全排列-ii">全排列 II</a></li></ul></li><li><a href="#重复元素问题分析">重复元素问题分析</a></li><li><a href="#二维回溯">“二维”回溯</a><ul><li><a href="#n皇后">N皇后</a></li><li><a href="#解数独">解数独</a></li></ul></li><li><a href="#其他回溯问题">其他回溯问题</a></li></ul>
             </nav>
           </aside>
         
@@ -213,14 +225,6 @@
 <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给定两个整数 n 和 k，返回 1 ... n 中所有可能的 k 个数的组合。你可以按 任何顺序 返回答案。
 示例: 输入: n = 4, k = 2 输出: [ [2,4], [3,4], [2,3], [1,2], [1,3], [1,4], ]
 </code></pre></div></div>
-<p>剪枝：当[startIndex,n]中的元素个数不足k-path.size个时，后续无论如何选择，都不足K个元素。
-即，区间内元素个数需大于等于path中还需的个数，即$n-startIndex+1&gt;=k-path.size$。</p>
-
-<p>化简可得，$startIndex&lt;=n+1-(k-path.size)$。</p>
-
-<p>因此在遍历区间时，区间上限不必设为n。从而减少每一层的遍历次数，达到剪枝效果。</p>
-
-<p><img src="/assets/images/20210130194335207-20230310134409532.png" alt="回溯剪枝" style="width:800px; height:auto;" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
@@ -237,6 +241,10 @@
         <span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong>
+当<code class="language-plaintext highlighter-rouge">[startIndex,n]</code>中的元素个数不足<code class="language-plaintext highlighter-rouge">k-path.size</code>个时，后续无论如何选择，都不足K个元素。
+因此在遍历区间时，区间上限不必设为n。从而减少每一层的遍历次数，达到剪枝效果。
+<img src="/assets/images/20210130194335207-20230310134409532.png" alt="回溯剪枝" style="width:800px; height:auto;" /></p>
 
 <hr />
 
@@ -252,12 +260,6 @@
 示例 1: 输入: k = 3, n = 7 输出: [[1,2,4]]
 示例 2: 输入: k = 3, n = 9 输出: [[1,2,6], [1,3,5], [2,3,4]]
 </code></pre></div></div>
-
-<p>剪枝：</p>
-<ul>
-  <li>同组合问题，对元素个数进行剪枝；</li>
-  <li>由于数字都是正整数，当path中数字之和已经大于n时，无需再往下回溯。</li>
-</ul>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">combinationSum3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
@@ -276,6 +278,11 @@
         <span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong></p>
+<ul>
+  <li>同组合问题，对元素个数进行剪枝；</li>
+  <li>由于数字都是正整数，当path中数字之和已经大于n时，无需再往下回溯。</li>
+</ul>
 
 <hr />
 
@@ -289,11 +296,6 @@
 输出：["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
 说明：尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。
 </code></pre></div></div>
-
-<p>思路：</p>
-<ul>
-  <li>本题digital每一个数字代表着不同的集合，也就是求不同集合之间的组合。因此层次遍历中，startIndex固定从0开始，遍历整个集合。</li>
-</ul>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">letterCombinations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">digits</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
@@ -313,24 +315,26 @@
         <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong></p>
+<ul>
+  <li>本题digital每一个数字代表着不同的集合，也就是求不同集合之间的组合。因此层次遍历中，startIndex固定从0开始，遍历整个集合。</li>
+</ul>
 
 <hr />
 
 <h3 id="前三题小结">前三题小结</h3>
-<blockquote>
-  <p>重点：回溯算法中，层次遍历的集合处理细节。</p>
+<p>重点：回溯算法中，层次遍历的集合处理细节。</p>
 
-  <p>上述题77和题216中，针对同一个集合选择不同的组合。当第一轮遍历（深度遍历）后，第二轮遍历所选择的元素不能与第一轮相同，所以，第二轮的层次遍历的索引，需额外处理，避免与上一轮重复。</p>
+<p>上述题77和题216中，针对同一个集合选择不同的组合。当第一轮遍历（深度遍历）后，第二轮遍历所选择的元素不能与第一轮相同，所以，第二轮的层次遍历的索引，需额外处理，避免与上一轮重复。</p>
 
-  <p>体现在代码中，即在每一轮深度遍历时，将startIndex（集合的起始索引）手动处理后传到下一轮遍历中。然后在下一轮的层次遍历中，使用此startIndex作为for循环遍历的起始索引。</p>
+<p>体现在代码中，即在每一轮深度遍历时，将startIndex（集合的起始索引）手动处理后传到下一轮遍历中。然后在下一轮的层次遍历中，使用此startIndex作为for循环遍历的起始索引。</p>
 
-  <p>上述题17中，每轮遍历处理的都是不同的集合，互相无干扰。因此，每轮的层次遍历覆盖自己的集合即可（startIndex固定0），不需要考虑上一轮遍历对本轮的影响。</p>
+<p>上述题17中，每轮遍历处理的都是不同的集合，互相无干扰。因此，每轮的层次遍历覆盖自己的集合即可（startIndex固定0），不需要考虑上一轮遍历对本轮的影响。</p>
 
-  <p>体现在代码中，startIndex可以固定为0，但是每轮遍历时，需要知道本轮应该操作哪个集合。因此，dfs()方法也传入了一个depth参数，且每轮遍历后，也将depth+1传入下一轮遍历。
+<p>体现在代码中，startIndex可以固定为0，但是每轮遍历时，需要知道本轮应该操作哪个集合。因此，dfs()方法也传入了一个depth参数，且每轮遍历后，也将depth+1传入下一轮遍历。
 虽然，depth的处理方式与startIndex一致，但是，含义不同，depth指的是每一轮遍历应该选择哪个集合；startIndex指的是每一轮遍历应该从同一个集合哪个索引开始选择。</p>
 
-  <p>综上所述，层次遍历的集合选择尤其重要，不同的选择方式对应不同的处理结果。需根据不同的题目要求分别设计，才能定义递归函数的参数，得到想要的结果。</p>
-</blockquote>
+<p>综上所述，层次遍历的集合选择尤其重要，不同的选择方式对应不同的处理结果。需根据不同的题目要求分别设计，才能定义递归函数的参数，得到想要的结果。</p>
 
 <hr />
 
@@ -351,16 +355,6 @@ candidates 中的数字可以无限制重复被选取。
 所求解集为： [ [2,2,2,2], [2,3,3], [3,5] ]
 </code></pre></div></div>
 
-<blockquote>
-  <p>本题中，最重要的影响因素是元素可以重复选择。</p>
-
-  <p>既然可以重复选择，有些同学可能觉得这说明对startIndex没有约束，那么dfs()方法是不是不要传入startIndex呢？</p>
-
-  <p>其实不然，同一个元素可以重复选择，表明的是，下一轮选择可以接着上一轮的startIndex继续选择，即不用startIndex+1了。</p>
-
-  <p>如果本题，startIndex从0开始选择，那么就会出现重复的组合。也就是排列。具体细节等到排列章节再讲。</p>
-</blockquote>
-
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">combinationSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
         <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
@@ -377,6 +371,14 @@ candidates 中的数字可以无限制重复被选取。
         <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong>
+本题中，最重要的影响因素是元素可以重复选择。</p>
+
+<p>既然可以重复选择，有些同学可能觉得这说明对startIndex没有约束，那么dfs()方法是不是不要传入startIndex呢？</p>
+
+<p>其实不然，同一个元素可以重复选择，表明的是，下一轮选择可以接着上一轮的startIndex继续选择，即不用startIndex+1了。</p>
+
+<p>如果本题，startIndex从0开始选择，那么就会出现重复的组合。也就是排列。具体细节等到排列章节再讲。</p>
 
 <hr />
 
@@ -399,34 +401,6 @@ candidates 中的每个数字在每个组合中只能使用一次。
   [1, 1, 6]
 ]
 </code></pre></div></div>
-
-<blockquote>
-  <p>本题中，最重要的影响因素是集合有重复元素，重复N次，表示该元素最多可以选N次。但是答案仍要求不能有相同的组合。</p>
-
-  <p><strong>强调一下，组合类问题，对树层去重的话，必须需要对集合先进行排序！</strong>
-由于重复元素的位置不同，如果我们不先排序处理，则会出现元素位置不同、但元素值相同的组合（视为同一组合）。
-如集合为<code class="language-plaintext highlighter-rouge">c=[1,2,1,5],t=8</code>. 如果不排序的话，那么[1,2,5]和[2,1,5]都会被选出来。但他们是相同的组合。</p>
-
-  <p>因此，正确的做法是必须先对集合进行排序，让相同的元素放在一起。然后针对同一树层上的元素，判断是否使用过。这样既能对树层去重，也能避免位置不同的组合。</p>
-
-  <p>一般地，不对同一树枝上的重复元素进行去重，这样实现复杂，且效率低（所有树枝都要展开）。</p>
-</blockquote>
-
-<p><strong>去重方法一：startIndex去重（树层）（横向）</strong></p>
-
-<p>体现在代码中，限制条件<code class="language-plaintext highlighter-rouge">if i &gt; startIndex and candidates[i] == candidates[i-1]:</code>是对重复元素进行过滤。
-<code class="language-plaintext highlighter-rouge">i&gt;startIndex</code>而不是<code class="language-plaintext highlighter-rouge">i&gt;0</code>是因为我们选择在层次遍历时，对元素进行去重。而层次的遍历起始索引就是startIndex。</p>
-
-<p><em>*去重方法二：used数组去重（树层）（横向）</em></p>
-
-<p>体现在代码中，限制条件<code class="language-plaintext highlighter-rouge">if i &gt; 0 and candidates[i] == candidates[i-1] and used[i-1] == False:</code>也是对重复元素进行过滤。
-此时只需要判断i从大于0开始，而非startIndex。因为used数组是所有递归公用的，能够全局表示集合的使用状态。</p>
-
-<p>为什么是 <code class="language-plaintext highlighter-rouge">used[i - 1] == False</code> 。因为选择的是同一树层。在同一树层，<code class="language-plaintext highlighter-rouge">used[i - 1] == False</code> 才能表示，当前取的 candidates[i] 是从 candidates[i - 1] 回溯而来的。</p>
-
-<p><strong>如果用<code class="language-plaintext highlighter-rouge">used[i - 1] == True</code>表示树枝去重。本题不适用树枝去重求解。TODO.</strong></p>
-
-<p><img src="/assets/images/20230310000918.png" alt="使用used数组进行树层去重" style="width:800px; height:auto;" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">combinationSum2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
@@ -489,6 +463,31 @@ candidates 中的每个数字在每个组合中只能使用一次。
         <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong>
+本题中，最重要的影响因素是集合有重复元素，重复N次，表示该元素最多可以选N次。但是答案仍要求不能有相同的组合。</p>
+<blockquote>
+
+  <p><strong>强调一下，组合类问题，对树层去重的话，必须需要对集合先进行排序！</strong>
+由于重复元素的位置不同，如果我们不先排序处理，则会出现元素位置不同、但元素值相同的组合（视为同一组合）。
+如集合为<code class="language-plaintext highlighter-rouge">c=[1,2,1,5],t=8</code>. 如果不排序的话，那么[1,2,5]和[2,1,5]都会被选出来。但他们是相同的组合。</p>
+
+  <p>因此，正确的做法是必须先对集合进行排序，让相同的元素放在一起。然后针对同一树层上的元素，判断是否使用过。这样既能对树层去重，也能避免位置不同的组合。</p>
+
+  <p>一般地，不对同一树枝上的重复元素进行去重，这样实现复杂，且效率低（所有树枝都要展开）。</p>
+</blockquote>
+
+<p><strong>去重方法一：startIndex去重（树层）（横向）</strong></p>
+
+<p>体现在代码中，限制条件<code class="language-plaintext highlighter-rouge">if i &gt; startIndex and candidates[i] == candidates[i-1]:</code>是对重复元素进行过滤。
+<code class="language-plaintext highlighter-rouge">i&gt;startIndex</code>而不是<code class="language-plaintext highlighter-rouge">i&gt;0</code>是因为我们选择在层次遍历时，对元素进行去重。而层次的遍历起始索引就是startIndex。</p>
+
+<p><strong>去重方法二：used数组去重（树层）（横向）</strong></p>
+
+<p>体现在代码中，限制条件<code class="language-plaintext highlighter-rouge">if i &gt; 0 and candidates[i] == candidates[i-1] and used[i-1] == False:</code>也是对重复元素进行过滤。
+此时只需要判断i从大于0开始，而非startIndex。因为used数组是所有递归公用的，能够全局表示集合的使用状态。</p>
+
+<p>为什么是 <code class="language-plaintext highlighter-rouge">used[i - 1] == False</code> 。因为选择的是同一树层。在同一树层，<code class="language-plaintext highlighter-rouge">used[i - 1] == False</code> 才能表示，当前取的 candidates[i] 是从 candidates[i - 1] 回溯而来的。
+<img src="/assets/images/20230310000918.png" alt="使用used数组进行树层去重" style="width:800px; height:auto;" /></p>
 
 <hr />
 
@@ -502,21 +501,6 @@ candidates 中的每个数字在每个组合中只能使用一次。
 
 示例: 输入: "aab" 输出: [ ["aa","b"], ["a","a","b"] ]
 </code></pre></div></div>
-
-<p>例如对于字符串abcdef：</p>
-<ul>
-  <li>组合问题：选取一个a之后，在bcdef中再去选取第二个，选取b之后在cdef中再选取第三个…..。</li>
-  <li>切割问题：切割一个a之后，在bcdef中再去切割第二段，切割b之后在cdef中再切割第三段…..。</li>
-</ul>
-
-<blockquote>
-  <p>本题最重要是理解字符串切割问题其实就是从集合（字符串）中选取某个（某组）元素。</p>
-
-  <p>递归用来纵向遍历，表示以任一字符开头（startIndex）来切割字符串；for循环用来从startIndex开始横向往字符串结尾遍历，针对<code class="language-plaintext highlighter-rouge">s[startIndex:i+1]</code>子串，如果是回文字符串，则加入path。
-当startIndex遍历到字符串结尾，则将path将入到ans中。</p>
-</blockquote>
-
-<p><img src="/assets/images/131.分割回文串.jpg" alt="字符串切割" style="width:800px; height:auto;" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
@@ -535,6 +519,20 @@ candidates 中的每个数字在每个组合中只能使用一次。
         <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong>
+本题最重要是理解字符串切割问题其实就是从集合（字符串）中选取某个（某组）元素。</p>
+
+<blockquote>
+  <p>例如对于字符串abcdef：</p>
+  <ul>
+    <li>组合问题：选取一个a之后，在bcdef中再去选取第二个，选取b之后在cdef中再选取第三个…..。</li>
+    <li>切割问题：切割一个a之后，在bcdef中再去切割第二段，切割b之后在cdef中再切割第三段…..。</li>
+  </ul>
+</blockquote>
+
+<p>递归用来纵向遍历，表示以任一字符开头（startIndex）来切割字符串；for循环用来从startIndex开始横向往字符串结尾遍历，针对<code class="language-plaintext highlighter-rouge">s[startIndex:i+1]</code>子串，如果是回文字符串，则加入path。
+当startIndex遍历到字符串结尾，则将path将入到ans中。
+<img src="/assets/images/131.分割回文串.jpg" alt="字符串切割" style="width:800px; height:auto;" /></p>
 
 <hr />
 
@@ -552,12 +550,6 @@ candidates 中的每个数字在每个组合中只能使用一次。
 输入：s = "0000"
 输出：["0.0.0.0"]
 </code></pre></div></div>
-
-<blockquote>
-  <p>需意识到本题就是切割问题，切割问题就可以使用回溯搜索法把所有可能性搜出来。</p>
-
-  <p>每一轮的树层遍历，最多遍历3个字符。</p>
-</blockquote>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">restoreIpAddresses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
@@ -585,6 +577,11 @@ candidates 中的每个数字在每个组合中只能使用一次。
         <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong></p>
+<ul>
+  <li>需意识到本题就是切割问题，切割问题就可以使用回溯搜索法把所有可能性搜出来。</li>
+  <li>每一轮的树层遍历，最多遍历3个字符。</li>
+</ul>
 
 <hr />
 
@@ -598,11 +595,6 @@ candidates 中的每个数字在每个组合中只能使用一次。
 
 示例: 输入: nums = [1,2,3] 输出: [ [3],   [1],   [2],   [1,2,3],   [1,3],   [2,3],   [1,2],   [] ]
 </code></pre></div></div>
-<blockquote>
-  <p><strong>如果把 子集问题、组合问题、分割问题都抽象为一棵树的话，那么组合问题和分割问题都是收集树的叶子节点，而子集问题是找树的所有节点！</strong></p>
-</blockquote>
-
-<p><img src="/assets/images/78.子集.png" alt="字符串切割" style="width:800px; height:auto;" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">subsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
@@ -617,6 +609,11 @@ candidates 中的每个数字在每个组合中只能使用一次。
         <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong>
+<img src="/assets/images/78.子集.png" alt="字符串切割" style="width:800px; height:auto;" /></p>
+<blockquote>
+  <p><strong>如果把 子集问题、组合问题、分割问题都抽象为一棵树的话，那么组合问题和分割问题都是收集树的叶子节点，而子集问题是找树的所有节点！</strong></p>
+</blockquote>
 
 <hr />
 
@@ -629,16 +626,6 @@ candidates 中的每个数字在每个组合中只能使用一次。
 输入: [1,2,2]
 输出: [ [2], [1], [1,2,2], [2,2], [1,2], [] ]
 </code></pre></div></div>
-
-<blockquote>
-  <p>有重复元素，因此求取的子集要去重。</p>
-
-  <p>理解“树层去重”和“树枝去重”非常重要。</p>
-
-  <p>先要对集合进行排序。</p>
-
-  <p>可以用startIndex进行去重，也可以使用used数组去重。</p>
-</blockquote>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">subsetsWithDup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
@@ -656,6 +643,13 @@ candidates 中的每个数字在每个组合中只能使用一次。
         <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong></p>
+<ul>
+  <li>有重复元素，因此求取的子集要去重。</li>
+  <li>理解“树层去重”和“树枝去重”非常重要。</li>
+  <li>先要对集合进行排序。</li>
+  <li>可以用startIndex进行去重，也可以使用used数组去重。</li>
+</ul>
 
 <hr />
 
@@ -667,14 +661,6 @@ candidates 中的每个数字在每个组合中只能使用一次。
 输入: [4, 6, 7, 7]
 输出: [[4, 6], [4, 7], [4, 6, 7], [4, 6, 7, 7], [6, 7], [6, 7, 7], [7,7], [4,7,7]]
 </code></pre></div></div>
-
-<blockquote>
-  <p>利用set对树层进行去重。</p>
-
-  <p>虽然集合有重复元素，但是由于题目要求，不能提前对集合进行排序。
-因此，上述题目《子集2》和《组合总和2》中，用到的startIndex和全局used数组无法使用。
-只能用最基本的set对树层进行去重。</p>
-</blockquote>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">findSubsequences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
@@ -697,6 +683,11 @@ candidates 中的每个数字在每个组合中只能使用一次。
         <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong>利用set对树层进行去重。</p>
+<ul>
+  <li>虽然集合有重复元素，但是由于题目要求，不能提前对集合进行排序。</li>
+  <li>因此，上述题目《子集2》和《组合总和2》中，用到的startIndex和全局used数组无法使用，只能用最基本的set对树层进行去重。</li>
+</ul>
 
 <hr />
 
@@ -710,14 +701,6 @@ candidates 中的每个数字在每个组合中只能使用一次。
 输入: [1,2,3]
 输出: [ [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1] ]
 </code></pre></div></div>
-
-<blockquote>
-  <p>由于是排列问题，元素位置可以不尽相同。因此，每一次的树层遍历，startIndex都是从0开始。</p>
-
-  <p>used数组记录每一个元素是否使用，全局状态。</p>
-
-  <p>在每一轮的树枝遍历时，<strong>判断该元素在之前递归过程中是否使用</strong>。注意：不是该树层是否使用过。</p>
-</blockquote>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
@@ -739,6 +722,12 @@ candidates 中的每个数字在每个组合中只能使用一次。
         <span class="n">dfs</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong></p>
+<ul>
+  <li>由于是排列问题，元素位置可以不尽相同。因此，每一次的树层遍历，startIndex都是从0开始。</li>
+  <li>used数组记录每一个元素是否使用，全局状态。</li>
+  <li>在每一轮的树枝遍历时，<strong>判断该元素在之前递归过程中是否使用</strong>。注意：不是该树层是否使用过。</li>
+</ul>
 
 <hr />
 
@@ -750,23 +739,6 @@ candidates 中的每个数字在每个组合中只能使用一次。
 输入：nums = [1,1,2]
 输出： [[1,1,2], [1,2,1], [2,1,1]]
 </code></pre></div></div>
-
-<blockquote>
-  <p><strong>去重一定要对元素进行排序，这样我们才方便通过相邻的节点来判断是否重复使用了。</strong></p>
-
-  <p>这里可以明显看到used数组如何变化。</p>
-
-  <ul>
-    <li>
-      <p>在树层遍历中，同组合问题用<code class="language-plaintext highlighter-rouge">if i &gt; 0 and nums[i] == nums[i - 1] and not used[i-1]:</code>进行判断。必须要求相同元素靠在一起，即必须排序。排序后，树层遍历只会取相邻元素的第一个元素。</p>
-    </li>
-    <li>
-      <p>在树枝遍历中，即可使用全局的used来判断当前元素是否已经在排列中了，故进行下一轮遍历。</p>
-    </li>
-  </ul>
-</blockquote>
-
-<p><img src="/assets/images/20201124201331223.png" alt="全排列重复元素处理" style="width:800px; height:auto;" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">permuteUnique</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
@@ -815,6 +787,14 @@ candidates 中的每个数字在每个组合中只能使用一次。
         <span class="n">dfs</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong>
+去重一定要对元素进行排序，这样我们才方便通过相邻的节点来判断是否重复使用了。
+<img src="/assets/images/20201124201331223.png" alt="全排列重复元素处理" style="width:800px; height:auto;" />
+这里可以明显看到used数组如何变化。</p>
+<ul>
+  <li>在树层遍历中，同组合问题用<code class="language-plaintext highlighter-rouge">if i &gt; 0 and nums[i] == nums[i - 1] and not used[i-1]:</code>进行判断。必须要求相同元素靠在一起，即必须排序。排序后，树层遍历只会取相邻元素的第一个元素。</li>
+  <li>在树枝遍历中，即可使用全局的used来判断当前元素是否已经在排列中了，故进行下一轮遍历。</li>
+</ul>
 
 <hr />
 
@@ -844,10 +824,6 @@ candidates 中的每个数字在每个组合中只能使用一次。
 
 <h2 id="二维回溯">“二维”回溯</h2>
 
-<p>二维矩阵的回溯问题。</p>
-
-<hr />
-
 <h3 id="n皇后">N皇后</h3>
 <p><a href="https://leetcode.cn/problems/n-queens/description/">51. N皇后</a></p>
 <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>n 皇后问题 研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。
@@ -858,10 +834,6 @@ candidates 中的每个数字在每个组合中只能使用一次。
 输出：[[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
 解释：如上图所示，4 皇后问题存在两个不同的解法。
 </code></pre></div></div>
-
-<blockquote>
-  <p>矩阵的行，代表回溯的树枝遍历；矩阵的列，代表回溯的树层遍历。</p>
-</blockquote>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">solveNQueens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
@@ -904,6 +876,8 @@ candidates 中的每个数字在每个组合中只能使用一次。
         <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ans</span>
 </code></pre></div></div>
+<p><strong>总结：</strong>
+矩阵的行，代表回溯的树枝遍历；矩阵的列，代表回溯的树层遍历。</p>
 
 <hr />
 
@@ -913,14 +887,6 @@ candidates 中的每个数字在每个组合中只能使用一次。
 
 一个数独的解法需遵循如下规则： 数字 1-9 在每一行只能出现一次。 数字 1-9 在每一列只能出现一次。 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。 空白格用 '.' 表示。
 </code></pre></div></div>
-
-<blockquote>
-  <p>将矩阵中要操作的位置（行，列）预先提取出来，放到一个集合中去；该集合则代表着回溯时树枝遍历。</p>
-
-  <p>每个位置可以填入的值则代表树层遍历。</p>
-
-  <p>由于只需要求一个解，当某个分支的回溯成功后，即可结束所有的递归过程。体现在rtl中，可以给dfs()方法加一个返回值，当返回值为True时，结束递归。</p>
-</blockquote>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">solveSudoku</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">board</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
@@ -953,14 +919,17 @@ candidates 中的每个数字在每个组合中只能使用一次。
             <span class="k">return</span> <span class="bp">False</span>
         <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div></div>
+<p><strong>总结：</strong></p>
+<ul>
+  <li>将矩阵中要操作的位置（行，列）预先提取出来，放到一个集合中去；该集合则代表着回溯时树枝遍历。</li>
+  <li>每个位置可以填入的值则代表树层遍历。</li>
+  <li>由于只需要求一个解，当某个分支的回溯成功后，即可结束所有的递归过程。体现在rtl中，可以给dfs()方法加一个返回值，当返回值为True时，结束递归。</li>
+</ul>
 
 <hr />
 
 <h2 id="其他回溯问题">其他回溯问题</h2>
-<h3 id="332-重新安排行程"><a href="https://leetcode.cn/problems/reconstruct-itinerary/description/">332. 重新安排行程</a></h3>
-
-<p>题目是【图论中的欧拉路径问题】，标准解法是【Hierholzer算法】。需领悟其中涉及的回溯思想。</p>
-
+<p><a href="https://leetcode.cn/problems/reconstruct-itinerary/description/">332. 重新安排行程</a></p>
 <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给你一份航线列表 tickets ，其中 <span class="sb">`tickets[i] = [from_i, to_i]`</span> 表示飞机出发和降落的机场地点。请你对该行程进行重新规划排序。
 
 所有这些机票都属于一个从 JFK（肯尼迪国际机场）出发的先生，所以该行程必须从 JFK 开始。如果存在多种有效的行程，请你按字典排序返回最小的行程组合。
@@ -996,6 +965,8 @@ candidates 中的每个数字在每个组合中只能使用一次。
         <span class="n">dfs</span><span class="p">(</span><span class="s">"JFK"</span><span class="p">)</span>        
         <span class="k">return</span> <span class="n">ans</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </code></pre></div></div>
+<p><strong>总结：</strong>
+题目是【图论中的欧拉路径问题】，标准解法是【Hierholzer算法】。需领悟其中涉及的回溯思想。</p>
 
 <hr />
 

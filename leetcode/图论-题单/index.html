@@ -95,6 +95,18 @@
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 
 
+<!-- open link in another page -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll('a[href^="http"]');
+    links.forEach(link => {
+      if (!link.href.includes(window.location.hostname)) {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      }
+    });
+  });
+</script>
   </head>
 
   <body class="layout--single" dir="ltr">
@@ -189,7 +201,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#图的遍历算法题单">图的遍历算法题单</a></li><li><a href="#最短路径算法题单">最短路径算法题单</a></li><li><a href="#拓扑排序典型题目推荐">拓扑排序典型题目推荐</a></li></ul>
+              <ul class="toc__menu"><li><a href="#图的遍历算法题单">图的遍历算法题单</a></li><li><a href="#拓扑排序典型题目推荐">拓扑排序典型题目推荐</a></li><li><a href="#最短路径算法题单">最短路径算法题单</a></li></ul>
             </nav>
           </aside>
         
@@ -238,21 +250,6 @@
 
 <hr />
 
-<h2 id="最短路径算法题单">最短路径算法题单</h2>
-<p><strong>参考链接</strong></p>
-<ul>
-  <li><a href="https://www.freecodecamp.org/chinese/news/dijkstras-shortest-path-algorithm-visual-introduction/" title="图文详解 Dijkstra 最短路径算法">图文详解 Dijkstra 最短路径算法</a></li>
-  <li><a href="https://www.cnblogs.com/goldsunshine/p/12978305.html" title="一篇文章讲透Dijkstra最短路径算法">一篇文章讲透Dijkstra最短路径算法</a></li>
-  <li>
-    <p><a href="https://leetcode.cn/problems/find-minimum-time-to-reach-last-room-ii/solutions/2975554/dijkstra-zui-duan-lu-pythonjavacgo-by-en-alms/" title="Dijkstra 最短路 灵茶山艾府">Dijkstra 最短路 灵茶山艾府</a></p>
-  </li>
-  <li>【模板题】<a href="https://leetcode.cn/problems/network-delay-time/description/">网络延迟时间</a></li>
-  <li><a href="https://leetcode.cn/problems/find-minimum-time-to-reach-last-room-ii/">到达最后一个房间的最少时间 II</a></li>
-  <li>【0-1 BFS】<a href="https://leetcode.cn/problems/grid-teleportation-traversal/description/">3552. 网格传送门旅游</a></li>
-</ul>
-
-<hr />
-
 <h2 id="拓扑排序典型题目推荐">拓扑排序典型题目推荐</h2>
 
 <table>
@@ -282,6 +279,64 @@
       <td>LeetCode</td>
       <td>多层拓扑排序</td>
       <td><a href="https://leetcode.cn/problems/sort-items-by-groups-respecting-dependencies">题目链接</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="最短路径算法题单">最短路径算法题单</h2>
+<p><strong>参考链接</strong></p>
+<ul>
+  <li><a href="https://www.freecodecamp.org/chinese/news/dijkstras-shortest-path-algorithm-visual-introduction/" title="图文详解 Dijkstra 最短路径算法">图文详解 Dijkstra 最短路径算法</a></li>
+  <li><a href="https://www.cnblogs.com/goldsunshine/p/12978305.html" title="一篇文章讲透Dijkstra最短路径算法">一篇文章讲透Dijkstra最短路径算法</a></li>
+  <li>
+    <p><a href="https://leetcode.cn/problems/find-minimum-time-to-reach-last-room-ii/solutions/2975554/dijkstra-zui-duan-lu-pythonjavacgo-by-en-alms/" title="Dijkstra 最短路 灵茶山艾府">Dijkstra 最短路 灵茶山艾府</a></p>
+  </li>
+  <li>【模板题】<a href="https://leetcode.cn/problems/network-delay-time/description/">网络延迟时间</a></li>
+  <li><a href="https://leetcode.cn/problems/find-minimum-time-to-reach-last-room-ii/">到达最后一个房间的最少时间 II</a></li>
+  <li>【0-1 BFS】<a href="https://leetcode.cn/problems/grid-teleportation-traversal/description/">3552. 网格传送门旅游</a></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>题目编号</th>
+      <th>题目名称</th>
+      <th>算法类型</th>
+      <th>链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>743</td>
+      <td>网络延迟时间</td>
+      <td>Dijkstra</td>
+      <td><a href="https://leetcode.cn/problems/network-delay-time">链接</a></td>
+    </tr>
+    <tr>
+      <td>787</td>
+      <td>K 站中转内最便宜的航班</td>
+      <td>Bellman-Ford</td>
+      <td><a href="https://leetcode.cn/problems/cheapest-flights-within-k-stops">链接</a></td>
+    </tr>
+    <tr>
+      <td>1334</td>
+      <td>距离阈值内邻居最少的城市</td>
+      <td>Floyd-Warshall</td>
+      <td><a href="https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance">链接</a></td>
+    </tr>
+    <tr>
+      <td>1091</td>
+      <td>二进制矩阵中的最短路径</td>
+      <td>BFS</td>
+      <td><a href="https://leetcode.cn/problems/shortest-path-in-binary-matrix">链接</a></td>
+    </tr>
+    <tr>
+      <td>2203</td>
+      <td>满足约束的最小路径权重子图</td>
+      <td>0-1 BFS</td>
+      <td><a href="https://leetcode.cn/problems/minimum-weighted-subgraph-with-the-required-paths">链接</a></td>
     </tr>
   </tbody>
 </table>
