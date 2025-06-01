@@ -277,8 +277,7 @@
         <span class="n">node</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
             <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-            <span class="c1"># 注意：后进先出，所以邻接点要倒序入栈
-</span>            <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
                 <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
 </code></pre></div></div>
 
@@ -301,7 +300,6 @@
 </ul>
 
 <p><strong>Python 模板</strong></p>
-
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 
 <span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
@@ -382,7 +380,7 @@
     1
 </code></pre></div></div>
 <p>拓扑排序结果可能为：
-<code class="language-plaintext highlighter-rouge">[4, 5, 0, 2, 3, 1]</code> 或其他合法顺序（只要满足依赖顺序即可）。</p>
+<code class="language-plaintext highlighter-rouge">[1, 4, 5, 2, 3, 0]</code> 或其他合法顺序（只要满足依赖顺序即可）。</p>
 
 <p>它是“先做什么，再做什么”的抽象模型，广泛应用于：</p>
 <ul>
@@ -395,13 +393,13 @@
 <p><strong>使用前提条件</strong></p>
 <ul>
   <li>图必须是 <strong>有向无环图（DAG）</strong></li>
-  <li>如果图中存在<strong>环路</strong>，则<strong>不存在有效的拓扑排序</strong></li>
+  <li>如果图中存在<strong>环路</strong>，则<strong>不存在有效的拓扑排序</strong>结果</li>
 </ul>
 
 <p><strong>拓扑排序的性质</strong></p>
 <ul>
   <li>拓扑排序可能<strong>不唯一</strong></li>
-  <li>如果图中有环，<strong>无法构建拓扑排序</strong>，可用于<strong>检测有向图是否有环</strong></li>
+  <li>可用于<strong>检测有向图是否有环</strong></li>
 </ul>
 
 <p><strong>两种实现方式</strong></p>
@@ -446,7 +444,7 @@
   <li>最终将栈倒序输出即为排序</li>
 </ol>
 
-<p><strong>Python 实现</strong></p>
+<p><strong>Python 模板</strong></p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">topological_sort_dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
     <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
@@ -454,28 +452,29 @@
     <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
         <span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
-                <span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+                <span class="k">continue</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
         <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-            <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">result</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 逆后序即为拓扑排序
+        <span class="k">if</span> <span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+      
+    <span class="k">return</span> <span class="n">result</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 逆后序结果即为拓扑排序
 </span></code></pre></div></div>
 
 <p><strong>带环检测的 DFS 拓扑排序</strong></p>
-<blockquote>
-  <p>我们需要在 DFS 过程中使用三个状态标记每个节点：</p>
-  <ul>
-    <li>0：未访问</li>
-    <li>1：正在递归栈中（即当前路径上）</li>
-    <li>2：递归已完成</li>
-  </ul>
 
-  <p>只要在遍历过程中再次访问到状态为 1 的节点，就说明存在回边 → 有环。</p>
-</blockquote>
+<p>我们需要在 DFS 过程中使用三个状态标记每个节点：</p>
+<ul>
+  <li>0：未访问</li>
+  <li>1：正在递归栈中（即当前路径上）</li>
+  <li>2：递归已完成</li>
+</ul>
+
+<p>只要在遍历过程中再次访问到状态为 1 的节点，就说明存在回边 → 有环。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">topological_sort_with_cycle_detection</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
     <span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>  <span class="c1"># 0: 未访问，1: 访问中，2: 已完成
@@ -484,28 +483,24 @@
 
     <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
         <span class="k">nonlocal</span> <span class="n">has_cycle</span>
-        <span class="n">state</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 标记为访问中
+        <span class="k">if</span> <span class="n">has_cycle</span> <span class="ow">or</span> <span class="n">state</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span>  <span class="c1"># 剪枝：检测到环 或 已完成
+</span>        <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">has_cycle</span> <span class="o">=</span> <span class="bp">True</span>  <span class="c1"># 回边 → 有环
+</span>            <span class="k">return</span>
+        <span class="n">state</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 标记访问中
 </span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">has_cycle</span><span class="p">:</span>
-                    <span class="k">return</span>
-            <span class="k">elif</span> <span class="n">state</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="c1"># 回边 -&gt; 有环
-</span>                <span class="n">has_cycle</span> <span class="o">=</span> <span class="bp">True</span>
-                <span class="k">return</span>
-        <span class="n">state</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 标记为已完成
+            <span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">state</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 标记已完成
 </span>        <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">has_cycle</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>  <span class="c1"># 拓扑排序不存在（有环）
+</span>        <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">has_cycle</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">[]</span>  <span class="c1"># 拓扑排序不存在（有环）
-</span>
     <span class="k">return</span> <span class="n">result</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 返回拓扑序
-</span>
-</code></pre></div></div>
+</span></code></pre></div></div>
 
 <hr />
 
@@ -524,7 +519,6 @@
 </ol>
 
 <p><strong>Python 实现</strong></p>
-
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 
 <span class="k">def</span> <span class="nf">topological_sort_kahn</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
@@ -540,8 +534,8 @@
         <span class="n">u</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
         <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="n">indegree</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="n">indegree</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">indegree</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span> <span class="c1"># 每次出队时，将其邻接点入度减 1
+</span>            <span class="k">if</span> <span class="n">indegree</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">result</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span> <span class="k">else</span> <span class="p">[]</span>  <span class="c1"># 有环时返回空
@@ -551,15 +545,16 @@
 <blockquote>
   <p>在 Kahn 算法中：
 我们只从 入度为 0 的节点开始入队。
-每加入一个节点到拓扑序，就减少其邻接节点的入度。
-若图中有环，则某些节点的入度永远不为 0，永远无法入队和被处理。</p>
+每加入一个节点到拓扑序，就减少其邻接节点的入度。</p>
+
+  <p>若图中有环，则某些节点的入度永远不为 0，永远无法入队和被处理。</p>
 </blockquote>
 
 <hr />
 
 <h2 id="单源最短路径算法">单源最短路径算法</h2>
 
-<p>单源最短路径问题在图论中极其常见，目标是在图中找到起点到各点之间路径总权重最小的路径。</p>
+<p>单源最短路径问题是图论中极其常见的问题，目标是在带权图中寻找从一个指定起点出发，到图中所有其他节点的路径中，总权重最小的路径。</p>
 
 <hr />
 
@@ -569,7 +564,10 @@
 边权非负的图</p>
 
 <p><strong>原理</strong>：
-采用<strong>贪心策略</strong>，每次选取当前距离最小的节点“锁定”其最短路径，然后松弛其邻居。使用<strong>小根堆</strong>优化效率。</p>
+采用贪心策略，每次从未确定最短路的节点中选择当前距离起点最近的一个，将其“锁定”并松弛其所有邻居，从而逐步确定起点到所有节点的最短路径。</p>
+<blockquote>
+  <p>图论中的松弛（Relaxation）是指：尝试通过某条边更新目标节点的最短路径估计，如果更短就更新。</p>
+</blockquote>
 
 <p><strong>流程</strong></p>
 
@@ -591,12 +589,14 @@
 <ul>
   <li>用节点 3 到其邻居 y 的边权 $g[3][y]$ 更新 $dis[y]$：如果 $dis[3]+g[3][y]&lt;dis[y]$，那么更新 $dis[y]$ 为 $dis[3]+g[3][y]$，否则不更新。</li>
   <li>然后取除了节点 k,3 以外的 $dis[i]$ 的最小值，重复上述过程。</li>
-  <li>由数学归纳法可知，这一做法可以得到每个点的最短路。当所有点的最短路都已确定时，算法结束。</li>
 </ul>
 
-<p><a href="https://leetcode.cn/problems/network-delay-time/solutions/2668220/liang-chong-dijkstra-xie-fa-fu-ti-dan-py-ooe8/">参考链接</a></p>
+<p>由数学归纳法可知，这一做法可以得到每个点的最短路。当所有点的最短路都已确定时，算法结束。
+<a href="https://leetcode.cn/problems/network-delay-time/solutions/2668220/liang-chong-dijkstra-xie-fa-fu-ti-dan-py-ooe8/">参考链接</a></p>
 
 <p><strong>Python 实现（优先队列实现）</strong></p>
+
+<p>使用<strong>小根堆（优先队列）</strong> 极大提升了查找“当前最短路径点”的效率，从而显著优化整体时间复杂度。</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">heapq</span>
 
 <span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
@@ -626,9 +626,9 @@
   <li>检测图中是否存在负权重环</li>
 </ul>
 
-<p><strong>原理</strong>：
-Bellman-Ford 算法基于“松弛（Relaxation）”操作。
-在图中（没有负环的情况下），一个最短路径最多只包含 $V - 1$ 条边（V 为顶点个数），因此只需对所有边进行 $V-1$ 次“松弛”操作，即可得到所有最短路径。</p>
+<p><strong>原理</strong></p>
+
+<p><strong>Bellman-Ford 算法基于“松弛”操作</strong>：在没有负权环的图中，任意两点之间的最短路径最多只包含 <code class="language-plaintext highlighter-rouge">V - 1</code> 条边（其中 <code class="language-plaintext highlighter-rouge">V</code> 为顶点数），因此只需对所有边执行 <code class="language-plaintext highlighter-rouge">V - 1</code> 次松弛操作，即可得到起点到所有节点的最短路径。</p>
 
 <p><strong>流程</strong></p>
 <ul>

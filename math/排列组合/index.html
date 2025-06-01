@@ -1,0 +1,894 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.1 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>排列组合</title>
+<meta name="description" content="“排列”和“组合”是数学中计数的两个基本概念，它们都用于从一组元素中选择若干个元素的方式，但排列考虑顺序，组合不考虑顺序。">
+
+
+  <meta name="author" content="phoenixfei">
+  
+  <meta property="article:author" content="phoenixfei">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="">
+<meta property="og:title" content="排列组合">
+<meta property="og:url" content="https://yourusername.github.io/math/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/">
+
+
+  <meta property="og:description" content="“排列”和“组合”是数学中计数的两个基本概念，它们都用于从一组元素中选择若干个元素的方式，但排列考虑顺序，组合不考虑顺序。">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2025-06-01T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://yourusername.github.io/math/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title=" Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<!-- Ref:TeX Input Processor Options: https://docs.mathjax.org/en/latest/options/input/tex.html -->
+
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+
+<!-- open link in another page -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll('a[href^="http"]');
+    links.forEach(link => {
+      if (!link.href.includes(window.location.hostname)) {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      }
+    });
+  });
+</script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/"
+                
+                
+              >首页</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/ds-algo/"
+                
+                
+              >DSA</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/leetcode/"
+                
+                
+              >题单</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/math/"
+                
+                
+              >数学</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="排列组合">
+    <meta itemprop="description" content="“排列”和“组合”是数学中计数的两个基本概念，它们都用于从一组元素中选择若干个元素的方式，但排列考虑顺序，组合不考虑顺序。">
+    <meta itemprop="datePublished" content="2025-06-01T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="https://yourusername.github.io/math/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/" itemprop="url">排列组合
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#排列permutation">排列（Permutation）</a></li><li><a href="#组合combination">组合（Combination）</a></li><li><a href="#常用方法">常用方法</a><ul><li><a href="#插板法">插板法</a></li><li><a href="#捆绑法">捆绑法</a></li><li><a href="#容斥原理">容斥原理</a></li></ul></li><li><a href="#求解排列组合集合">求解排列组合集合</a><ul><li><a href="#使用-itertools-模块">使用 itertools 模块</a></li><li><a href="#手动实现回溯法">手动实现（回溯法）</a></li></ul></li><li><a href="#求解排列组合结果">求解排列组合结果</a></li><li><a href="#排列组合结果取余">排列组合结果取余</a><ul><li><a href="#1-阶乘预处理">1. 阶乘预处理</a></li><li><a href="#2-快速幂">2. 快速幂</a></li><li><a href="#3-模逆元">3. 模逆元</a></li><li><a href="#完整代码">完整代码</a></li></ul></li><li><a href="#扩展费马小定理">扩展：费马小定理</a><ul><li><a href="#定义">定义</a></li><li><a href="#模逆元">模逆元</a></li><li><a href="#应用举例">应用举例</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <p>“排列”和“组合”是数学中计数的两个基本概念，它们都用于从一组元素中选择若干个元素的方式，但<strong>排列考虑顺序，组合不考虑顺序</strong>。</p>
+
+<hr />
+
+<h2 id="排列permutation">排列（Permutation）</h2>
+
+<p>从 $n$ 个不同元素中取出 $r$ 个元素，<strong>按顺序排列</strong>，称为“排列”，记作：</p>
+
+\[P(n, r) = A_n^r = \frac{n!}{(n - r)!}\]
+
+<p>例如，从 5 个不同字母中选 3 个排成一排，有多少种方法？</p>
+
+\[P(5, 3) = \frac{5!}{(5 - 3)!} = \frac{120}{2} = 60\]
+
+<p><strong>全排列</strong>：从 $n$ 个元素中选出全部 $n$ 个，按顺序排列（用完全部元素）。</p>
+
+<p>例如，将 5 个不同字母排成一排，有多少种方法？</p>
+
+\[5! = 120\]
+
+<hr />
+
+<h2 id="组合combination">组合（Combination）</h2>
+
+<p>从 $n$ 个不同元素中取出 $r$ 个元素，<strong>不考虑顺序</strong>，称为“组合”，记作：</p>
+
+\[C(n, r) = \binom{n}{r} = \frac{n!}{r!(n - r)!}\]
+
+<p>从 5 个不同字母中选 3 个，不考虑顺序，有多少种方法？</p>
+
+\[C(5, 3) = \frac{5!}{3! \cdot 2!} = \frac{120}{6 \cdot 2} = 10\]
+
+<hr />
+
+<h2 id="常用方法">常用方法</h2>
+
+<p>排列组合常用方法是离散数学和算法题中非常核心的内容。</p>
+
+<hr />
+
+<h3 id="插板法">插板法</h3>
+
+<p>把 $n$ 个<strong>相同的球</strong>放入 $k$ 个<strong>不同的盒子</strong>中，按不同限制（每盒可为 0、至少 1、至多 1）选用不同公式。</p>
+
+<p>我们可以将这个过程想象成：</p>
+
+<ul>
+  <li><strong>将球排成一行</strong></li>
+  <li><strong>在球中间插“板子”来分组</strong></li>
+</ul>
+
+<p>这就是“插板法”。</p>
+
+<hr />
+
+<p><strong>盒子可为0：</strong>
+将 $n$ 个相同球放进 $k$ 个不同盒子，每个盒子可以放 0 个。</p>
+
+<p>插板思路：</p>
+
+<p>从每个盒子中拿出一个球放到总的球中去，即球的总数变成 $n+k$ 个。</p>
+
+<p>问题变成将 $n+K$ 个相同的球放进 $k$ 个不同盒子，每个盒子至少一个球。（从盒子中预取了一个球，欠盒子一个球）。</p>
+
+<p>答案公式：
+\(\binom{n + k - 1}{k - 1}\)</p>
+
+<p><strong>每盒至少1：</strong>
+将 $n$ 个相同球放进 $k$ 个不同盒子，<strong>每个盒子至少一个球</strong>。</p>
+
+<p>插板思路：</p>
+
+<p>$n$ 个球共 $n-1$ 个插板（球之间的空隙即可理解为插板）。</p>
+
+<p>从 $n-1$ 个插板中选出 $k-1$ 个插板来达到k个分组。</p>
+
+<p>答案公式：
+\(\binom{n - 1}{k - 1}\)</p>
+
+<p><strong>每盒至多1：</strong>
+有 $n$ 个相同的球，要放入 $k$ 个不同的盒子，每个盒子最多只能放 $1$ 个球，问有多少种放法？</p>
+
+<p>这是<strong>组合数本身</strong>：从 $k$ 个盒子中任选 $n$ 个，把球分别放进去。</p>
+
+<blockquote>
+  <p>$k$ 需要大于等于 $n$ 。否则 $n$ 个球无法放入到 $k$ 个盒子中，因为每个盒子最多 $1$ 个球。</p>
+</blockquote>
+
+<p>答案公式：
+\(\binom{n}{k}\)</p>
+
+<hr />
+
+<h3 id="捆绑法">捆绑法</h3>
+
+<p>“<strong>捆绑法</strong>”是排列组合中的一种技巧，常用于解决<strong>某些元素必须在一起排列</strong>的问题，通俗地说，就是把几个元素“捆”成一个整体，整体参与排列，然后再<strong>对内部进行排列</strong>。</p>
+
+<hr />
+
+<p><strong>使用场景：</strong></p>
+<ul>
+  <li>一些元素必须在一起（如相邻、成组）</li>
+  <li>常见于排列问题（不是组合）</li>
+  <li>有时也可配合容斥使用（例如“至少几个在一起”）</li>
+</ul>
+
+<p><strong>使用步骤：</strong></p>
+<ol>
+  <li>将必须捆绑的元素看作一个整体</li>
+  <li>整体和其他元素一起排列（使用阶乘）</li>
+  <li>对这个捆绑体内部的元素再排列（同样用阶乘）</li>
+  <li>乘起来即为答案</li>
+</ol>
+
+<hr />
+
+<p><strong>题目1：</strong>
+“ABCDEF” 这 6 个字母的全排列中，要求 B 和 C 必须相邻，有多少种排列方式？</p>
+
+<p>解法：</p>
+<ul>
+  <li>总共 6 个字母</li>
+  <li>B 和 C 捆绑 ➜ 变成了 5 个“元素”：(BC), A, D, E, F</li>
+  <li>这些“元素”的排列数：$5! = 120$</li>
+  <li>但 B 和 C 的内部也有顺序：BC 或 CB ➜ $2!$</li>
+</ul>
+
+\[\text{总方案数} = 5! \times 2! = 120 \times 2 = 240\]
+
+<p><strong>题目2：</strong> 
+4 对情侣排队，情侣必须在一起，问有多少种排法？</p>
+
+<p>每对情侣捆绑成一个“单位”：</p>
+
+<ul>
+  <li>捆成 4 个整体 ➜ 排列：$4!$</li>
+  <li>每对内部可以互换：每对都有 $2!$ 种 ➜ 总共 $2^4$</li>
+</ul>
+
+\[\text{答案} = 4! \times 2^4 = 24 \times 16 = 384\]
+
+<hr />
+
+<h3 id="容斥原理">容斥原理</h3>
+
+<p>容斥原理（Inclusion-Exclusion Principle）是组合数学中一个非常重要的工具，常用于计算多个集合的并集的元素个数，尤其是在存在重复计数时排除重复。</p>
+
+<hr />
+<p><strong>对于两个集合 $A, B$</strong></p>
+
+\[|A \cup B| = |A| + |B| - |A \cap B|\]
+
+<p>解释：加上 $A$ 和 $B$ 的元素后，$A \cap B$ 的元素被算了两次，要减去一次。</p>
+
+<p><strong>三个集合的容斥公式</strong></p>
+
+\[|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |B \cap C| - |A \cap C| + |A \cap B \cap C|\]
+
+<p>解释：</p>
+<ul>
+  <li>加上单个集合：每个元素都至少算一次</li>
+  <li>减去两两交集：把重复部分扣掉</li>
+  <li>加上三交集：被减了三次，需要加回来两次</li>
+</ul>
+
+<p><strong>一般公式（n 个集合）</strong></p>
+
+<p>设 $A_1, A_2, \ldots, A_n$ 是 $n$ 个集合，则：</p>
+
+\[\left| \bigcup_{i=1}^{n} A_i \right| = \sum |A_i| - \sum |A_i \cap A_j| + \sum |A_i \cap A_j \cap A_k| - \cdots + (-1)^{n+1} |A_1 \cap A_2 \cap \cdots \cap A_n|\]
+
+<hr />
+
+<p><strong>例 1： 1~100 中能被 3 或 5 整除的个数是多少？</strong></p>
+
+<ul>
+  <li>被 3 整除：$\left\lfloor \frac{100}{3} \right\rfloor = 33$</li>
+  <li>被 5 整除：$\left\lfloor \frac{100}{5} \right\rfloor = 20$</li>
+  <li>被 15 整除（重复）：$\left\lfloor \frac{100}{15} \right\rfloor = 6$</li>
+</ul>
+
+<p>结果：$33 + 20 - 6 = 47$</p>
+
+<p><strong>例 2：1~100 中，不能被 2、3、5 中任意一个整除的数有多少个？</strong></p>
+
+<p>先求1~100中，能被2、3或5的数，</p>
+
+<p>设全集大小 $U = 100$</p>
+
+<ul>
+  <li>
+\[A: 被 2 整除，|A| = 50\]
+  </li>
+  <li>
+\[B: 被 3 整除，|B| = 33\]
+  </li>
+  <li>
+\[C: 被 5 整除，|C| = 20\]
+  </li>
+  <li>
+\[|A \cap B| = \left\lfloor \frac{100}{6} \right\rfloor = 16\]
+  </li>
+  <li>
+\[|A \cap C| = \left\lfloor \frac{100}{10} \right\rfloor = 10\]
+  </li>
+  <li>
+\[|B \cap C| = \left\lfloor \frac{100}{15} \right\rfloor = 6\]
+  </li>
+  <li>
+\[|A \cap B \cap C| = \left\lfloor \frac{100}{30} \right\rfloor = 3\]
+  </li>
+</ul>
+
+\[|A \cup B \cup C| = 50 + 33 + 20 - 16 - 10 - 6 + 3 = 74\]
+
+<p>不能被 2, 3, 5 整除的数有：</p>
+
+\[100 - 74 = 26\]
+
+<hr />
+
+<h2 id="求解排列组合集合">求解排列组合集合</h2>
+
+<h3 id="使用-itertools-模块">使用 <code class="language-plaintext highlighter-rouge">itertools</code> 模块</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="c1"># 排列：返回所有可能的有序排列
+</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">perms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="p">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"排列："</span><span class="p">,</span> <span class="n">perms</span><span class="p">)</span>
+<span class="c1"># 输出：[(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)]
+</span>
+<span class="c1"># 组合：返回所有可能的无序组合
+</span><span class="n">combs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="p">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"组合："</span><span class="p">,</span> <span class="n">combs</span><span class="p">)</span>
+<span class="c1"># 输出：[(1, 2), (1, 3), (2, 3)]
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="手动实现回溯法">手动实现（回溯法）</h3>
+
+<p><strong>排列</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">used</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">backtrack</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">==</span> <span class="n">r</span><span class="p">:</span>
+            <span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[:])</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">backtrack</span><span class="p">()</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="n">backtrack</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div></div>
+
+<p><strong>组合</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">combinations</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">start</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">==</span> <span class="n">r</span><span class="p">:</span>
+            <span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[:])</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+            <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">path</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="n">backtrack</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="求解排列组合结果">求解排列组合结果</h2>
+
+<p><strong>通用写法</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">permutation_count</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="p">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">//</span> <span class="n">math</span><span class="p">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">r</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">combination_count</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="p">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">//</span> <span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">r</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">permutation_count</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># 20
+</span><span class="k">print</span><span class="p">(</span><span class="n">combination_count</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># 10
+</span></code></pre></div></div>
+
+<p><strong>Python 3.8+ 中有排列组合函数</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># 排列数
+</span><span class="k">def</span> <span class="nf">permutation</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="p">.</span><span class="n">perm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+
+<span class="c1"># 组合数
+</span><span class="k">def</span> <span class="nf">combination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="p">.</span><span class="n">comb</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="排列组合结果取余">排列组合结果取余</h2>
+
+<p>当 $n$ 和 $r$ 很大时，比如 $n \leq 10^6$，而你需要计算排列数或组合数并对一个大质数（如 $10^9 + 7$）取模，这种情况在算法题里很常见。</p>
+
+<p>我们可以使用 <strong>快速预处理 + 模逆元</strong> 的方式高效求解。</p>
+
+<hr />
+
+<p>高效计算：</p>
+
+<ul>
+  <li>排列数：$A(n, r) = \frac{n!}{(n - r)!} \mod p$</li>
+  <li>组合数：$C(n, r) = \frac{n!}{r!(n - r)!} \mod p$</li>
+</ul>
+
+<p>其中 $p$ 是一个大质数（比如 $10^9 + 7$）。</p>
+
+<h3 id="1-阶乘预处理">1. 阶乘预处理</h3>
+
+<p>用数组提前存好 $0! \sim MAX\_N! \mod MOD$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MOD</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">7</span>
+<span class="n">MAX_N</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
+
+<span class="n">fact</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">MAX_N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 预处理阶乘
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">MAX_N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">fact</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fact</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span> <span class="o">%</span> <span class="n">MOD</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="2-快速幂">2. 快速幂</h3>
+
+<p>快速幂（Fast Exponentiation）是一种用 <strong>对数时间复杂度 $O(\log n)$</strong> 计算 $a^b$ 或 $a^b \mod m$ 的算法，非常适合处理大数幂运算，常用于竞赛、密码学和模逆元计算等场景。</p>
+
+<hr />
+
+<p><strong>核心思想</strong>：
+利用指数的二进制展开，将幂运算转换为一系列平方和乘法的组合：</p>
+
+\[a^b = a^{2^0 \cdot b_0} \cdot a^{2^1 \cdot b_1} \cdot a^{2^2 \cdot b_2} \cdots\]
+
+<p>其中 $b_i$ 是 $b$ 的第 $i$ 位二进制位。</p>
+
+<p><strong>例子</strong></p>
+
+<p>比如：$3^{13}$</p>
+
+<ul>
+  <li>13 的二进制是 <code class="language-plaintext highlighter-rouge">1101</code>，即 $3^{8} \cdot 3^{4} \cdot 3^1$</li>
+  <li>所以只需要计算 $3^1$、$3^2$、$3^4$、$3^8$，并乘上其中对应为 1 的部分</li>
+</ul>
+
+<hr />
+
+<p>Python 实现（含模运算）</p>
+
+<p>递归写法</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fast_pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mod</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="n">half</span> <span class="o">=</span> <span class="n">fast_pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">mod</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">half</span> <span class="o">*</span> <span class="n">half</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+
+<p>迭代写法（推荐）</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fast_pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mod</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">a</span> <span class="o">%=</span> <span class="n">mod</span>
+    <span class="k">while</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">b</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span> <span class="o">%</span> <span class="n">mod</span>
+        <span class="n">b</span> <span class="o">//=</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+
+<p>内置函数（Python 内建）</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">pow</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="3-模逆元">3. 模逆元</h3>
+
+<p>因为不能直接除法，需要将除法变成乘上“模逆元”：</p>
+
+\[\frac{a}{b} \mod p = a \cdot b^{-1} \mod p\]
+
+<p>当 $p$ 是质数时，根据<a href="#扩展费马小定理">费马小定理</a>，$b^{-1} \equiv b^{p - 2} \mod p$。</p>
+
+<p>$b^{p - 2}$ 需使用<strong>快速幂</strong>计算。</p>
+
+<hr />
+
+<p>用数组提前存好 $0!^{-1} \sim MAX\_N!^{-1} \mod MOD$</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MOD</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">7</span>
+<span class="n">MAX_N</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
+
+<span class="c1"># 预处理阶乘和阶乘逆元
+</span><span class="n">fact</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">MAX_N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">inv_fact</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">MAX_N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 快速幂
+</span><span class="k">def</span> <span class="nf">mod_pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mod</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">a</span> <span class="o">%=</span> <span class="n">mod</span>
+    <span class="k">while</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">b</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="n">a</span> <span class="o">%</span> <span class="n">mod</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">%</span> <span class="n">mod</span>
+        <span class="n">b</span> <span class="o">//=</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="c1"># 预处理阶乘逆元
+</span><span class="n">inv_fact</span><span class="p">[</span><span class="n">MAX_N</span><span class="p">]</span> <span class="o">=</span> <span class="n">mod_pow</span><span class="p">(</span><span class="n">fact</span><span class="p">[</span><span class="n">MAX_N</span><span class="p">],</span> <span class="n">MOD</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MAX_N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">inv_fact</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">inv_fact</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>为啥不每次调用 <code class="language-plaintext highlighter-rouge">inv_fact[i] = mod_pow(fact[i], MOD - 2, MOD)</code>？</p>
+
+  <p>这是可以的，但：每次调用 <code class="language-plaintext highlighter-rouge">mod_pow</code> 是 $O(\log MOD)$，总时间是$O(n \log MOD)$。</p>
+</blockquote>
+
+<hr />
+
+<p>目标：<strong>用一次快速幂 + 一次倒序循环（$O(n)$）就构造完所有逆元</strong></p>
+
+<p>关键公式：
+对于质数模 $p$，有</p>
+
+\[\text{inv_fact}[i] = \text{inv_fact}[i+1] \cdot (i+1) \mod p\]
+
+<p>这背后是利用：</p>
+
+\[(i+1)!^{-1} \cdot (i+1) = i!^{-1}\]
+
+<p>因为我们先用费马小定理求出：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">inv_fact</span><span class="p">[</span><span class="n">MAX_N</span><span class="p">]</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">fact</span><span class="p">[</span><span class="n">MAX_N</span><span class="p">],</span> <span class="n">MOD</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>然后：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MAX_N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">inv_fact</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">inv_fact</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="完整代码">完整代码</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MOD</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">7</span>
+<span class="n">MAX_N</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
+
+<span class="c1"># 预处理阶乘和阶乘逆元
+</span><span class="n">fact</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">MAX_N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">inv_fact</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">MAX_N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 预处理阶乘
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">MAX_N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">fact</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fact</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span> <span class="o">%</span> <span class="n">MOD</span>
+
+<span class="c1"># 快速幂
+</span><span class="k">def</span> <span class="nf">mod_pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mod</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">a</span> <span class="o">%=</span> <span class="n">mod</span>
+    <span class="k">while</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">b</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="n">a</span> <span class="o">%</span> <span class="n">mod</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">%</span> <span class="n">mod</span>
+        <span class="n">b</span> <span class="o">//=</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># Python 内置的快速幂（等价于 a^(p-2) % p）
+</span><span class="k">def</span> <span class="nf">mod_pow2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mod</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">mod</span><span class="p">)</span>
+
+<span class="c1"># 预处理阶乘逆元
+</span><span class="n">inv_fact</span><span class="p">[</span><span class="n">MAX_N</span><span class="p">]</span> <span class="o">=</span> <span class="n">mod_pow</span><span class="p">(</span><span class="n">fact</span><span class="p">[</span><span class="n">MAX_N</span><span class="p">],</span> <span class="n">MOD</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MOD</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MAX_N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">inv_fact</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">inv_fact</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span>
+
+<span class="c1"># 组合数 C(n, r)
+</span><span class="k">def</span> <span class="nf">comb</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">fact</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">inv_fact</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">%</span> <span class="n">MOD</span> <span class="o">*</span> <span class="n">inv_fact</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="n">r</span><span class="p">]</span> <span class="o">%</span> <span class="n">MOD</span>
+
+<span class="c1"># 排列数 A(n, r)
+</span><span class="k">def</span> <span class="nf">perm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">fact</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">inv_fact</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="n">r</span><span class="p">]</span> <span class="o">%</span> <span class="n">MOD</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="扩展费马小定理">扩展：费马小定理</h2>
+
+<h3 id="定义">定义</h3>
+
+<p>设：</p>
+
+<ul>
+  <li>$p$ 是一个 <strong>质数</strong></li>
+  <li>$a$ 是一个整数，且 <strong>$a \not\equiv 0 \pmod{p}$</strong>（即 $a$ 与 $p$ 互质）</li>
+</ul>
+
+<p>那么：</p>
+
+\[a^{p-1} \equiv 1 \pmod{p}\]
+
+<hr />
+
+<h3 id="模逆元">模逆元</h3>
+
+<p>我们两边同乘上 $a^{-1}$ 得：</p>
+
+\[a^{p-2} \equiv a^{-1} \pmod{p}\]
+
+<p>这就是我们常用的 <strong>模逆元公式</strong>（前提：$p$ 是质数）：</p>
+
+\[a^{-1} \equiv a^{p - 2} \mod p\]
+
+<hr />
+
+<h3 id="应用举例">应用举例</h3>
+
+<p><strong>示例 1：求 $3^{-1} \mod 7$</strong></p>
+
+<p>用费马小定理推论（因为 7 是质数）：</p>
+
+\[3^{-1} \equiv 3^{7-2} = 3^5 \equiv ? \mod 7\]
+
+<p>计算 $3^5 = 243$，然后 $243 \mod 7 = 5$</p>
+
+<p>所以答案是：</p>
+
+\[3^{-1} \equiv 5 \mod 7\]
+
+<p>验证 $3 \times 5 = 15 \mod 7 = 1$ 成功。</p>
+
+<hr />
+
+<p><strong>示例 2：求组合数 $\binom{n}{k} \mod p$</strong></p>
+
+<p>公式：</p>
+
+\[\binom{n}{k} \equiv \frac{n!}{k!(n-k)!} \mod p\]
+
+<p>直接除会出错，因为模运算下没有“除法”，只能转为乘逆元：</p>
+
+\[\binom{n}{k} \equiv n! \times (k!)^{-1} \times ((n-k)!)^{-1} \mod p\]
+
+<p>而逆元使用费马小定理：</p>
+
+\[(k!)^{-1} \equiv (k!)^{p-2} \mod p\]
+
+<hr />
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#math" class="page__taxonomy-item p-category" rel="tag">math</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2025-06-01T00:00:00+00:00">June 1, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88-%E9%A2%98%E5%8D%95/" class="pagination--pager" title="单调栈-题单">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="https://yourusername.github.io"></a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
