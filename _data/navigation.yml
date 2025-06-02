@@ -8,7 +8,7 @@ main:
     url: /leetcode/
   - title: "数学"
     url: /math/
-#  - title: "大数据"
-#    url: /bigdata/
+  - title: "KISS"
+    url: /programming/
 #  - title: "关于我"
 #    url: /about/
