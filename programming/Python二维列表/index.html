@@ -1,0 +1,481 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.1 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Python二维列表操作技巧</title>
+<meta name="description" content="从二维列表最基本的创建方式出发，逐步深入到访问、遍历、修改、拷贝、切片等实用操作。">
+
+
+  <meta name="author" content="phoenixfei">
+  
+  <meta property="article:author" content="phoenixfei">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="">
+<meta property="og:title" content="Python二维列表操作技巧">
+<meta property="og:url" content="https://yourusername.github.io/programming/Python%E4%BA%8C%E7%BB%B4%E5%88%97%E8%A1%A8/">
+
+
+  <meta property="og:description" content="从二维列表最基本的创建方式出发，逐步深入到访问、遍历、修改、拷贝、切片等实用操作。">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2025-06-01T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://yourusername.github.io/programming/Python%E4%BA%8C%E7%BB%B4%E5%88%97%E8%A1%A8/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title=" Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<!-- Ref:TeX Input Processor Options: https://docs.mathjax.org/en/latest/options/input/tex.html -->
+
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+
+<!-- open link in another page -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll('a[href^="http"]');
+    links.forEach(link => {
+      if (!link.href.includes(window.location.hostname)) {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      }
+    });
+  });
+</script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/"
+                
+                
+              >首页</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/ds-algo/"
+                
+                
+              >DSA</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/leetcode/"
+                
+                
+              >题单</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/math/"
+                
+                
+              >数学</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/programming/"
+                
+                
+              >KISS</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Python二维列表操作技巧">
+    <meta itemprop="description" content="从二维列表最基本的创建方式出发，逐步深入到访问、遍历、修改、拷贝、切片等实用操作。">
+    <meta itemprop="datePublished" content="2025-06-01T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="https://yourusername.github.io/programming/Python%E4%BA%8C%E7%BB%B4%E5%88%97%E8%A1%A8/" itemprop="url">Python二维列表操作技巧
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#创建二维列表">创建二维列表</a></li><li><a href="#转置二维数组行变列">转置二维数组（行变列）</a></li><li><a href="#平铺二维数组">平铺二维数组</a></li><li><a href="#旋转二维数组">旋转二维数组</a></li><li><a href="#二维数组中任意值是否满足某条件">二维数组中任意值是否满足某条件</a></li><li><a href="#使用-enumerate-获取坐标和值">使用 enumerate 获取坐标和值</a></li><li><a href="#zip-配合多个二维数组">zip 配合多个二维数组</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>从二维列表最基本的创建方式出发，逐步深入到访问、遍历、修改、拷贝、切片等实用操作。</p>
+
+<hr />
+
+<h3 id="创建二维列表">创建二维列表</h3>
+
+<ul>
+  <li>表达式 <code class="language-plaintext highlighter-rouge">[1] * 26</code> 的含义是：创建一个包含 26 个元素 的列表，每个元素都是整数 1。</li>
+  <li>如果你想构造二维列表或多个空子列表，正确的做法是用 <code class="language-plaintext highlighter-rouge">[[] for _ in range(n)]</code>。</li>
+  <li><strong>不要用 <code class="language-plaintext highlighter-rouge">[[0]*3]*2</code>，因为那样会创建两个引用相同的子列表！</strong></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[[]</span> <span class="o">*</span> <span class="mi">26</span><span class="p">]</span>
+<span class="c1"># 等价于 a = [[]]
+</span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">26</span>
+<span class="c1"># [1, 1, 1, 1, ..., 1]
+</span><span class="n">c</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">)]</span>
+<span class="c1"># [[], [], [], ..., []]  # 共 26 个空列表，每个都是独立的对象
+</span><span class="n">d</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+<span class="c1"># [ [0, 0, 0], [0, 0, 0]]
+</span></code></pre></div></div>
+
+<p>在 Python 中，表达式 <code class="language-plaintext highlighter-rouge">[[0]*3]*2</code> 看似创建了一个 2 行 3 列的二维列表，但<strong>它的行为容易引起误解</strong>。
+这个表达式，做了以下两件事：</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">[0] * 3</code> 创建了一个列表 <code class="language-plaintext highlighter-rouge">[0, 0, 0]</code></li>
+  <li>然后用 <code class="language-plaintext highlighter-rouge">* 2</code> <strong>重复这个同一个列表对象两次</strong>，形成二维结构。</li>
+</ol>
+
+<p>所以，最终结果看起来像这样：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>但注意：<strong>两行其实指向的是同一个列表对象的引用！</strong>
+因此，引入的问题就是“共享引用”问题。</p>
+
+<p>比如修改<code class="language-plaintext highlighter-rouge">a[0][0] = 99</code>，实际输出的结果却是：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+    <span class="p">[</span><span class="mi">99</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">99</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">]</span>
+</code></pre></div></div>
+<p>即使你的初衷是只改 <code class="language-plaintext highlighter-rouge">a[0][0]</code> 的值，但 <code class="language-plaintext highlighter-rouge">a[1][0]</code> 也被一起改了，因为它们是<strong>同一个内层列表的两个引用</strong>！</p>
+
+<p>因此，正确的写法是使用<strong>列表推导式</strong>创建二维数组。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>写法</th>
+      <th>是否安全</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[[0]*3]*2</code></td>
+      <td>❌ 否</td>
+      <td>多行共享同一个列表对象</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[[0]*3 for _ in ...]</code></td>
+      <td>✅ 是</td>
+      <td>每行都是新列表，互不影响</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="转置二维数组行变列">转置二维数组（行变列）</h3>
+
+<p><code class="language-plaintext highlighter-rouge">*grid</code>表示解包。</p>
+
+<blockquote>
+  <p>在 Python 中，解包（unpacking） 是一种将“可迭代对象”的元素拆解出来，并分别赋值给变量的语法。它非常常见且强大，可以用于元组、列表、字符串、字典等。</p>
+
+  <p>基本解包：<code class="language-plaintext highlighter-rouge">x, y, z = (10, 20, 30)</code></p>
+
+  <p>使用*号进行扩展解包: <code class="language-plaintext highlighter-rouge">a, *b = [1, 2, 3, 4]</code> ，解包后，a为1; b为列表[2, 3, 4]。</p>
+</blockquote>
+
+<p>解包后，用zip将行对应的列表“打包”在一起，再转成list形式，即可得到转置后的矩阵。</p>
+<blockquote>
+  <p>Python 中的 zip() 是一个非常实用的内置函数，用于将多个可迭代对象“打包”在一起，生成一个由元组组成的迭代器，每个元组包含来自所有输入可迭代对象中对应位置的元素。</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">grid</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="n">transposed</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">grid</span><span class="p">))</span>
+<span class="c1"># [(1, 4), (2, 5), (3, 6)]
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="平铺二维数组">平铺二维数组</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">flat</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+<span class="c1"># [1, 2, 3, 4, 5, 6]
+</span></code></pre></div></div>
+
+<p><strong>条件筛选 / 条件替换</strong></p>
+<ul>
+  <li>将所有奇数变为 0
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_grid</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>查找最大值及其位置
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">)</span>
+<span class="n">positions</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="n">max_val</span><span class="p">]</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="旋转二维数组">旋转二维数组</h3>
+
+<ul>
+  <li>顺时针旋转 90 度
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rotated</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">grid</span><span class="p">)]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>逆时针旋转 90 度
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rotated</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">grid</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="二维数组中任意值是否满足某条件">二维数组中任意值是否满足某条件</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">any_odd</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="p">)</span>
+<span class="n">all_positive</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="使用-enumerate-获取坐标和值">使用 enumerate 获取坐标和值</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"grid[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s">][</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s">] = </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="zip-配合多个二维数组">zip 配合多个二维数组</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]</span>
+
+<span class="n">summed</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">row_a</span><span class="p">,</span> <span class="n">row_b</span><span class="p">)]</span> <span class="k">for</span> <span class="n">row_a</span><span class="p">,</span> <span class="n">row_b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)]</span>
+<span class="c1"># [[6, 8], [10, 12]]
+</span></code></pre></div></div>
+
+<hr />
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#programming" class="page__taxonomy-item p-category" rel="tag">programming</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2025-06-01T00:00:00+00:00">June 1, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/programming/Pythonic%E7%BC%96%E7%A8%8B/" class="pagination--pager" title="Pythonic编程技巧">Previous</a>
+    
+    
+      <a href="/programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94/" class="pagination--pager" title="常用数据结构对比：Python VS Java">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="https://yourusername.github.io"></a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,430 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.1 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>常用数据结构对比：Python VS Java</title>
+<meta name="description" content="从核心结构、功能对等实现以及差异说明，介绍Java 与 Python 常用数据结构，适合从 Java 转向 Python 或同时使用两者的开发者参考。">
+
+
+  <meta name="author" content="phoenixfei">
+  
+  <meta property="article:author" content="phoenixfei">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="">
+<meta property="og:title" content="常用数据结构对比：Python VS Java">
+<meta property="og:url" content="https://yourusername.github.io/programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94/">
+
+
+  <meta property="og:description" content="从核心结构、功能对等实现以及差异说明，介绍Java 与 Python 常用数据结构，适合从 Java 转向 Python 或同时使用两者的开发者参考。">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2025-06-01T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://yourusername.github.io/programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title=" Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+<!-- Ref:TeX Input Processor Options: https://docs.mathjax.org/en/latest/options/input/tex.html -->
+
+
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+
+<!-- open link in another page -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll('a[href^="http"]');
+    links.forEach(link => {
+      if (!link.href.includes(window.location.hostname)) {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      }
+    });
+  });
+</script>
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/"
+                
+                
+              >首页</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/ds-algo/"
+                
+                
+              >DSA</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/leetcode/"
+                
+                
+              >题单</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/math/"
+                
+                
+              >数学</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/programming/"
+                
+                
+              >KISS</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="常用数据结构对比：Python VS Java">
+    <meta itemprop="description" content="从核心结构、功能对等实现以及差异说明，介绍Java 与 Python 常用数据结构，适合从 Java 转向 Python 或同时使用两者的开发者参考。">
+    <meta itemprop="datePublished" content="2025-06-01T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="https://yourusername.github.io/programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94/" itemprop="url">常用数据结构对比：Python VS Java
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              
+            </nav>
+          </aside>
+        
+        <p>从核心结构、功能对等实现以及差异说明，介绍<strong>Java 与 Python 常用数据结构</strong>，适合从 Java 转向 Python 或同时使用两者的开发者参考。</p>
+
+<hr />
+
+<p><strong>Java 与 Python 常用数据结构对照</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>功能/类型</strong></th>
+      <th><strong>Java</strong></th>
+      <th><strong>Python</strong></th>
+      <th><strong>说明</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>数组（定长）</td>
+      <td><code class="language-plaintext highlighter-rouge">int[]</code>, <code class="language-plaintext highlighter-rouge">String[]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">list</code>（无定长限制）</td>
+      <td>Python 的 list 类似动态数组</td>
+    </tr>
+    <tr>
+      <td>动态数组（列表）</td>
+      <td><code class="language-plaintext highlighter-rouge">ArrayList</code></td>
+      <td><code class="language-plaintext highlighter-rouge">list</code></td>
+      <td>都支持随机访问和 append</td>
+    </tr>
+    <tr>
+      <td>链表</td>
+      <td><code class="language-plaintext highlighter-rouge">LinkedList</code></td>
+      <td>无内置单独结构（可用 <code class="language-plaintext highlighter-rouge">collections.deque</code>）</td>
+      <td>Python <code class="language-plaintext highlighter-rouge">deque</code> 更适合队列操作</td>
+    </tr>
+    <tr>
+      <td>栈（后进先出）</td>
+      <td><code class="language-plaintext highlighter-rouge">Stack</code> / <code class="language-plaintext highlighter-rouge">Deque</code></td>
+      <td><code class="language-plaintext highlighter-rouge">list</code> / <code class="language-plaintext highlighter-rouge">collections.deque</code></td>
+      <td>Python <code class="language-plaintext highlighter-rouge">list</code> 的 <code class="language-plaintext highlighter-rouge">.append()</code> 和 <code class="language-plaintext highlighter-rouge">.pop()</code> 可实现</td>
+    </tr>
+    <tr>
+      <td>队列（先进先出）</td>
+      <td><code class="language-plaintext highlighter-rouge">Queue</code>, <code class="language-plaintext highlighter-rouge">LinkedList</code>, <code class="language-plaintext highlighter-rouge">Deque</code></td>
+      <td><code class="language-plaintext highlighter-rouge">collections.deque</code></td>
+      <td>推荐使用 <code class="language-plaintext highlighter-rouge">deque</code> 替代 list</td>
+    </tr>
+    <tr>
+      <td>双端队列</td>
+      <td><code class="language-plaintext highlighter-rouge">Deque</code>（如 <code class="language-plaintext highlighter-rouge">ArrayDeque</code>）</td>
+      <td><code class="language-plaintext highlighter-rouge">collections.deque</code></td>
+      <td>完全对等</td>
+    </tr>
+    <tr>
+      <td>集合（无序唯一）</td>
+      <td><code class="language-plaintext highlighter-rouge">HashSet</code></td>
+      <td><code class="language-plaintext highlighter-rouge">set</code></td>
+      <td>基于哈希表</td>
+    </tr>
+    <tr>
+      <td>有序集合（排序）</td>
+      <td><code class="language-plaintext highlighter-rouge">TreeSet</code></td>
+      <td><code class="language-plaintext highlighter-rouge">SortedSet</code> from <code class="language-plaintext highlighter-rouge">sortedcontainers</code></td>
+      <td>Python 无内建结构</td>
+    </tr>
+    <tr>
+      <td>哈希表/字典</td>
+      <td><code class="language-plaintext highlighter-rouge">HashMap&lt;K, V&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">dict</code></td>
+      <td>Python 3.7+ 中 dict 保持插入顺序</td>
+    </tr>
+    <tr>
+      <td>有序映射（排序）</td>
+      <td><code class="language-plaintext highlighter-rouge">TreeMap&lt;K, V&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">SortedDict</code> from <code class="language-plaintext highlighter-rouge">sortedcontainers</code></td>
+      <td>Python 无内建结构</td>
+    </tr>
+    <tr>
+      <td>双向映射</td>
+      <td><code class="language-plaintext highlighter-rouge">BiMap</code> from Guava</td>
+      <td><code class="language-plaintext highlighter-rouge">bidict</code>（第三方库）</td>
+      <td>双向键值映射需借助外部库</td>
+    </tr>
+    <tr>
+      <td>优先队列（堆）</td>
+      <td><code class="language-plaintext highlighter-rouge">PriorityQueue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">heapq</code></td>
+      <td>Python <code class="language-plaintext highlighter-rouge">heapq</code> 是最小堆</td>
+    </tr>
+    <tr>
+      <td>树结构（通用）</td>
+      <td>无内建（手写或第三方）</td>
+      <td>无内建（手写或用 <code class="language-plaintext highlighter-rouge">anytree</code> 等）</td>
+      <td>二叉树/Trie 需手动实现</td>
+    </tr>
+    <tr>
+      <td>图结构</td>
+      <td>无内建（常用邻接表）</td>
+      <td>无内建（用 <code class="language-plaintext highlighter-rouge">dict[list]</code> 等实现）</td>
+      <td>也可用 <code class="language-plaintext highlighter-rouge">networkx</code> 库</td>
+    </tr>
+    <tr>
+      <td>不变集合</td>
+      <td><code class="language-plaintext highlighter-rouge">Collections.unmodifiableSet</code></td>
+      <td><code class="language-plaintext highlighter-rouge">frozenset</code></td>
+      <td>Python 中是不可变集合</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#programming" class="page__taxonomy-item p-category" rel="tag">programming</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2025-06-01T00:00:00+00:00">June 1, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/programming/Python%E4%BA%8C%E7%BB%B4%E5%88%97%E8%A1%A8/" class="pagination--pager" title="Python二维列表操作技巧">Previous</a>
+    
+    
+      <a href="/programming/Python%E5%88%97%E8%A1%A8/" class="pagination--pager" title="Python列表操作技巧">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="https://yourusername.github.io"></a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

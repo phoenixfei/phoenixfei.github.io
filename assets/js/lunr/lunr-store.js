@@ -148,4 +148,28 @@ var store = [{
         "tags": [],
         "url": "/math/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/",
         "teaser": null
+      },{
+        "title": "Pythonic编程技巧",
+        "excerpt":"Pythonic（符合 Python 风格） 的技巧可以让代码更简洁、优雅、高效。 在 Python 中，语法糖（syntactic sugar） 是指让代码更简洁、可读性更强的语法形式。虽然它们不是必须的，但能让你写出更 Pythonic 的代码。 常见的 Python 语法糖及示例 🍭 语法糖 💡 示例 🧵 等价写法（或传统写法） 条件表达式（三元表达式） x = a if cond else b if cond: x = a else: x = b 列表推导式 [x*x for x in range(5)] 传统 for 循环逐个 append() 字典/集合推导式 {x: x*x...","categories": ["programming"],
+        "tags": [],
+        "url": "/programming/Pythonic%E7%BC%96%E7%A8%8B/",
+        "teaser": null
+      },{
+        "title": "Python二维列表操作技巧",
+        "excerpt":"从二维列表最基本的创建方式出发，逐步深入到访问、遍历、修改、拷贝、切片等实用操作。 创建二维列表 表达式 [1] * 26 的含义是：创建一个包含 26 个元素 的列表，每个元素都是整数 1。 如果你想构造二维列表或多个空子列表，正确的做法是用 [[] for _ in range(n)]。 不要用 [[0]*3]*2，因为那样会创建两个引用相同的子列表！ a = [[] * 26] # 等价于 a = [[]] b = [1] * 26 # [1, 1, 1, 1, ..., 1] c = [[] for _ in range(26)] # [[],...","categories": ["programming"],
+        "tags": [],
+        "url": "/programming/Python%E4%BA%8C%E7%BB%B4%E5%88%97%E8%A1%A8/",
+        "teaser": null
+      },{
+        "title": "常用数据结构对比：Python VS Java",
+        "excerpt":"从核心结构、功能对等实现以及差异说明，介绍Java 与 Python 常用数据结构，适合从 Java 转向 Python 或同时使用两者的开发者参考。 Java 与 Python 常用数据结构对照 功能/类型 Java Python 说明 数组（定长） int[], String[] list（无定长限制） Python 的 list 类似动态数组 动态数组（列表） ArrayList list 都支持随机访问和 append 链表 LinkedList 无内置单独结构（可用 collections.deque） Python deque 更适合队列操作 栈（后进先出） Stack / Deque list / collections.deque Python list 的 .append() 和 .pop() 可实现...","categories": ["programming"],
+        "tags": [],
+        "url": "/programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94/",
+        "teaser": null
+      },{
+        "title": "Python列表操作技巧",
+        "excerpt":"Python 中的 列表（List） 是一种有序、可变、可重复的序列类型，用于存储一组项目。它是 Python 中最常用的数据结构之一，类似于数组，但功能更强大。 列表基本操作 创建列表 # 空列表 a = [] # 含元素的列表 b = [1, 2, 3] # 混合类型 c = [1, \"hello\", True, 3.14] # 嵌套列表（二维） d = [[1, 2], [3, 4]] 列表推导式 squares = [x**2 for x in range(5)] # [0, 1, 4, 9, 16]...","categories": ["programming"],
+        "tags": [],
+        "url": "/programming/Python%E5%88%97%E8%A1%A8/",
+        "teaser": null
       }]
