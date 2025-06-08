@@ -207,7 +207,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#图的遍历算法题单">图的遍历算法题单</a></li><li><a href="#拓扑排序典型题目推荐">拓扑排序典型题目推荐</a></li><li><a href="#最短路径算法题单">最短路径算法题单</a></li></ul>
+              <ul class="toc__menu"><li><a href="#遍历算法题单">遍历算法题单</a></li><li><a href="#拓扑排序题单">拓扑排序题单</a></li><li><a href="#路径类算法题单">路径类算法题单</a><ul><li><a href="#最短路径题单">最短路径题单</a></li><li><a href="#欧拉路径--欧拉回路题单">欧拉路径 / 欧拉回路题单</a></li></ul></li><li><a href="#连通性类算法题单">连通性类算法题单</a><ul><li><a href="#并查集题单">并查集题单</a></li><li><a href="#tarjan算法题单">Tarjan算法题单</a></li></ul></li></ul>
             </nav>
           </aside>
         
@@ -215,94 +215,123 @@
 
 <hr />
 
-<h2 id="图的遍历算法题单">图的遍历算法题单</h2>
+<h2 id="遍历算法题单">遍历算法题单</h2>
 
 <table>
   <thead>
     <tr>
-      <th>题目名</th>
-      <th>类型</th>
+      <th>题目编号</th>
+      <th>题目名称</th>
+      <th>算法类型</th>
       <th>链接</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>200. 岛屿数量</td>
-      <td>DFS/BFS</td>
+      <td>200</td>
+      <td>岛屿数量</td>
+      <td>DFS / BFS</td>
       <td><a href="https://leetcode.cn/problems/number-of-islands">力扣 200</a></td>
     </tr>
     <tr>
-      <td>733. 图像渲染（Flood Fill）</td>
-      <td>DFS/BFS</td>
+      <td>733</td>
+      <td>图像渲染（Flood Fill）</td>
+      <td>DFS / BFS</td>
       <td><a href="https://leetcode.cn/problems/flood-fill">力扣 733</a></td>
     </tr>
     <tr>
-      <td>542. 01矩阵</td>
+      <td>542</td>
+      <td>01 矩阵</td>
       <td>BFS</td>
       <td><a href="https://leetcode.cn/problems/01-matrix">力扣 542</a></td>
     </tr>
     <tr>
-      <td>785. 判断二分图</td>
-      <td>BFS/DFS</td>
+      <td>785</td>
+      <td>判断二分图</td>
+      <td>DFS / BFS</td>
       <td><a href="https://leetcode.cn/problems/is-graph-bipartite">力扣 785</a></td>
     </tr>
     <tr>
-      <td>207. 课程表（拓扑排序）</td>
-      <td>DFS/BFS</td>
+      <td>207</td>
+      <td>课程表（环检测）</td>
+      <td>DFS / BFS</td>
       <td><a href="https://leetcode.cn/problems/course-schedule">力扣 207</a></td>
+    </tr>
+    <tr>
+      <td>695</td>
+      <td>岛屿的最大面积</td>
+      <td>DFS / BFS</td>
+      <td><a href="https://leetcode.cn/problems/max-area-of-island">力扣 695</a></td>
+    </tr>
+    <tr>
+      <td>130</td>
+      <td>被围绕的区域</td>
+      <td>DFS</td>
+      <td><a href="https://leetcode.cn/problems/surrounded-regions">力扣 130</a></td>
+    </tr>
+    <tr>
+      <td>417</td>
+      <td>太平洋大西洋水流问题</td>
+      <td>DFS / BFS</td>
+      <td><a href="https://leetcode.cn/problems/pacific-atlantic-water-flow">力扣 417</a></td>
+    </tr>
+    <tr>
+      <td>1020</td>
+      <td>飞地的数量</td>
+      <td>DFS / BFS</td>
+      <td><a href="https://leetcode.cn/problems/number-of-enclaves">力扣 1020</a></td>
+    </tr>
+    <tr>
+      <td>1034</td>
+      <td>边界着色</td>
+      <td>DFS / BFS</td>
+      <td><a href="https://leetcode.cn/problems/coloring-a-border">力扣 1034</a></td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
-<h2 id="拓扑排序典型题目推荐">拓扑排序典型题目推荐</h2>
+<h2 id="拓扑排序题单">拓扑排序题单</h2>
 
 <table>
   <thead>
     <tr>
-      <th>题目名</th>
-      <th>平台</th>
-      <th>类型</th>
+      <th>题目编号</th>
+      <th>题目名称</th>
+      <th>算法类型</th>
       <th>链接</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>207. 课程表</td>
-      <td>LeetCode</td>
-      <td>Kahn/DFS</td>
-      <td><a href="https://leetcode.cn/problems/course-schedule">题目链接</a></td>
+      <td>207</td>
+      <td>课程表</td>
+      <td>Kahn / DFS</td>
+      <td><a href="https://leetcode.cn/problems/course-schedule">力扣 207</a></td>
     </tr>
     <tr>
-      <td>210. 课程表 II</td>
-      <td>LeetCode</td>
+      <td>210</td>
+      <td>课程表 II</td>
       <td>拓扑排序输出</td>
-      <td><a href="https://leetcode.cn/problems/course-schedule-ii">题目链接</a></td>
+      <td><a href="https://leetcode.cn/problems/course-schedule-ii">力扣 210</a></td>
     </tr>
     <tr>
-      <td>1203. 项目管理排序</td>
-      <td>LeetCode</td>
+      <td>1203</td>
+      <td>项目管理排序</td>
       <td>多层拓扑排序</td>
-      <td><a href="https://leetcode.cn/problems/sort-items-by-groups-respecting-dependencies">题目链接</a></td>
+      <td><a href="https://leetcode.cn/problems/sort-items-by-groups-respecting-dependencies">力扣 1203</a></td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
-<h2 id="最短路径算法题单">最短路径算法题单</h2>
-<p><strong>参考链接</strong></p>
-<ul>
-  <li><a href="https://www.freecodecamp.org/chinese/news/dijkstras-shortest-path-algorithm-visual-introduction/" title="图文详解 Dijkstra 最短路径算法">图文详解 Dijkstra 最短路径算法</a></li>
-  <li><a href="https://www.cnblogs.com/goldsunshine/p/12978305.html" title="一篇文章讲透Dijkstra最短路径算法">一篇文章讲透Dijkstra最短路径算法</a></li>
-  <li>
-    <p><a href="https://leetcode.cn/problems/find-minimum-time-to-reach-last-room-ii/solutions/2975554/dijkstra-zui-duan-lu-pythonjavacgo-by-en-alms/" title="Dijkstra 最短路 灵茶山艾府">Dijkstra 最短路 灵茶山艾府</a></p>
-  </li>
-  <li>【模板题】<a href="https://leetcode.cn/problems/network-delay-time/description/">网络延迟时间</a></li>
-  <li><a href="https://leetcode.cn/problems/find-minimum-time-to-reach-last-room-ii/">到达最后一个房间的最少时间 II</a></li>
-  <li>【0-1 BFS】<a href="https://leetcode.cn/problems/grid-teleportation-traversal/description/">3552. 网格传送门旅游</a></li>
-</ul>
+<h2 id="路径类算法题单">路径类算法题单</h2>
+
+<hr />
+
+<h3 id="最短路径题单">最短路径题单</h3>
 
 <table>
   <thead>
@@ -318,31 +347,194 @@
       <td>743</td>
       <td>网络延迟时间</td>
       <td>Dijkstra</td>
-      <td><a href="https://leetcode.cn/problems/network-delay-time">链接</a></td>
+      <td><a href="https://leetcode.cn/problems/network-delay-time">力扣 743</a></td>
     </tr>
     <tr>
       <td>787</td>
       <td>K 站中转内最便宜的航班</td>
       <td>Bellman-Ford</td>
-      <td><a href="https://leetcode.cn/problems/cheapest-flights-within-k-stops">链接</a></td>
+      <td><a href="https://leetcode.cn/problems/cheapest-flights-within-k-stops">力扣 787</a></td>
     </tr>
     <tr>
       <td>1334</td>
       <td>距离阈值内邻居最少的城市</td>
       <td>Floyd-Warshall</td>
-      <td><a href="https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance">链接</a></td>
+      <td><a href="https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance">力扣 1334</a></td>
     </tr>
     <tr>
       <td>1091</td>
       <td>二进制矩阵中的最短路径</td>
       <td>BFS</td>
-      <td><a href="https://leetcode.cn/problems/shortest-path-in-binary-matrix">链接</a></td>
+      <td><a href="https://leetcode.cn/problems/shortest-path-in-binary-matrix">力扣 1091</a></td>
     </tr>
     <tr>
       <td>2203</td>
       <td>满足约束的最小路径权重子图</td>
       <td>0-1 BFS</td>
-      <td><a href="https://leetcode.cn/problems/minimum-weighted-subgraph-with-the-required-paths">链接</a></td>
+      <td><a href="https://leetcode.cn/problems/minimum-weighted-subgraph-with-the-required-paths">力扣 2203</a></td>
+    </tr>
+    <tr>
+      <td>3342</td>
+      <td>到达最后一个房间的最少时间 II</td>
+      <td>Dijkstra + BFS</td>
+      <td><a href="https://leetcode.cn/problems/find-minimum-time-to-reach-last-room-ii">力扣 3342</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="欧拉路径--欧拉回路题单">欧拉路径 / 欧拉回路题单</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>题目编号</th>
+      <th>题目名称</th>
+      <th>算法类型</th>
+      <th>链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>332</td>
+      <td>重新安排行程</td>
+      <td>欧拉路径（有向图）</td>
+      <td><a href="https://leetcode.cn/problems/reconstruct-itinerary">力扣 332</a></td>
+    </tr>
+    <tr>
+      <td>1436</td>
+      <td>终点城市</td>
+      <td>类欧拉路径</td>
+      <td><a href="https://leetcode.cn/problems/destination-city">力扣 1436</a></td>
+    </tr>
+    <tr>
+      <td>399</td>
+      <td>等式求值</td>
+      <td>图构造（连通性）</td>
+      <td><a href="https://leetcode.cn/problems/evaluate-division">力扣 399</a></td>
+    </tr>
+    <tr>
+      <td>126</td>
+      <td>单词接龙 II</td>
+      <td>路径搜索（欧拉路径变种）</td>
+      <td><a href="https://leetcode.cn/problems/word-ladder-ii">力扣 126</a></td>
+    </tr>
+    <tr>
+      <td>753</td>
+      <td>破解保险箱</td>
+      <td>De Bruijn 序列 → 欧拉回路</td>
+      <td><a href="https://leetcode.cn/problems/cracking-the-safe">力扣 753</a></td>
+    </tr>
+    <tr>
+      <td>210</td>
+      <td>课程表 II</td>
+      <td>拓扑排序 + 路径构造</td>
+      <td><a href="https://leetcode.cn/problems/course-schedule-ii">力扣 210</a></td>
+    </tr>
+    <tr>
+      <td>332</td>
+      <td>重新安排行程（Hierholzer）</td>
+      <td>经典 Hierholzer 算法</td>
+      <td><a href="https://leetcode.cn/problems/reconstruct-itinerary">力扣 332</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="连通性类算法题单">连通性类算法题单</h2>
+
+<hr />
+
+<h3 id="并查集题单">并查集题单</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>题目编号</th>
+      <th>题目名称</th>
+      <th>算法类型</th>
+      <th>链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>547</td>
+      <td>省份数量</td>
+      <td>并查集 / 图连通</td>
+      <td><a href="https://leetcode.cn/problems/number-of-provinces">力扣 547</a></td>
+    </tr>
+    <tr>
+      <td>684</td>
+      <td>冗余连接</td>
+      <td>并查集 / 森林</td>
+      <td><a href="https://leetcode.cn/problems/redundant-connection">力扣 684</a></td>
+    </tr>
+    <tr>
+      <td>685</td>
+      <td>冗余连接 II</td>
+      <td>并查集 + 拓扑</td>
+      <td><a href="https://leetcode.cn/problems/redundant-connection-ii">力扣 685</a></td>
+    </tr>
+    <tr>
+      <td>1319</td>
+      <td>连通网络的操作次数</td>
+      <td>并查集 / 计数</td>
+      <td><a href="https://leetcode.cn/problems/number-of-operations-to-make-network-connected">力扣 1319</a></td>
+    </tr>
+    <tr>
+      <td>990</td>
+      <td>等式方程的可满足性</td>
+      <td>并查集 / 字母映射</td>
+      <td><a href="https://leetcode.cn/problems/satisfiability-of-equality-equations">力扣 990</a></td>
+    </tr>
+    <tr>
+      <td>1202</td>
+      <td>交换字符串中的元素</td>
+      <td>并查集 / 排序</td>
+      <td><a href="https://leetcode.cn/problems/smallest-string-with-swaps">力扣 1202</a></td>
+    </tr>
+    <tr>
+      <td>1971</td>
+      <td>寻找图中是否存在路径</td>
+      <td>并查集 / DFS</td>
+      <td><a href="https://leetcode.cn/problems/find-if-path-exists-in-graph">力扣 1971</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="tarjan算法题单">Tarjan算法题单</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>题目编号</th>
+      <th>题目名称</th>
+      <th>算法类型</th>
+      <th>链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1192</td>
+      <td>查找集群内的关键连接</td>
+      <td>Tarjan（桥）</td>
+      <td><a href="https://leetcode.cn/problems/critical-connections-in-a-network">力扣 1192</a></td>
+    </tr>
+    <tr>
+      <td>1135</td>
+      <td>最低成本联通所有城市</td>
+      <td>Tarjan / Kruskal（MST）</td>
+      <td><a href="https://leetcode.cn/problems/connecting-cities-with-minimum-cost">力扣 1135</a></td>
+    </tr>
+    <tr>
+      <td>2150</td>
+      <td>找出所有强连通分量</td>
+      <td>Tarjan（SCC）</td>
+      <td><a href="https://leetcode.cn/problems/find-all-lonely-nodes-in-a-directed-graph">力扣 2150</a></td>
     </tr>
   </tbody>
 </table>

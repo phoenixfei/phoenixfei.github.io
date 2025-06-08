@@ -207,7 +207,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#列表基本操作">列表基本操作</a></li><li><a href="#切片操作">切片操作</a></li><li><a href="#删除列表元素">删除列表元素</a></li></ul>
+              <ul class="toc__menu"><li><a href="#列表基本操作">列表基本操作</a></li><li><a href="#切片操作">切片操作</a><ul><li><a href="#切片越界处理">切片越界处理</a></li></ul></li><li><a href="#删除列表元素">删除列表元素</a></li></ul>
             </nav>
           </aside>
         
@@ -369,6 +369,34 @@
 
 <hr />
 
+<h3 id="切片越界处理">切片越界处理</h3>
+
+<p>在 Python 中进行<strong>切片操作</strong>（slicing）时，如果<strong>右边界越界</strong>（即超出了序列的实际长度），<strong>不会抛出异常或错误</strong>，而是会自动截取到序列的末尾。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="c1"># 右边界越界，最大索引为 4，但我们切片到索引 10
+</span><span class="k">print</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>  <span class="c1"># 输出: [2, 3, 4, 5]
+</span>
+<span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="c1"># 左边界为负数（从末尾开始），右边界远超最大索引
+</span><span class="k">print</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:</span><span class="mi">100</span><span class="p">])</span>  <span class="c1"># 输出: [30, 40, 50]
+</span>
+<span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>  <span class="c1"># 输出: [10, 20, 30, 40, 50]
+</span></code></pre></div></div>
+
+<p>Python 在执行 <code class="language-plaintext highlighter-rouge">lst[start:end]</code> 时的行为如下：</p>
+<ul>
+  <li><strong>start</strong>：起始索引（包含该索引），如果为负数则从后往前计数。</li>
+  <li><strong>end</strong>：结束索引（<strong>不包含</strong>该索引），如果超过了列表长度，Python 会自动截断到列表末尾，不会报错。</li>
+</ul>
+
+<p>直接访问超出范围的索引会报错，而切片操作则更“宽容”。</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>  <span class="c1"># 会抛出 IndexError: list index out of range
+</span></code></pre></div></div>
+
+<hr />
+
 <h2 id="删除列表元素">删除列表元素</h2>
 <p>在 Python 中，删除列表中的元素有多种方式，诸如<strong>按值删除、按索引删除、条件删除</strong>，还是<strong>就地修改原列表</strong>。</p>
 
@@ -492,7 +520,7 @@
       <a href="/programming/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94/" class="pagination--pager" title="常用数据结构对比：Python VS Java">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/leetcode/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%B3%BB%E5%88%97-%E9%A2%98%E5%8D%95/" class="pagination--pager" title="买卖股票系列-题单">Next</a>
     
   </nav>
 

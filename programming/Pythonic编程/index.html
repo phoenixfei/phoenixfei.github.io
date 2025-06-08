@@ -207,7 +207,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#常见的-python-语法糖及示例">常见的 Python 语法糖及示例</a></li><li><a href="#解包unpacking">解包（unpacking）</a></li></ul>
+              <ul class="toc__menu"><li><a href="#常见的-python-语法糖及示例">常见的 Python 语法糖及示例</a></li><li><a href="#解包unpacking">解包（unpacking）</a></li><li><a href="#python对象排序">Python对象排序</a></li></ul>
             </nav>
           </aside>
         
@@ -338,6 +338,59 @@
 <span class="c1"># 所以 Python 干脆禁止在 赋值右边使用裸 * 解包，你必须直接用：
 </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">nums</span>
 </code></pre></div></div>
+
+<hr />
+
+<h2 id="python对象排序">Python对象排序</h2>
+
+<p>在 Python 中，对象排序可以通过内置的 <code class="language-plaintext highlighter-rouge">sorted()</code> 函数或 <code class="language-plaintext highlighter-rouge">list.sort()</code> 方法来实现。你可以对 基本类型 或 自定义对象 进行排序，常配合 <code class="language-plaintext highlighter-rouge">key</code> 函数使用。</p>
+
+<p>除了使用 <code class="language-plaintext highlighter-rouge">key=lambda</code> 的方式进行排序，Python 也允许在自定义对象中覆写比较方法，让对象具备原生的排序能力。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>优点</th>
+      <th>缺点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">key=lambda</code></td>
+      <td>简洁灵活，适合临时排序逻辑</td>
+      <td>不具备对象原生比较能力</td>
+    </tr>
+    <tr>
+      <td>覆写 <code class="language-plaintext highlighter-rouge">__lt__</code> 等比较方法</td>
+      <td>让对象本身可比较，可与 <code class="language-plaintext highlighter-rouge">sorted()</code>、<code class="language-plaintext highlighter-rouge">min()</code> 等兼容</td>
+      <td>需要更多代码，不够灵活（不适合多种排序场景）</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>情况</th>
+      <th>是否需要 <code class="language-plaintext highlighter-rouge">__eq__</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>只用 <code class="language-plaintext highlighter-rouge">sorted()</code> 排序</td>
+      <td>可以只写 <code class="language-plaintext highlighter-rouge">__lt__</code></td>
+    </tr>
+    <tr>
+      <td>想使用 <code class="language-plaintext highlighter-rouge">==</code>、<code class="language-plaintext highlighter-rouge">!=</code> 比较</td>
+      <td>推荐写 <code class="language-plaintext highlighter-rouge">__eq__</code></td>
+    </tr>
+    <tr>
+      <td>想让对象在容器中比较（如 set）</td>
+      <td>必须写 <code class="language-plaintext highlighter-rouge">__eq__</code>，还需 <code class="language-plaintext highlighter-rouge">__hash__</code></td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 
