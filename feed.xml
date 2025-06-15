@@ -1,4 +1,1100 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://yourusername.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yourusername.github.io/" rel="alternate" type="text/html" /><updated>2025-06-08T13:45:22+00:00</updated><id>https://yourusername.github.io/feed.xml</id><title type="html">phoenixfei</title><subtitle>记录算法、大数据、数学等知识，持续学习与沉淀。</subtitle><author><name>phoenixfei</name></author><entry><title type="html">买卖股票系列-题单</title><link href="https://yourusername.github.io/leetcode/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%B3%BB%E5%88%97-%E9%A2%98%E5%8D%95/" rel="alternate" type="text/html" title="买卖股票系列-题单" /><published>2025-06-08T00:00:00+00:00</published><updated>2025-06-08T00:00:00+00:00</updated><id>https://yourusername.github.io/leetcode/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%B3%BB%E5%88%97-%E9%A2%98%E5%8D%95</id><content type="html" xml:base="https://yourusername.github.io/leetcode/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%B3%BB%E5%88%97-%E9%A2%98%E5%8D%95/"><![CDATA[<p>股票买卖系列是动态规划的经典题目，也是面试的高频题目。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://yourusername.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yourusername.github.io/" rel="alternate" type="text/html" /><updated>2025-06-15T04:35:24+00:00</updated><id>https://yourusername.github.io/feed.xml</id><title type="html">phoenixfei</title><subtitle>记录算法、大数据、数学等知识，持续学习与沉淀。</subtitle><author><name>phoenixfei</name></author><entry><title type="html">二分查找-题单</title><link href="https://yourusername.github.io/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-%E9%A2%98%E5%8D%95/" rel="alternate" type="text/html" title="二分查找-题单" /><published>2025-06-15T00:00:00+00:00</published><updated>2025-06-15T00:00:00+00:00</updated><id>https://yourusername.github.io/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-%E9%A2%98%E5%8D%95</id><content type="html" xml:base="https://yourusername.github.io/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-%E9%A2%98%E5%8D%95/"><![CDATA[<p>二分查找（Binary Search）是一种高效的“分治”策略，适用于有序数据或满足单调性的搜索空间，时间复杂度为 <code class="language-plaintext highlighter-rouge">O(logN)</code>。</p>
+
+<hr />
+
+<h3 id="69-x-的平方根-"><a href="https://leetcode.cn/problems/sqrtx/description/">69. x 的平方根 </a></h3>
+<p>给你一个非负整数 <code>x</code> ，计算并返回&nbsp;<code>x</code>&nbsp;的 <strong>算术平方根</strong> 。</p>
+
+<p>由于返回类型是整数，结果只保留 <strong>整数部分 </strong>，小数部分将被 <strong>舍去 。</strong></p>
+
+<p><strong>注意：</strong>不允许使用任何内置指数函数和算符，例如 <code>pow(x, 0.5)</code> 或者 <code>x ** 0.5</code> 。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>示例 1：</strong></p>
+
+<pre>
+<strong>输入：</strong>x = 4
+<strong>输出：</strong>2
+</pre>
+
+<p><strong>示例 2：</strong></p>
+
+<pre>
+<strong>输入：</strong>x = 8
+<strong>输出：</strong>2
+<strong>解释：</strong>8 的算术平方根是 2.82842..., 由于返回类型是整数，小数部分将被舍去。
+</pre>
+
+<p>&nbsp;</p>
+
+<p><strong>提示：</strong></p>
+
+<ul> 
+ <li><code>0 &lt;= x &lt;= 2<sup>31</sup> - 1</code></li> 
+</ul>
+
+<hr />
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="540-有序数组中的单一元素"><a href="https://leetcode.cn/problems/single-element-in-a-sorted-array/description/">540. 有序数组中的单一元素</a></h3>
+<p>给你一个仅由整数组成的有序数组，其中每个元素都会出现两次，唯有一个数只会出现一次。</p>
+
+<p>请你找出并返回只出现一次的那个数。</p>
+
+<p>你设计的解决方案必须满足 <code>O(log n)</code> 时间复杂度和 <code>O(1)</code> 空间复杂度。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>示例 1:</strong></p>
+
+<pre>
+<strong>输入:</strong> nums = [1,1,2,3,3,4,4,8,8]
+<strong>输出:</strong> 2
+</pre>
+
+<p><strong>示例 2:</strong></p>
+
+<pre>
+<strong>输入:</strong> nums =  [3,3,7,7,10,11,11]
+<strong>输出:</strong> 10
+</pre>
+
+<p>&nbsp;</p>
+
+<p>
+ <meta charset="UTF-8" /></p>
+
+<p><strong>提示:</strong></p>
+
+<ul> 
+ <li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li> 
+ <li><code>0 &lt;= nums[i]&nbsp;&lt;= 10<sup>5</sup></code></li> 
+</ul>
+
+<hr />
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="153-寻找旋转排序数组中的最小值"><a href="https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/">153. 寻找旋转排序数组中的最小值</a></h3>
+<p>已知一个长度为 <code>n</code> 的数组，预先按照升序排列，经由 <code>1</code> 到 <code>n</code> 次 <strong>旋转</strong> 后，得到输入数组。例如，原数组 <code>nums = [0,1,2,4,5,6,7]</code> 在变化后可能得到：</p>
+
+<ul> 
+ <li>若旋转 <code>4</code> 次，则可以得到 <code>[4,5,6,7,0,1,2]</code></li> 
+ <li>若旋转 <code>7</code> 次，则可以得到 <code>[0,1,2,4,5,6,7]</code></li> 
+</ul>
+
+<p>注意，数组 <code>[a[0], a[1], a[2], ..., a[n-1]]</code> <strong>旋转一次</strong> 的结果为数组 <code>[a[n-1], a[0], a[1], a[2], ..., a[n-2]]</code> 。</p>
+
+<p>给你一个元素值 <strong>互不相同</strong> 的数组 <code>nums</code> ，它原来是一个升序排列的数组，并按上述情形进行了多次旋转。请你找出并返回数组中的 <strong>最小元素</strong> 。</p>
+
+<p>你必须设计一个时间复杂度为&nbsp;<code>O(log n)</code> 的算法解决此问题。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>示例 1：</strong></p>
+
+<pre>
+<strong>输入：</strong>nums = [3,4,5,1,2]
+<strong>输出：</strong>1
+<strong>解释：</strong>原数组为 [1,2,3,4,5] ，旋转 3 次得到输入数组。
+</pre>
+
+<p><strong>示例 2：</strong></p>
+
+<pre>
+<strong>输入：</strong>nums = [4,5,6,7,0,1,2]
+<strong>输出：</strong>0
+<strong>解释：</strong>原数组为 [0,1,2,4,5,6,7] ，旋转 4 次得到输入数组。
+</pre>
+
+<p><strong>示例 3：</strong></p>
+
+<pre>
+<strong>输入：</strong>nums = [11,13,15,17]
+<strong>输出：</strong>11
+<strong>解释：</strong>原数组为 [11,13,15,17] ，旋转 4 次得到输入数组。
+</pre>
+
+<p>&nbsp;</p>
+
+<p><strong>提示：</strong></p>
+
+<ul> 
+ <li><code>n == nums.length</code></li> 
+ <li><code>1 &lt;= n &lt;= 5000</code></li> 
+ <li><code>-5000 &lt;= nums[i] &lt;= 5000</code></li> 
+ <li><code>nums</code> 中的所有整数 <strong>互不相同</strong></li> 
+ <li><code>nums</code> 原来是一个升序排序的数组，并进行了 <code>1</code> 至 <code>n</code> 次旋转</li> 
+</ul>
+
+<hr />
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="面试题-1003-搜索旋转数组"><a href="https://leetcode.cn/problems/search-rotate-array-lcci/">面试题 10.03. 搜索旋转数组</a></h3>
+<p>搜索旋转数组。给定一个排序后的数组，包含n个整数，但这个数组已被旋转过很多次了，次数不详。请编写代码找出数组中的某个元素，假设数组元素原先是按升序排列的。若有多个相同元素，返回索引值最小的一个。</p>
+
+<p><strong>示例 1：</strong></p>
+
+<pre>
+<strong> 输入：</strong>arr = [15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14], target = 5
+<strong> 输出：</strong>8（元素5在该数组中的索引）
+</pre>
+
+<p><strong>示例 2：</strong></p>
+
+<pre>
+<strong> 输入</strong>：arr = [15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14], target = 11
+<strong> 输出</strong>：-1 （没有找到）
+</pre>
+
+<p><strong>提示:</strong></p>
+
+<ol> 
+ <li>arr 长度范围在[1, 1000000]之间</li> 
+</ol>
+
+<hr />
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="2616-最小化数对的最大差值"><a href="https://leetcode.cn/problems/minimize-the-maximum-difference-of-pairs/">2616. 最小化数对的最大差值</a></h3>
+<p>给你一个下标从 <strong>0</strong>&nbsp;开始的整数数组&nbsp;<code>nums</code>&nbsp;和一个整数&nbsp;<code>p</code>&nbsp;。请你从&nbsp;<code>nums</code>&nbsp;中找到&nbsp;<code>p</code> 个下标对，每个下标对对应数值取差值，你需要使得这 <code>p</code> 个差值的&nbsp;<strong>最大值</strong>&nbsp;<strong>最小</strong>。同时，你需要确保每个下标在这&nbsp;<code>p</code>&nbsp;个下标对中最多出现一次。</p>
+
+<p>对于一个下标对&nbsp;<code>i</code>&nbsp;和&nbsp;<code>j</code>&nbsp;，这一对的差值为&nbsp;<code>|nums[i] - nums[j]|</code>&nbsp;，其中&nbsp;<code>|x|</code>&nbsp;表示 <code>x</code>&nbsp;的 <strong>绝对值</strong>&nbsp;。</p>
+
+<p>请你返回 <code>p</code>&nbsp;个下标对对应数值 <strong>最大差值</strong>&nbsp;的 <strong>最小值</strong>&nbsp;。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>示例 1：</strong></p>
+
+<pre>
+<b>输入：</b>nums = [10,1,2,7,1,3], p = 2
+<b>输出：</b>1
+<b>解释：</b>第一个下标对选择 1 和 4 ，第二个下标对选择 2 和 5 。
+最大差值为 max(|nums[1] - nums[4]|, |nums[2] - nums[5]|) = max(0, 1) = 1 。所以我们返回 1 。
+</pre>
+
+<p><strong>示例 2：</strong></p>
+
+<pre>
+<b>输入：</b>nums = [4,2,1,2], p = 1
+<b>输出：</b>0
+<b>解释：</b>选择下标 1 和 3 构成下标对。差值为 |2 - 2| = 0 ，这是最大差值的最小值。
+</pre>
+
+<p>&nbsp;</p>
+
+<p><strong>提示：</strong></p>
+
+<ul> 
+ <li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li> 
+ <li><code>0 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li> 
+ <li><code>0 &lt;= p &lt;= (nums.length)/2</code></li> 
+</ul>
+
+<hr />
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<hr />
+
+<blockquote>
+  <p><strong>“最小化最大值”</strong> 和 <strong>“最大化最小值”</strong> 类型的问题通常都可以用 <strong>二分查找</strong>来解决。</p>
+
+  <p>它们本质上是属于 <strong>决策单调性问题</strong> 的一类。</p>
+
+  <ul>
+    <li>
+      <p><strong>最小化最大值：</strong>
+给你一个判定函数 <code class="language-plaintext highlighter-rouge">check(x)</code>，判断是否可以让最大值不超过 <code class="language-plaintext highlighter-rouge">x</code>。 在满足条件的所有 <code class="language-plaintext highlighter-rouge">x</code> 中，<strong>找最小的</strong>。</p>
+    </li>
+    <li>
+      <p><strong>最大化最小值：</strong>
+给你一个判定函数 <code class="language-plaintext highlighter-rouge">check(x)</code>，判断是否可以让最小值不少于 <code class="language-plaintext highlighter-rouge">x</code>。 在满足条件的所有 <code class="language-plaintext highlighter-rouge">x</code> 中，<strong>找最大的</strong>。</p>
+    </li>
+  </ul>
+</blockquote>
+
+<hr />]]></content><author><name>phoenixfei</name></author><category term="leetcode" /><summary type="html"><![CDATA[二分查找（Binary Search）是一种高效的“分治”策略，适用于有序数据或满足单调性的搜索空间，时间复杂度为 O(logN)。]]></summary></entry><entry><title type="html">二分查找</title><link href="https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="alternate" type="text/html" title="二分查找" /><published>2025-06-14T00:00:00+00:00</published><updated>2025-06-14T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"><![CDATA[<p>虽然二分查找的基本思想相对简单，但其细节却可能出人意料地棘手。</p>
+
+<h2 id="基本概念">基本概念</h2>
+
+<p>二分查找（Binary Search）是算法中非常经典的一种技巧，适用于在<strong>有序数据</strong>中快速定位目标，时间复杂度为 $O(\log n)$。</p>
+
+<p>二分查找使用时，需注意：</p>
+<ol>
+  <li>查找<strong>区间有序</strong></li>
+  <li>防止<strong>加法溢出</strong>，也就是说加法的结果大于整型能够表示的范围。
+    <blockquote>
+      <p><strong>mid = (right + left) / 2</strong>; 这种情况可能出现加法溢出，即和超出int范围。</p>
+
+      <p>应使用 <strong>mid = left + (right - left) / 2</strong></p>
+
+      <p>当然，除以2可以用右移一位代替，也是官方推荐：<strong>mid = left + (right - left) » 1</strong></p>
+
+      <p>更高级，防止减法溢出：<strong>mid = (left + right） &gt;&gt;&gt; 1</strong></p>
+    </blockquote>
+  </li>
+  <li><strong>使用else if</strong>。对于初学者，不要出现else，而是把所有情况用else if写清楚，这样可以清楚地展现所有细节。</li>
+  <li><strong>查找区间：</strong>
+    <ul>
+      <li><strong>闭区间 <code class="language-plaintext highlighter-rouge">[left, right]</code></strong>：左右两端都包含。</li>
+      <li><strong>开区间 <code class="language-plaintext highlighter-rouge">(left, right)</code></strong>：左右都不包含。</li>
+      <li><strong>半开区间 <code class="language-plaintext highlighter-rouge">[left, right)</code></strong>：左闭右开，包含左端不包含右端。</li>
+    </ul>
+  </li>
+  <li><strong>循环不变量</strong>：在每次循环迭代开始时始终成立的条件。它能帮我们：
+    <ul>
+      <li>保证算法逻辑正确；</li>
+      <li>推导边界行为；</li>
+      <li>明确终止条件；</li>
+      <li>写出更通用和不出错的代码。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="经典场景">经典场景</h2>
+
+<p>非常经典的二分查找场景：“查找某个数是否存在于有序数组中”。</p>
+
+<p>我们来用三种不同的区间写法（闭区间、半开区间、开区间）分别实现，并对比它们的写法区别。</p>
+
+<hr />
+
+<p><strong>问题描述：</strong>
+在一个<strong>升序数组 <code class="language-plaintext highlighter-rouge">nums</code></strong> 中查找目标值 <code class="language-plaintext highlighter-rouge">target</code>，如果存在返回其索引；否则返回 <code class="language-plaintext highlighter-rouge">-1</code>。</p>
+
+<h3 id="写法一闭区间-left-right">写法一：闭区间 [left, right]</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search_closed</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># 注意是闭区间
+</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>  <span class="c1"># 终止条件：left &gt; right
+</span>        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>
+        <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># [mid+1, right]
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># [left, mid-1]
+</span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<p><strong>特点：</strong></p>
+<ul>
+  <li>左右都包含在搜索范围内</li>
+  <li>循环条件为 <code class="language-plaintext highlighter-rouge">left &lt;= right</code></li>
+  <li>每次都要保证下次迭代时 <code class="language-plaintext highlighter-rouge">mid</code> 不再出现，所以更新时必须用 <code class="language-plaintext highlighter-rouge">+1</code> 和 <code class="language-plaintext highlighter-rouge">-1</code></li>
+</ul>
+
+<h3 id="写法二左闭右开-left-right">写法二：左闭右开 [left, right)</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search_half_open</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>  <span class="c1"># 注意是 [left, right)
+</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>  <span class="c1"># 终止条件：left == right
+</span>        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>
+        <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># [mid+1, right)
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>  <span class="c1"># [left, mid)
+</span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<p><strong>特点：</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">right</code> 本身不在搜索区间内</li>
+  <li>循环条件为 <code class="language-plaintext highlighter-rouge">left &lt; right</code></li>
+  <li><code class="language-plaintext highlighter-rouge">left</code> 是闭区间，所以要从 <code class="language-plaintext highlighter-rouge">mid + 1</code> 开始继续搜索，才能保证不遗漏正确解，也不会死循环</li>
+</ul>
+
+<h3 id="写法三开区间-left-right">写法三：开区间 (left, right)</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search_open</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>  <span class="c1"># 开区间：不包含两端
+</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>  <span class="c1"># 保证有元素在区间内
+</span>        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>
+        <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>  <span class="c1"># (mid, right)
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>  <span class="c1"># (left, mid)
+</span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<p><strong>特点：</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">left</code> 和 <code class="language-plaintext highlighter-rouge">right</code> 都不在搜索范围内</li>
+  <li>注意初始 <code class="language-plaintext highlighter-rouge">left = -1</code>，保证 <code class="language-plaintext highlighter-rouge">mid</code> 能覆盖 <code class="language-plaintext highlighter-rouge">0</code> 位置</li>
+  <li>不需要关注 <code class="language-plaintext highlighter-rouge">mid</code> 处理</li>
+</ul>
+
+<h3 id="三种写法对比">三种写法对比</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>写法类型</th>
+      <th>区间表示</th>
+      <th>循环条件</th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] &lt; target</code></th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] &gt; target</code></th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] == target</code></th>
+      <th>不变量描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>闭区间</td>
+      <td><code class="language-plaintext highlighter-rouge">[left, right]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left &lt;= right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid - 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">return mid</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">[left, right]</code> 中</td>
+    </tr>
+    <tr>
+      <td>半开区间</td>
+      <td><code class="language-plaintext highlighter-rouge">[left, right)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left &lt; right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">return mid</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">[left, right)</code> 中</td>
+    </tr>
+    <tr>
+      <td>开区间</td>
+      <td><code class="language-plaintext highlighter-rouge">(left, right)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left + 1 &lt; right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid</code>（保留 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">return mid</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">(left, right)</code> 中</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="变种1查找左侧边界">变种1：查找左侧边界</h2>
+
+<h3 id="写法一闭区间-left-right-1">写法一：闭区间 [left, right]</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search_left</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># 默认返回-1，表示没找到更小的
+</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>      <span class="c1"># 只更新等于 target 的
+</span>            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>为什么在闭区间二分查找中需要用 ans 变量记录答案？</p>
+
+  <p>因为我们在找到目标后不能立刻返回，而是要继续收缩区间来找更靠左（或靠右）的满足条件的位置。</p>
+</blockquote>
+
+<p><strong>对于 <code class="language-plaintext highlighter-rouge">ans</code> 的更新处理，也可以先宽松处理，最后再判断与 <code class="language-plaintext highlighter-rouge">target</code> 的关系。</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1"># 最后判断
+</span><span class="k">if</span> <span class="n">ans</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">ans</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">ans</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>该写法简单：不用在循环里加 <code class="language-plaintext highlighter-rouge">if nums[mid] == target</code> 分支，逻辑统一。</p>
+
+  <ul>
+    <li>如果目标存在，这种写法是能找对的；</li>
+    <li>如果目标不存在，后处理能检测出并返回 -1；</li>
+  </ul>
+
+  <p>同时，该写法支持「没找到时返回插入位置」，但 <code class="language-plaintext highlighter-rouge">ans</code> 应初始化为 <code class="language-plaintext highlighter-rouge">len(nums)</code>，或者改写代码为半开区间版本更简洁。</p>
+</blockquote>
+
+<h3 id="写法二左闭右开-left-right-1">写法二：左闭右开 [left, right)</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lower_bound_half_open</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>  <span class="c1"># 半开区间：不包含 right
+</span>        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>  <span class="c1"># mid 可能是解，保留在区间内
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">left</span>
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>为什么 while(left &lt; right) 而不是 &lt;= ?</p>
+
+    <blockquote>
+      <p>答：用相同的方法分析，因为初始化 right = nums.length 而不是 nums.length - 1 。因此每次循环的<strong>「搜索区间」</strong>是 [left, right) 左闭右开。while(left &lt; right) 终止的条件是 left == right，此时搜索区间 [left, left) 恰巧为空，所以可以正确终止。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>为什么没有返回 -1 的操作？如果 nums 中不存在 target 这个值，怎么办？</p>
+
+    <blockquote>
+      <p>答：函数的返回值（即 left 变量的值）取值区间是闭区间，[0, nums.length]。</p>
+
+      <p>所以我们简单添加两行代码就能在正确的时候 return -1：</p>
+
+      <ul>
+        <li>
+          <p>target 比所有数都大。即 <code class="language-plaintext highlighter-rouge">if (left == nums.length) return -1;</code></p>
+        </li>
+        <li>
+          <p>其它情况，包括 <code class="language-plaintext highlighter-rouge">left = 0</code>。即 <code class="language-plaintext highlighter-rouge">return nums[left] == target ? left : -1;</code></p>
+        </li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>
+    <p>为什么 left = mid + 1，right = mid ？和之前的算法不一样？</p>
+
+    <blockquote>
+      <p>答：这个很好解释，因为我们的「搜索区间」是 <code class="language-plaintext highlighter-rouge">[left, right)</code> 左闭右开，所以当 <code class="language-plaintext highlighter-rouge">nums[mid]</code> 被检测之后，下一步的搜索区间应该去掉 <code class="language-plaintext highlighter-rouge">mid</code> 分割成两个区间，即 <code class="language-plaintext highlighter-rouge">[left, mid)</code> 或 <code class="language-plaintext highlighter-rouge">[mid + 1, right)</code>。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>为什么该算法能够搜索左侧边界？</p>
+
+    <blockquote>
+      <p>答：关键在于对于 <code class="language-plaintext highlighter-rouge">nums[mid] == target</code> 这种情况的处理：</p>
+
+      <p><code class="language-plaintext highlighter-rouge">if (nums[mid] == target) right = mid</code></p>
+
+      <p>可见，找到 target 时不要立即返回，而是缩小「搜索区间」的上界 right，在区间 [left, mid) 中继续搜索，即不断向左收缩，达到锁定左侧边界的目的。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>为什么返回 left 而不是 right？</p>
+
+    <blockquote>
+      <p>答：都是一样的，因为 <code class="language-plaintext highlighter-rouge">while</code> 终止的条件是 <code class="language-plaintext highlighter-rouge">left == right</code>。</p>
+    </blockquote>
+  </li>
+</ol>
+
+<h3 id="写法三开区间-left-right-1">写法三：开区间 (left, right)</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lower_bound_open</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>  <span class="c1"># 开区间：跳出时 left/right 相邻
+</span>        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
+    <span class="k">return</span> <span class="n">right</span>  <span class="c1"># 注意返回的是 right
+</span></code></pre></div></div>
+
+<h3 id="三种写法对比-1">三种写法对比</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>写法类型</th>
+      <th>区间表示</th>
+      <th>循环条件</th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] &lt; target</code></th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] &gt; target</code></th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] == target</code></th>
+      <th>循环中处理方式</th>
+      <th>循环结束后返回</th>
+      <th>循环不变量描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>闭区间</td>
+      <td><code class="language-plaintext highlighter-rouge">[left, right]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left &lt;= right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid - 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">ans = mid</code><br /><code class="language-plaintext highlighter-rouge">right = mid - 1</code></td>
+      <td>记录并向左收缩区间</td>
+      <td><code class="language-plaintext highlighter-rouge">ans</code></td>
+      <td>待查范围是 <code class="language-plaintext highlighter-rouge">[left, right]</code>，但答案需单独记录</td>
+    </tr>
+    <tr>
+      <td>半开区间</td>
+      <td><code class="language-plaintext highlighter-rouge">[left, right)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left &lt; right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code></td>
+      <td>不需要记录，最终 <code class="language-plaintext highlighter-rouge">left</code> 即为答案</td>
+      <td><code class="language-plaintext highlighter-rouge">left</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">[left, right)</code> 中</td>
+    </tr>
+    <tr>
+      <td>开区间</td>
+      <td><code class="language-plaintext highlighter-rouge">(left, right)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left + 1 &lt; right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid</code>（保留 mid 左侧）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid 右侧）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code></td>
+      <td>不需要记录，最终 <code class="language-plaintext highlighter-rouge">right</code> 即为答案</td>
+      <td><code class="language-plaintext highlighter-rouge">right</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">(left, right)</code> 中</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="变种2查找右侧边界">变种2：查找右侧边界</h2>
+
+<h3 id="写法一闭区间-left-right-2">写法一：闭区间 [left, right]</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">right_bound_last_occurrence</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># nums[mid] &gt; target
+</span>            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
+<p><strong>同寻找左侧边界，对于 <code class="language-plaintext highlighter-rouge">ans</code> 的更新处理，也可以先宽松处理，最后再判断与 <code class="language-plaintext highlighter-rouge">target</code> 的关系。</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search_left</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># 表示初始没有找到答案
+</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="c1"># 后处理判断
+</span>    <span class="k">if</span> <span class="n">ans</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">ans</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ans</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<h3 id="写法二左闭右开-left-right-2">写法二：左闭右开 [left, right)</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">def</span> <span class="nf">right_bound_half_open</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">target</span><span class="o">):</span>
+    <span class="n">left</span><span class="o">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">len</span><span class="o">(</span><span class="n">nums</span><span class="o">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="nl">right:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="c1">// 2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="nl">target:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>  <span class="err">#</span> <span class="n">缩小右边界</span><span class="err">（</span><span class="n">排除</span> <span class="n">mid</span><span class="err">）</span>
+        <span class="k">else</span><span class="o">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span> <span class="err">#</span> <span class="n">当nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">right时</span><span class="err">，</span><span class="n">继续向右压缩</span><span class="err">，</span><span class="n">排除</span> <span class="n">mid</span>
+    <span class="k">return</span> <span class="n">right</span>
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>为什么这个算法能够找到右侧边界？</p>
+
+    <blockquote>
+      <p>类似地，关键点还是这里：<code class="language-plaintext highlighter-rouge">if (nums[mid] == target)  left = mid + 1;</code>当 nums[mid] == target 时，不要立即返回，而是增大「搜索区间」的下界 left，使得区间不断向右收缩，达到锁定右侧边界的目的。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>为什么最后返回 left - 1 而不像左边界返回 left ？而且这里既然搜索右侧边界，应该返回 right 才对。</p>
+
+    <blockquote>
+      <p>首先，while 循环的终止条件是 left == right，所以 left 和 right 是一样的，你非要体现右侧的特点，返回 right - 1 好了。</p>
+
+      <p>因为我们对 left 的更新必须是 left = mid + 1，就是说 while 循环结束时，nums[left] 一定不等于 target 了，而 nums[left - 1] 可能是 target。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>为什么没有返回 -1 的操作？如果 nums 中不存在 target 这个值，怎么办？</p>
+
+    <blockquote>
+      <p>答：类似之前的左侧边界搜索，因为 while 的终止条件是 left == right，就是说 left 的取值范围是 [0, nums.length]，所以可以添加两行代码，正确地返回 -1：</p>
+
+      <p><code class="language-plaintext highlighter-rouge">// target比所有数小</code></p>
+
+      <p><code class="language-plaintext highlighter-rouge">if (left == 0) return -1;</code></p>
+
+      <p><code class="language-plaintext highlighter-rouge">// 其它情况，包括target比所有数大；由于取left - 1，所有可以综合考虑</code></p>
+
+      <p><code class="language-plaintext highlighter-rouge">return nums[left-1] == target ? (left-1) : -1;</code></p>
+    </blockquote>
+  </li>
+</ol>
+
+<h3 id="写法三开区间-left-right-2">写法三：开区间 (left, right)</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">right_bound_open</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
+    <span class="k">return</span> <span class="n">right</span>
+</code></pre></div></div>
+
+<h3 id="三种写法对比-2">三种写法对比</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>写法类型</th>
+      <th>区间表示</th>
+      <th>循环条件</th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] &lt; target</code></th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] &gt; target</code></th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] == target</code></th>
+      <th>循环中处理方式</th>
+      <th>循环结束后返回</th>
+      <th>循环不变量描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>闭区间</td>
+      <td><code class="language-plaintext highlighter-rouge">[left, right]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left &lt;= right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid - 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">ans = mid</code><br /><code class="language-plaintext highlighter-rouge">left = mid + 1</code></td>
+      <td>记录并向右收缩区间</td>
+      <td><code class="language-plaintext highlighter-rouge">ans</code></td>
+      <td>待查范围是 <code class="language-plaintext highlighter-rouge">[left, right]</code>，但答案需单独记录</td>
+    </tr>
+    <tr>
+      <td>半开区间</td>
+      <td><code class="language-plaintext highlighter-rouge">[left, right)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left &lt; right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code></td>
+      <td>不需要记录，最终 <code class="language-plaintext highlighter-rouge">left</code> 即为答案</td>
+      <td><code class="language-plaintext highlighter-rouge">left</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">[left, right)</code> 中</td>
+    </tr>
+    <tr>
+      <td>开区间</td>
+      <td><code class="language-plaintext highlighter-rouge">(left, right)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left + 1 &lt; right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid</code>（保留 mid 左侧）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid 右侧）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code></td>
+      <td>不需要记录，最终 <code class="language-plaintext highlighter-rouge">right</code> 即为答案</td>
+      <td><code class="language-plaintext highlighter-rouge">right</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">(left, right)</code> 中</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="总结">总结</h2>
+
+<p><a href="https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/">参考资料</a></p>
+
+<h3 id="循环不变量">循环不变量</h3>
+
+<p>理解<strong>二分查找的「循环不变量（Loop Invariant）」</strong>，是掌握各种变形模板的核心，能帮你理清为什么某些写法必须用 <code class="language-plaintext highlighter-rouge">ans</code>、为什么某些不能 <code class="language-plaintext highlighter-rouge">mid-1</code> 或 <code class="language-plaintext highlighter-rouge">mid+1</code>。</p>
+
+<p>什么是循环不变量？</p>
+<blockquote>
+  <p>循环不变量是：<strong>在每次循环迭代开始时始终成立的条件。</strong></p>
+</blockquote>
+
+<p>它能帮我们：</p>
+<ul>
+  <li>保证算法逻辑正确；</li>
+  <li>推导边界行为；</li>
+  <li>明确终止条件；</li>
+  <li>写出更通用和不出错的代码。</li>
+</ul>
+
+<hr />
+
+<p><strong>一、闭区间 <code class="language-plaintext highlighter-rouge">[left, right]</code> 的循环不变量</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 目标：查找 target 值
+</span><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="p">...</span>
+</code></pre></div></div>
+
+<p>此时不变量是：</p>
+
+<blockquote>
+  <p><strong>在 <code class="language-plaintext highlighter-rouge">[left, right]</code> 范围内，<code class="language-plaintext highlighter-rouge">target</code> 可能存在。</strong></p>
+</blockquote>
+
+<ul>
+  <li>每次迭代，我们都保证 target 一定还在这个区间里；</li>
+  <li>
+    <p>更新时必须 <strong>缩掉 mid</strong>：</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">nums[mid] &lt; target</code> → <code class="language-plaintext highlighter-rouge">left = mid + 1</code></li>
+      <li><code class="language-plaintext highlighter-rouge">nums[mid] &gt; target</code> → <code class="language-plaintext highlighter-rouge">right = mid - 1</code></li>
+      <li>若 <code class="language-plaintext highlighter-rouge">nums[mid] == target</code>，就可以直接返回。</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>终止条件</strong>：<code class="language-plaintext highlighter-rouge">left &gt; right</code>，表示区间为空，target 不在其中。</p>
+
+<hr />
+
+<p><strong>二、半开区间 <code class="language-plaintext highlighter-rouge">[left, right)</code> 的循环不变量</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="p">...</span>
+</code></pre></div></div>
+
+<p>此时不变量是：</p>
+
+<blockquote>
+  <p><strong>在 <code class="language-plaintext highlighter-rouge">[left, right)</code> 范围内，<code class="language-plaintext highlighter-rouge">target</code> 可能存在。</strong></p>
+</blockquote>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">right</code> 不在考虑范围中；</li>
+  <li>若 <code class="language-plaintext highlighter-rouge">nums[mid] &lt; target</code> → <code class="language-plaintext highlighter-rouge">left = mid + 1</code></li>
+  <li>若 <code class="language-plaintext highlighter-rouge">nums[mid] &gt; target</code> → <code class="language-plaintext highlighter-rouge">right = mid</code></li>
+</ul>
+
+<p>终止条件：<code class="language-plaintext highlighter-rouge">left == right</code>，即搜索空间为空。</p>
+
+<hr />
+
+<p><strong>三、开区间 <code class="language-plaintext highlighter-rouge">(left, right)</code> 的循环不变量</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="p">...</span>
+</code></pre></div></div>
+
+<p>此时不变量是：</p>
+
+<blockquote>
+  <p><strong>在 <code class="language-plaintext highlighter-rouge">(left, right)</code> 区间内，<code class="language-plaintext highlighter-rouge">target</code> 可能存在。</strong></p>
+</blockquote>
+
+<ul>
+  <li>注意 <code class="language-plaintext highlighter-rouge">left</code> 和 <code class="language-plaintext highlighter-rouge">right</code> 不在搜索范围内；</li>
+  <li>理论上更「对称」，也适合一些极限边界缩紧的题。</li>
+</ul>
+
+<hr />
+
+<p><strong>为什么要维护循环不变量</strong>？</p>
+
+<p>因为它保证了「更新之后不会漏掉正确解」，或者说：</p>
+
+<blockquote>
+  <p><strong>如果循环不变量错误，更新就可能跳过解或死循环！</strong></p>
+</blockquote>
+
+<p>所有判断 (<code class="language-plaintext highlighter-rouge">left=mid+1</code>, <code class="language-plaintext highlighter-rouge">right=mid-1</code> 等)，都是为了保持这个 invariant 成立。</p>
+
+<hr />
+
+<h3 id="寻找左侧边界">寻找左侧边界</h3>
+
+<p>问题：为什么<strong>在寻找左边界时</strong>，用半开区间 <code class="language-plaintext highlighter-rouge">[left, right)</code> 或开区间 <code class="language-plaintext highlighter-rouge">(left, right)</code> 的写法不需要 <code class="language-plaintext highlighter-rouge">ans</code> 变量，而闭区间 <code class="language-plaintext highlighter-rouge">[left, right]</code> 的写法需要？</p>
+
+<blockquote>
+  <p>根本原因：<strong>不同区间的「收缩方式」决定了最终 left 的位置就是答案</strong></p>
+</blockquote>
+
+<p><strong>一、闭区间 <code class="language-plaintext highlighter-rouge">[left, right]</code> 写法为什么需要 <code class="language-plaintext highlighter-rouge">ans</code>？</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lower_bound_closed</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>       <span class="c1"># ✅ 记录可能解
+</span>            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># 继续向左
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+<ul>
+  <li>在闭区间中，收缩区间时不会<strong>自动保留满足条件的 mid</strong>。</li>
+  <li>如果你不记录 <code class="language-plaintext highlighter-rouge">ans</code>，可能最后 left 越过了目标，无法还原满足条件的下标。</li>
+  <li>所以必须显式地在满足条件时 <code class="language-plaintext highlighter-rouge">ans = mid</code>，然后继续向左搜索可能更小的满足条件的位置。</li>
+</ul>
+
+<p><strong>二、半开区间 <code class="language-plaintext highlighter-rouge">[left, right)</code> 写法不需要 <code class="language-plaintext highlighter-rouge">ans</code></strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lower_bound</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>  <span class="c1"># 保留当前这个可能的答案
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">left</span>
+</code></pre></div></div>
+<ul>
+  <li>核心：每次都在<strong>保留满足条件的下标</strong>，区间缩到 <code class="language-plaintext highlighter-rouge">[left, left)</code> 时退出。</li>
+  <li>因为 <code class="language-plaintext highlighter-rouge">right = mid</code> 时保留了满足条件的位置，所以<strong>最后收敛时，left 就是第一个满足 nums[i] ≥ target 的位置</strong>。</li>
+  <li>所以无需 <code class="language-plaintext highlighter-rouge">ans</code> 变量 —— 因为你天然就走到了最左的位置。</li>
+</ul>
+
+<p><strong>三、开区间 <code class="language-plaintext highlighter-rouge">(left, right)</code> 写法不需要 <code class="language-plaintext highlighter-rouge">ans</code></strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lower_bound_open</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
+    <span class="k">return</span> <span class="n">right</span>
+</code></pre></div></div>
+
+<ul>
+  <li>核心同样是：右边 <code class="language-plaintext highlighter-rouge">right</code> 不断保留最小的满足条件的值。</li>
+  <li>所以退出时 <code class="language-plaintext highlighter-rouge">right</code> 就是第一个满足 <code class="language-plaintext highlighter-rouge">nums[i] ≥ target</code> 的下标。</li>
+  <li>同样不需要 <code class="language-plaintext highlighter-rouge">ans</code>，因为 right 就是答案。</li>
+</ul>
+
+<hr />
+
+<h3 id="右侧边界与寻找-target--1">右侧边界与寻找 <code class="language-plaintext highlighter-rouge">target + 1</code></h3>
+
+<p><strong>寻找 <code class="language-plaintext highlighter-rouge">target</code> 的右侧边界</strong>（即最后一个等于 <code class="language-plaintext highlighter-rouge">target</code> 的元素索引）确实可以通过寻找 <code class="language-plaintext highlighter-rouge">target + 1</code> 的<strong>左侧边界</strong>再做一定处理来实现。</p>
+
+<p>假设数组是单调非减的（升序），我们有这样一个事实：</p>
+
+<blockquote>
+  <p><strong><code class="language-plaintext highlighter-rouge">target</code> 的右边界 = <code class="language-plaintext highlighter-rouge">target + 1</code> 的左边界的前一个位置</strong></p>
+</blockquote>
+
+<p>即：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">right_bound</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="o">=</span> <span class="n">left_bound</span><span class="p">(</span><span class="n">target</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p><strong>前提条件</strong>：</p>
+<ol>
+  <li>数组必须是<strong>有序数组</strong></li>
+  <li>数组中元素是整数，或者 <code class="language-plaintext highlighter-rouge">target + 1</code> 是定义良好的</li>
+  <li>提前确定 <code class="language-plaintext highlighter-rouge">target</code> 是否存在，或者对结果进行校验</li>
+</ol>
+
+<hr />]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[虽然二分查找的基本思想相对简单，但其细节却可能出人意料地棘手。]]></summary></entry><entry><title type="html">前缀和与差分数组</title><link href="https://yourusername.github.io/ds-algo/%E5%89%8D%E7%BC%80%E5%92%8C-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/" rel="alternate" type="text/html" title="前缀和与差分数组" /><published>2025-06-14T00:00:00+00:00</published><updated>2025-06-14T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/%E5%89%8D%E7%BC%80%E5%92%8C-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/%E5%89%8D%E7%BC%80%E5%92%8C-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/"><![CDATA[<p>前缀和数组（Prefix Sum Array）是一种用于高效处理区间求和的算法技巧；
+差分数组（Difference Array）是一种用于高效处理区间更新的算法技巧。</p>
+
+<hr />
+
+<h2 id="前缀和数组">前缀和数组</h2>
+
+<p><strong>前缀和数组</strong>（Prefix Sum Array）是算法中一个非常常用的技巧，常用于高效地处理<strong>区间求和</strong>等问题。</p>
+
+<h3 id="定义和性质">定义和性质</h3>
+
+<p>给定一个数组 <code class="language-plaintext highlighter-rouge">nums</code>，其前缀和数组 <code class="language-plaintext highlighter-rouge">prefix</code> 的定义如下：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prefix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">prefix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">...</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 从i=1开始
+</span></code></pre></div></div>
+
+<p>也就是说：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prefix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">prefix</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>这样，任何区间 <code class="language-plaintext highlighter-rouge">[l, r]</code> 的和可以通过：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sum</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="o">=</span> <span class="n">prefix</span><span class="p">[</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">prefix</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>直接暴力求区间 <code class="language-plaintext highlighter-rouge">[l, r]</code> 的和，时间复杂度是 O(r - l + 1)，而前缀和将其优化为 O(1)，在有大量区间求和的情况下效率极高。</p>
+
+<blockquote>
+  <p>为啥前缀和数组长度为<code class="language-plaintext highlighter-rouge">n+1</code>呢？</p>
+
+  <p>为了统一区间和的计算公式，方便处理 [0, r] 和 [l, r] 这种从任意位置开始的区间</p>
+</blockquote>
+
+<hr />
+
+<h3 id="python模板">Python模板</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 原始数组
+</span><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># 构造前缀和数组
+</span><span class="n">prefix</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">)):</span>
+    <span class="n">prefix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">prefix</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># 查询区间 [1, 3] 的和
+# 即 nums[1] + nums[2] + nums[3] = 2 + 4 + 5 = 11
+</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prefix</span><span class="p">[</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">prefix</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>  <span class="c1"># 输出 11
+</span></code></pre></div></div>
+
+<h3 id="常见应用场景">常见应用场景</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>场景</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>区间和查询</td>
+      <td>多次查询 <code class="language-plaintext highlighter-rouge">[l, r]</code> 区间和</td>
+    </tr>
+    <tr>
+      <td>子数组和相关问题</td>
+      <td>如“和为 K 的子数组”</td>
+    </tr>
+    <tr>
+      <td>差分数组（前缀和的逆操作）</td>
+      <td>用于快速区间更新</td>
+    </tr>
+    <tr>
+      <td>二维前缀和</td>
+      <td>用于处理矩阵中的子矩阵求和</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="差分数组">差分数组</h2>
+
+<p>考虑数组 $a=[1,3,3,5,8]$，对其中的相邻元素两两作差（右边减左边），得到数组 $[2,0,2,3]$。然后在开头补上 $a[0]$，得到差分数组：</p>
+
+\[d = [1,2,0,2,3]\]
+
+<p>这有什么用呢？如果从左到右累加 d 中的元素，我们就「还原」回了 a 数组 $[1,3,3,5,8]$。</p>
+
+<p>这又有什么用呢？现在把连续子数组 $a[1]$, $a[2]$, $a[3]$ 都加上 10，得到 $a′=[1,13,13,15,8]$ 。再次两两作差，并在开头补上 $a′[0]$，得到差分数组：</p>
+
+\[d′ = [1,12,0,2,−7]\]
+
+<p>对比 $d$ 和 $d′$ ，可以发现只有 $d[1]$ 和 $d[4]$ 变化了，这意味着对 $a$ 中连续子数组的操作，可以转变成对差分数组 $d$ 中两个数的操作。</p>
+
+<hr />
+
+<h3 id="定义和性质-1">定义和性质</h3>
+
+<p>对于数组 $a$, 定义其<strong>差分数组 (difference array)</strong> $d$ 为:</p>
+
+\[d[i] = \begin{cases}
+a[0], &amp; i = 0 \\
+a[i] - a[i-1], &amp; i \ge 1
+\end{cases}\]
+
+<p><strong>性质 1:</strong> 从左到右累加 $d$ 的元素, 可以得到数组 $a$。</p>
+
+<p><strong>性质 2:</strong> 如下两个操作是等价的。</p>
+
+<ul>
+  <li>把 $a$ 的子数组 $a[i], a[i+1], \dots, a[j]$ 都加上 $x$。</li>
+  <li>把 $d[i]$ 增加 $x$, 把 $d[j+1]$ 减少 $x$。</li>
+</ul>
+
+<p>利用性质 2, 我们只需要 $O(1)$ 的时间就可以完成对 $a$ 的子数组的操作。最后利用性质 1 从差分数组复原出数组 $a$。</p>
+
+<p><strong>注:</strong> 也可以这样理解, $d[i]$ 表示把下标 $\ge i$ 的数都加上 $d[i]$。</p>
+
+<p><img src="/assets/images/1747885435-uDDcwT-lc1094-c.png" alt="差分数组图示" /></p>
+
+<hr />
+
+<h3 id="python模板-1">Python模板</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 区间加操作
+</span><span class="k">def</span> <span class="nf">range_add</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+    <span class="n">diff</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">+=</span> <span class="n">val</span>
+    <span class="n">diff</span><span class="p">[</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">val</span>  <span class="c1"># 不怕越界，因为有 n+1 长度
+</span>
+<span class="c1"># 最终还原数组
+</span><span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+<span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">diff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="常见应用">常见应用</h3>
+
+<p><strong>差分数组的常见应用：</strong></p>
+<ul>
+  <li>区间加法问题</li>
+  <li>模拟前缀变化</li>
+  <li>一维转二维的“二维差分”技巧（用于快速处理矩形区域更新）</li>
+</ul>
+
+<p><strong>参考链接</strong></p>
+<ul>
+  <li><a href="https://leetcode.cn/problems/car-pooling/solutions/2550264/suan-fa-xiao-ke-tang-chai-fen-shu-zu-fu-9d4ra/">灵神的题解</a></li>
+</ul>
+
+<hr />]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[前缀和数组（Prefix Sum Array）是一种用于高效处理区间求和的算法技巧； 差分数组（Difference Array）是一种用于高效处理区间更新的算法技巧。]]></summary></entry><entry><title type="html">买卖股票系列-题单</title><link href="https://yourusername.github.io/leetcode/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%B3%BB%E5%88%97-%E9%A2%98%E5%8D%95/" rel="alternate" type="text/html" title="买卖股票系列-题单" /><published>2025-06-08T00:00:00+00:00</published><updated>2025-06-08T00:00:00+00:00</updated><id>https://yourusername.github.io/leetcode/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%B3%BB%E5%88%97-%E9%A2%98%E5%8D%95</id><content type="html" xml:base="https://yourusername.github.io/leetcode/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%B3%BB%E5%88%97-%E9%A2%98%E5%8D%95/"><![CDATA[<p>股票买卖系列是动态规划的经典题目，也是面试的高频题目。
 对Leetcode上有七道关于股票买卖相关的问题进行对比分析与总结提炼。</p>
 
 <hr />
@@ -1756,1750 +2852,4 @@
 <hr />
 
 <h2 id="题单链接">题单链接</h2>
-<p><a href="/leetcode/单调栈-题单/">单调栈基础题单</a></p>]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[单调栈是指栈内元素单调递增或递减的栈结构，常用于解决“下一个更大元素”、“最大矩形面积”等问题。]]></summary></entry><entry><title type="html">单调栈-题单</title><link href="https://yourusername.github.io/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88-%E9%A2%98%E5%8D%95/" rel="alternate" type="text/html" title="单调栈-题单" /><published>2025-05-21T00:00:00+00:00</published><updated>2025-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88-%E9%A2%98%E5%8D%95</id><content type="html" xml:base="https://yourusername.github.io/leetcode/%E5%8D%95%E8%B0%83%E6%A0%88-%E9%A2%98%E5%8D%95/"><![CDATA[<p>单调栈的基础题单，包括寻找下一个最大元素、滑动窗口最值、求矩形面积和接雨水等模板或经典题目。</p>
-
-<hr />
-
-<h3 id="496-下一个更大元素-i">496. 下一个更大元素 I</h3>
-<p><a href="https://leetcode.cn/problems/next-greater-element-i/">496. 下一个更大元素 I</a></p>
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nums1 中数字 x 的 下一个更大元素 是指 x 在 nums2 中对应位置 右侧 的 第一个 比 x 大的元素。
-给你两个 没有重复元素 的数组 nums1 和 nums2 ，下标从 0 开始计数，其中nums1 是 nums2 的子集。
-对于每个 0 &lt;= i &lt; nums1.length ，找出满足 nums1[i] == nums2[j] 的下标 j ，并且在 nums2 确定 nums2[j] 的 下一个更大元素 。
-如果不存在下一个更大元素，那么本次查询的答案是 -1 。
-返回一个长度为 nums1.length 的数组 ans 作为答案，满足 ans[i] 是如上所述的 下一个更大元素 。
-
-示例 1：
-输入：nums1 = [4,1,2], nums2 = [1,3,4,2].
-输出：[-1,3,-1]
-解释：nums1 中每个值的下一个更大元素如下所述：
-<span class="p">-</span> 4 ，nums2 = [1,3,4,2]。不存在下一个更大元素，所以答案是 -1 。
-<span class="p">-</span> 1 ，nums2 = [1,3,4,2]。下一个更大元素是 3 。
-<span class="p">-</span> 2 ，nums2 = [1,3,4,2]。不存在下一个更大元素，所以答案是 -1 。
-示例 2：
-输入：nums1 = [2,4], nums2 = [1,2,3,4].
-输出：[3,-1]
-解释：nums1 中每个值的下一个更大元素如下所述：
-<span class="p">-</span> 2 ，用加粗斜体标识，nums2 = [1,2,3,4]。下一个更大元素是 3 。
-<span class="p">-</span> 4 ，用加粗斜体标识，nums2 = [1,2,3,4]。不存在下一个更大元素，所以答案是 -1 。
-</code></pre></div></div>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">nextGreaterElement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">nums2</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-        <span class="n">nxt_big</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">nums2</span><span class="p">:</span>
-            <span class="k">while</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="n">cur</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
-                <span class="n">nxt_big</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span>
-            <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">nxt_big</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">nums1</span><span class="p">]</span>
-</code></pre></div></div>
-<p><strong>总结：</strong>
-本题用字典记录每一个元素的下一个更大的元素，方便nums1索引。</p>
-
-<hr />
-
-<h3 id="503-下一个更大元素-ii">503. 下一个更大元素 II</h3>
-<p><a href="https://leetcode.cn/problems/next-greater-element-ii/">503. 下一个更大元素 II</a></p>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给定一个循环数组 nums （ nums[nums.length - 1] 的下一个元素是 nums[0] ），返回 nums 中每个元素的 下一个更大元素 。
-数字 x 的 下一个更大的元素 是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。
-如果不存在，则输出 -1 。
-
-示例 1:
-输入: nums = [1,2,1]
-输出: [2,-1,2]
-解释: 第一个 1 的下一个更大的数是 2；
-数字 2 找不到下一个更大的数； 
-第二个 1 的下一个最大的数需要循环搜索，结果也是 2。
-示例 2:
-输入: nums = [1,2,3,4,3]
-输出: [2,3,4,-1,4]
-</code></pre></div></div>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">nextGreaterElements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-        <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">):</span>
-            <span class="k">while</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="n">n</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
-                <span class="n">cur</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
-                <span class="n">ans</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="n">n</span><span class="p">]</span>
-            <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="n">n</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ans</span>
-</code></pre></div></div>
-<p><strong>总结：</strong>
-用两次遍历来达到循环找最大值的效果。</p>
-
-<hr />
-
-<h3 id="84-柱状图中最大的矩形">84. 柱状图中最大的矩形</h3>
-<p><a href="https://leetcode.cn/problems/largest-rectangle-in-histogram/">84. 柱状图中最大的矩形</a></p>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。
-求在该柱状图中，能够勾勒出来的矩形的最大面积。
-
-示例 1:
-输入：heights = [2,1,5,6,2,3]
-输出：10
-解释：最大的矩形为图中红色区域，面积为 10
-</code></pre></div></div>
-<p><img src="https://assets.leetcode.com/uploads/2021/01/04/histogram.jpg" alt="" /></p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">largestRectangleArea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heights</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">heights</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">heights</span><span class="p">):</span>
-            <span class="k">while</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">h</span> <span class="o">&lt;</span> <span class="n">heights</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
-                <span class="n">cur</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
-                <span class="n">width</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
-                <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">width</span> <span class="o">*</span> <span class="n">heights</span><span class="p">[</span><span class="n">cur</span><span class="p">])</span>
-            <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ans</span>
-</code></pre></div></div>
-<p><strong>总结：</strong></p>
-<ul>
-  <li>最直接的思路是分别通过单调栈计算下标i的左侧和右侧小于h的元素。</li>
-  <li>进一步地，由于栈顶下面的元素恰好就是栈顶的左边界，所以甚至连 left 和 right 数组都可以不要，直接在出栈的时候计算矩形面积。</li>
-</ul>
-
-<p>具体做法：</p>
-<ul>
-  <li>把 −1 入栈，当作哨兵。在栈中只有一个数的时候，栈顶的「下面那个数」刚好就是 −1，对应 <code class="language-plaintext highlighter-rouge">left[i]=−1</code> 的情况。</li>
-  <li>heights 末尾加一个 −1。如果不加 −1，循环结束的时候，栈中还有数据，这些数据也要计算矩形面积。</li>
-  <li>更多信息，参考<a href="https://leetcode.cn/problems/largest-rectangle-in-histogram/solutions/2695467/dan-diao-zhan-fu-ti-dan-pythonjavacgojsr-89s7/">灵神题解</a></li>
-</ul>
-
-<hr />
-
-<h3 id="42-接雨水">42. 接雨水</h3>
-<p><a href="https://leetcode.cn/problems/trapping-rain-water/">42. 接雨水</a></p>
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
-
-示例 1：
-输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]
-输出：6
-解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 
-</code></pre></div></div>
-<p><img src="/assets/images/rainwatertrap.png" alt="接雨水" style="width:800px; height:auto;" /></p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">trap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
-            <span class="k">while</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">h</span> <span class="o">&gt;</span> <span class="n">height</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
-                <span class="n">cur</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">stack</span><span class="p">:</span>
-                    <span class="k">break</span>
-                <span class="n">cur_width</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
-                <span class="n">cur_height</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span> <span class="o">-</span> <span class="n">height</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span>
-                <span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">cur_width</span> <span class="o">*</span> <span class="n">cur_height</span><span class="p">)</span>
-            <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ans</span>
-</code></pre></div></div>
-<p><strong>总结：</strong></p>
-<ul>
-  <li>思路同矩形的最大面积，可以用多个单调栈分别计算元素i左右的最大值，也可以巧妙用一个单调栈来实现（利用栈中元素保存左侧信息）。</li>
-  <li>更多信息，参考<a href="https://leetcode.cn/problems/trapping-rain-water/solutions/692342/jie-yu-shui-by-leetcode-solution-tuvc/">LeetCode官方题解</a></li>
-</ul>
-
-<hr />
-
-<h3 id="239-滑动窗口最大值">239. 滑动窗口最大值</h3>
-<p><a href="https://leetcode.cn/problems/sliding-window-maximum/description/">239. 滑动窗口最大值</a></p>
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。
-你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
-返回 滑动窗口中的最大值 。
-
-示例 1：
-输入：nums = [1,3,-1,-3,5,3,6,7], k = 3
-输出：[3,3,5,5,6,7]
-解释：
-滑动窗口的位置                最大值
-<span class="p">---------------               -----</span>
-[1  3  -1] -3  5  3  6  7       3
- 1 [3  -1  -3] 5  3  6  7       3
- 1  3 [-1  -3  5] 3  6  7       5
- 1  3  -1 [-3  5  3] 6  7       5
- 1  3  -1  -3 [5  3  6] 7       6
- 1  3  -1  -3  5 [3  6  7]      7
-</code></pre></div></div>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">maxSlidingWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">dq</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">deque</span><span class="p">([])</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
-            <span class="k">while</span> <span class="n">dq</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="n">nums</span><span class="p">[</span><span class="n">dq</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
-                <span class="n">dq</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
-            <span class="n">dq</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">dq</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="n">k</span><span class="p">:</span> 
-                <span class="n">dq</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="p">:</span>
-                <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">dq</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
-        <span class="k">return</span> <span class="n">ans</span>
-</code></pre></div></div>
-<p><strong>总结：</strong></p>
-<ul>
-  <li>求滑动窗口的最大值时，由于左侧边界也要变化，因此要使用双端队列实现。</li>
-  <li>要与构造的是“单调递减栈”，因此最大值位于栈的左侧。</li>
-</ul>
-
-<hr />]]></content><author><name>phoenixfei</name></author><category term="leetcode" /><summary type="html"><![CDATA[单调栈的基础题单，包括寻找下一个最大元素、滑动窗口最值、求矩形面积和接雨水等模板或经典题目。]]></summary></entry><entry><title type="html">图论</title><link href="https://yourusername.github.io/ds-algo/%E5%9B%BE%E8%AE%BA/" rel="alternate" type="text/html" title="图论" /><published>2024-06-21T00:00:00+00:00</published><updated>2024-06-21T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/%E5%9B%BE%E8%AE%BA</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/%E5%9B%BE%E8%AE%BA/"><![CDATA[<p>图论是离散数学的一个重要分支，在计算机科学、网络结构、路径规划、社交网络分析等领域有广泛应用。</p>
-
-<hr />
-
-<h2 id="一图论的基本知识">一、图论的基本知识</h2>
-
-<p><strong>图（Graph）</strong> 是由 <strong>顶点（Vertex）</strong> 和 <strong>边（Edge）</strong> 组成的数学结构，用于表示对象之间的关系。</p>
-
-<p><strong>用途举例</strong>：</p>
-<ul>
-  <li>社交网络中的用户与好友关系</li>
-  <li>地图中的城市与道路</li>
-  <li>网络拓扑结构中的路由点和连接</li>
-</ul>
-
-<hr />
-
-<h2 id="二图的组成">二、图的组成</h2>
-
-<p>图通常用 $G = (V, E)$ 表示：</p>
-
-<ul>
-  <li>$V$：顶点集合（Vertices），也叫“节点”；</li>
-  <li>$E$：边集合（Edges），表示顶点之间的连接关系。</li>
-</ul>
-
-<h3 id="1-顶点vertex">1. 顶点（Vertex）</h3>
-
-<ul>
-  <li>图中的基本单位，用于表示对象或实体。</li>
-  <li>例如：城市、用户、网页等。</li>
-</ul>
-
-<h3 id="2-边edge">2. 边（Edge）</h3>
-
-<ul>
-  <li>顶点之间的连接，用于表示关系或路径。</li>
-  <li>
-    <p>可分为：</p>
-
-    <ul>
-      <li><strong>无向边（Undirected Edge）</strong>：没有方向，连接是双向的。例如 A — B；</li>
-      <li><strong>有向边（Directed Edge）</strong>：有方向，仅从一个顶点指向另一个。例如 A → B。</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="3-边的权重weight">3. 边的权重（Weight）</h3>
-
-<ul>
-  <li>某些图中的边可能带有权重，用于表示距离、时间、费用等量化信息，形成<strong>加权图（Weighted Graph）</strong>。
-    <blockquote>
-      <p>当一条边的权重大于 0（比如 2、5、100），我们称为正权边；</p>
-
-      <p>当一条边的权重小于 0（比如 -3、-1），我们称为负边权（或负权边）；</p>
-    </blockquote>
-  </li>
-</ul>
-
-<hr />
-
-<h2 id="三图的分类">三、图的分类</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>分类依据</th>
-      <th>类型</th>
-      <th>说明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>边是否有方向</td>
-      <td>无向图</td>
-      <td>所有边都是双向的</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>有向图</td>
-      <td>所有边都有方向</td>
-    </tr>
-    <tr>
-      <td>是否有环</td>
-      <td>有环图</td>
-      <td>存在从某个点出发可回到该点的路径</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>无环图</td>
-      <td>不存在环路，常见于树结构</td>
-    </tr>
-    <tr>
-      <td>是否有权重</td>
-      <td>加权图</td>
-      <td>边有权重值</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>非加权图</td>
-      <td>边无权重值</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="四图的构造方式实现方法">四、图的构造方式（实现方法）</h2>
-
-<p>图可以用多种方式在程序中构造，主要有以下几种：</p>
-
-<h3 id="1-邻接矩阵adjacency-matrix">1. 邻接矩阵（Adjacency Matrix）</h3>
-
-<ul>
-  <li>用一个 $n \times n$ 的矩阵表示图，适用于稠密图。</li>
-  <li>每个单元表示顶点之间是否有边。</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 0表示无边，1表示有边
-</span><span class="n">graph</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="p">]</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>特点：</p>
-
-    <ul>
-      <li>查询两点是否连通是 O(1)</li>
-      <li>空间复杂度是 O(n²)</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="2-邻接表adjacency-list">2. 邻接表（Adjacency List）</h3>
-
-<ul>
-  <li>每个顶点维护一个链表，存储所有相邻的顶点。</li>
-  <li>更适合稀疏图。</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">graph</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'A'</span><span class="p">:</span> <span class="p">[</span><span class="s">'B'</span><span class="p">],</span>
-    <span class="s">'B'</span><span class="p">:</span> <span class="p">[</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">],</span>
-    <span class="s">'C'</span><span class="p">:</span> <span class="p">[</span><span class="s">'B'</span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>特点：</p>
-
-    <ul>
-      <li>节省空间，O(n + m)</li>
-      <li>查询某一顶点的邻居效率高</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="3-边列表edge-list">3. 边列表（Edge List）</h3>
-
-<ul>
-  <li>用一个列表直接存储所有的边，通常用于边排序、Kruskal 算法等。</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[
-  (A, B),
-  (B, C)
-]
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>特点：</p>
-
-    <ul>
-      <li>实现简单</li>
-      <li>不适合频繁查询邻接关系</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h2 id="五常见术语">五、常见术语</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>术语</th>
-      <th>含义</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>邻接点</td>
-      <td>与某顶点直接通过边相连的点</td>
-    </tr>
-    <tr>
-      <td>度数</td>
-      <td>与一个顶点相连的边数（入度、出度）</td>
-    </tr>
-    <tr>
-      <td>路径</td>
-      <td>一系列通过边连接的顶点序列</td>
-    </tr>
-    <tr>
-      <td>环</td>
-      <td>从某顶点出发回到自身的路径</td>
-    </tr>
-    <tr>
-      <td>负环</td>
-      <td>图中存在一个环形路径，使得这个环的总权重小于0</td>
-    </tr>
-    <tr>
-      <td>连通图</td>
-      <td>任意两点之间都有路径</td>
-    </tr>
-    <tr>
-      <td>基环树</td>
-      <td>带有恰好一个环的连通图</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="负环negative-weight-cycle">负环（Negative Weight Cycle）</h3>
-<p>负环是指：图中存在一个环形路径，使得这个环的总权重小于0。
-也就是说，你可以一直绕这个环，路径总长度会无限减小！</p>
-
-<blockquote>
-  <p>负环意味着，从某个点出发，不断绕负环一圈又一圈，让总代价无限小（趋近负无穷），导致最短路径根本不存在！</p>
-</blockquote>
-
-<hr />
-
-<h3 id="连通图connected-graph">连通图（Connected graph）</h3>
-
-<p><strong>无向图中的连通图。</strong>
-一个无向图是 <strong>连通图</strong>，当且仅当：</p>
-
-<blockquote>
-  <p><strong>图中任意两个节点之间，都至少存在一条路径相通。</strong></p>
-
-  <p>也就是说，从任意一个点出发，都能走到其它任意点。</p>
-</blockquote>
-
-<p><strong>有向图中的连通图。</strong>
-有向图的“连通”有两种常见说法：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>概念</th>
-      <th>定义</th>
-      <th>判断方法</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>强连通图</td>
-      <td>任意两个节点之间都存在双向路径。<br /><code class="language-plaintext highlighter-rouge">u-&gt;v且v-&gt;u</code></td>
-      <td>正向 DFS/BFS + 反向 DFS/BFS</td>
-    </tr>
-    <tr>
-      <td>弱连通图</td>
-      <td>忽略边的方向后，图是连通的。</td>
-      <td>转换为无向图，DFS/BFS 检查连通性</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>总结对比：</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>概念</th>
-      <th>含义</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>连通图（无向）</td>
-      <td>任意两点有路径相通</td>
-    </tr>
-    <tr>
-      <td>强连通图（有向）</td>
-      <td>任意两点双向可达</td>
-    </tr>
-    <tr>
-      <td>弱连通图（有向）</td>
-      <td>忽略方向后连通</td>
-    </tr>
-    <tr>
-      <td>非连通图</td>
-      <td>存在至少一对节点之间无路径</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>如果一个图不是连通的，它会被分成若干个“连通的子图”，这些子图称为：<strong>连通分量（Connected Components）</strong></p>
-</blockquote>
-
-<hr />
-
-<p><strong>如何证明一个有向图是强连通的？</strong></p>
-<ol>
-  <li><strong>从任意一个节点 <code class="language-plaintext highlighter-rouge">u</code> 出发</strong>，用 DFS 或 BFS 遍历整个图。</li>
-  <li>如果从 <code class="language-plaintext highlighter-rouge">u</code> 能够访问到所有的节点，说明从 <code class="language-plaintext highlighter-rouge">u</code> 到其他所有节点都有路径。</li>
-  <li>然后 <strong>反转图</strong>（即将所有边的方向倒过来），再从 <code class="language-plaintext highlighter-rouge">u</code> 出发，进行一次 DFS 或 BFS。</li>
-  <li>如果在反转后的图中，所有节点也都能访问到，则图是强连通的。</li>
-</ol>
-
-<p><strong>如何证明一个有向图是弱连通的？</strong></p>
-<ol>
-  <li><strong>忽略边的方向</strong>，将图中的每一条边都看作无向边。</li>
-  <li>然后检查这个无向图是否是连通的。可以使用 <strong>DFS</strong> 或 <strong>BFS</strong> 遍历图的节点。</li>
-  <li>如果在无向图中，所有节点都可以访问到，则原图是弱连通的。</li>
-</ol>
-
-<p><strong>证明有向图是强连通时，为什么只任意选择一个节点？</strong></p>
-<blockquote>
-  <p>因为强连通图的定义 本身就隐含了「任意两点都能互达」这一性质。</p>
-</blockquote>
-
-<p>如果你能从一个节点 u 到达所有其他节点（正向）， 并且所有其他节点也能到达 u（反向）， 就能推出：任意两个节点之间都有路径连接，即满足强连通的定义。</p>
-
-<p>更形式化的解释，设图中有 n 个节点，选定一个节点 u：</p>
-
-<ul>
-  <li>第一步：正向 DFS/BFS，从 <code class="language-plaintext highlighter-rouge">u</code> 出发，若能访问所有节点。说明：
-<code class="language-plaintext highlighter-rouge">u → v</code> 对任意 <code class="language-plaintext highlighter-rouge">v</code> 成立。</li>
-  <li>第二步：反向图中从 <code class="language-plaintext highlighter-rouge">u</code> DFS/BFS，若还能访问所有节点。说明：
-<code class="language-plaintext highlighter-rouge">v → u</code> 对任意 <code class="language-plaintext highlighter-rouge">v</code> 成立。</li>
-</ul>
-
-<hr />
-
-<h3 id="基环树pseudotree">基环树（Pseudotree）</h3>
-
-<p><strong>基环树（Pseudotree）</strong> 是指一个 <strong>有 <code class="language-plaintext highlighter-rouge">n</code> 个节点、<code class="language-plaintext highlighter-rouge">n</code> 条边的连通图</strong>，图中 <strong>恰好包含一个环</strong>。其余边构成树结构，也就是说：</p>
-
-<ul>
-  <li>整体是一棵“树 + 1 条回边”。</li>
-  <li><strong>去掉一条环上的边</strong>，图变为一棵树。</li>
-</ul>
-
-<p><strong>特点总结：</strong></p>
-<blockquote>
-  <ul>
-    <li>连通；</li>
-    <li>有且仅有一个环；</li>
-    <li>边数 = 点数；</li>
-    <li>环外部分是树结构。</li>
-  </ul>
-</blockquote>
-
-<p><strong>结构与示意图</strong>：</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        1
-       / \
-      2 - 3
-     /     \
-    4       5
-</code></pre></div></div>
-
-<ul>
-  <li>1-2-3-1 构成一个环；</li>
-  <li>4 是挂在 2 上的树节点；</li>
-  <li>5 是挂在 3 上的树节点；</li>
-  <li>去掉任意一条环上的边（如 1-3），变成树。</li>
-</ul>
-
-<p>使用并查集判断基环树的环。</p>
-<ul>
-  <li>用并查集（Union Find）处理图的每条边；</li>
-  <li>若某条边连接了已经在一个集合中的两个点，则构成环；</li>
-  <li>恰好有一条这样的边，即可判断是基环树。</li>
-</ul>
-
-<hr />
-
-<h3 id="欧拉路径回路euler-pathcircuit">欧拉路径/回路（Euler Path/Circuit）</h3>
-
-<ul>
-  <li><strong>欧拉路径（Euler Path）</strong>：一条经过图中<strong>每条边恰好一次</strong>的路径，起点和终点可以不同。</li>
-  <li><strong>欧拉回路（Euler Circuit）或欧拉环（Euler Cycle）</strong>：一条经过图中<strong>每条边恰好一次</strong>的<strong>回路</strong>（即起点等于终点）。</li>
-</ul>
-
-<hr />
-
-<p><strong>判断欧拉路径与欧拉回路</strong></p>
-
-<ol>
-  <li>无向图中的欧拉路径与欧拉回路
-    <ul>
-      <li><strong>存在欧拉回路的条件</strong>：
-        <ul>
-          <li>图是连通的（忽略孤立点），</li>
-          <li>所有顶点的<strong>度数为偶数</strong>。</li>
-        </ul>
-      </li>
-      <li><strong>存在欧拉路径但不是回路的条件</strong>：
-        <ul>
-          <li>图是连通的，</li>
-          <li>恰有<strong>两个顶点的度数为奇数</strong>（路径的起点和终点）。</li>
-        </ul>
-      </li>
-      <li><strong>其余情况</strong>：无欧拉路径或回路。</li>
-    </ul>
-  </li>
-  <li>有向图中的欧拉路径与欧拉回路
-    <ul>
-      <li><strong>存在欧拉回路的条件</strong>：
-        <ul>
-          <li>图是<strong>强连通的</strong>（每个顶点都可以通过有向路径到达其他所有顶点），</li>
-          <li>每个顶点的<strong>入度等于出度</strong>。</li>
-        </ul>
-      </li>
-      <li><strong>存在欧拉路径但不是回路的条件</strong>：
-        <ul>
-          <li>图是<strong>弱连通</strong>（无向图视角连通），</li>
-          <li>恰有一个顶点满足：出度比入度多 1（起点），</li>
-          <li>恰有一个顶点满足：入度比出度多 1（终点），</li>
-          <li>其他所有顶点满足：入度等于出度。</li>
-        </ul>
-      </li>
-      <li><strong>其余情况</strong>：无欧拉路径或回路。</li>
-    </ul>
-  </li>
-</ol>
-
-<table>
-  <thead>
-    <tr>
-      <th>图类型</th>
-      <th>欧拉回路条件</th>
-      <th>欧拉路径条件（非回路）</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>无向图</td>
-      <td>连通 + 所有顶点度数为偶数</td>
-      <td>连通 + 恰有两个奇度顶点</td>
-    </tr>
-    <tr>
-      <td>有向图</td>
-      <td>强连通 + 所有顶点入度=出度</td>
-      <td>弱连通 + 1个出度比入度多1，1个入度比出度多1</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[图论是离散数学的一个重要分支，在计算机科学、网络结构、路径规划、社交网络分析等领域有广泛应用。]]></summary></entry><entry><title type="html">图论-常用算法</title><link href="https://yourusername.github.io/ds-algo/%E5%9B%BE%E8%AE%BA2/" rel="alternate" type="text/html" title="图论-常用算法" /><published>2024-06-21T00:00:00+00:00</published><updated>2024-06-21T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/%E5%9B%BE%E8%AE%BA2</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/%E5%9B%BE%E8%AE%BA2/"><![CDATA[<p>本篇博客将系统整理图论中的常用算法，结合原理讲解与代码模板，助力全面掌握图论基础与实战技巧。</p>
-<ul>
-  <li>精通：刷题/面试/开发中高频出现，建议能手写并熟练应用</li>
-  <li>熟悉：进阶题或特定场景中很实用，理解思路 + 套模板即可</li>
-  <li>了解：较少考查或特定场景下使用，了解用途，有印象即可</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th>分类</th>
-      <th>算法名称</th>
-      <th>作用简述</th>
-      <th>掌握程度</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>遍历类</strong></td>
-      <td>DFS（深度优先搜索）</td>
-      <td>图遍历、连通性判断、拓扑排序、染色等</td>
-      <td>精通</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>BFS（广度优先搜索）</td>
-      <td>无权图最短路径、层次遍历、网格图问题等</td>
-      <td>精通</td>
-    </tr>
-    <tr>
-      <td><strong>路径类</strong></td>
-      <td>Dijkstra 算法</td>
-      <td>正权图中的最短路径，效率高</td>
-      <td>精通</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Bellman-Ford 算法</td>
-      <td>支持负权边，能检测负环</td>
-      <td>熟悉</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Floyd-Warshall 算法</td>
-      <td>所有点对之间最短路径，适用于稠密图</td>
-      <td>熟悉</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>SPFA（Bellman-Ford 优化）</td>
-      <td>用队列加速 Bellman-Ford</td>
-      <td>了解</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>0-1 BFS</td>
-      <td>图中边权为 0/1 时的最短路径算法</td>
-      <td>熟悉</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>双端 BFS / 双向 BFS</td>
-      <td>加速两点之间路径搜索（如单词接龙、双向打通）</td>
-      <td>了解</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>欧拉路径 / 欧拉回路</td>
-      <td>一笔画问题，判定是否能不重复走遍所有边</td>
-      <td>了解</td>
-    </tr>
-    <tr>
-      <td><strong>连通性类</strong></td>
-      <td>Union-Find（并查集）</td>
-      <td>判断连通块、合并集合，常用于 Kruskal 等</td>
-      <td>精通</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Tarjan 算法（割点 / 桥 / SCC）</td>
-      <td>强连通分量、桥、割点检测，适用于有向图分析等</td>
-      <td>熟悉</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Kosaraju 算法</td>
-      <td>另一种强连通分量求法，结构清晰但效率稍逊</td>
-      <td>了解</td>
-    </tr>
-    <tr>
-      <td><strong>树结构类</strong></td>
-      <td>最小生成树：Prim、Kruskal</td>
-      <td>构建全图最小代价的树结构（如通信网络、地图连通等）</td>
-      <td>熟悉</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>LCA（倍增 / 树上 RMQ）</td>
-      <td>最近公共祖先问题，常用于树上路径、距离计算等</td>
-      <td>熟悉</td>
-    </tr>
-    <tr>
-      <td><strong>排序类</strong></td>
-      <td>拓扑排序（DFS / Kahn）</td>
-      <td>DAG 的线性排序（依赖图、课程表、项目调度等）</td>
-      <td>精通</td>
-    </tr>
-    <tr>
-      <td><strong>染色类</strong></td>
-      <td>二分图判定（DFS 染色）</td>
-      <td>判断是否为二分图，常用于图染色、匹配建模、矛盾类建模等</td>
-      <td>熟悉</td>
-    </tr>
-    <tr>
-      <td><strong>匹配类</strong></td>
-      <td>匈牙利算法（Hungarian）</td>
-      <td>二分图最大匹配，常用于任务分配、稳定婚姻、匹配建模等</td>
-      <td>熟悉</td>
-    </tr>
-    <tr>
-      <td><strong>搜索类</strong></td>
-      <td>回溯法</td>
-      <td>图中路径、Hamilton 回路、组合图搜索类问题</td>
-      <td>了解</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>A* 启发式搜索</td>
-      <td>带估价函数的最短路径搜索，常用于地图/路径规划（如游戏 AI）</td>
-      <td>了解</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="遍历算法">遍历算法</h2>
-
-<p>图的遍历指的是：<strong>从图中的某个起点出发，按照一定的规则访问图中所有能达到的节点，每个节点访问一次</strong>。
-这是几乎所有图论算法的基础，如连通性判断、路径搜索、最短路径、拓扑排序、连通分量判定等。</p>
-
-<p><strong>常见的两种遍历方式</strong>：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>遍历方式</th>
-      <th>名称</th>
-      <th>基本结构</th>
-      <th>常用于</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>DFS</td>
-      <td>深度优先搜索</td>
-      <td>栈 / 递归</td>
-      <td>连通性、拓扑排序、路径搜索</td>
-    </tr>
-    <tr>
-      <td>BFS</td>
-      <td>广度优先搜索</td>
-      <td>队列</td>
-      <td>最短路径（无权图）、层次遍历</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="深度优先搜索dfs">深度优先搜索（DFS）</h3>
-
-<p><strong>原理</strong>：</p>
-
-<p>从起始节点开始，一直访问一个邻接节点直到不能继续，再回溯回来继续走未访问的分支。</p>
-
-<p>类似“走迷宫”，一条路走到黑，走不通再返回。 使用递归或栈实现。</p>
-
-<p><strong>适用场景：</strong></p>
-<ul>
-  <li>连通性判断</li>
-  <li>拓扑排序（逆后序）</li>
-  <li>判断环</li>
-  <li>强连通分量（Tarjan）</li>
-  <li>路径构造（回溯类）</li>
-</ul>
-
-<p><strong>Python 模板（递归）</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">visited</span><span class="p">):</span>
-    <span class="n">visited</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]:</span>
-            <span class="n">dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">neighbor</span><span class="p">,</span> <span class="n">visited</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p><strong>Python 模板（非递归）</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dfs_iterative</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
-    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-    <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
-
-    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
-            <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
-                <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="广度优先搜索bfs">广度优先搜索（BFS）</h3>
-
-<p><strong>原理</strong></p>
-
-<p>从起点出发，先访问距离近的所有节点，再逐层扩展到更远的节点。</p>
-
-<p>使用队列实现，先进先出。 本质上是“层序遍历”，每一轮都扩展当前层。</p>
-
-<p><strong>适用场景</strong></p>
-<ul>
-  <li>求最短路径（无权图）</li>
-  <li>迷宫最小步数</li>
-  <li>判断二分图（染色）</li>
-  <li>多源同时扩散（如最短传播）</li>
-</ul>
-
-<p><strong>Python 模板</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
-
-<span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
-    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-    <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">start</span><span class="p">])</span>
-    <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
-
-    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="n">neighbor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
-                <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
-                <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<p><strong>DFS vs BFS 对比表</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>特性</th>
-      <th>DFS</th>
-      <th>BFS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>数据结构</td>
-      <td>栈 / 递归</td>
-      <td>队列</td>
-    </tr>
-    <tr>
-      <td>实现方式</td>
-      <td>通常递归</td>
-      <td>通常迭代</td>
-    </tr>
-    <tr>
-      <td>访问顺序</td>
-      <td>一条路走到底再回溯</td>
-      <td>一层层向外扩展</td>
-    </tr>
-    <tr>
-      <td>路径性质</td>
-      <td>不保证最短路径</td>
-      <td>可用于无权图最短路径</td>
-    </tr>
-    <tr>
-      <td>空间复杂度</td>
-      <td>O(节点数)（递归栈）</td>
-      <td>O(节点数)（队列）</td>
-    </tr>
-    <tr>
-      <td>适用图类型</td>
-      <td>有向图/无向图均可</td>
-      <td>有向图/无向图均可</td>
-    </tr>
-    <tr>
-      <td>常见用途</td>
-      <td>连通性、拓扑排序、强连通分量</td>
-      <td>最短路径、层级扩展、染色判断</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="拓扑排序">拓扑排序</h2>
-
-<p><strong>拓扑排序</strong>（Topological Sorting）是对一个<strong>有向无环图</strong>（DAG）中的节点进行排序，使得对于图中每一条有向边 $u \rightarrow v$，节点 $u$ 都排在 $v$ 前面。</p>
-
-<p>假设有如下图：</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    5 → 0 ← 4
-    ↓   ↑
-    2 → 3
-    ↑
-    1
-</code></pre></div></div>
-<p>拓扑排序结果可能为：
-<code class="language-plaintext highlighter-rouge">[1, 4, 5, 2, 3, 0]</code> 或其他合法顺序（只要满足依赖顺序即可）。</p>
-
-<p>它是“先做什么，再做什么”的抽象模型，广泛应用于：</p>
-<ul>
-  <li>课程安排（某课前置依赖）</li>
-  <li>编译顺序（某模块依赖其他模块）</li>
-  <li>任务调度（任务依赖图）</li>
-  <li>构建系统依赖关系（如 makefile）</li>
-</ul>
-
-<p><strong>使用前提条件</strong></p>
-<ul>
-  <li>图必须是 <strong>有向无环图（DAG）</strong></li>
-  <li>如果图中存在<strong>环路</strong>，则<strong>不存在有效的拓扑排序</strong>结果</li>
-</ul>
-
-<p><strong>拓扑排序的性质</strong></p>
-<ul>
-  <li>拓扑排序可能<strong>不唯一</strong></li>
-  <li>可用于<strong>检测有向图是否有环</strong></li>
-</ul>
-
-<p><strong>两种实现方式</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>方法</th>
-      <th>实现方式</th>
-      <th>数据结构</th>
-      <th>特点</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>DFS</td>
-      <td>逆后序遍历</td>
-      <td>栈（或递归）</td>
-      <td>更适合图遍历模型</td>
-    </tr>
-    <tr>
-      <td>Kahn 算法</td>
-      <td>入度处理法</td>
-      <td>队列 + 入度数组</td>
-      <td>逻辑清晰，易于检测环路</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="dfs--逆后序排列法">DFS + 逆后序排列法</h3>
-
-<p><strong>原理</strong>：
-使用 DFS 深度优先遍历图，在每个节点<strong>完成访问后</strong>将其加入结果列表，最后<strong>逆序输出</strong>即为拓扑排序。</p>
-
-<p><strong>实现步骤</strong></p>
-<ol>
-  <li>初始化访问标记数组</li>
-  <li>从任一未访问节点出发递归 DFS</li>
-  <li>遍历完成后把该节点加入结果栈</li>
-  <li>最终将栈倒序输出即为排序</li>
-</ol>
-
-<p><strong>Python 模板</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">topological_sort_dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
-        <span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
-                <span class="k">continue</span>
-            <span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-            <span class="k">continue</span>
-        <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-      
-    <span class="k">return</span> <span class="n">result</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 逆后序结果即为拓扑排序
-</span></code></pre></div></div>
-
-<p><strong>带环检测的 DFS 拓扑排序</strong></p>
-
-<p>我们需要在 DFS 过程中使用三个状态标记每个节点：</p>
-<ul>
-  <li>0：未访问</li>
-  <li>1：正在递归栈中（即当前路径上）</li>
-  <li>2：递归已完成</li>
-</ul>
-
-<p>只要在遍历过程中再次访问到状态为 1 的节点，就说明存在回边 → 有环。</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">topological_sort_with_cycle_detection</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>  <span class="c1"># 0: 未访问，1: 访问中，2: 已完成
-</span>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">has_cycle</span> <span class="o">=</span> <span class="bp">False</span>
-
-    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
-        <span class="k">nonlocal</span> <span class="n">has_cycle</span>
-        <span class="k">if</span> <span class="n">has_cycle</span> <span class="ow">or</span> <span class="n">state</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">return</span>  <span class="c1"># 剪枝：检测到环 或 已完成
-</span>        <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">has_cycle</span> <span class="o">=</span> <span class="bp">True</span>  <span class="c1"># 回边 → 有环
-</span>            <span class="k">return</span>
-        <span class="n">state</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 标记访问中
-</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="n">state</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 标记已完成
-</span>        <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">has_cycle</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[]</span>  <span class="c1"># 拓扑排序不存在（有环）
-</span>        <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">result</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 返回拓扑序
-</span></code></pre></div></div>
-
-<hr />
-
-<h3 id="kahn-算法bfs--入度处理">Kahn 算法（BFS + 入度处理）</h3>
-
-<p><strong>原理</strong>： 不断从入度为 0 的节点中选出一个加入结果，并更新其邻接节点的入度。</p>
-
-<p><strong>实现步骤</strong></p>
-<ol>
-  <li>统计每个节点的入度</li>
-  <li>将所有入度为 0 的节点入队</li>
-  <li>出队节点并加入结果列表</li>
-  <li>每次出队时，将其邻接点入度减 1</li>
-  <li>如果邻接点入度减为 0，加入队列</li>
-  <li>如果所有点都被加入，排序成功；否则存在环</li>
-</ol>
-
-<p><strong>Python 实现</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
-
-<span class="k">def</span> <span class="nf">topological_sort_kahn</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="n">indegree</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
-    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="n">indegree</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-
-    <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">indegree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
-        <span class="n">u</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
-        <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="n">indegree</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span> <span class="c1"># 每次出队时，将其邻接点入度减 1
-</span>            <span class="k">if</span> <span class="n">indegree</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">result</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span> <span class="k">else</span> <span class="p">[]</span>  <span class="c1"># 有环时返回空
-</span></code></pre></div></div>
-
-<p><strong>如果存在环，最终拓扑排序的结果节点数会少于图中节点总数</strong></p>
-<blockquote>
-  <p>在 Kahn 算法中：
-我们只从 入度为 0 的节点开始入队。
-每加入一个节点到拓扑序，就减少其邻接节点的入度。</p>
-
-  <p>若图中有环，则某些节点的入度永远不为 0，永远无法入队和被处理。</p>
-</blockquote>
-
-<hr />
-
-<h2 id="路径类算法">路径类算法</h2>
-
-<p>单源最短路径问题是图论中极其常见的问题，目标是在带权图中寻找从一个指定起点出发，到图中所有其他节点的路径中，总权重最小的路径。</p>
-
-<hr />
-
-<h3 id="dijkstra-算法">Dijkstra 算法</h3>
-
-<p><strong>适用</strong>：
-边权非负的图</p>
-
-<p><strong>原理</strong>：
-采用贪心策略，每次从未确定最短路的节点中选择当前距离起点最近的一个，将其“锁定”并松弛其所有邻居，从而逐步确定起点到所有节点的最短路径。</p>
-<blockquote>
-  <p>图论中的松弛（Relaxation）是指：尝试通过某条边更新目标节点的最短路径估计，如果更短就更新。</p>
-</blockquote>
-
-<p><strong>流程</strong>
-定义 $g[i][j]$ 表示节点 i 到节点 j 这条边的边权。如果没有 i 到 j 的边，则 $g[i][j]=∞$。
-定义 $dis[i]$ 表示起点 k 到节点 i 的最短路长度，一开始 $dis[k]=0$，其余 $dis[i]=∞$ 表示尚未计算出。</p>
-
-<p>我们的目标是计算出最终的 dis 数组。</p>
-<ul>
-  <li>首先更新起点 k 到其邻居 y 的最短路，即更新 $dis[y] 为 g[k][y]$。</li>
-  <li>然后取除了起点 k 以外的 $dis[i]$ 的最小值，假设最小值对应的节点是 3。</li>
-</ul>
-
-<blockquote>
-  <p>此时可以断言：$dis[3]$ 已经是 k 到 3 的最短路长度，不可能有其它 k 到 3 的路径更短！
-反证法：假设存在更短的路径，那我们一定会从 k 出发经过一个点 u，它的 $dis[u]$ 比 $dis[3]$ 还要小，然后再经过一些边到达 3，得到更小的 $dis[3]$。
-但 $dis[3]$ 已经是最小的了，并且图中没有负数边权，所以 u 是不存在的，矛盾。故原命题成立，此时我们得到了 $dis[3]$ 的最终值。</p>
-</blockquote>
-
-<ul>
-  <li>用节点 3 到其邻居 y 的边权 $g[3][y]$ 更新 $dis[y]$：如果 $dis[3]+g[3][y]&lt;dis[y]$，那么更新 $dis[y]$ 为 $dis[3]+g[3][y]$，否则不更新。</li>
-  <li>然后取除了节点 k,3 以外的 $dis[i]$ 的最小值，重复上述过程。</li>
-</ul>
-
-<p>由数学归纳法可知，这一做法可以得到每个点的最短路。当所有点的最短路都已确定时，算法结束。
-<a href="https://leetcode.cn/problems/network-delay-time/solutions/2668220/liang-chong-dijkstra-xie-fa-fu-ti-dan-py-ooe8/">参考链接</a></p>
-
-<p><strong>Python 实现（优先队列实现）</strong></p>
-
-<p>使用<strong>小根堆（优先队列）</strong> 极大提升了查找“当前最短路径点”的效率，从而显著优化整体时间复杂度。</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">heapq</span>
-
-<span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
-    <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">n</span>
-    <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">heap</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="p">)]</span>  <span class="c1"># (dist, node)
-</span>
-    <span class="k">while</span> <span class="n">heap</span><span class="p">:</span>
-        <span class="n">d</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="n">heapq</span><span class="p">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span> <span class="c1"># u 已经处理过。之前的d大于当前的dist[u]，故弹出的该节点无需处理
-</span>            <span class="k">continue</span>
-        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>  <span class="c1"># v: neighbor, w: weight
-</span>            <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span><span class="p">:</span>
-                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span>
-                <span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">v</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">dist</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="bellman-ford-算法">Bellman-Ford 算法</h3>
-
-<p><strong>适用</strong></p>
-<ul>
-  <li>能够处理边权重为负数的图</li>
-  <li>检测图中是否存在负权重环</li>
-</ul>
-
-<p><strong>原理</strong></p>
-
-<p><strong>Bellman-Ford 算法基于“松弛”操作</strong>：在没有负权环的图中，任意两点之间的最短路径最多只包含 <code class="language-plaintext highlighter-rouge">V - 1</code> 条边（其中 <code class="language-plaintext highlighter-rouge">V</code> 为顶点数），因此只需对所有边执行 <code class="language-plaintext highlighter-rouge">V - 1</code> 次松弛操作，即可得到起点到所有节点的最短路径。</p>
-
-<p><strong>流程</strong></p>
-<ul>
-  <li>第一次迭代，找到不超过1条边的最短路径</li>
-  <li>第二次迭代，找到不超过2条边的最短路径</li>
-  <li>第三次迭代，找到不超过3条边的最短路径</li>
-  <li>第四次迭代，找到不超过4条边的最短路径</li>
-  <li>以此类推…，可迭代次数是无数次的。但是如果不存在负环，在迭代 $V-1$ 次后（“松弛”操作），最短路径不再变化。</li>
-</ul>
-
-<p><a href="https://zhuanlan.zhihu.com/p/352724346">参考链接</a></p>
-
-<p><strong>Python 实现</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">bellman_ford</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
-    <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">n</span>
-    <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
-                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span>
-
-    <span class="c1"># 第n轮检测负环
-</span>    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="p">[]</span>  <span class="c1"># 有负环
-</span>    <span class="k">return</span> <span class="n">dist</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="bfs算法">BFS算法</h3>
-
-<p><strong>适用</strong>：
-所有边权为 1（或等权）</p>
-
-<p><strong>原理</strong>：
-BFS 按照层级扩展的方式遍历图，每次从当前点扩展到所有未访问的相邻点，其访问顺序保证第一次访问即是最短路径。</p>
-<blockquote>
-  <p>因为 BFS 是“按层推进”的，先到达的点一定是路径最短的那个（因为边权都是 1，不存在更优选择）。</p>
-</blockquote>
-
-<p><strong>Python 实现</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
-
-<span class="k">def</span> <span class="nf">bfs_shortest_path</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
-    <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>         <span class="c1"># -1 表示未访问
-</span>    <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">start</span><span class="p">])</span>
-
-    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
-        <span class="n">u</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
-                <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">dist</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="0-1-bfs算法">0-1 BFS算法</h3>
-
-<p><strong>适用</strong>：
-所有边权为 0 或 1</p>
-
-<p><strong>原理</strong></p>
-
-<p>使用双端队列（deque）代替优先队列：</p>
-<ul>
-  <li>如果经过的边权是 0，将新点放入队列前端 → 优先访问</li>
-  <li>如果边权是 1，将新点放入队列后端 → 正常访问</li>
-</ul>
-
-<p>这样就保证了：队列中靠前的点距离小，能像 Dijkstra 一样保证第一次出队即为最短路径。</p>
-
-<p><strong>算法流程</strong></p>
-
-<p>以图中起点 <code class="language-plaintext highlighter-rouge">s</code> 为例：</p>
-<ol>
-  <li>初始化 <code class="language-plaintext highlighter-rouge">dist[s] = 0</code></li>
-  <li>建一个双端队列 <code class="language-plaintext highlighter-rouge">deque([s])</code></li>
-  <li>当队列不空：
-    <ul>
-      <li>弹出当前点 <code class="language-plaintext highlighter-rouge">u</code></li>
-      <li>遍历 <code class="language-plaintext highlighter-rouge">u</code> 的每条边 <code class="language-plaintext highlighter-rouge">(v, w)</code>（权值只能是 0 或 1）
-        <ul>
-          <li>如果能更新 <code class="language-plaintext highlighter-rouge">v</code>：
-            <ul>
-              <li>若 <code class="language-plaintext highlighter-rouge">w == 0</code>：把 <code class="language-plaintext highlighter-rouge">v</code> 加入队列左端（优先处理）</li>
-              <li>若 <code class="language-plaintext highlighter-rouge">w == 1</code>：把 <code class="language-plaintext highlighter-rouge">v</code> 加入队列右端</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<p><strong>Python 实现</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
-
-<span class="k">def</span> <span class="nf">zero_one_bfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
-    <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">n</span>
-    <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">dq</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">start</span><span class="p">])</span>
-
-    <span class="k">while</span> <span class="n">dq</span><span class="p">:</span>
-        <span class="n">u</span> <span class="o">=</span> <span class="n">dq</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>  <span class="c1"># w ∈ {0, 1}
-</span>            <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span><span class="p">:</span>
-                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span>
-                <span class="k">if</span> <span class="n">w</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">dq</span><span class="p">.</span><span class="n">appendleft</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">dq</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">dist</span>
-</code></pre></div></div>
-
-<h3 id="最短路径小结">最短路径小结</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>算法</th>
-      <th>适用边权</th>
-      <th>是否支持负权</th>
-      <th>是否检测负环</th>
-      <th>时间复杂度</th>
-      <th>数据结构</th>
-      <th>是否可恢复路径</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Dijkstra</strong></td>
-      <td>正权（<code class="language-plaintext highlighter-rouge">w ≥ 0</code>）</td>
-      <td>❌ 不支持负权</td>
-      <td>❌</td>
-      <td>O((V + E)logV)</td>
-      <td>优先队列 (heapq)</td>
-      <td>✅ 支持</td>
-    </tr>
-    <tr>
-      <td><strong>Bellman-Ford</strong></td>
-      <td>任意权</td>
-      <td>✅ 支持</td>
-      <td>✅ 支持</td>
-      <td>O(V × E)</td>
-      <td>数组 + 遍历边集</td>
-      <td>✅ 支持</td>
-    </tr>
-    <tr>
-      <td><strong>BFS</strong></td>
-      <td>边权恒为 1</td>
-      <td>❌</td>
-      <td>❌</td>
-      <td>O(V + E)</td>
-      <td>队列（Queue）</td>
-      <td>✅ 支持</td>
-    </tr>
-    <tr>
-      <td><strong>0-1 BFS</strong></td>
-      <td>边权仅为 0/1</td>
-      <td>❌</td>
-      <td>❌</td>
-      <td>O(V + E)</td>
-      <td>双端队列（deque）</td>
-      <td>✅ 支持</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>适用场景与特点总结</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>算法</th>
-      <th>典型适用场景</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Dijkstra</strong></td>
-      <td>- 一般图中求最短路径（无负权）<br />- 网络延迟、城市导航、图上最短路径问题</td>
-    </tr>
-    <tr>
-      <td><strong>Bellman-Ford</strong></td>
-      <td>- 有负边权的图<br />- 需要检测负环，如货币兑换套利、金融网络等</td>
-    </tr>
-    <tr>
-      <td><strong>BFS</strong></td>
-      <td>- 无权图或所有边权为 1 的最短路径<br />- 网格图/迷宫中步数最短问题</td>
-    </tr>
-    <tr>
-      <td><strong>0-1 BFS</strong></td>
-      <td>- 图中边权只为 0/1 的特殊图<br />- 有传送门、代价切换等二值状态转移问题</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="欧拉路径回路">欧拉路径/回路</h3>
-
-<p>求解<strong>欧拉路径</strong>（Euler Path），需要根据图的类型（无向图 or 有向图）来判断是否存在欧拉路径。并使用对应的构造算法，最经典的是 <strong>Hierholzer 算法</strong>。</p>
-
-<p>无向图：</p>
-<ul>
-  <li><strong>存在欧拉路径</strong> ⇔ 图是连通的，且<strong>恰有 0 或 2 个奇度顶点</strong>。
-    <ul>
-      <li>如果有 0 个奇度点 ⇒ 是欧拉回路（起点任选）。</li>
-      <li>如果有 2 个奇度点 ⇒ 欧拉路径（从一个奇度点出发，终点为另一个奇度点）。</li>
-    </ul>
-  </li>
-</ul>
-
-<p>有向图：</p>
-<ul>
-  <li><strong>存在欧拉路径</strong> ⇔ 图是<strong>弱连通</strong>，且：
-    <ul>
-      <li><strong>恰有一个点</strong>满足 <code class="language-plaintext highlighter-rouge">out-degree = in-degree + 1</code>（起点）；</li>
-      <li><strong>恰有一个点</strong>满足 <code class="language-plaintext highlighter-rouge">in-degree = out-degree + 1</code>（终点）；</li>
-      <li>其他点 <code class="language-plaintext highlighter-rouge">in-degree = out-degree</code>。</li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
-
-<h4 id="hierholzer-算法">Hierholzer 算法</h4>
-
-<p>核心思想是：
-从起点出发，不断“走未访问的边”，形成一个回路或路径。遇到还有未走的边的节点，就从那里继续延伸路径，最后拼接所有路径。</p>
-
-<p>步骤简述：</p>
-<ol>
-  <li>任选一个合法起点（奇度点 or 出度大于入度的点）。</li>
-  <li>用 <strong>DFS</strong> 或 <strong>栈模拟遍历</strong>，每次走一条未访问的边，并标记为已访问。</li>
-  <li>沿着走完的路径回退时将节点压入答案路径中（即“逆序加入”）。</li>
-  <li>最终路径反转即为答案。</li>
-</ol>
-
-<hr />
-
-<p>无向图Python模板</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find_euler_undirected</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
-    <span class="s">"""
-    graph: dict, 无向图邻接表，形式如 {0: [1, 2], 1: [0], 2: [0]}
-    return: 欧拉路径（或回路）列表，若不存在返回 None
-    """</span>
-    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-
-    <span class="c1"># 拷贝图，防止原图被破坏
-</span>    <span class="n">g</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-            <span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>  <span class="c1"># 无向图需双向加边
-</span>
-    <span class="c1"># 统计奇数度节点（欧拉路径有2个奇点，回路为0）
-</span>    <span class="n">odd</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">g</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">node</span><span class="p">])</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">odd</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">None</span>  <span class="c1"># 不满足欧拉路径或回路条件
-</span>
-    <span class="c1"># 起点为奇点之一（路径），或任意点（回路）
-</span>    <span class="n">start</span> <span class="o">=</span> <span class="n">odd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">odd</span> <span class="k">else</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
-
-    <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
-    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
-        <span class="n">u</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">pop</span><span class="p">()</span>         <span class="c1"># 取一条边 u -&gt; v
-</span>            <span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">remove</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>         <span class="c1"># 删除反向边（无向图）
-</span>            <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>        <span class="c1"># 深入 v
-</span>        <span class="k">else</span><span class="p">:</span>
-            <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">())</span>  <span class="c1"># 无边可走，加入结果
-</span>
-    <span class="n">path</span><span class="p">.</span><span class="n">reverse</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">path</span>
-</code></pre></div></div>
-
-<p>有向图Python模板</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find_euler_directed</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
-    <span class="s">"""
-    graph: dict, 有向图邻接表，形式如 {'A': ['B'], 'B': ['C'], 'C': ['A']}
-    return: 欧拉路径（或回路）列表，若不存在返回 None
-    """</span>
-    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-
-    <span class="c1"># 拷贝图 &amp; 统计入度、出度
-</span>    <span class="n">g</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="n">in_deg</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-    <span class="n">out_deg</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-            <span class="n">out_deg</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">in_deg</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-
-    <span class="c1"># 起点判断：出度比入度大1的是起点；入度比出度大1的是终点
-</span>    <span class="n">nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">in_deg</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">out_deg</span><span class="p">)</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="n">start_nodes</span> <span class="o">=</span> <span class="n">end_nodes</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
-        <span class="n">delta</span> <span class="o">=</span> <span class="n">out_deg</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">-</span> <span class="n">in_deg</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">delta</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">start_nodes</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">start</span> <span class="o">=</span> <span class="n">node</span>  <span class="c1"># 欧拉路径起点
-</span>        <span class="k">elif</span> <span class="n">delta</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="n">end_nodes</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">elif</span> <span class="n">delta</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">None</span>  <span class="c1"># 不合法，不能构成欧拉路径
-</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">start</span><span class="p">:</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">graph</span><span class="p">))</span>  <span class="c1"># 欧拉回路情况，任意起点
-</span>
-    <span class="c1"># 若不是“0 出1入”或“1 出1入”结构，也不能构成路径或回路
-</span>    <span class="k">if</span> <span class="ow">not</span> <span class="p">((</span><span class="n">start_nodes</span> <span class="o">==</span> <span class="n">end_nodes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">start_nodes</span> <span class="o">==</span> <span class="n">end_nodes</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)):</span>
-        <span class="k">return</span> <span class="bp">None</span>
-
-    <span class="c1"># Hierholzer 算法主过程
-</span>    <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
-    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
-        <span class="n">u</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">pop</span><span class="p">()</span>        <span class="c1"># 取一条 u -&gt; v
-</span>            <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">())</span>  <span class="c1"># 无边可走，加入结果
-</span>
-    <span class="n">path</span><span class="p">.</span><span class="n">reverse</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">path</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="连通性类算法">连通性类算法</h2>
-
-<h3 id="并查集">并查集</h3>
-
-<p><a href="https://www.bilibili.com/video/BV1zZRSYUEWV/">视频讲解</a></p>
-
-<p><strong>并查集的核心思想是：</strong>将多个不相交的集合组织成一个森林，森林中的每棵树代表一个集合。通过 <strong>合并（Union）</strong> 操作将两个集合合并，或者通过 <strong>查找（Find）</strong> 操作判断两个元素是否属于同一个集合。</p>
-
-<p>并查集有两个非常重要的操作：</p>
-<ol>
-  <li><strong>Find</strong>：查询某个元素所在的集合（即找到该元素的根节点）。</li>
-  <li><strong>Union</strong>：将两个元素所在的集合合并。</li>
-</ol>
-
-<p>并查集常见的应用场景，特别是：</p>
-<ul>
-  <li><strong>网络连通性问题</strong>：比如图中的连通分量。</li>
-  <li><strong>图的最小生成树算法</strong>：如 Kruskal 算法。</li>
-  <li><strong>动态连通性问题</strong>：如判断两个节点是否在同一个集合中。</li>
-  <li><strong>网络中联通组件的管理</strong>：比如网络中是否存在可达路径。</li>
-</ul>
-
-<hr />
-
-<p>为了提高并查集的效率，我们通常会使用以下两种优化技巧：</p>
-<ol>
-  <li><strong>路径压缩（Path Compression）</strong>：
-    <ul>
-      <li>在 <strong>Find</strong> 操作时，优化每次查找的路径，使得树变得扁平，从而加快后续的查找操作。</li>
-      <li>具体方法：当我们查找一个节点的父节点时，将路径上的所有节点直接连接到根节点。</li>
-    </ul>
-  </li>
-  <li><strong>按秩合并（Union by Rank）</strong>：
-    <ul>
-      <li>在 <strong>Union</strong> 操作时，总是将较小的树合并到较大的树上，避免树的高度过大。</li>
-      <li>具体方法：每次合并时，将较小的树（深度较小）作为子树，挂到较大的树下。</li>
-    </ul>
-  </li>
-</ol>
-
-<blockquote>
-  <p>秩（rank） 是一种用于优化合并操作的策略。它的本质是估算树的高度或大小，用来决定如何将两个集合合并，以保持整棵树尽量“扁平”，加快后续 find 操作的效率。</p>
-</blockquote>
-
-<p>通过这两种优化，<strong>并查集</strong>的时间复杂度接近 <strong>O(α(n))</strong>，其中 <code class="language-plaintext highlighter-rouge">α(n)</code> 是 <strong>阿克曼函数的反函数</strong>，增长极其缓慢，几乎可以视为常数时间。</p>
-
-<hr />
-
-<p><strong>操作说明：</strong></p>
-<ol>
-  <li><strong>初始化 <code class="language-plaintext highlighter-rouge">UnionFind(n)</code></strong>：
-    <ul>
-      <li>初始化父节点数组 <code class="language-plaintext highlighter-rouge">parent</code>，每个节点的父节点指向自己。</li>
-      <li>初始化秩数组 <code class="language-plaintext highlighter-rouge">rank</code>，用于优化合并操作，默认为 1。</li>
-    </ul>
-  </li>
-  <li><strong><code class="language-plaintext highlighter-rouge">find(x)</code></strong>：
-    <ul>
-      <li>查找节点 <code class="language-plaintext highlighter-rouge">x</code> 的根节点。如果 <code class="language-plaintext highlighter-rouge">x</code> 不是根节点，就通过递归查询其父节点，同时进行路径压缩（将路径上的节点直接指向根节点）。</li>
-    </ul>
-  </li>
-  <li><strong><code class="language-plaintext highlighter-rouge">union(x, y)</code></strong>：
-    <ul>
-      <li>查找节点 <code class="language-plaintext highlighter-rouge">x</code> 和节点 <code class="language-plaintext highlighter-rouge">y</code> 的根节点，若它们属于不同集合，则合并它们。</li>
-      <li>合并时，采用按秩合并的策略，即将秩较小的树合并到秩较大的树下，从而保持树的高度较小，优化后续查询。</li>
-    </ul>
-  </li>
-  <li><strong><code class="language-plaintext highlighter-rouge">connected(x, y)</code></strong>：
-    <ul>
-      <li>判断节点 <code class="language-plaintext highlighter-rouge">x</code> 和节点 <code class="language-plaintext highlighter-rouge">y</code> 是否属于同一个集合。如果它们的根节点相同，说明它们在同一集合。</li>
-    </ul>
-  </li>
-</ol>
-
-<p><strong>Python模板：</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UnionFind</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-        <span class="c1"># 初始化：每个节点的父节点指向自己，秩初始化为 1
-</span>        <span class="bp">self</span><span class="p">.</span><span class="n">parent</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>  <span class="c1"># 父节点数组
-</span>        <span class="bp">self</span><span class="p">.</span><span class="n">rank</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 秩数组，用于按秩合并
-</span>
-    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="c1"># 查找 x 的根节点，并进行路径压缩
-</span>        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span><span class="p">:</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>  <span class="c1"># 路径压缩
-</span>        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="c1"># 按秩合并：将 x 和 y 合并
-</span>        <span class="n">rootX</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">rootY</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">rootX</span> <span class="o">!=</span> <span class="n">rootY</span><span class="p">:</span>
-            <span class="c1"># 合并操作：按秩合并
-</span>            <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">rank</span><span class="p">[</span><span class="n">rootX</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="p">.</span><span class="n">rank</span><span class="p">[</span><span class="n">rootY</span><span class="p">]:</span>
-                <span class="bp">self</span><span class="p">.</span><span class="n">parent</span><span class="p">[</span><span class="n">rootY</span><span class="p">]</span> <span class="o">=</span> <span class="n">rootX</span>
-            <span class="k">elif</span> <span class="bp">self</span><span class="p">.</span><span class="n">rank</span><span class="p">[</span><span class="n">rootX</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="p">.</span><span class="n">rank</span><span class="p">[</span><span class="n">rootY</span><span class="p">]:</span>
-                <span class="bp">self</span><span class="p">.</span><span class="n">parent</span><span class="p">[</span><span class="n">rootX</span><span class="p">]</span> <span class="o">=</span> <span class="n">rootY</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="p">.</span><span class="n">parent</span><span class="p">[</span><span class="n">rootY</span><span class="p">]</span> <span class="o">=</span> <span class="n">rootX</span>
-                <span class="bp">self</span><span class="p">.</span><span class="n">rank</span><span class="p">[</span><span class="n">rootX</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-
-    <span class="k">def</span> <span class="nf">connected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="c1"># 判断 x 和 y 是否在同一集合
-</span>        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="tarjan-算法">Tarjan 算法</h3>
-
-<p>Tarjan 算法的目标是：</p>
-
-<blockquote>
-  <p><strong>在一个有向图中，找到所有的强连通分量（SCC）</strong>。</p>
-</blockquote>
-
-<p>它通过一趟 DFS，在“回溯”的过程中，判断哪些节点属于一个 SCC。整个过程高效且优雅。</p>
-
-<p>SCC是指，在有向图中：</p>
-<ul>
-  <li><strong>强连通</strong>：u 到 v 有路径，v 到 u 也有路径</li>
-  <li>一个图可以有多个这样的“互相可达”的子图，每个子图称为一个 <strong>强连通分量（SCC）</strong></li>
-</ul>
-
-<hr />
-
-<p><strong>核心思想</strong>：</p>
-
-<p>Tarjan 就像 DFS 中的“考古学家”：</p>
-<ol>
-  <li><strong>探洞</strong>（DFS）：顺着每条路径往下挖，给每个点贴上 “访问编号 dfn”</li>
-  <li><strong>回头看看</strong>：每次 DFS 回溯时，看看你能不能<strong>倒着找到祖宗节点</strong>（通过返祖路径）</li>
-  <li><strong>最早的祖宗</strong>编号就是 <code class="language-plaintext highlighter-rouge">low[u]</code>，如果 <code class="language-plaintext highlighter-rouge">low[u] == dfn[u]</code>：
-    <ul>
-      <li>表示当前这个节点就是一个 SCC 的“根”</li>
-      <li>把当前 DFS 栈里的这些点全“弹出”，就是一个 SCC！</li>
-    </ul>
-  </li>
-</ol>
-
-<hr />
-
-<p>Python模板</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">TarjanSCC</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
-        <span class="s">"""
-        :param graph: 有向图的邻接表表示，如 {0: [1], 1: [2], 2: [0]}
-        """</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">graph</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>             <span class="c1"># 节点个数
-</span>        <span class="bp">self</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>                  <span class="c1"># 时间戳，用于记录访问顺序
-</span>        <span class="bp">self</span><span class="p">.</span><span class="n">dfn</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">n</span>        <span class="c1"># 每个节点第一次访问时间（未访问为 -1）
-</span>        <span class="bp">self</span><span class="p">.</span><span class="n">low</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">n</span>        <span class="c1"># 能回溯到的最早祖先
-</span>        <span class="bp">self</span><span class="p">.</span><span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>                 <span class="c1"># 当前 DFS 路径上的节点
-</span>        <span class="bp">self</span><span class="p">.</span><span class="n">in_stack</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">n</span>  <span class="c1"># 标记节点是否在栈中
-</span>        <span class="bp">self</span><span class="p">.</span><span class="n">sccs</span> <span class="o">=</span> <span class="p">[]</span>                  <span class="c1"># 最终结果：强连通分量列表
-</span>
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># 主函数：对每个节点执行 DFS
-</span>        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">n</span><span class="p">):</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">dfn</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="bp">self</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">sccs</span>
-
-    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
-        <span class="c1"># 设置 dfn 和 low
-</span>        <span class="bp">self</span><span class="p">.</span><span class="n">dfn</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">index</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">in_stack</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-
-        <span class="c1"># 遍历邻接点
-</span>        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">graph</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">[]):</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">dfn</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="bp">self</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>  <span class="c1"># 递归
-</span>                <span class="bp">self</span><span class="p">.</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
-            <span class="k">elif</span> <span class="bp">self</span><span class="p">.</span><span class="n">in_stack</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>  <span class="c1"># 回边，说明 v 还在当前路径上
-</span>                <span class="bp">self</span><span class="p">.</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">dfn</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
-
-        <span class="c1"># 找到强连通分量（SCC）的根
-</span>        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">dfn</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="n">scc</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-                <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
-                <span class="bp">self</span><span class="p">.</span><span class="n">in_stack</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
-                <span class="n">scc</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">u</span><span class="p">:</span>
-                    <span class="k">break</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">sccs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">scc</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[本篇博客将系统整理图论中的常用算法，结合原理讲解与代码模板，助力全面掌握图论基础与实战技巧。 精通：刷题/面试/开发中高频出现，建议能手写并熟练应用 熟悉：进阶题或特定场景中很实用，理解思路 + 套模板即可 了解：较少考查或特定场景下使用，了解用途，有印象即可]]></summary></entry></feed>
+<p><a href="/leetcode/单调栈-题单/">单调栈基础题单</a></p>]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[单调栈是指栈内元素单调递增或递减的栈结构，常用于解决“下一个更大元素”、“最大矩形面积”等问题。]]></summary></entry></feed>

@@ -10,8 +10,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>差分数组</title>
-<meta name="description" content="差分数组（Difference Array）是一种用于高效处理区间更新的算法技巧。 通过差分数组，可以将原数组上区间加法操作的时间复杂度从 $O(n)$ 降低到 $O(1)$，从而达到优化整体性能的目的。">
+<!-- begin _includes/seo.html --><title>前缀和与差分数组</title>
+<meta name="description" content="前缀和数组（Prefix Sum Array）是一种用于高效处理区间求和的算法技巧； 差分数组（Difference Array）是一种用于高效处理区间更新的算法技巧。">
 
 
   <meta name="author" content="phoenixfei">
@@ -23,11 +23,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="">
-<meta property="og:title" content="差分数组">
+<meta property="og:title" content="前缀和与差分数组">
 <meta property="og:url" content="https://yourusername.github.io/ds-algo/%E5%89%8D%E7%BC%80%E5%92%8C-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/">
 
 
-  <meta property="og:description" content="差分数组（Difference Array）是一种用于高效处理区间更新的算法技巧。 通过差分数组，可以将原数组上区间加法操作的时间复杂度从 $O(n)$ 降低到 $O(1)$，从而达到优化整体性能的目的。">
+  <meta property="og:description" content="前缀和数组（Prefix Sum Array）是一种用于高效处理区间求和的算法技巧； 差分数组（Difference Array）是一种用于高效处理区间更新的算法技巧。">
 
 
 
@@ -35,7 +35,7 @@
 
 
 
-  <meta property="article:published_time" content="2024-05-21T00:00:00+00:00">
+  <meta property="article:published_time" content="2025-06-14T00:00:00+00:00">
 
 
 
@@ -184,16 +184,16 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="差分数组">
-    <meta itemprop="description" content="差分数组（Difference Array）是一种用于高效处理区间更新的算法技巧。通过差分数组，可以将原数组上区间加法操作的时间复杂度从 $O(n)$ 降低到 $O(1)$，从而达到优化整体性能的目的。">
-    <meta itemprop="datePublished" content="2024-05-21T00:00:00+00:00">
+    <meta itemprop="headline" content="前缀和与差分数组">
+    <meta itemprop="description" content="前缀和数组（Prefix Sum Array）是一种用于高效处理区间求和的算法技巧；差分数组（Difference Array）是一种用于高效处理区间更新的算法技巧。">
+    <meta itemprop="datePublished" content="2025-06-14T00:00:00+00:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title" itemprop="headline">
-            <a href="https://yourusername.github.io/ds-algo/%E5%89%8D%E7%BC%80%E5%92%8C-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/" itemprop="url">差分数组
+            <a href="https://yourusername.github.io/ds-algo/%E5%89%8D%E7%BC%80%E5%92%8C-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/" itemprop="url">前缀和与差分数组
 </a>
           </h1>
           
@@ -207,16 +207,95 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#举例">举例</a></li><li><a href="#定义和性质">定义和性质</a></li><li><a href="#常见应用">常见应用</a></li></ul>
+              <ul class="toc__menu"><li><a href="#前缀和数组">前缀和数组</a><ul><li><a href="#定义和性质">定义和性质</a></li><li><a href="#python模板">Python模板</a></li><li><a href="#常见应用场景">常见应用场景</a></li></ul></li><li><a href="#差分数组">差分数组</a><ul><li><a href="#定义和性质-1">定义和性质</a></li><li><a href="#python模板-1">Python模板</a></li><li><a href="#常见应用">常见应用</a></li></ul></li></ul>
             </nav>
           </aside>
         
-        <p>差分数组（Difference Array）是一种用于高效处理区间更新的算法技巧。
-通过差分数组，可以将原数组上<strong>区间加法操作</strong>的时间复杂度从 $O(n)$ 降低到 $O(1)$，从而达到优化整体性能的目的。</p>
+        <p>前缀和数组（Prefix Sum Array）是一种用于高效处理区间求和的算法技巧；
+差分数组（Difference Array）是一种用于高效处理区间更新的算法技巧。</p>
 
 <hr />
 
-<h2 id="举例">举例</h2>
+<h2 id="前缀和数组">前缀和数组</h2>
+
+<p><strong>前缀和数组</strong>（Prefix Sum Array）是算法中一个非常常用的技巧，常用于高效地处理<strong>区间求和</strong>等问题。</p>
+
+<h3 id="定义和性质">定义和性质</h3>
+
+<p>给定一个数组 <code class="language-plaintext highlighter-rouge">nums</code>，其前缀和数组 <code class="language-plaintext highlighter-rouge">prefix</code> 的定义如下：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prefix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">prefix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">...</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 从i=1开始
+</span></code></pre></div></div>
+
+<p>也就是说：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prefix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">prefix</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>这样，任何区间 <code class="language-plaintext highlighter-rouge">[l, r]</code> 的和可以通过：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sum</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="o">=</span> <span class="n">prefix</span><span class="p">[</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">prefix</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>直接暴力求区间 <code class="language-plaintext highlighter-rouge">[l, r]</code> 的和，时间复杂度是 O(r - l + 1)，而前缀和将其优化为 O(1)，在有大量区间求和的情况下效率极高。</p>
+
+<blockquote>
+  <p>为啥前缀和数组长度为<code class="language-plaintext highlighter-rouge">n+1</code>呢？</p>
+
+  <p>为了统一区间和的计算公式，方便处理 [0, r] 和 [l, r] 这种从任意位置开始的区间</p>
+</blockquote>
+
+<hr />
+
+<h3 id="python模板">Python模板</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 原始数组
+</span><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># 构造前缀和数组
+</span><span class="n">prefix</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">)):</span>
+    <span class="n">prefix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">prefix</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># 查询区间 [1, 3] 的和
+# 即 nums[1] + nums[2] + nums[3] = 2 + 4 + 5 = 11
+</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prefix</span><span class="p">[</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">prefix</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>  <span class="c1"># 输出 11
+</span></code></pre></div></div>
+
+<h3 id="常见应用场景">常见应用场景</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>场景</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>区间和查询</td>
+      <td>多次查询 <code class="language-plaintext highlighter-rouge">[l, r]</code> 区间和</td>
+    </tr>
+    <tr>
+      <td>子数组和相关问题</td>
+      <td>如“和为 K 的子数组”</td>
+    </tr>
+    <tr>
+      <td>差分数组（前缀和的逆操作）</td>
+      <td>用于快速区间更新</td>
+    </tr>
+    <tr>
+      <td>二维前缀和</td>
+      <td>用于处理矩阵中的子矩阵求和</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="差分数组">差分数组</h2>
 
 <p>考虑数组 $a=[1,3,3,5,8]$，对其中的相邻元素两两作差（右边减左边），得到数组 $[2,0,2,3]$。然后在开头补上 $a[0]$，得到差分数组：</p>
 
@@ -232,7 +311,7 @@
 
 <hr />
 
-<h2 id="定义和性质">定义和性质</h2>
+<h3 id="定义和性质-1">定义和性质</h3>
 
 <p>对于数组 $a$, 定义其<strong>差分数组 (difference array)</strong> $d$ 为:</p>
 
@@ -258,7 +337,24 @@ a[i] - a[i-1], &amp; i \ge 1
 
 <hr />
 
-<h2 id="常见应用">常见应用</h2>
+<h3 id="python模板-1">Python模板</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 区间加操作
+</span><span class="k">def</span> <span class="nf">range_add</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+    <span class="n">diff</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">+=</span> <span class="n">val</span>
+    <span class="n">diff</span><span class="p">[</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">val</span>  <span class="c1"># 不怕越界，因为有 n+1 长度
+</span>
+<span class="c1"># 最终还原数组
+</span><span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+<span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">diff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="常见应用">常见应用</h3>
 
 <p><strong>差分数组的常见应用：</strong></p>
 <ul>
@@ -271,6 +367,8 @@ a[i] - a[i-1], &amp; i \ge 1
 <ul>
   <li><a href="https://leetcode.cn/problems/car-pooling/solutions/2550264/suan-fa-xiao-ke-tang-chai-fen-shu-zu-fu-9d4ra/">灵神的题解</a></li>
 </ul>
+
+<hr />
 
         
       </section>
@@ -297,7 +395,7 @@ a[i] - a[i-1], &amp; i \ge 1
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-05-21T00:00:00+00:00">May 21, 2024</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2025-06-14T00:00:00+00:00">June 14, 2025</time></p>
 
       </footer>
 
@@ -306,10 +404,10 @@ a[i] - a[i-1], &amp; i \ge 1
       
   <nav class="pagination">
     
-      <a href="/ds-algo/%E4%BD%8D%E6%93%8D%E4%BD%9C/" class="pagination--pager" title="位操作技巧">Previous</a>
+      <a href="/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="pagination--pager" title="二分查找">Previous</a>
     
     
-      <a href="/ds-algo/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="pagination--pager" title="动态规划">Next</a>
+      <a href="/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-%E9%A2%98%E5%8D%95/" class="pagination--pager" title="二分查找-题单">Next</a>
     
   </nav>
 

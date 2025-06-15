@@ -35,7 +35,7 @@
 
 
 
-  <meta property="article:published_time" content="2024-05-21T00:00:00+00:00">
+  <meta property="article:published_time" content="2025-06-14T00:00:00+00:00">
 
 
 
@@ -186,7 +186,7 @@
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="二分查找">
     <meta itemprop="description" content="虽然二分查找的基本思想相对简单，但其细节却可能出人意料地棘手。">
-    <meta itemprop="datePublished" content="2024-05-21T00:00:00+00:00">
+    <meta itemprop="datePublished" content="2025-06-14T00:00:00+00:00">
     
 
     <div class="page__inner-wrap">
@@ -207,7 +207,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#基本概念">基本概念</a></li><li><a href="#基本框架">基本框架</a></li><li><a href="#简单二分查找">简单二分查找</a></li><li><a href="#寻找左侧边界">寻找左侧边界</a></li><li><a href="#寻找右侧边界">寻找右侧边界</a></li><li><a href="#总结">总结</a></li><li><a href="#经典例题">经典例题</a><ul><li><a href="#x-的平方根">x 的平方根</a></li><li><a href="#有序数组中的单一元素">有序数组中的单一元素</a></li><li><a href="#旋转有序数组的最小数字">旋转有序数组的最小数字</a></li><li><a href="#旋转有序数组查找">旋转有序数组查找</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#基本概念">基本概念</a></li><li><a href="#经典场景">经典场景</a><ul><li><a href="#写法一闭区间-left-right">写法一：闭区间 [left, right]</a></li><li><a href="#写法二左闭右开-left-right">写法二：左闭右开 [left, right)</a></li><li><a href="#写法三开区间-left-right">写法三：开区间 (left, right)</a></li><li><a href="#三种写法对比">三种写法对比</a></li></ul></li><li><a href="#变种1查找左侧边界">变种1：查找左侧边界</a><ul><li><a href="#写法一闭区间-left-right-1">写法一：闭区间 [left, right]</a></li><li><a href="#写法二左闭右开-left-right-1">写法二：左闭右开 [left, right)</a></li><li><a href="#写法三开区间-left-right-1">写法三：开区间 (left, right)</a></li><li><a href="#三种写法对比-1">三种写法对比</a></li></ul></li><li><a href="#变种2查找右侧边界">变种2：查找右侧边界</a><ul><li><a href="#写法一闭区间-left-right-2">写法一：闭区间 [left, right]</a></li><li><a href="#写法二左闭右开-left-right-2">写法二：左闭右开 [left, right)</a></li><li><a href="#写法三开区间-left-right-2">写法三：开区间 (left, right)</a></li><li><a href="#三种写法对比-2">三种写法对比</a></li></ul></li><li><a href="#总结">总结</a><ul><li><a href="#循环不变量">循环不变量</a></li><li><a href="#寻找左侧边界">寻找左侧边界</a></li><li><a href="#右侧边界与寻找-target--1">右侧边界与寻找 target + 1</a></li></ul></li></ul>
             </nav>
           </aside>
         
@@ -217,84 +217,225 @@
 
 <p>二分查找（Binary Search）是算法中非常经典的一种技巧，适用于在<strong>有序数据</strong>中快速定位目标，时间复杂度为 $O(\log n)$。</p>
 
+<p>二分查找使用时，需注意：</p>
 <ol>
-  <li>
-    <p>查找<strong>区间有序</strong></p>
-  </li>
-  <li>
-    <p>防止<strong>加法溢出</strong>，也就是说加法的结果大于整型能够表示的范围。</p>
-
+  <li>查找<strong>区间有序</strong></li>
+  <li>防止<strong>加法溢出</strong>，也就是说加法的结果大于整型能够表示的范围。
     <blockquote>
-      <p><strong>mid = (right + left) / 2</strong>; 这种情况可能出现加法溢出，即 和超出int范围。</p>
+      <p><strong>mid = (right + left) / 2</strong>; 这种情况可能出现加法溢出，即和超出int范围。</p>
 
       <p>应使用 <strong>mid = left + (right - left) / 2</strong></p>
 
       <p>当然，除以2可以用右移一位代替，也是官方推荐：<strong>mid = left + (right - left) » 1</strong></p>
 
-      <p>更高级，防止减法溢出：<strong>mid = (left + right） »&gt; 1</strong></p>
+      <p>更高级，防止减法溢出：<strong>mid = (left + right） &gt;&gt;&gt; 1</strong></p>
     </blockquote>
   </li>
-  <li>
-    <p><strong>使用else if</strong>。不要出现else，而是把所有情况用else if写清楚，这样可以清楚地展现所有细节。</p>
+  <li><strong>使用else if</strong>。对于初学者，不要出现else，而是把所有情况用else if写清楚，这样可以清楚地展现所有细节。</li>
+  <li><strong>查找区间：</strong>
+    <ul>
+      <li><strong>闭区间 <code class="language-plaintext highlighter-rouge">[left, right]</code></strong>：左右两端都包含。</li>
+      <li><strong>开区间 <code class="language-plaintext highlighter-rouge">(left, right)</code></strong>：左右都不包含。</li>
+      <li><strong>半开区间 <code class="language-plaintext highlighter-rouge">[left, right)</code></strong>：左闭右开，包含左端不包含右端。</li>
+    </ul>
+  </li>
+  <li><strong>循环不变量</strong>：在每次循环迭代开始时始终成立的条件。它能帮我们：
+    <ul>
+      <li>保证算法逻辑正确；</li>
+      <li>推导边界行为；</li>
+      <li>明确终止条件；</li>
+      <li>写出更通用和不出错的代码。</li>
+    </ul>
   </li>
 </ol>
 
-<h2 id="基本框架">基本框架</h2>
+<hr />
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">binarySearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">...;</span>
-    
-    <span class="k">while</span><span class="o">(...)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">right</span> <span class="o">+</span> <span class="n">left</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="o">...</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="o">...</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="o">...</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="o">...;</span>
-<span class="o">}</span>
+<h2 id="经典场景">经典场景</h2>
+
+<p>非常经典的二分查找场景：“查找某个数是否存在于有序数组中”。</p>
+
+<p>我们来用三种不同的区间写法（闭区间、半开区间、开区间）分别实现，并对比它们的写法区别。</p>
+
+<hr />
+
+<p><strong>问题描述：</strong>
+在一个<strong>升序数组 <code class="language-plaintext highlighter-rouge">nums</code></strong> 中查找目标值 <code class="language-plaintext highlighter-rouge">target</code>，如果存在返回其索引；否则返回 <code class="language-plaintext highlighter-rouge">-1</code>。</p>
+
+<h3 id="写法一闭区间-left-right">写法一：闭区间 [left, right]</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search_closed</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># 注意是闭区间
+</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>  <span class="c1"># 终止条件：left &gt; right
+</span>        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>
+        <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># [mid+1, right]
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># [left, mid-1]
+</span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div></div>
 
-<h2 id="简单二分查找">简单二分查找</h2>
-<p>TODO 推荐开区间实现。相比其他二分写法，开区间写法不需要思考加一减一等细节，更简单。推荐使用开区间写二分。</p>
+<p><strong>特点：</strong></p>
+<ul>
+  <li>左右都包含在搜索范围内</li>
+  <li>循环条件为 <code class="language-plaintext highlighter-rouge">left &lt;= right</code></li>
+  <li>每次都要保证下次迭代时 <code class="language-plaintext highlighter-rouge">mid</code> 不再出现，所以更新时必须用 <code class="language-plaintext highlighter-rouge">+1</code> 和 <code class="language-plaintext highlighter-rouge">-1</code></li>
+</ul>
 
-<p>这个场景是最简答的。即，搜索一个数，如果存在，返回其索引；否则，返回$-1$.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">binarySearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">mid</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">while</span><span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">){</span>
-        <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">right</span> <span class="o">+</span> <span class="n">left</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">key</span><span class="o">)</span> <span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">key</span><span class="o">)</span> <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="o">)</span> <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="o">}</span>
-	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-    <span class="c1">//return left; 待插入位置</span>
-<span class="o">}</span>
+<h3 id="写法二左闭右开-left-right">写法二：左闭右开 [left, right)</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search_half_open</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>  <span class="c1"># 注意是 [left, right)
+</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>  <span class="c1"># 终止条件：left == right
+</span>        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>
+        <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># [mid+1, right)
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>  <span class="c1"># [left, mid)
+</span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div></div>
 
-<h2 id="寻找左侧边界">寻找左侧边界</h2>
+<p><strong>特点：</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">right</code> 本身不在搜索区间内</li>
+  <li>循环条件为 <code class="language-plaintext highlighter-rouge">left &lt; right</code></li>
+  <li><code class="language-plaintext highlighter-rouge">left</code> 是闭区间，所以要从 <code class="language-plaintext highlighter-rouge">mid + 1</code> 开始继续搜索，才能保证不遗漏正确解，也不会死循环</li>
+</ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">left_bound</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="c1">// 注意</span>
+<h3 id="写法三开区间-left-right">写法三：开区间 (left, right)</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search_open</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>  <span class="c1"># 开区间：不包含两端
+</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>  <span class="c1"># 保证有元素在区间内
+</span>        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>
+        <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>  <span class="c1"># (mid, right)
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>  <span class="c1"># (left, mid)
+</span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
 
-    <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 注意</span>
-        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="o">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="o">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span><span class="o">;</span> <span class="c1">// 注意</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">left</span><span class="o">;</span>
-<span class="o">}</span>
+<p><strong>特点：</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">left</code> 和 <code class="language-plaintext highlighter-rouge">right</code> 都不在搜索范围内</li>
+  <li>注意初始 <code class="language-plaintext highlighter-rouge">left = -1</code>，保证 <code class="language-plaintext highlighter-rouge">mid</code> 能覆盖 <code class="language-plaintext highlighter-rouge">0</code> 位置</li>
+  <li>不需要关注 <code class="language-plaintext highlighter-rouge">mid</code> 处理</li>
+</ul>
+
+<h3 id="三种写法对比">三种写法对比</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>写法类型</th>
+      <th>区间表示</th>
+      <th>循环条件</th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] &lt; target</code></th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] &gt; target</code></th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] == target</code></th>
+      <th>不变量描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>闭区间</td>
+      <td><code class="language-plaintext highlighter-rouge">[left, right]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left &lt;= right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid - 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">return mid</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">[left, right]</code> 中</td>
+    </tr>
+    <tr>
+      <td>半开区间</td>
+      <td><code class="language-plaintext highlighter-rouge">[left, right)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left &lt; right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">return mid</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">[left, right)</code> 中</td>
+    </tr>
+    <tr>
+      <td>开区间</td>
+      <td><code class="language-plaintext highlighter-rouge">(left, right)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left + 1 &lt; right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid</code>（保留 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">return mid</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">(left, right)</code> 中</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="变种1查找左侧边界">变种1：查找左侧边界</h2>
+
+<h3 id="写法一闭区间-left-right-1">写法一：闭区间 [left, right]</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search_left</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># 默认返回-1，表示没找到更小的
+</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>      <span class="c1"># 只更新等于 target 的
+</span>            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>为什么在闭区间二分查找中需要用 ans 变量记录答案？</p>
+
+  <p>因为我们在找到目标后不能立刻返回，而是要继续收缩区间来找更靠左（或靠右）的满足条件的位置。</p>
+</blockquote>
+
+<p><strong>对于 <code class="language-plaintext highlighter-rouge">ans</code> 的更新处理，也可以先宽松处理，最后再判断与 <code class="language-plaintext highlighter-rouge">target</code> 的关系。</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1"># 最后判断
+</span><span class="k">if</span> <span class="n">ans</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">ans</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">ans</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>该写法简单：不用在循环里加 <code class="language-plaintext highlighter-rouge">if nums[mid] == target</code> 分支，逻辑统一。</p>
+
+  <ul>
+    <li>如果目标存在，这种写法是能找对的；</li>
+    <li>如果目标不存在，后处理能检测出并返回 -1；</li>
+  </ul>
+
+  <p>同时，该写法支持「没找到时返回插入位置」，但 <code class="language-plaintext highlighter-rouge">ans</code> 应初始化为 <code class="language-plaintext highlighter-rouge">len(nums)</code>，或者改写代码为半开区间版本更简洁。</p>
+</blockquote>
+
+<h3 id="写法二左闭右开-left-right-1">写法二：左闭右开 [left, right)</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lower_bound_half_open</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>  <span class="c1"># 半开区间：不包含 right
+</span>        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>  <span class="c1"># mid 可能是解，保留在区间内
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">left</span>
 </code></pre></div></div>
 
 <ol>
@@ -313,26 +454,30 @@
 
       <p>所以我们简单添加两行代码就能在正确的时候 return -1：</p>
 
-      <p><code class="language-plaintext highlighter-rouge">// target 比所有数都大</code>
-<code class="language-plaintext highlighter-rouge">if (left == nums.length) return -1;</code>
-<code class="language-plaintext highlighter-rouge">// 其它情况，包括 left = 0</code>
-<code class="language-plaintext highlighter-rouge">return nums[left] == target ? left : -1;</code></p>
+      <ul>
+        <li>
+          <p>target 比所有数都大。即 <code class="language-plaintext highlighter-rouge">if (left == nums.length) return -1;</code></p>
+        </li>
+        <li>
+          <p>其它情况，包括 <code class="language-plaintext highlighter-rouge">left = 0</code>。即 <code class="language-plaintext highlighter-rouge">return nums[left] == target ? left : -1;</code></p>
+        </li>
+      </ul>
     </blockquote>
   </li>
   <li>
     <p>为什么 left = mid + 1，right = mid ？和之前的算法不一样？</p>
 
     <blockquote>
-      <p>答：这个很好解释，因为我们的「搜索区间」是 [left, right) 左闭右开，所以当 nums[mid] 被检测之后，下一步的搜索区间应该去掉 mid 分割成两个区间，即 [left, mid) 或 [mid + 1, right)。</p>
+      <p>答：这个很好解释，因为我们的「搜索区间」是 <code class="language-plaintext highlighter-rouge">[left, right)</code> 左闭右开，所以当 <code class="language-plaintext highlighter-rouge">nums[mid]</code> 被检测之后，下一步的搜索区间应该去掉 <code class="language-plaintext highlighter-rouge">mid</code> 分割成两个区间，即 <code class="language-plaintext highlighter-rouge">[left, mid)</code> 或 <code class="language-plaintext highlighter-rouge">[mid + 1, right)</code>。</p>
     </blockquote>
   </li>
   <li>
     <p>为什么该算法能够搜索左侧边界？</p>
 
     <blockquote>
-      <p>答：关键在于对于 nums[mid] == target 这种情况的处理：</p>
+      <p>答：关键在于对于 <code class="language-plaintext highlighter-rouge">nums[mid] == target</code> 这种情况的处理：</p>
 
-      <p>​	<code class="language-plaintext highlighter-rouge">if (nums[mid] == target) right = mid</code></p>
+      <p><code class="language-plaintext highlighter-rouge">if (nums[mid] == target) right = mid</code></p>
 
       <p>可见，找到 target 时不要立即返回，而是缩小「搜索区间」的上界 right，在区间 [left, mid) 中继续搜索，即不断向左收缩，达到锁定左侧边界的目的。</p>
     </blockquote>
@@ -341,29 +486,128 @@
     <p>为什么返回 left 而不是 right？</p>
 
     <blockquote>
-      <p>答：都是一样的，因为 while 终止的条件是 left == right。</p>
+      <p>答：都是一样的，因为 <code class="language-plaintext highlighter-rouge">while</code> 终止的条件是 <code class="language-plaintext highlighter-rouge">left == right</code>。</p>
     </blockquote>
   </li>
 </ol>
 
-<h2 id="寻找右侧边界">寻找右侧边界</h2>
+<h3 id="写法三开区间-left-right-1">写法三：开区间 (left, right)</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lower_bound_open</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">right_bound</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>  <span class="c1"># 开区间：跳出时 left/right 相邻
+</span>        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
+    <span class="k">return</span> <span class="n">right</span>  <span class="c1"># 注意返回的是 right
+</span></code></pre></div></div>
 
-    <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="o">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 注意</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">left</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 注意</span>
-<span class="o">}</span>
+<h3 id="三种写法对比-1">三种写法对比</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>写法类型</th>
+      <th>区间表示</th>
+      <th>循环条件</th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] &lt; target</code></th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] &gt; target</code></th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] == target</code></th>
+      <th>循环中处理方式</th>
+      <th>循环结束后返回</th>
+      <th>循环不变量描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>闭区间</td>
+      <td><code class="language-plaintext highlighter-rouge">[left, right]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left &lt;= right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid - 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">ans = mid</code><br /><code class="language-plaintext highlighter-rouge">right = mid - 1</code></td>
+      <td>记录并向左收缩区间</td>
+      <td><code class="language-plaintext highlighter-rouge">ans</code></td>
+      <td>待查范围是 <code class="language-plaintext highlighter-rouge">[left, right]</code>，但答案需单独记录</td>
+    </tr>
+    <tr>
+      <td>半开区间</td>
+      <td><code class="language-plaintext highlighter-rouge">[left, right)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left &lt; right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code></td>
+      <td>不需要记录，最终 <code class="language-plaintext highlighter-rouge">left</code> 即为答案</td>
+      <td><code class="language-plaintext highlighter-rouge">left</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">[left, right)</code> 中</td>
+    </tr>
+    <tr>
+      <td>开区间</td>
+      <td><code class="language-plaintext highlighter-rouge">(left, right)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left + 1 &lt; right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid</code>（保留 mid 左侧）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid 右侧）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code></td>
+      <td>不需要记录，最终 <code class="language-plaintext highlighter-rouge">right</code> 即为答案</td>
+      <td><code class="language-plaintext highlighter-rouge">right</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">(left, right)</code> 中</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="变种2查找右侧边界">变种2：查找右侧边界</h2>
+
+<h3 id="写法一闭区间-left-right-2">写法一：闭区间 [left, right]</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">right_bound_last_occurrence</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># nums[mid] &gt; target
+</span>            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
+<p><strong>同寻找左侧边界，对于 <code class="language-plaintext highlighter-rouge">ans</code> 的更新处理，也可以先宽松处理，最后再判断与 <code class="language-plaintext highlighter-rouge">target</code> 的关系。</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search_left</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># 表示初始没有找到答案
+</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="c1"># 后处理判断
+</span>    <span class="k">if</span> <span class="n">ans</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">ans</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ans</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<h3 id="写法二左闭右开-left-right-2">写法二：左闭右开 [left, right)</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">def</span> <span class="nf">right_bound_half_open</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">target</span><span class="o">):</span>
+    <span class="n">left</span><span class="o">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">len</span><span class="o">(</span><span class="n">nums</span><span class="o">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="nl">right:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="c1">// 2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="nl">target:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>  <span class="err">#</span> <span class="n">缩小右边界</span><span class="err">（</span><span class="n">排除</span> <span class="n">mid</span><span class="err">）</span>
+        <span class="k">else</span><span class="o">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span> <span class="err">#</span> <span class="n">当nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">right时</span><span class="err">，</span><span class="n">继续向右压缩</span><span class="err">，</span><span class="n">排除</span> <span class="n">mid</span>
+    <span class="k">return</span> <span class="n">right</span>
 </code></pre></div></div>
 
 <ol>
@@ -400,188 +644,279 @@
   </li>
 </ol>
 
+<h3 id="写法三开区间-left-right-2">写法三：开区间 (left, right)</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">right_bound_open</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
+    <span class="k">return</span> <span class="n">right</span>
+</code></pre></div></div>
+
+<h3 id="三种写法对比-2">三种写法对比</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>写法类型</th>
+      <th>区间表示</th>
+      <th>循环条件</th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] &lt; target</code></th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] &gt; target</code></th>
+      <th><code class="language-plaintext highlighter-rouge">nums[mid] == target</code></th>
+      <th>循环中处理方式</th>
+      <th>循环结束后返回</th>
+      <th>循环不变量描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>闭区间</td>
+      <td><code class="language-plaintext highlighter-rouge">[left, right]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left &lt;= right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid - 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">ans = mid</code><br /><code class="language-plaintext highlighter-rouge">left = mid + 1</code></td>
+      <td>记录并向右收缩区间</td>
+      <td><code class="language-plaintext highlighter-rouge">ans</code></td>
+      <td>待查范围是 <code class="language-plaintext highlighter-rouge">[left, right]</code>，但答案需单独记录</td>
+    </tr>
+    <tr>
+      <td>半开区间</td>
+      <td><code class="language-plaintext highlighter-rouge">[left, right)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left &lt; right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code></td>
+      <td>不需要记录，最终 <code class="language-plaintext highlighter-rouge">left</code> 即为答案</td>
+      <td><code class="language-plaintext highlighter-rouge">left</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">[left, right)</code> 中</td>
+    </tr>
+    <tr>
+      <td>开区间</td>
+      <td><code class="language-plaintext highlighter-rouge">(left, right)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left + 1 &lt; right</code></td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid</code>（保留 mid 左侧）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid 右侧）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code></td>
+      <td>不需要记录，最终 <code class="language-plaintext highlighter-rouge">right</code> 即为答案</td>
+      <td><code class="language-plaintext highlighter-rouge">right</code></td>
+      <td>解一定在 <code class="language-plaintext highlighter-rouge">(left, right)</code> 中</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
 <h2 id="总结">总结</h2>
 
-<p>若想了解上述三个算法，最核心的思想是必须记住「<strong>搜索区间</strong>」。</p>
+<p><a href="https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/">参考资料</a></p>
 
-<p>第一个，最基本的二分查找算法：</p>
+<h3 id="循环不变量">循环不变量</h3>
 
+<p>理解<strong>二分查找的「循环不变量（Loop Invariant）」</strong>，是掌握各种变形模板的核心，能帮你理清为什么某些写法必须用 <code class="language-plaintext highlighter-rouge">ans</code>、为什么某些不能 <code class="language-plaintext highlighter-rouge">mid-1</code> 或 <code class="language-plaintext highlighter-rouge">mid+1</code>。</p>
+
+<p>什么是循环不变量？</p>
 <blockquote>
-  <p>因为我们初始化 right = nums.length - 1
-所以决定了我们的「搜索区间」是 [left, right]
-所以决定了 while (left &lt;= right)
-同时也决定了 left = mid+1 和 right = mid-1</p>
-
-  <p>因为我们只需找到一个 target 的索引即可
-所以当 nums[mid] == target 时可以立即返回</p>
+  <p>循环不变量是：<strong>在每次循环迭代开始时始终成立的条件。</strong></p>
 </blockquote>
 
-<p>第二个，寻找左侧边界的二分查找：</p>
-
-<blockquote>
-  <p>因为我们初始化 right = nums.length
-所以决定了我们的「搜索区间」是 [left, right)
-所以决定了 while (left &lt; right)
-同时也决定了 left = mid+1 和 right = mid</p>
-
-  <p>因为我们需找到 target 的最左侧索引
-所以当 nums[mid] == target 时不要立即返回
-而要收紧右侧边界以锁定左侧边界</p>
-</blockquote>
-
-<p>第三个，寻找右侧边界的二分查找：</p>
-
-<blockquote>
-  <p>因为我们初始化 right = nums.length
-所以决定了我们的「搜索区间」是 [left, right)
-所以决定了 while (left &lt; right)
-同时也决定了 left = mid+1 和 right = mid</p>
-
-  <p>因为我们需找到 target 的最右侧索引
-所以当 nums[mid] == target 时不要立即返回
-而要收紧左侧边界以锁定右侧边界</p>
-
-  <p>又因为收紧左侧边界时必须 left = mid + 1
-所以最后无论返回 left 还是 right，必须减一</p>
-</blockquote>
-
-<font color="Crimson">***因为 h 的赋值表达式为 h = m，那么循环条件也就只能使用 l &lt; h 这种形式。***</font>
-
-<p><a href="https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/">补充</a></p>
-
-<h2 id="经典例题">经典例题</h2>
-
-<h3 id="x-的平方根">x 的平方根</h3>
-
-<p><a href="https://leetcode-cn.com/problems/sqrtx/">计算并返回 <em>x</em> 的平方根</a>。其中 <em>x</em> 是非负整数，结果只保留整数的部分。</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">mySqrt</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">x</span><span class="o">&lt;=</span><span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="n">x</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">sqrt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// 不要用乘法，用除法</span>
-    <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">m</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="o">(</span><span class="n">h</span><span class="o">-</span><span class="n">l</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="n">sqrt</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">m</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">sqrt</span> <span class="o">==</span> <span class="n">x</span><span class="o">)</span> <span class="k">return</span> <span class="n">m</span><span class="o">;</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">sqrt</span> <span class="o">&gt;</span> <span class="n">m</span><span class="o">)</span> <span class="n">h</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">sqrt</span> <span class="o">&lt;</span> <span class="n">m</span><span class="o">)</span> <span class="n">l</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">h</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="有序数组中的单一元素">有序数组中的单一元素</h3>
-
-<p><a href="https://leetcode-cn.com/problems/single-element-in-a-sorted-array/">有序数组中的单一元素</a>：给定一个只包含整数的有序数组，每个元素都会出现两次，唯有一个数只会出现一次，找出这个数。</p>
-
-<p><strong>思路</strong>：</p>
-
-<p>要求以 O(logN) 时间复杂度进行求解，因此不能遍历数组并进行异或操作来求解，这么做的时间复杂度为 O(N)。</p>
-
-<p>令 index 为 Single Element 在数组中的位置。在 index 之后，数组中原来存在的成对状态被改变。如果 m 为偶数，并且 m + 1 &lt; index，那么 nums[m] == nums[m + 1]；m + 1 &gt;= index，那么 nums[m] != nums[m + 1]。</p>
-
-<p>从上面的规律可以知道，如果 nums[m] == nums[m + 1]，那么 index 所在的数组位置为 [m + 2, h]，此时令 l = m + 2；如果 nums[m] != nums[m + 1]，那么 index 所在的数组位置为 [l, m]，此时令 h = m。</p>
-
-<font color="Crimson">***因为 h 的赋值表达式为 h = m，那么循环条件也就只能使用 l &lt; h 这种形式。***</font>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">singleNonDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="o">(</span><span class="n">h</span> <span class="o">-</span> <span class="n">l</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">m</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">m</span><span class="o">--;</span>   <span class="c1">// 保证 l/h/m 都在偶数位，使得查找区间大小一直都是奇数</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">m</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="o">{</span>
-            <span class="n">l</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="n">h</span> <span class="o">=</span> <span class="n">m</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">nums</span><span class="o">[</span><span class="n">l</span><span class="o">];</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="旋转有序数组的最小数字">旋转有序数组的最小数字</h3>
-
-<p><strong>题目描述</strong>：把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p>
-
-<p>此时问题的关键在于确定对半分得到的两个数组哪一个是旋转数组，哪一个是非递减数组。我们很容易知道非递减数组的第一个元素一定小于等于最后一个元素。</p>
-
-<p>通过修改二分查找算法进行求解（l 代表 low，m 代表 mid，h 代表 high）：</p>
-
+<p>它能帮我们：</p>
 <ul>
-  <li>当 nums[m] &lt;= nums[h] 时，表示 [m, h] 区间内的数组是非递减数组，[l, m] 区间内的数组是旋转数组，此时令 h = m；</li>
-  <li>否则 [m + 1, h] 区间内的数组是旋转数组，令 l = m + 1。</li>
+  <li>保证算法逻辑正确；</li>
+  <li>推导边界行为；</li>
+  <li>明确终止条件；</li>
+  <li>写出更通用和不出错的代码。</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">minNumberInRotateArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="o">(</span><span class="n">h</span> <span class="o">-</span> <span class="n">l</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">m</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">nums</span><span class="o">[</span><span class="n">h</span><span class="o">])</span>
-            <span class="n">h</span> <span class="o">=</span> <span class="n">m</span><span class="o">;</span>
-        <span class="k">else</span>
-            <span class="n">l</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">nums</span><span class="o">[</span><span class="n">l</span><span class="o">];</span>
-<span class="o">}</span>
+<hr />
+
+<p><strong>一、闭区间 <code class="language-plaintext highlighter-rouge">[left, right]</code> 的循环不变量</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 目标：查找 target 值
+</span><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="p">...</span>
 </code></pre></div></div>
 
-<p><strong>解释</strong>：为什么上述代码中l&lt;h能够成功呢？个人解释如下：如果区间是左闭右闭时，而while条件为l&lt;h时，确实有一个值没有参与if条件判断。但是，某种意义上，我们已经默认这个l，或者h角标的数就是我们要的答案。</p>
+<p>此时不变量是：</p>
 
-<p>扩展1：<strong>如果数组元素允许重复</strong>，会出现一个特殊的情况：nums[l] == nums[m] == nums[h]，此时无法确定解在哪个区间，需要切换到顺序查找。例如对于数组 {1,1,1,0,1}，l、m 和 h 指向的数都为 1，此时无法知道最小数字 0 在哪个区间。</p>
+<blockquote>
+  <p><strong>在 <code class="language-plaintext highlighter-rouge">[left, right]</code> 范围内，<code class="language-plaintext highlighter-rouge">target</code> 可能存在。</strong></p>
+</blockquote>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">minNumberInRotateArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="o">(</span><span class="n">h</span> <span class="o">-</span> <span class="n">l</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">l</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">m</span><span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="o">[</span><span class="n">m</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">h</span><span class="o">])</span>
-            <span class="k">return</span> <span class="nf">minNumber</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
-        <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">m</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">nums</span><span class="o">[</span><span class="n">h</span><span class="o">])</span>
-            <span class="n">h</span> <span class="o">=</span> <span class="n">m</span><span class="o">;</span>
-        <span class="k">else</span>
-            <span class="n">l</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">nums</span><span class="o">[</span><span class="n">l</span><span class="o">];</span>
-<span class="o">}</span>
+<ul>
+  <li>每次迭代，我们都保证 target 一定还在这个区间里；</li>
+  <li>
+    <p>更新时必须 <strong>缩掉 mid</strong>：</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">nums[mid] &lt; target</code> → <code class="language-plaintext highlighter-rouge">left = mid + 1</code></li>
+      <li><code class="language-plaintext highlighter-rouge">nums[mid] &gt; target</code> → <code class="language-plaintext highlighter-rouge">right = mid - 1</code></li>
+      <li>若 <code class="language-plaintext highlighter-rouge">nums[mid] == target</code>，就可以直接返回。</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>终止条件</strong>：<code class="language-plaintext highlighter-rouge">left &gt; right</code>，表示区间为空，target 不在其中。</p>
+
+<hr />
+
+<p><strong>二、半开区间 <code class="language-plaintext highlighter-rouge">[left, right)</code> 的循环不变量</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="p">...</span>
 </code></pre></div></div>
 
-<h3 id="旋转有序数组查找">旋转有序数组查找</h3>
+<p>此时不变量是：</p>
 
-<p><a href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&amp;mid=2653198327&amp;idx=1&amp;sn=74187f72a03db8fcad3c234d61c7bad7&amp;chksm=8c99e52dbbee6c3b1e35ea8b2a8d57fa9fa72c098fa91e9f76a3228596922ef062fbf6f3e103&amp;mpshare=1&amp;scene=24&amp;srcid=&amp;key=8095bafaf3e0360ff8c483252809c708471b25b3132dfca15fc4fa317ce5a66a56b291e0765ef078fc6867cb252f15403be711523cc6f76c4529ff5f1a814dcd04e7e9b7b46de0bf232957784929fb2e&amp;ascene=14&amp;uin=Nzg0MDI3NjA3&amp;devicetype=Windows+7&amp;version=62060833&amp;lang=zh_CN&amp;pass_ticket=UCWR8ioDtSHS%2BoL3Soe2IMjeckYJhDTfT4OLISM%2Bbekc4zA7JbB3bv2fNQXx173b">在一个旋转有序数组中，如何查找一个整数呢？</a>注意这里有一个前提：<strong>我们并不直接知道给定数组的旋转点。</strong></p>
+<blockquote>
+  <p><strong>在 <code class="language-plaintext highlighter-rouge">[left, right)</code> 范围内，<code class="language-plaintext highlighter-rouge">target</code> 可能存在。</strong></p>
+</blockquote>
 
-<p><img src="/assets/images/640.jpg" alt="640" /></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">right</code> 不在考虑范围中；</li>
+  <li>若 <code class="language-plaintext highlighter-rouge">nums[mid] &lt; target</code> → <code class="language-plaintext highlighter-rouge">left = mid + 1</code></li>
+  <li>若 <code class="language-plaintext highlighter-rouge">nums[mid] &gt; target</code> → <code class="language-plaintext highlighter-rouge">right = mid</code></li>
+</ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">rotatedBinarySearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">){</span>
-    <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">while</span><span class="o">(</span><span class="n">start</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">){</span>
-        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="o">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
-        <span class="c1">// 情况1：中位数位于旋转点左侧</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">array</span><span class="o">[</span><span class="n">start</span><span class="o">]){</span>
-            <span class="c1">// 最左侧元素 &lt;= 查找目标 &lt; 中位数</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">start</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">[</span><span class="n">mid</span><span class="o">]){</span>
-                <span class="n">end</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-            <span class="o">}</span><span class="k">else</span><span class="o">{</span> <span class="c1">// 中位数 &lt; 查找目标(查找目标位于中位数右侧)</span>
-                <span class="n">start</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">}</span><span class="k">else</span><span class="o">{</span> <span class="c1">// 情况2：中位数位于旋转点右侧，或与旋转点重合</span>
-            <span class="c1">// 中位数 &lt; 查找目标 &lt;= 最右侧元素</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;=</span> <span class="n">array</span><span class="o">[</span><span class="n">end</span><span class="o">]){</span>
-                <span class="n">start</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-            <span class="o">}</span><span class="k">else</span><span class="o">{</span> <span class="c1">// 查找目标 &gt; 中位数（查找目标位于中位数左侧）</span>
-                <span class="n">end</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-<span class="o">}</span>
+<p>终止条件：<code class="language-plaintext highlighter-rouge">left == right</code>，即搜索空间为空。</p>
+
+<hr />
+
+<p><strong>三、开区间 <code class="language-plaintext highlighter-rouge">(left, right)</code> 的循环不变量</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="p">...</span>
 </code></pre></div></div>
 
+<p>此时不变量是：</p>
+
+<blockquote>
+  <p><strong>在 <code class="language-plaintext highlighter-rouge">(left, right)</code> 区间内，<code class="language-plaintext highlighter-rouge">target</code> 可能存在。</strong></p>
+</blockquote>
+
+<ul>
+  <li>注意 <code class="language-plaintext highlighter-rouge">left</code> 和 <code class="language-plaintext highlighter-rouge">right</code> 不在搜索范围内；</li>
+  <li>理论上更「对称」，也适合一些极限边界缩紧的题。</li>
+</ul>
+
+<hr />
+
+<p><strong>为什么要维护循环不变量</strong>？</p>
+
+<p>因为它保证了「更新之后不会漏掉正确解」，或者说：</p>
+
+<blockquote>
+  <p><strong>如果循环不变量错误，更新就可能跳过解或死循环！</strong></p>
+</blockquote>
+
+<p>所有判断 (<code class="language-plaintext highlighter-rouge">left=mid+1</code>, <code class="language-plaintext highlighter-rouge">right=mid-1</code> 等)，都是为了保持这个 invariant 成立。</p>
+
+<hr />
+
+<h3 id="寻找左侧边界">寻找左侧边界</h3>
+
+<p>问题：为什么<strong>在寻找左边界时</strong>，用半开区间 <code class="language-plaintext highlighter-rouge">[left, right)</code> 或开区间 <code class="language-plaintext highlighter-rouge">(left, right)</code> 的写法不需要 <code class="language-plaintext highlighter-rouge">ans</code> 变量，而闭区间 <code class="language-plaintext highlighter-rouge">[left, right]</code> 的写法需要？</p>
+
+<blockquote>
+  <p>根本原因：<strong>不同区间的「收缩方式」决定了最终 left 的位置就是答案</strong></p>
+</blockquote>
+
+<p><strong>一、闭区间 <code class="language-plaintext highlighter-rouge">[left, right]</code> 写法为什么需要 <code class="language-plaintext highlighter-rouge">ans</code>？</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lower_bound_closed</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>       <span class="c1"># ✅ 记录可能解
+</span>            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># 继续向左
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+<ul>
+  <li>在闭区间中，收缩区间时不会<strong>自动保留满足条件的 mid</strong>。</li>
+  <li>如果你不记录 <code class="language-plaintext highlighter-rouge">ans</code>，可能最后 left 越过了目标，无法还原满足条件的下标。</li>
+  <li>所以必须显式地在满足条件时 <code class="language-plaintext highlighter-rouge">ans = mid</code>，然后继续向左搜索可能更小的满足条件的位置。</li>
+</ul>
+
+<p><strong>二、半开区间 <code class="language-plaintext highlighter-rouge">[left, right)</code> 写法不需要 <code class="language-plaintext highlighter-rouge">ans</code></strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lower_bound</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>  <span class="c1"># 保留当前这个可能的答案
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">left</span>
+</code></pre></div></div>
+<ul>
+  <li>核心：每次都在<strong>保留满足条件的下标</strong>，区间缩到 <code class="language-plaintext highlighter-rouge">[left, left)</code> 时退出。</li>
+  <li>因为 <code class="language-plaintext highlighter-rouge">right = mid</code> 时保留了满足条件的位置，所以<strong>最后收敛时，left 就是第一个满足 nums[i] ≥ target 的位置</strong>。</li>
+  <li>所以无需 <code class="language-plaintext highlighter-rouge">ans</code> 变量 —— 因为你天然就走到了最左的位置。</li>
+</ul>
+
+<p><strong>三、开区间 <code class="language-plaintext highlighter-rouge">(left, right)</code> 写法不需要 <code class="language-plaintext highlighter-rouge">ans</code></strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">lower_bound_open</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
+    <span class="k">return</span> <span class="n">right</span>
+</code></pre></div></div>
+
+<ul>
+  <li>核心同样是：右边 <code class="language-plaintext highlighter-rouge">right</code> 不断保留最小的满足条件的值。</li>
+  <li>所以退出时 <code class="language-plaintext highlighter-rouge">right</code> 就是第一个满足 <code class="language-plaintext highlighter-rouge">nums[i] ≥ target</code> 的下标。</li>
+  <li>同样不需要 <code class="language-plaintext highlighter-rouge">ans</code>，因为 right 就是答案。</li>
+</ul>
+
+<hr />
+
+<h3 id="右侧边界与寻找-target--1">右侧边界与寻找 <code class="language-plaintext highlighter-rouge">target + 1</code></h3>
+
+<p><strong>寻找 <code class="language-plaintext highlighter-rouge">target</code> 的右侧边界</strong>（即最后一个等于 <code class="language-plaintext highlighter-rouge">target</code> 的元素索引）确实可以通过寻找 <code class="language-plaintext highlighter-rouge">target + 1</code> 的<strong>左侧边界</strong>再做一定处理来实现。</p>
+
+<p>假设数组是单调非减的（升序），我们有这样一个事实：</p>
+
+<blockquote>
+  <p><strong><code class="language-plaintext highlighter-rouge">target</code> 的右边界 = <code class="language-plaintext highlighter-rouge">target + 1</code> 的左边界的前一个位置</strong></p>
+</blockquote>
+
+<p>即：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">right_bound</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="o">=</span> <span class="n">left_bound</span><span class="p">(</span><span class="n">target</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p><strong>前提条件</strong>：</p>
+<ol>
+  <li>数组必须是<strong>有序数组</strong></li>
+  <li>数组中元素是整数，或者 <code class="language-plaintext highlighter-rouge">target + 1</code> 是定义良好的</li>
+  <li>提前确定 <code class="language-plaintext highlighter-rouge">target</code> 是否存在，或者对结果进行校验</li>
+</ol>
+
+<hr />
 
         
       </section>
@@ -608,7 +943,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-05-21T00:00:00+00:00">May 21, 2024</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2025-06-14T00:00:00+00:00">June 14, 2025</time></p>
 
       </footer>
 
@@ -617,10 +952,10 @@
       
   <nav class="pagination">
     
-      <a href="#" class="pagination--pager disabled">Previous</a>
+      <a href="/leetcode/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%B3%BB%E5%88%97-%E9%A2%98%E5%8D%95/" class="pagination--pager" title="买卖股票系列-题单">Previous</a>
     
     
-      <a href="/ds-algo/%E4%BD%8D%E6%93%8D%E4%BD%9C/" class="pagination--pager" title="位操作技巧">Next</a>
+      <a href="/ds-algo/%E5%89%8D%E7%BC%80%E5%92%8C-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/" class="pagination--pager" title="前缀和与差分数组">Next</a>
     
   </nav>
 
