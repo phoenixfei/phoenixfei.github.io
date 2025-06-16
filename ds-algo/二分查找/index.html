@@ -607,7 +607,9 @@
             <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>  <span class="err">#</span> <span class="n">缩小右边界</span><span class="err">（</span><span class="n">排除</span> <span class="n">mid</span><span class="err">）</span>
         <span class="k">else</span><span class="o">:</span>
             <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span> <span class="err">#</span> <span class="n">当nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">right时</span><span class="err">，</span><span class="n">继续向右压缩</span><span class="err">，</span><span class="n">排除</span> <span class="n">mid</span>
-    <span class="k">return</span> <span class="n">right</span>
+    <span class="k">if</span> <span class="n">left</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">and</span> <span class="n">nums</span><span class="o">[</span><span class="n">left</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="nl">target:</span>
+        <span class="k">return</span> <span class="n">left</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div></div>
 
 <ol>
@@ -654,7 +656,9 @@
             <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-    <span class="k">return</span> <span class="n">right</span>
+    <span class="k">if</span> <span class="n">left</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">left</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div></div>
 
 <h3 id="三种写法对比-2">三种写法对比</h3>
@@ -692,19 +696,19 @@
       <td><code class="language-plaintext highlighter-rouge">left = mid + 1</code>（排除 mid）</td>
       <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid）</td>
       <td><code class="language-plaintext highlighter-rouge">right = mid</code></td>
-      <td>不需要记录，最终 <code class="language-plaintext highlighter-rouge">left</code> 即为答案</td>
-      <td><code class="language-plaintext highlighter-rouge">left</code></td>
+      <td>不需要记录，最终 <code class="language-plaintext highlighter-rouge">left-1</code> 即为答案</td>
+      <td><code class="language-plaintext highlighter-rouge">left-1</code></td>
       <td>解一定在 <code class="language-plaintext highlighter-rouge">[left, right)</code> 中</td>
     </tr>
     <tr>
       <td>开区间</td>
       <td><code class="language-plaintext highlighter-rouge">(left, right)</code></td>
       <td><code class="language-plaintext highlighter-rouge">left + 1 &lt; right</code></td>
-      <td><code class="language-plaintext highlighter-rouge">left = mid</code>（保留 mid 左侧）</td>
-      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid 右侧）</td>
+      <td><code class="language-plaintext highlighter-rouge">left = mid</code>（保留 mid）</td>
+      <td><code class="language-plaintext highlighter-rouge">right = mid</code>（保留 mid）</td>
       <td><code class="language-plaintext highlighter-rouge">right = mid</code></td>
-      <td>不需要记录，最终 <code class="language-plaintext highlighter-rouge">right</code> 即为答案</td>
-      <td><code class="language-plaintext highlighter-rouge">right</code></td>
+      <td>不需要记录，最终 <code class="language-plaintext highlighter-rouge">left</code> 即为答案</td>
+      <td><code class="language-plaintext highlighter-rouge">left</code></td>
       <td>解一定在 <code class="language-plaintext highlighter-rouge">(left, right)</code> 中</td>
     </tr>
   </tbody>
