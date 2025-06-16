@@ -219,7 +219,7 @@
 
 <p>二分查找使用时，需注意：</p>
 <ol>
-  <li>查找<strong>区间有序</strong></li>
+  <li>查找<strong>区间有序</strong>。</li>
   <li>防止<strong>加法溢出</strong>，也就是说加法的结果大于整型能够表示的范围。
     <blockquote>
       <p><strong>mid = (right + left) / 2</strong>; 这种情况可能出现加法溢出，即和超出int范围。</p>
@@ -585,10 +585,10 @@
 </span>
     <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
         <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
-            <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>
+        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">:</span>
             <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span>
             <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
 
     <span class="c1"># 后处理判断

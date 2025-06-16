@@ -168,7 +168,7 @@ var store = [{
         "teaser": null
       },{
         "title": "二分查找",
-        "excerpt":"虽然二分查找的基本思想相对简单，但其细节却可能出人意料地棘手。 基本概念 二分查找（Binary Search）是算法中非常经典的一种技巧，适用于在有序数据中快速定位目标，时间复杂度为 $O(\\log n)$。 二分查找使用时，需注意： 查找区间有序 防止加法溢出，也就是说加法的结果大于整型能够表示的范围。 mid = (right + left) / 2; 这种情况可能出现加法溢出，即和超出int范围。 应使用 mid = left + (right - left) / 2 当然，除以2可以用右移一位代替，也是官方推荐：mid = left + (right - left) » 1 更高级，防止减法溢出：mid = (left + right） &gt;&gt;&gt; 1 使用else if。对于初学者，不要出现else，而是把所有情况用else if写清楚，这样可以清楚地展现所有细节。 查找区间： 闭区间 [left, right]：左右两端都包含。 开区间...","categories": ["ds-algo"],
+        "excerpt":"虽然二分查找的基本思想相对简单，但其细节却可能出人意料地棘手。 基本概念 二分查找（Binary Search）是算法中非常经典的一种技巧，适用于在有序数据中快速定位目标，时间复杂度为 $O(\\log n)$。 二分查找使用时，需注意： 查找区间有序。 防止加法溢出，也就是说加法的结果大于整型能够表示的范围。 mid = (right + left) / 2; 这种情况可能出现加法溢出，即和超出int范围。 应使用 mid = left + (right - left) / 2 当然，除以2可以用右移一位代替，也是官方推荐：mid = left + (right - left) » 1 更高级，防止减法溢出：mid = (left + right） &gt;&gt;&gt; 1 使用else if。对于初学者，不要出现else，而是把所有情况用else if写清楚，这样可以清楚地展现所有细节。 查找区间： 闭区间 [left, right]：左右两端都包含。 开区间...","categories": ["ds-algo"],
         "tags": [],
         "url": "/ds-algo/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/",
         "teaser": null
