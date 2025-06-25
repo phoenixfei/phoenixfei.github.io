@@ -207,17 +207,11 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#常见的-python-语法糖及示例">常见的 Python 语法糖及示例</a></li><li><a href="#解包unpacking">解包（unpacking）</a></li><li><a href="#python对象排序">Python对象排序</a></li></ul>
+              <ul class="toc__menu"><li><a href="#解包">解包</a></li><li><a href="#对象排序">对象排序</a></li><li><a href="#填充字符串">填充字符串</a></li><li><a href="#向上下取整">向上/下取整</a></li><li><a href="#enumerate用法">enumerate用法</a></li><li><a href="#defaultdict用法">defaultdict用法</a></li></ul>
             </nav>
           </aside>
         
         <p>Pythonic（符合 Python 风格） 的技巧可以让代码更简洁、优雅、高效。</p>
-
-<hr />
-
-<p>在 Python 中，<strong>语法糖（syntactic sugar）</strong> 是指让代码更简洁、可读性更强的语法形式。虽然它们不是必须的，但能让你写出更 <strong>Pythonic</strong> 的代码。</p>
-
-<h2 id="常见的-python-语法糖及示例">常见的 Python 语法糖及示例</h2>
 
 <table>
   <thead>
@@ -291,8 +285,6 @@
   </tbody>
 </table>
 
-<hr />
-
 <p>Python 的语法糖让代码更符合人类思维、更简洁易读。但使用时要注意：</p>
 <ul>
   <li>可读性优先，避免嵌套太多推导式或 lambda 表达式</li>
@@ -301,7 +293,7 @@
 
 <hr />
 
-<h2 id="解包unpacking">解包（unpacking）</h2>
+<h3 id="解包">解包</h3>
 <p>在 Python 中，解包（unpacking）是将一个可迭代对象（如列表、元组、字典等）中的元素赋值给多个变量的一种简洁方式。</p>
 
 <hr />
@@ -341,7 +333,7 @@
 
 <hr />
 
-<h2 id="python对象排序">Python对象排序</h2>
+<h3 id="对象排序">对象排序</h3>
 
 <p>在 Python 中，对象排序可以通过内置的 <code class="language-plaintext highlighter-rouge">sorted()</code> 函数或 <code class="language-plaintext highlighter-rouge">list.sort()</code> 方法来实现。你可以对 基本类型 或 自定义对象 进行排序，常配合 <code class="language-plaintext highlighter-rouge">key</code> 函数使用。</p>
 
@@ -391,6 +383,166 @@
     </tr>
   </tbody>
 </table>
+
+<hr />
+
+<h3 id="填充字符串">填充字符串</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">str.zfill(width)</code></td>
+      <td><strong>仅用于数字字符串</strong>，在左侧填充 <code class="language-plaintext highlighter-rouge">0</code>，常用于补零</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">str.ljust/rjust/center</code></td>
+      <td>通用字符串填充，支持自定义字符</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s</span> <span class="o">=</span> <span class="s">"hello"</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s">'*'</span><span class="p">)</span>  <span class="c1"># "hello*****"
+</span><span class="n">s2</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s">'*'</span><span class="p">)</span>  <span class="c1"># "*****hello"
+</span><span class="n">s3</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">center</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="s">'*'</span><span class="p">)</span>  <span class="c1"># "***hello***"
+</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s">"42"</span>
+<span class="n">s</span><span class="p">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># 输出: "00042"
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="向上下取整">向上/下取整</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>原始数值</th>
+      <th><code class="language-plaintext highlighter-rouge">int()</code></th>
+      <th><code class="language-plaintext highlighter-rouge">math.floor()</code></th>
+      <th><code class="language-plaintext highlighter-rouge">math.ceil()</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">3.7</code></td>
+      <td><code class="language-plaintext highlighter-rouge">3</code></td>
+      <td><code class="language-plaintext highlighter-rouge">3</code></td>
+      <td><code class="language-plaintext highlighter-rouge">4</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-3.7</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-3</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-3</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>表达式</th>
+      <th>等价于</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">a // b</code></td>
+      <td><code class="language-plaintext highlighter-rouge">math.floor(a / b)</code></td>
+      <td>向下取整除</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-(-a // b)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">math.ceil(a / b)</code></td>
+      <td>向上取整除（推荐）</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="language-plaintext highlighter-rouge">-(-a // b)</code> 之所以能够实现 <strong>向上取整</strong>，是因为它巧妙地利用了 Python <strong>地板除法</strong>（<code class="language-plaintext highlighter-rouge">//</code>）的行为：<strong>“向下取整”</strong>。</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">a // b</code> 总是偏低一点（往负无穷走）。所以想要偏高一点（即向上），可以先对 <code class="language-plaintext highlighter-rouge">a</code> 加个负号，这样“偏低”反而是“偏高”</p>
+
+  <p>然后再取负回来，完成方向还原！</p>
+</blockquote>
+
+<hr />
+
+<h3 id="enumerate用法">enumerate用法</h3>
+
+<p><code class="language-plaintext highlighter-rouge">enumerate()</code> 是 Python 内置的一个非常常用的函数，它可以在遍历可迭代对象（如列表、元组等）时，<strong>同时获取元素的索引和元素本身</strong>。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">enumerate</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">iterable</code>：需要遍历的可迭代对象（如列表、元组、字符串等）。</li>
+  <li><code class="language-plaintext highlighter-rouge">start</code>：可选参数，表示索引的起始值，默认是 <code class="language-plaintext highlighter-rouge">0</code>。</li>
+</ul>
+
+<p>最常见的用法是将 <code class="language-plaintext highlighter-rouge">enumerate()</code> 用于 <code class="language-plaintext highlighter-rouge">for</code> 循环中，它返回的是一个包含索引和元素的元组。</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'b'</span><span class="p">,</span> <span class="s">'c'</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>输出：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 a
+1 b
+2 c
+</code></pre></div></div>
+
+<p>指定起始索引：你可以通过 <code class="language-plaintext highlighter-rouge">start</code> 参数来指定索引的起始值。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'b'</span><span class="p">,</span> <span class="s">'c'</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>输出：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 a
+2 b
+3 c
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="defaultdict用法">defaultdict用法</h3>
+
+<p>在 Python 的 <code class="language-plaintext highlighter-rouge">collections</code> 模块中，<code class="language-plaintext highlighter-rouge">defaultdict</code> 允许你为字典的默认值指定一个工厂函数。当你访问一个不存在的键时，它会自动创建一个默认值。</p>
+
+<p>如果你想指定默认值为 <code class="language-plaintext highlighter-rouge">int</code>，这相当于：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</code></pre></div></div>
+<p>此时，每当你访问一个不存在的键时，它会自动赋值为 <code class="language-plaintext highlighter-rouge">0</code>（因为 <code class="language-plaintext highlighter-rouge">int()</code> 返回 0）。</p>
+
+<p>你还可以替换成其他类型的工厂函数，比如：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">defaultdict(list)</code> → 默认值为 <code class="language-plaintext highlighter-rouge">[]</code></li>
+  <li><code class="language-plaintext highlighter-rouge">defaultdict(set)</code> → 默认值为 <code class="language-plaintext highlighter-rouge">set()</code></li>
+</ul>
+
+<p><strong>指定默认值的方式：</strong>重新定义工厂函数。</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">d1</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">))</span>
+
+<span class="n">d2</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
 
 <hr />
 

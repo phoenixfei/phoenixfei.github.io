@@ -138,7 +138,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Pythonic编程技巧",
-        "excerpt":"Pythonic（符合 Python 风格） 的技巧可以让代码更简洁、优雅、高效。 在 Python 中，语法糖（syntactic sugar） 是指让代码更简洁、可读性更强的语法形式。虽然它们不是必须的，但能让你写出更 Pythonic 的代码。 常见的 Python 语法糖及示例 🍭 语法糖 💡 示例 🧵 等价写法（或传统写法） 条件表达式（三元表达式） x = a if cond else b if cond: x = a else: x = b 列表推导式 [x*x for x in range(5)] 传统 for 循环逐个 append() 字典/集合推导式 {x: x*x...","categories": ["programming"],
+        "excerpt":"Pythonic（符合 Python 风格） 的技巧可以让代码更简洁、优雅、高效。 🍭 语法糖 💡 示例 🧵 等价写法（或传统写法） 条件表达式（三元表达式） x = a if cond else b if cond: x = a else: x = b 列表推导式 [x*x for x in range(5)] 传统 for 循环逐个 append() 字典/集合推导式 {x: x*x for x in range(5)} 使用 for 和 dict[key] = value...","categories": ["programming"],
         "tags": [],
         "url": "/programming/Pythonic%E7%BC%96%E7%A8%8B/",
         "teaser": null
@@ -183,5 +183,11 @@ var store = [{
         "excerpt":"二分查找（Binary Search）是一种高效的“分治”策略，适用于有序数据或满足单调性的搜索空间，时间复杂度为 O(logN)。 69. x 的平方根 给你一个非负整数 x ，计算并返回&nbsp;x&nbsp;的 算术平方根 。 由于返回类型是整数，结果只保留 整数部分 ，小数部分将被 舍去 。 注意：不允许使用任何内置指数函数和算符，例如 pow(x, 0.5) 或者 x ** 0.5 。 &nbsp; 示例 1： 输入：x = 4 输出：2 示例 2： 输入：x = 8 输出：2 解释：8 的算术平方根是 2.82842..., 由于返回类型是整数，小数部分将被舍去。 &nbsp; 提示： 0 &lt;= x &lt;= 231 - 1...","categories": ["leetcode"],
         "tags": [],
         "url": "/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-%E9%A2%98%E5%8D%95/",
+        "teaser": null
+      },{
+        "title": "0-1背包与完全背包",
+        "excerpt":"背包问题是经典的动态规划（Dynamic Programming，DP）问题。它的基本形式是给定一组物品，每个物品有重量和价值，同时给定一个背包容量，要求我们在不超过背包容量的情况下，选择哪些物品使得背包内物品的总价值最大。 常见的背包问题有两种变种： 0-1 背包问题：每个物品只能选择一次。 完全背包问题：每个物品可以选择多次。 可视化DP过程 通过以下物品列表：分别为 0-1 背包 和 完全背包 画出二维 DP 表格，可视化状态变化过程，理解两者在状态转移上的核心差别。 物品编号 重量 价值 0 2 3 1 3 4 2 4 5 3 7 10 背包容量：W = 10 状态定义：dp[i][w] 表示前 i 个物品，容量为 w 时能取得的最大价值。 初始化：dp[0][...] = 0 表示不选任何物品时最大价值为 0。 0-1 背包, 状态转移方程： if w &gt;=...","categories": ["ds-algo"],
+        "tags": [],
+        "url": "/ds-algo/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/",
         "teaser": null
       }]

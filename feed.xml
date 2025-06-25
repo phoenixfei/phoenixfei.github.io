@@ -1,4 +1,379 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://yourusername.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yourusername.github.io/" rel="alternate" type="text/html" /><updated>2025-06-18T15:06:22+00:00</updated><id>https://yourusername.github.io/feed.xml</id><title type="html">phoenixfei</title><subtitle>记录算法、大数据、数学等知识，持续学习与沉淀。</subtitle><author><name>phoenixfei</name></author><entry><title type="html">二分查找-题单</title><link href="https://yourusername.github.io/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-%E9%A2%98%E5%8D%95/" rel="alternate" type="text/html" title="二分查找-题单" /><published>2025-06-15T00:00:00+00:00</published><updated>2025-06-15T00:00:00+00:00</updated><id>https://yourusername.github.io/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-%E9%A2%98%E5%8D%95</id><content type="html" xml:base="https://yourusername.github.io/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-%E9%A2%98%E5%8D%95/"><![CDATA[<p>二分查找（Binary Search）是一种高效的“分治”策略，适用于有序数据或满足单调性的搜索空间，时间复杂度为 <code class="language-plaintext highlighter-rouge">O(logN)</code>。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://yourusername.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://yourusername.github.io/" rel="alternate" type="text/html" /><updated>2025-06-25T14:23:19+00:00</updated><id>https://yourusername.github.io/feed.xml</id><title type="html">phoenixfei</title><subtitle>记录算法、大数据、数学等知识，持续学习与沉淀。</subtitle><author><name>phoenixfei</name></author><entry><title type="html">0-1背包与完全背包</title><link href="https://yourusername.github.io/ds-algo/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" rel="alternate" type="text/html" title="0-1背包与完全背包" /><published>2025-06-25T00:00:00+00:00</published><updated>2025-06-25T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/"><![CDATA[<p>背包问题是经典的动态规划（Dynamic Programming，DP）问题。它的基本形式是给定一组物品，每个物品有重量和价值，同时给定一个背包容量，要求我们在不超过背包容量的情况下，选择哪些物品使得背包内物品的总价值最大。</p>
+
+<p>常见的背包问题有两种变种：</p>
+
+<ol>
+  <li><strong>0-1 背包问题</strong>：每个物品只能选择一次。</li>
+  <li><strong>完全背包问题</strong>：每个物品可以选择多次。</li>
+</ol>
+
+<hr />
+
+<h2 id="可视化dp过程">可视化DP过程</h2>
+
+<p>通过以下物品列表：分别为 0-1 背包 和 完全背包 画出二维 DP 表格，可视化状态变化过程，理解两者在状态转移上的核心差别。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>物品编号</th>
+      <th>重量</th>
+      <th>价值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>7</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>背包容量：<code class="language-plaintext highlighter-rouge">W = 10</code></li>
+  <li>状态定义：<code class="language-plaintext highlighter-rouge">dp[i][w]</code> 表示前 <code class="language-plaintext highlighter-rouge">i</code> 个物品，容量为 <code class="language-plaintext highlighter-rouge">w</code> 时能取得的最大价值。</li>
+  <li>初始化：<code class="language-plaintext highlighter-rouge">dp[0][...] = 0</code> 表示不选任何物品时最大价值为 0。</li>
+</ul>
+
+<hr />
+
+<p><strong>0-1 背包</strong>, 状态转移方程：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">w</span> <span class="o">&gt;=</span> <span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">w</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">w</span> <span class="o">-</span> <span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">w</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>DP 表格展示（行：物品，列：容量）。
+<code class="language-plaintext highlighter-rouge">dp[i][w]</code>，共 5 行（含 base 0 行）× 11 列（容量 0~10）</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        w=0  1  2  3   4   5   6   7    8    9   10
+--------------------------------------------------
+i=0 |   0   0  0  0   0   0   0   0    0    0    0
+i=1 |   0   0  3  3   3   3   3   3    3    3    3
+i=2 |   0   0  3  4   4   4   7   7    7    7    7
+i=3 |   0   0  3  4   5   5   7   8    9    9    9
+i=4 |   0   0  3  4   5   5   7   10   10  13   14
+</code></pre></div></div>
+
+<p>说明：</p>
+<ul>
+  <li>第 i 行表示第 <code class="language-plaintext highlighter-rouge">i-1</code> 个物品（因为索引是从 0 开始的）</li>
+  <li>例如第 <code class="language-plaintext highlighter-rouge">4</code> 行表示已经考虑完前 4 个物品（编号 0~3）</li>
+  <li>观察第 <code class="language-plaintext highlighter-rouge">i=4, w=10</code>：选物品3（重7，值10）+ 物品1（重3，值4） = <strong>14</strong></li>
+  <li>即，0-1 背包最大价值：14**</li>
+</ul>
+
+<hr />
+
+<p><strong>完全背包</strong>, 状态转移方程（和 0-1 背包的唯一区别是从第 <code class="language-plaintext highlighter-rouge">i</code> 行转移而不是 <code class="language-plaintext highlighter-rouge">i-1</code>）：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">w</span> <span class="o">&gt;=</span> <span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">w</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">w</span> <span class="o">-</span> <span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">w</span><span class="p">]</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>核心差异：<strong>完全背包可以选多次</strong>，所以转移来自 <code class="language-plaintext highlighter-rouge">dp[i+1][...]</code>（即同一行），而不是上一行！</p>
+</blockquote>
+
+<hr />
+
+<p>完全背包 DP 表格：<strong>完全背包最大价值：15</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        w=0  1  2  3   4   5   6    7    8    9   10
+---------------------------------------------------
+i=0 |   0   0  0  0   0   0   0    0    0    0    0
+i=1 |   0   0  3  3   6   6   9    9    12   12  15
+i=2 |   0   0  3  4   6   7   9    10   12   13  15
+i=3 |   0   0  3  4   6   7   9    10   12   13  15
+i=4 |   0   0  3  4   6   7   9    10   12   13  15
+</code></pre></div></div>
+
+<blockquote>
+  <p>到 <code class="language-plaintext highlighter-rouge">i=1</code> 时已经可以达到最大值 15（例如物品 0 × 5）</p>
+</blockquote>
+
+<hr />
+
+<p>总结对比表格</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>对比项</th>
+      <th>0-1 背包</th>
+      <th>完全背包</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>状态转移来自</td>
+      <td>上一行 <code class="language-plaintext highlighter-rouge">dp[i][...]</code></td>
+      <td>本行 <code class="language-plaintext highlighter-rouge">dp[i+1][...]</code></td>
+    </tr>
+    <tr>
+      <td>每件物品选几次</td>
+      <td>最多 1 次</td>
+      <td>可以多次（不限）</td>
+    </tr>
+    <tr>
+      <td>最优解</td>
+      <td>14</td>
+      <td><strong>15</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="0-1-背包问题">0-1 背包问题</h2>
+
+<p>有 <code class="language-plaintext highlighter-rouge">n</code> 个物品，每个物品有重量 <code class="language-plaintext highlighter-rouge">weight[i]</code> 和价值 <code class="language-plaintext highlighter-rouge">value[i]</code>，背包的最大容量是 <code class="language-plaintext highlighter-rouge">W</code>。每个物品只能选择一次，要求在不超过背包容量 <code class="language-plaintext highlighter-rouge">W</code> 的情况下，选择物品，使得背包内的物品总价值最大。</p>
+
+<ol>
+  <li>
+    <p><strong>状态定义</strong>：
+用 <code class="language-plaintext highlighter-rouge">dp[i][w]</code> 表示前 <code class="language-plaintext highlighter-rouge">i</code> 个物品，背包容量为 <code class="language-plaintext highlighter-rouge">w</code> 时，能够获得的最大价值。</p>
+  </li>
+  <li>
+    <p><strong>状态转移方程</strong>：</p>
+
+    <ul>
+      <li>如果不选择第 <code class="language-plaintext highlighter-rouge">i</code> 个物品，背包的总价值为 <code class="language-plaintext highlighter-rouge">dp[i-1][w]</code>。</li>
+      <li>如果选择第 <code class="language-plaintext highlighter-rouge">i</code> 个物品，则背包的总价值为 <code class="language-plaintext highlighter-rouge">dp[i-1][w - weight[i]] + value[i]</code>。</li>
+    </ul>
+
+    <p>因此，状态转移方程为：</p>
+
+\[dp[i][w] = \max(dp[i-1][w], dp[i-1][w - weight[i]] + value[i])\]
+  </li>
+  <li>
+    <p><strong>边界条件</strong>：</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">dp[0][w] = 0</code>，表示没有物品时，背包价值为 0。</li>
+      <li><code class="language-plaintext highlighter-rouge">dp[i][0] = 0</code>，表示背包容量为 0 时，价值为 0。</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 0-1 背包的二维 DP 代码实现
+</span><span class="k">def</span> <span class="nf">knapsack_01</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">W</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>  <span class="c1"># 初始化 DP 数组
+</span>    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">W</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">weights</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">w</span><span class="p">:</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">w</span> <span class="o">-</span> <span class="n">weights</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">W</span><span class="p">]</span>
+
+<span class="c1"># 示例
+</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">values</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">W</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">print</span><span class="p">(</span><span class="n">knapsack_01</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">W</span><span class="p">))</span>  <span class="c1"># 输出 14
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="完全背包问题">完全背包问题</h2>
+
+<p>与 0-1 背包问题类似，完全背包问题也给定了 <code class="language-plaintext highlighter-rouge">n</code> 个物品，每个物品有重量 <code class="language-plaintext highlighter-rouge">weight[i]</code> 和价值 <code class="language-plaintext highlighter-rouge">value[i]</code>，背包的最大容量是 <code class="language-plaintext highlighter-rouge">W</code>。不同之处在于 <strong>每个物品可以选择多次</strong>。要求在不超过背包容量 <code class="language-plaintext highlighter-rouge">W</code> 的情况下，选择物品，使得背包内的物品总价值最大。</p>
+
+<ol>
+  <li>
+    <p><strong>状态定义</strong>：
+用 <code class="language-plaintext highlighter-rouge">dp[i][w]</code> 表示前 <code class="language-plaintext highlighter-rouge">i</code> 个物品，背包容量为 <code class="language-plaintext highlighter-rouge">w</code> 时，能够获得的最大价值。</p>
+  </li>
+  <li>
+    <p><strong>状态转移方程</strong>：</p>
+
+    <ul>
+      <li>
+        <p>对于每个物品，可以选择多次，因此 <strong>完全背包</strong> 问题的状态转移方程是：</p>
+
+\[dp[i][w] = \max(dp[i-1][w], dp[i][w - weight[i]] + value[i])\]
+      </li>
+      <li>
+        <p>其中：</p>
+
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">dp[i-1][w]</code> 表示 <strong>不选择第 <code class="language-plaintext highlighter-rouge">i</code> 个物品</strong>。</li>
+          <li><code class="language-plaintext highlighter-rouge">dp[i][w - weight[i]] + value[i]</code> 表示 <strong>选择第 <code class="language-plaintext highlighter-rouge">i</code> 个物品</strong>，并在容量为 <code class="language-plaintext highlighter-rouge">w - weight[i]</code> 时进行进一步选择。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>边界条件</strong>：</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">dp[0][w] = 0</code>，表示没有物品时，背包价值为 0。</li>
+      <li><code class="language-plaintext highlighter-rouge">dp[i][0] = 0</code>，表示背包容量为 0 时，价值为 0。</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 完全背包的二维 DP 代码实现
+</span><span class="k">def</span> <span class="nf">knapsack_unbounded_2d</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">W</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>  <span class="c1"># 初始化 DP 数组
+</span>    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">W</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">w</span> <span class="o">&gt;=</span> <span class="n">weights</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">w</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">w</span> <span class="o">-</span> <span class="n">weights</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">W</span><span class="p">]</span>
+
+<span class="c1"># 示例
+</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">values</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">W</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">print</span><span class="p">(</span><span class="n">knapsack_unbounded_2d</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">W</span><span class="p">))</span>  <span class="c1"># 输出 15
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="一维-dp-解决背包问题">一维 DP 解决背包问题</h2>
+
+<p>在 <strong>0-1 背包</strong> 中，我们可以将二维 DP 数组降为一维 DP 数组来减少空间复杂度。<strong>通过从大到小遍历背包容量，可以确保每个物品仅被选择一次。</strong></p>
+
+<p>状态转移方程：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dp</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">w</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">w</span> <span class="o">-</span> <span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>代码实现：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">knapsack_01</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">W</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 初始化一维 DP 数组
+</span>    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>  <span class="c1"># 从大到小遍历，防止重复使用物品
+</span>            <span class="n">dp</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">w</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">w</span> <span class="o">-</span> <span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">W</span><span class="p">]</span>
+
+<span class="c1"># 示例
+</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">values</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">W</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">print</span><span class="p">(</span><span class="n">knapsack_01</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">W</span><span class="p">))</span>  <span class="c1"># 输出 14
+</span></code></pre></div></div>
+
+<p>在 <strong>完全背包</strong> 中，我们允许每个物品可以选择多次，<strong>因此我们需要从小到大遍历背包容量来更新 DP 数组</strong>。</p>
+
+<p>状态转移方程：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dp</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">w</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">w</span> <span class="o">-</span> <span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>代码实现：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">knapsack_unbounded</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">W</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 初始化一维 DP 数组
+</span>    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">W</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># 从小到大遍历，允许多次选择物品
+</span>            <span class="n">dp</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">w</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">w</span> <span class="o">-</span> <span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">W</span><span class="p">]</span>
+
+<span class="c1"># 示例
+</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">values</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">W</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">print</span><span class="p">(</span><span class="n">knapsack_unbounded</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">W</span><span class="p">))</span>  <span class="c1"># 输出 15
+</span></code></pre></div></div>
+
+<hr />
+
+<p>对比结果：</p>
+<ul>
+  <li><strong>0-1 背包</strong>：每个物品只能选择一次，使用动态规划时从大到小更新背包容量。</li>
+  <li>
+    <p><strong>完全背包</strong>：每个物品可以选择多次，使用动态规划时从小到大更新背包容量。</p>
+  </li>
+  <li><strong>0-1 背包</strong>：通过从大到小更新 DP 数组，避免物品被多次选择。</li>
+  <li><strong>完全背包</strong>：通过从小到大更新 DP 数组，允许物品被多次选择。</li>
+</ul>
+
+<hr />
+
+<h3 id="递归实现">递归实现</h3>
+
+<p>0-1背包</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">values</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">W</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">knapsack_01</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="c1"># 递归终止条件：没有物品可选或者背包容量为 0
+</span>    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="c1"># 如果当前物品的重量大于背包剩余容量，不选这个物品
+</span>    <span class="k">if</span> <span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">c</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">knapsack_01</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+    <span class="c1"># 选择当前物品或者不选择
+</span>    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">knapsack_01</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">knapsack_01</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">-</span><span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+
+<span class="c1"># 示例
+</span><span class="k">print</span><span class="p">(</span><span class="n">knapsack_01</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">W</span><span class="p">))</span>  <span class="c1"># 输出 14
+</span></code></pre></div></div>
+
+<p>完全背包</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">values</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">W</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">knapsack_unbounded</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="c1"># 递归终止条件：没有物品可选或者背包容量为 0
+</span>    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="c1"># 如果当前物品的重量大于背包剩余容量，不选这个物品
+</span>    <span class="k">if</span> <span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">c</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">knapsack_unbounded</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+    <span class="c1"># 选择当前物品或者不选择
+</span>    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">knapsack_unbounded</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">knapsack_unbounded</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="o">-</span> <span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+
+<span class="c1"># 示例
+</span><span class="k">print</span><span class="p">(</span><span class="n">knapsack_unbounded</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">W</span><span class="p">))</span>  <span class="c1"># 输出 15
+</span></code></pre></div></div>
+
+<hr />]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[背包问题是经典的动态规划（Dynamic Programming，DP）问题。它的基本形式是给定一组物品，每个物品有重量和价值，同时给定一个背包容量，要求我们在不超过背包容量的情况下，选择哪些物品使得背包内物品的总价值最大。]]></summary></entry><entry><title type="html">二分查找-题单</title><link href="https://yourusername.github.io/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-%E9%A2%98%E5%8D%95/" rel="alternate" type="text/html" title="二分查找-题单" /><published>2025-06-15T00:00:00+00:00</published><updated>2025-06-15T00:00:00+00:00</updated><id>https://yourusername.github.io/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-%E9%A2%98%E5%8D%95</id><content type="html" xml:base="https://yourusername.github.io/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-%E9%A2%98%E5%8D%95/"><![CDATA[<p>二分查找（Binary Search）是一种高效的“分治”策略，适用于有序数据或满足单调性的搜索空间，时间复杂度为 <code class="language-plaintext highlighter-rouge">O(logN)</code>。</p>
 
 <hr />
 
@@ -2233,12 +2608,6 @@ a[i] - a[i-1], &amp; i \ge 1
 
 <hr />]]></content><author><name>phoenixfei</name></author><category term="math" /><summary type="html"><![CDATA[“排列”和“组合”是数学中计数的两个基本概念，它们都用于从一组元素中选择若干个元素的方式，但排列考虑顺序，组合不考虑顺序。]]></summary></entry><entry><title type="html">Pythonic编程技巧</title><link href="https://yourusername.github.io/programming/Pythonic%E7%BC%96%E7%A8%8B/" rel="alternate" type="text/html" title="Pythonic编程技巧" /><published>2025-06-01T00:00:00+00:00</published><updated>2025-06-01T00:00:00+00:00</updated><id>https://yourusername.github.io/programming/Pythonic%E7%BC%96%E7%A8%8B</id><content type="html" xml:base="https://yourusername.github.io/programming/Pythonic%E7%BC%96%E7%A8%8B/"><![CDATA[<p>Pythonic（符合 Python 风格） 的技巧可以让代码更简洁、优雅、高效。</p>
 
-<hr />
-
-<p>在 Python 中，<strong>语法糖（syntactic sugar）</strong> 是指让代码更简洁、可读性更强的语法形式。虽然它们不是必须的，但能让你写出更 <strong>Pythonic</strong> 的代码。</p>
-
-<h2 id="常见的-python-语法糖及示例">常见的 Python 语法糖及示例</h2>
-
 <table>
   <thead>
     <tr>
@@ -2311,8 +2680,6 @@ a[i] - a[i-1], &amp; i \ge 1
   </tbody>
 </table>
 
-<hr />
-
 <p>Python 的语法糖让代码更符合人类思维、更简洁易读。但使用时要注意：</p>
 <ul>
   <li>可读性优先，避免嵌套太多推导式或 lambda 表达式</li>
@@ -2321,7 +2688,7 @@ a[i] - a[i-1], &amp; i \ge 1
 
 <hr />
 
-<h2 id="解包unpacking">解包（unpacking）</h2>
+<h3 id="解包">解包</h3>
 <p>在 Python 中，解包（unpacking）是将一个可迭代对象（如列表、元组、字典等）中的元素赋值给多个变量的一种简洁方式。</p>
 
 <hr />
@@ -2361,7 +2728,7 @@ a[i] - a[i-1], &amp; i \ge 1
 
 <hr />
 
-<h2 id="python对象排序">Python对象排序</h2>
+<h3 id="对象排序">对象排序</h3>
 
 <p>在 Python 中，对象排序可以通过内置的 <code class="language-plaintext highlighter-rouge">sorted()</code> 函数或 <code class="language-plaintext highlighter-rouge">list.sort()</code> 方法来实现。你可以对 基本类型 或 自定义对象 进行排序，常配合 <code class="language-plaintext highlighter-rouge">key</code> 函数使用。</p>
 
@@ -2411,6 +2778,166 @@ a[i] - a[i-1], &amp; i \ge 1
     </tr>
   </tbody>
 </table>
+
+<hr />
+
+<h3 id="填充字符串">填充字符串</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">str.zfill(width)</code></td>
+      <td><strong>仅用于数字字符串</strong>，在左侧填充 <code class="language-plaintext highlighter-rouge">0</code>，常用于补零</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">str.ljust/rjust/center</code></td>
+      <td>通用字符串填充，支持自定义字符</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s</span> <span class="o">=</span> <span class="s">"hello"</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s">'*'</span><span class="p">)</span>  <span class="c1"># "hello*****"
+</span><span class="n">s2</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s">'*'</span><span class="p">)</span>  <span class="c1"># "*****hello"
+</span><span class="n">s3</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">center</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="s">'*'</span><span class="p">)</span>  <span class="c1"># "***hello***"
+</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s">"42"</span>
+<span class="n">s</span><span class="p">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># 输出: "00042"
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="向上下取整">向上/下取整</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>原始数值</th>
+      <th><code class="language-plaintext highlighter-rouge">int()</code></th>
+      <th><code class="language-plaintext highlighter-rouge">math.floor()</code></th>
+      <th><code class="language-plaintext highlighter-rouge">math.ceil()</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">3.7</code></td>
+      <td><code class="language-plaintext highlighter-rouge">3</code></td>
+      <td><code class="language-plaintext highlighter-rouge">3</code></td>
+      <td><code class="language-plaintext highlighter-rouge">4</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-3.7</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-3</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">-3</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>表达式</th>
+      <th>等价于</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">a // b</code></td>
+      <td><code class="language-plaintext highlighter-rouge">math.floor(a / b)</code></td>
+      <td>向下取整除</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-(-a // b)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">math.ceil(a / b)</code></td>
+      <td>向上取整除（推荐）</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="language-plaintext highlighter-rouge">-(-a // b)</code> 之所以能够实现 <strong>向上取整</strong>，是因为它巧妙地利用了 Python <strong>地板除法</strong>（<code class="language-plaintext highlighter-rouge">//</code>）的行为：<strong>“向下取整”</strong>。</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">a // b</code> 总是偏低一点（往负无穷走）。所以想要偏高一点（即向上），可以先对 <code class="language-plaintext highlighter-rouge">a</code> 加个负号，这样“偏低”反而是“偏高”</p>
+
+  <p>然后再取负回来，完成方向还原！</p>
+</blockquote>
+
+<hr />
+
+<h3 id="enumerate用法">enumerate用法</h3>
+
+<p><code class="language-plaintext highlighter-rouge">enumerate()</code> 是 Python 内置的一个非常常用的函数，它可以在遍历可迭代对象（如列表、元组等）时，<strong>同时获取元素的索引和元素本身</strong>。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">enumerate</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">iterable</code>：需要遍历的可迭代对象（如列表、元组、字符串等）。</li>
+  <li><code class="language-plaintext highlighter-rouge">start</code>：可选参数，表示索引的起始值，默认是 <code class="language-plaintext highlighter-rouge">0</code>。</li>
+</ul>
+
+<p>最常见的用法是将 <code class="language-plaintext highlighter-rouge">enumerate()</code> 用于 <code class="language-plaintext highlighter-rouge">for</code> 循环中，它返回的是一个包含索引和元素的元组。</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'b'</span><span class="p">,</span> <span class="s">'c'</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>输出：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 a
+1 b
+2 c
+</code></pre></div></div>
+
+<p>指定起始索引：你可以通过 <code class="language-plaintext highlighter-rouge">start</code> 参数来指定索引的起始值。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'b'</span><span class="p">,</span> <span class="s">'c'</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>输出：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 a
+2 b
+3 c
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="defaultdict用法">defaultdict用法</h3>
+
+<p>在 Python 的 <code class="language-plaintext highlighter-rouge">collections</code> 模块中，<code class="language-plaintext highlighter-rouge">defaultdict</code> 允许你为字典的默认值指定一个工厂函数。当你访问一个不存在的键时，它会自动创建一个默认值。</p>
+
+<p>如果你想指定默认值为 <code class="language-plaintext highlighter-rouge">int</code>，这相当于：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</code></pre></div></div>
+<p>此时，每当你访问一个不存在的键时，它会自动赋值为 <code class="language-plaintext highlighter-rouge">0</code>（因为 <code class="language-plaintext highlighter-rouge">int()</code> 返回 0）。</p>
+
+<p>你还可以替换成其他类型的工厂函数，比如：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">defaultdict(list)</code> → 默认值为 <code class="language-plaintext highlighter-rouge">[]</code></li>
+  <li><code class="language-plaintext highlighter-rouge">defaultdict(set)</code> → 默认值为 <code class="language-plaintext highlighter-rouge">set()</code></li>
+</ul>
+
+<p><strong>指定默认值的方式：</strong>重新定义工厂函数。</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">d1</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">))</span>
+
+<span class="n">d2</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
 
 <hr />]]></content><author><name>phoenixfei</name></author><category term="programming" /><summary type="html"><![CDATA[Pythonic（符合 Python 风格） 的技巧可以让代码更简洁、优雅、高效。]]></summary></entry><entry><title type="html">Python二维列表操作技巧</title><link href="https://yourusername.github.io/programming/Python%E4%BA%8C%E7%BB%B4%E5%88%97%E8%A1%A8/" rel="alternate" type="text/html" title="Python二维列表操作技巧" /><published>2025-06-01T00:00:00+00:00</published><updated>2025-06-01T00:00:00+00:00</updated><id>https://yourusername.github.io/programming/Python%E4%BA%8C%E7%BB%B4%E5%88%97%E8%A1%A8</id><content type="html" xml:base="https://yourusername.github.io/programming/Python%E4%BA%8C%E7%BB%B4%E5%88%97%E8%A1%A8/"><![CDATA[<p>从二维列表最基本的创建方式出发，逐步深入到访问、遍历、修改、拷贝、切片等实用操作。</p>
 
@@ -2678,146 +3205,4 @@ a[i] - a[i-1], &amp; i \ge 1
       <td>Python 中是不可变集合</td>
     </tr>
   </tbody>
-</table>]]></content><author><name>phoenixfei</name></author><category term="programming" /><summary type="html"><![CDATA[从核心结构、功能对等实现以及差异说明，介绍Java 与 Python 常用数据结构，适合从 Java 转向 Python 或同时使用两者的开发者参考。]]></summary></entry><entry><title type="html">单调栈</title><link href="https://yourusername.github.io/ds-algo/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="alternate" type="text/html" title="单调栈" /><published>2025-05-21T00:00:00+00:00</published><updated>2025-05-21T00:00:00+00:00</updated><id>https://yourusername.github.io/ds-algo/%E5%8D%95%E8%B0%83%E6%A0%88</id><content type="html" xml:base="https://yourusername.github.io/ds-algo/%E5%8D%95%E8%B0%83%E6%A0%88/"><![CDATA[<p>单调栈是指栈内元素单调递增或递减的栈结构，常用于解决“下一个更大元素”、“最大矩形面积”等问题。</p>
-
-<hr />
-
-<h2 id="常见类型">常见类型</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>类型</th>
-      <th>特点</th>
-      <th>适用场景</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>单调递增栈</td>
-      <td>栈内元素从栈底到栈顶递增（小→大）</td>
-      <td>寻找<strong>下一个更小元素</strong>、维护最小值</td>
-    </tr>
-    <tr>
-      <td>单调递减栈</td>
-      <td>栈内元素从栈底到栈顶递减（大→小）</td>
-      <td>寻找<strong>下一个更大元素</strong>、维护最大值</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="举例说明">举例说明</h2>
-
-<p>以数组 <code class="language-plaintext highlighter-rouge">[2, 1, 5, 6, 2, 3]</code> 为例，<strong>寻找每个元素右侧第一个比它大的元素</strong>，若不存在，则记为 -1。</p>
-
-<hr />
-
-<h3 id="思路回顾">思路回顾</h3>
-
-<p>维护一个 <strong>单调递减栈</strong>，栈中存的是<strong>索引</strong>。遍历数组时，如果当前元素比栈顶对应的元素大，就说明找到了“下一个更大的元素”。</p>
-
-<hr />
-
-<h3 id="算法过程演示">算法过程演示</h3>
-
-<p><strong>输入数组：</strong> <code class="language-plaintext highlighter-rouge">nums = [2, 1, 5, 6, 2, 3]</code></p>
-
-<p>遍历过程：</p>
-
-<ol>
-  <li>
-    <p>i = 0, nums[0] = 2
-→ 栈空，入栈 [0]</p>
-  </li>
-  <li>
-    <p>i = 1, nums[1] = 1
-→ 栈顶 nums[0]=2 &gt; 1，不满足条件，入栈 [0, 1]</p>
-  </li>
-  <li>
-    <p>i = 2, nums[2] = 5</p>
-
-    <ul>
-      <li>栈顶 nums[1]=1 &lt; 5 → 弹出，res[1] = 5</li>
-      <li>栈顶 nums[0]=2 &lt; 5 → 弹出，res[0] = 5
-→ 入栈 [2]</li>
-    </ul>
-  </li>
-  <li>
-    <p>i = 3, nums[3] = 6</p>
-
-    <ul>
-      <li>栈顶 nums[2]=5 &lt; 6 → 弹出，res[2] = 6
-→ 入栈 [3]</li>
-    </ul>
-  </li>
-  <li>
-    <p>i = 4, nums[4] = 2
-→ 栈顶 nums[3]=6 &gt; 2，不弹出，入栈 [3, 4]</p>
-  </li>
-  <li>
-    <p>i = 5, nums[5] = 3</p>
-
-    <ul>
-      <li>栈顶 nums[4]=2 &lt; 3 → 弹出，res[4] = 3
-→ 栈顶 nums[3]=6 &gt; 3，不弹出，入栈 [3, 5]</li>
-    </ul>
-  </li>
-</ol>
-
-<p>最终结果：</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="python-实现">python 实现</h3>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">next_greater</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-    <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
-        <span class="k">while</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]:</span>
-            <span class="n">idx</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
-            <span class="n">res</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">res</span>
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="常见应用场景">常见应用场景</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>应用场景</th>
-      <th>简要描述</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>下一个更大元素（或更小元素）</td>
-      <td>从一个数组中找到每个元素右边第一个比它大的数</td>
-    </tr>
-    <tr>
-      <td>柱状图中最大的矩形</td>
-      <td>求解每根柱子左右第一个比它矮的柱子，计算最大面积</td>
-    </tr>
-    <tr>
-      <td>滑动窗口最值</td>
-      <td>单调队列变形</td>
-    </tr>
-    <tr>
-      <td>某个元素的左/右边界</td>
-      <td>找到数组中每个元素左边第一个比它小/大的数</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="题单链接">题单链接</h2>
-<p><a href="/leetcode/单调栈-题单/">单调栈基础题单</a></p>]]></content><author><name>phoenixfei</name></author><category term="ds-algo" /><summary type="html"><![CDATA[单调栈是指栈内元素单调递增或递减的栈结构，常用于解决“下一个更大元素”、“最大矩形面积”等问题。]]></summary></entry></feed>
+</table>]]></content><author><name>phoenixfei</name></author><category term="programming" /><summary type="html"><![CDATA[从核心结构、功能对等实现以及差异说明，介绍Java 与 Python 常用数据结构，适合从 Java 转向 Python 或同时使用两者的开发者参考。]]></summary></entry></feed>
