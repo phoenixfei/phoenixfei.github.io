@@ -207,7 +207,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#可视化dp过程">可视化DP过程</a></li><li><a href="#0-1-背包问题">0-1 背包问题</a></li><li><a href="#完全背包问题">完全背包问题</a></li><li><a href="#一维-dp-解决背包问题">一维 DP 解决背包问题</a><ul><li><a href="#递归实现">递归实现</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#可视化dp过程">可视化DP过程</a></li><li><a href="#0-1-背包问题">0-1 背包问题</a></li><li><a href="#完全背包问题">完全背包问题</a></li><li><a href="#一维-dp-解决背包问题">一维 DP 解决背包问题</a></li><li><a href="#递归实现">递归实现</a></li><li><a href="#模板题">模板题</a></li></ul>
             </nav>
           </aside>
         
@@ -374,8 +374,8 @@ i=4 |   0   0  3  4   6   7   9    10   12   13  15
     </ul>
 
     <p>因此，状态转移方程为：</p>
-
-\[dp[i][w] = \max(dp[i-1][w], dp[i-1][w - weight[i]] + value[i])\]
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dp[i][w] = max(dp[i-1][w], dp[i-1][w - weight[i]] + value[i])
+</code></pre></div>    </div>
   </li>
   <li>
     <p><strong>边界条件</strong>：</p>
@@ -423,10 +423,9 @@ i=4 |   0   0  3  4   6   7   9    10   12   13  15
     <p><strong>状态转移方程</strong>：</p>
 
     <ul>
-      <li>
-        <p>对于每个物品，可以选择多次，因此 <strong>完全背包</strong> 问题的状态转移方程是：</p>
-
-\[dp[i][w] = \max(dp[i-1][w], dp[i][w - weight[i]] + value[i])\]
+      <li>对于每个物品，可以选择多次，因此 <strong>完全背包</strong> 问题的状态转移方程是：
+        <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code> dp[i][w] = max(dp[i-1][w], dp[i][w - weight[i]] + value[i])
+</code></pre></div>        </div>
       </li>
       <li>
         <p>其中：</p>
@@ -534,7 +533,7 @@ i=4 |   0   0  3  4   6   7   9    10   12   13  15
 
 <hr />
 
-<h3 id="递归实现">递归实现</h3>
+<h2 id="递归实现">递归实现</h2>
 
 <p>0-1背包</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
@@ -585,6 +584,22 @@ i=4 |   0   0  3  4   6   7   9    10   12   13  15
 <span class="c1"># 示例
 </span><span class="k">print</span><span class="p">(</span><span class="n">knapsack_unbounded</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">W</span><span class="p">))</span>  <span class="c1"># 输出 15
 </span></code></pre></div></div>
+
+<hr />
+
+<h2 id="模板题">模板题</h2>
+
+<p><strong>0-1背包</strong></p>
+<ul>
+  <li><a href="https://leetcode.cn/problems/partition-equal-subset-sum/description/">416. 分割等和子集</a></li>
+  <li><a href="http://leetcode.cn/problems/target-sum/description/">494. 目标和</a></li>
+</ul>
+
+<p><strong>完全背包</strong></p>
+<ul>
+  <li><a href="https://leetcode.cn/problems/coin-change/">322. 零钱兑换</a></li>
+  <li><a href="https://leetcode.cn/problems/inverse-coin-change/description/">3592. 硬币面值还原</a></li>
+</ul>
 
 <hr />
 
