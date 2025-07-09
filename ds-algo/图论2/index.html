@@ -744,7 +744,9 @@
 </span>
     <span class="k">while</span> <span class="n">heap</span><span class="p">:</span>
         <span class="n">d</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="n">heapq</span><span class="p">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span> <span class="c1"># u 已经处理过。之前的d大于当前的dist[u]，故弹出的该节点无需处理
+        <span class="c1"># if u == target:
+</span>        <span class="c1">#     return d  # 如果只需要找到 target，可直接返回最短距离
+</span>        <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span> <span class="c1"># u 已经处理过。之前的d大于当前的dist[u]，故弹出的该节点无需处理
 </span>            <span class="k">continue</span>
         <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>  <span class="c1"># v: neighbor, w: weight
 </span>            <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span><span class="p">:</span>
@@ -752,6 +754,11 @@
                 <span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">v</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">dist</span>
 </code></pre></div></div>
+
+<p><strong>Dijkstra 算法经典例题</strong></p>
+<ul>
+  <li><a href="https://leetcode.cn/problems/minimum-time-to-reach-destination-in-directed-graph/description/">3604. 有向图中到达终点的最少时间</a></li>
+</ul>
 
 <hr />
 
