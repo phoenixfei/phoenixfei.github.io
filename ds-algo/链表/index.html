@@ -11,7 +11,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>链表</title>
-<meta name="description" content="链表是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个结点里存到下一个结点的指针（Pointer）。">
+<meta name="description" content="链表结构">
 
 
   <meta name="author" content="phoenixfei">
@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://yourusername.github.io/ds-algo/%E9%93%BE%E8%A1%A8/">
 
 
-  <meta property="og:description" content="链表是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个结点里存到下一个结点的指针（Pointer）。">
+  <meta property="og:description" content="链表结构">
 
 
 
@@ -35,7 +35,7 @@
 
 
 
-  <meta property="article:published_time" content="2024-05-21T00:00:00+00:00">
+  <meta property="article:published_time" content="2024-09-21T00:00:00+00:00">
 
 
 
@@ -143,12 +143,6 @@
               >DSA</a>
             </li><li class="masthead__menu-item">
               <a
-                href="/leetcode/"
-                
-                
-              >题单</a>
-            </li><li class="masthead__menu-item">
-              <a
                 href="/math/"
                 
                 
@@ -185,8 +179,8 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="链表">
-    <meta itemprop="description" content="链表是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个结点里存到下一个结点的指针（Pointer）。">
-    <meta itemprop="datePublished" content="2024-05-21T00:00:00+00:00">
+    <meta itemprop="description" content="链表结构">
+    <meta itemprop="datePublished" content="2024-09-21T00:00:00+00:00">
     
 
     <div class="page__inner-wrap">
@@ -207,11 +201,13 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              
+              <ul class="toc__menu"><li><a href="#链表结构">链表结构</a></li><li><a href="#203-移除链表元素">203. 移除链表元素</a></li><li><a href="#206-反转链表">206. 反转链表</a></li><li><a href="#21-合并两个有序链表">21. 合并两个有序链表</a></li><li><a href="#83-删除排序链表中的重复元素">83. 删除排序链表中的重复元素</a></li><li><a href="#24-两两交换链表中的节点">24. 两两交换链表中的节点</a></li></ul>
             </nav>
           </aside>
         
-        <p>链表是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个结点里存到下一个结点的指针（Pointer）。</p>
+        <h3 id="链表结构">链表结构</h3>
+
+<p>链表是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个结点里存到下一个结点的指针（Pointer）。</p>
 
 <p>由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性顺序表快得多，但是，查找一个节点或者访问特定编号的节点则需要O(n)的时间，而顺序表相应的时间复杂度分别是O(longN)和O(1)。</p>
 
@@ -228,6 +224,169 @@
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
+<hr />
+
+<p>链表基础题单主要涵盖基本操作（增删查改）、双指针技巧（快慢指针、前后指针）、链表反转与合并、环检测与入口定位、排序与重排、与栈/递归结合等题型，系统训练链表结构的灵活应用与算法技巧。</p>
+
+<h3 id="203-移除链表元素"><a href="https://leetcode.cn/problems/remove-linked-list-elements/">203. 移除链表元素</a></h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>删除链表中等于给定值 val 的所有节点。
+</code></pre></div></div>
+
+<p><strong>示例:</strong></p>
+
+<div class="language-tex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入: 1-&gt;2-&gt;6-&gt;3-&gt;4-&gt;5-&gt;6, val = 6
+输出: 1-&gt;2-&gt;3-&gt;4-&gt;5
+</code></pre></div></div>
+
+<p>题目要求我们要返回新链表中的头结点，如果我们就采用仅仅复制头结点的方式(用H=head)然后用H进行操作，最后返回head。这样就会导致如果头结点也是我们需要删除的节点就会导致错误。</p>
+
+<p>当然我们可以采用循环操作判断第一个不是我们要删除的节点，但是这样有些麻烦。</p>
+
+<p>最好的方式（<strong>头插法</strong>）就是我们创建一个新节点来作为整个链表的头结点，该节点中的值没有意义，只是用该节点来方便我们的操作。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">ListNode</span> <span class="nf">removeElements</span><span class="o">(</span><span class="nc">ListNode</span> <span class="n">head</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">ListNode</span> <span class="n">ret</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ListNode</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="n">ret</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+    <span class="nc">ListNode</span> <span class="n">first</span> <span class="o">=</span> <span class="n">head</span><span class="o">,</span> <span class="n">second</span> <span class="o">=</span> <span class="n">ret</span><span class="o">;</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">first</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">first</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">val</span><span class="o">){</span>
+            <span class="n">second</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">second</span><span class="o">.</span><span class="na">next</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+            <span class="n">second</span> <span class="o">=</span> <span class="n">second</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">first</span> <span class="o">=</span> <span class="n">first</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="206-反转链表"><a href="https://leetcode.cn/problems/reverse-linked-list/">206. 反转链表</a></h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
+</code></pre></div></div>
+
+<p><strong>递归</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">ListNode</span> <span class="nf">reverseList</span><span class="o">(</span><span class="nc">ListNode</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="nc">ListNode</span> <span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+    <span class="nc">ListNode</span> <span class="n">newHead</span> <span class="o">=</span> <span class="n">reverseList</span><span class="o">(</span><span class="n">next</span><span class="o">);</span>
+    <span class="n">next</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+    <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">newHead</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>头插法</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">ListNode</span> <span class="nf">reverseList</span><span class="o">(</span><span class="nc">ListNode</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">ListNode</span> <span class="n">newHead</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ListNode</span><span class="o">(-</span><span class="mi">1</span><span class="o">);</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">head</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ListNode</span> <span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+        <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+        <span class="n">newHead</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">next</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">newHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="21-合并两个有序链表"><a href="https://leetcode.cn/problems/merge-two-sorted-lists/">21. 合并两个有序链表</a></h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+</code></pre></div></div>
+
+<p><strong>递归解法</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">ListNode</span> <span class="nf">mergeTwoLists</span><span class="o">(</span><span class="nc">ListNode</span> <span class="n">l1</span><span class="o">,</span> <span class="nc">ListNode</span> <span class="n">l2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">l1</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">l2</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">l2</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">l1</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">l1</span><span class="o">.</span><span class="na">val</span> <span class="o">&lt;</span> <span class="n">l2</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">l1</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">mergeTwoLists</span><span class="o">(</span><span class="n">l1</span><span class="o">.</span><span class="na">next</span><span class="o">,</span> <span class="n">l2</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">l1</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">l2</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">mergeTwoLists</span><span class="o">(</span><span class="n">l1</span><span class="o">,</span> <span class="n">l2</span><span class="o">.</span><span class="na">next</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">l2</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="83-删除排序链表中的重复元素"><a href="https://leetcode.cn/problems/remove-duplicates-from-sorted-list/">83. 删除排序链表中的重复元素</a></h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给定一个已排序的链表的头 head ， 删除所有重复的元素，使每个元素只出现一次 。返回 已排序的链表 。
+</code></pre></div></div>
+
+<p><strong>递归解法</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">ListNode</span> <span class="nf">deleteDuplicates</span><span class="o">(</span><span class="nc">ListNode</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+        <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+    <span class="c1">// 下面这句话是递归的核心，体现迭代思想；记住，无论如何，都是head.next;</span>
+    <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">deleteDuplicates</span><span class="o">(</span><span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">head</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">.</span><span class="na">val</span> <span class="o">?</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">:</span> <span class="n">head</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>迭代解法</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">ListNode</span> <span class="nf">deleteDuplicatesIter</span><span class="o">(</span><span class="nc">ListNode</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+        <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+    <span class="nc">ListNode</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">head</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">.</span><span class="na">val</span><span class="o">)</span>
+            <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+        <span class="k">else</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="24-两两交换链表中的节点"><a href="https://leetcode.cn/problems/swap-nodes-in-pairs/">24. 两两交换链表中的节点</a></h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
+</code></pre></div></div>
+
+<p><strong>递归解法</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">ListNode</span> <span class="nf">swapPairs</span><span class="o">(</span><span class="nc">ListNode</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+        <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+    <span class="c1">// 下三行体现递归工作</span>
+    <span class="nc">ListNode</span> <span class="n">l1</span> <span class="o">=</span> <span class="n">head</span><span class="o">,</span> <span class="n">l2</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">,</span> <span class="n">l3</span> <span class="o">=</span> <span class="n">l2</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+    <span class="n">l1</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l3</span><span class="o">;</span>
+    <span class="n">l2</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l1</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">l3</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+        <span class="n">l1</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">swapPairs</span><span class="o">(</span><span class="n">l3</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">l2</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>迭代解法</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">ListNode</span> <span class="nf">swapPairsIter</span><span class="o">(</span><span class="nc">ListNode</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">ListNode</span> <span class="n">ret</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ListNode</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="n">ret</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+    <span class="nc">ListNode</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">ret</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">temp</span><span class="o">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">temp</span><span class="o">.</span><span class="na">next</span><span class="o">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ListNode</span> <span class="n">l1</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="na">next</span><span class="o">,</span> <span class="n">l2</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="na">next</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+        <span class="nc">ListNode</span> <span class="n">next</span> <span class="o">=</span> <span class="n">l2</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+        <span class="n">l1</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">next</span><span class="o">;</span>
+        <span class="n">l2</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l1</span><span class="o">;</span>
+        <span class="n">temp</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l2</span><span class="o">;</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">l1</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
 
         
       </section>
@@ -254,7 +413,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-05-21T00:00:00+00:00">May 21, 2024</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-09-21T00:00:00+00:00">September 21, 2024</time></p>
 
       </footer>
 
@@ -263,10 +422,10 @@
       
   <nav class="pagination">
     
-      <a href="/ds-algo/%E8%B4%AA%E5%BF%83/" class="pagination--pager" title="贪心算法">Previous</a>
+      <a href="/ds-algo/%E6%A0%91/" class="pagination--pager" title="树">Previous</a>
     
     
-      <a href="/leetcode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E9%A2%98%E5%8D%95/" class="pagination--pager" title="动态规划-题单">Next</a>
+      <a href="/ds-algo/%E5%9B%9E%E6%BA%AF-%E7%B3%BB%E5%88%97%E9%A2%98%E5%8D%95/" class="pagination--pager" title="回溯-题单">Next</a>
     
   </nav>
 
