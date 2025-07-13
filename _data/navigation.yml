@@ -4,8 +4,6 @@ main:
     url: "/"
   - title: "DSA"
     url: /ds-algo/
-  - title: "题单"
-    url: /leetcode/
   - title: "数学"
     url: /math/
   - title: "KISS"
