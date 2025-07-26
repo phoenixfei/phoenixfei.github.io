@@ -28,6 +28,7 @@ url: "https://phoenixfei.github.io"
 
 github:
   username: phoenixfei # change to your GitHub username
+  repo: phoenixfei.github.io        # 改成你的仓库名
 
 twitter:
   username: twitter_username # change to your Twitter username
