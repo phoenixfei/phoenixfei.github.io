@@ -4,17 +4,17 @@
   icon: "fab fa-github"
   url:  'https://github.com/phoenixfei'
 
-- type: twitter
-  icon: "fa-brands fa-x-twitter"
-
-- type: email
-  icon: "fas fa-envelope"
-  noblank: true # open link in current tab
-
 - type: leetcode
-  icon: "fa-solid fa-chart-diagram"
-  noblank: true
-  url:  'https://leetcode.cn/u/phoenixfei/'
+  icon: "fa-brands fa-algolia"
+  url: 'https://leetcode.cn/u/phoenixfei/'
+
+- type: chatgpt
+  icon: "fa-solid fa-comment"
+  url: 'https://chatgpt.com/'
+
+- type: chatgpt
+  icon: "fa-brands fa-google"
+  url: "https://www.google.com/"
 
 # Uncomment and complete the url below to enable more contact options
 #
