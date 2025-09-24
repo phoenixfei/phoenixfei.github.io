@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 source "https://rubygems.org"
@@ -13,3 +14,4 @@ end
 
 gem "wdm", "~> 0.2.0", :platforms => [:mingw, :x64_mingw, :mswin]
 gem 'jekyll-last-modified-at'
+gem "jekyll-target-blank"
