@@ -25,5 +25,5 @@ package-lock.json
 # Misc
 _sass/vendors
 assets/js/dist
-/_posts/contest.py
+/contest.py
 /_posts/test.ipynb
