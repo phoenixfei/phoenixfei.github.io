@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="320" viewBox="0 0 960 320">
+  <rect width="960" height="320" fill="#f7f4ea"/>
+  <text x="40" y="42" font-size="28" font-family="Microsoft YaHei, PingFang SC, sans-serif" fill="#2f4858">Common Join / Reduce-Side Join</text>
+
+  <rect x="60" y="90" width="180" height="70" rx="14" fill="#7aa6c2"/>
+  <text x="116" y="133" font-size="24" font-family="Microsoft YaHei, PingFang SC, sans-serif" fill="#ffffff">表 A</text>
+
+  <rect x="60" y="200" width="180" height="70" rx="14" fill="#7aa6c2"/>
+  <text x="116" y="243" font-size="24" font-family="Microsoft YaHei, PingFang SC, sans-serif" fill="#ffffff">表 B</text>
+
+  <rect x="330" y="145" width="220" height="70" rx="14" fill="#d8b36a"/>
+  <text x="382" y="188" font-size="24" font-family="Microsoft YaHei, PingFang SC, sans-serif" fill="#ffffff">Shuffle</text>
+
+  <rect x="650" y="145" width="220" height="70" rx="14" fill="#4f6d7a"/>
+  <text x="706" y="188" font-size="24" font-family="Microsoft YaHei, PingFang SC, sans-serif" fill="#ffffff">Reduce Join</text>
+
+  <line x1="240" y1="125" x2="330" y2="170" stroke="#2f4858" stroke-width="4"/>
+  <line x1="240" y1="235" x2="330" y2="190" stroke="#2f4858" stroke-width="4"/>
+  <line x1="550" y1="180" x2="650" y2="180" stroke="#2f4858" stroke-width="4"/>
+
+  <text x="300" y="118" font-size="18" font-family="Microsoft YaHei, PingFang SC, sans-serif" fill="#2f4858">按 join key 分发</text>
+  <text x="603" y="126" font-size="18" font-family="Microsoft YaHei, PingFang SC, sans-serif" fill="#2f4858">真正关联发生在 Reduce 端</text>
+</svg>
