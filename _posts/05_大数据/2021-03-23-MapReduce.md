@@ -1,7 +1,7 @@
 ---
 title: "MapReduce 原理、执行流程及常见问题解析"
 categories: [05_大数据]
-tags: [大数据, MapReduce]
+tags: [大数据, MapReduce, Hadoop, Shuffle]
 layout: post
 ---
 
