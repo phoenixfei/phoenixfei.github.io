@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420">
+  <rect width="960" height="420" fill="#f7f4ea"/>
+  <text x="40" y="48" font-size="30" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">UDF / UDAF / UDTF Overview</text>
+  <text x="40" y="78" font-size="16" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#486581">Choose by input-output pattern first, then by implementation style.</text>
+
+  <rect x="40" y="110" width="270" height="250" rx="18" fill="#ffffff" stroke="#cbd2d9" stroke-width="2"/>
+  <rect x="60" y="130" width="92" height="36" rx="10" fill="#2f855a"/>
+  <text x="86" y="154" font-size="20" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#ffffff">UDF</text>
+  <text x="60" y="200" font-size="18" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">One row</text>
+  <text x="166" y="200" font-size="24" font-family="Consolas, monospace" fill="#2f855a">-&gt;</text>
+  <text x="210" y="200" font-size="18" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">One value</text>
+  <text x="60" y="246" font-size="16" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#486581">Use cases</text>
+  <text x="60" y="274" font-size="15" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">- clean / normalize</text>
+  <text x="60" y="300" font-size="15" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">- mask / map / classify</text>
+  <text x="60" y="332" font-size="15" font-family="Consolas, monospace" fill="#486581">evaluate(value)</text>
+
+  <rect x="345" y="110" width="270" height="250" rx="18" fill="#ffffff" stroke="#cbd2d9" stroke-width="2"/>
+  <rect x="365" y="130" width="104" height="36" rx="10" fill="#d69e2e"/>
+  <text x="389" y="154" font-size="20" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#ffffff">UDAF</text>
+  <text x="365" y="200" font-size="18" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">Many rows</text>
+  <text x="480" y="200" font-size="24" font-family="Consolas, monospace" fill="#d69e2e">-&gt;</text>
+  <text x="524" y="200" font-size="18" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">One value</text>
+  <text x="365" y="246" font-size="16" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#486581">Use cases</text>
+  <text x="365" y="274" font-size="15" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">- custom aggregate</text>
+  <text x="365" y="300" font-size="15" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">- scoring / summary</text>
+  <text x="365" y="332" font-size="15" font-family="Consolas, monospace" fill="#486581">iterate -&gt; merge -&gt; terminate</text>
+
+  <rect x="650" y="110" width="270" height="250" rx="18" fill="#ffffff" stroke="#cbd2d9" stroke-width="2"/>
+  <rect x="670" y="130" width="102" height="36" rx="10" fill="#c05621"/>
+  <text x="694" y="154" font-size="20" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#ffffff">UDTF</text>
+  <text x="670" y="200" font-size="18" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">One row</text>
+  <text x="776" y="200" font-size="24" font-family="Consolas, monospace" fill="#c05621">-&gt;</text>
+  <text x="820" y="200" font-size="18" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">Many rows</text>
+  <text x="670" y="246" font-size="16" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#486581">Use cases</text>
+  <text x="670" y="274" font-size="15" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">- split / explode</text>
+  <text x="670" y="300" font-size="15" font-family="Segoe UI, Microsoft YaHei, PingFang SC, sans-serif" fill="#243b53">- parse to rows or columns</text>
+  <text x="670" y="332" font-size="15" font-family="Consolas, monospace" fill="#486581">forward(row)</text>
+</svg>
