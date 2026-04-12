@@ -39,29 +39,34 @@
 
 确保本地已安装 Ruby 与 Bundler，然后执行：
 
-```bash
+```powershell
 bundle install
 ```
 
 ### 2) 启动开发服务
 
-```bash
-bash tools/run.sh
+在 Windows PowerShell 中执行：
+
+```powershell
+bundle exec jekyll s -l
 ```
 
 可选参数：
 
-- 指定监听地址：`bash tools/run.sh -H 0.0.0.0`
-- 生产模式运行：`bash tools/run.sh -p`
+- 指定监听地址：`bundle exec jekyll s -l -H 0.0.0.0`
+- 生产模式运行：`$env:JEKYLL_ENV = "production"; bundle exec jekyll s -l`
 
 默认访问地址通常为：<http://127.0.0.1:4000>
 
 ## 构建与检查
 
-执行：
+在 Windows PowerShell 中执行：
 
-```bash
-bash tools/test.sh
+```powershell
+Remove-Item -LiteralPath .\_site -Recurse -Force -ErrorAction SilentlyContinue
+$env:JEKYLL_ENV = "production"
+bundle exec jekyll b -d "_site" -c "_config.yml"
+bundle exec htmlproofer "_site" --disable-external --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 ```
 
 该脚本会：
