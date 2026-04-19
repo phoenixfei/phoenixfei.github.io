@@ -1,6 +1,6 @@
 ---
-title: "MapReduce 面试题"
-categories: [05_大数据, 面经]
+title: "MapReduce QA"
+categories: [05_大数据, Hadoop]
 tags: [大数据, Hadoop, MapReduce, Shuffle, 面试]
 layout: post
 ---
