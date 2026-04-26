@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">线性回归拟合直线示意图</title>
+  <desc id="desc">散点数据围绕一条上升的线性回归拟合直线分布。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #ffffff; stroke: #d7dee8; stroke-width: 1.5; }
+      .grid { stroke: #e8edf4; stroke-width: 1; }
+      .axis { stroke: #334155; stroke-width: 2; }
+      .tick { stroke: #64748b; stroke-width: 1.5; }
+      .point { fill: #2563eb; stroke: #ffffff; stroke-width: 2; }
+      .line { stroke: #dc2626; stroke-width: 5; stroke-linecap: round; }
+      .label { fill: #334155; font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 20px; }
+      .small { fill: #64748b; font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 16px; }
+      .formula { fill: #b91c1c; font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 22px; font-weight: 700; }
+      .legend { fill: #0f172a; font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 18px; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="900" height="520" rx="0"/>
+  <rect class="panel" x="54" y="42" width="792" height="410" rx="8"/>
+
+  <g transform="translate(100 74)">
+    <line class="grid" x1="0" y1="300" x2="680" y2="300"/>
+    <line class="grid" x1="0" y1="240" x2="680" y2="240"/>
+    <line class="grid" x1="0" y1="180" x2="680" y2="180"/>
+    <line class="grid" x1="0" y1="120" x2="680" y2="120"/>
+    <line class="grid" x1="0" y1="60" x2="680" y2="60"/>
+    <line class="grid" x1="0" y1="0" x2="680" y2="0"/>
+
+    <line class="grid" x1="100" y1="0" x2="100" y2="320"/>
+    <line class="grid" x1="220" y1="0" x2="220" y2="320"/>
+    <line class="grid" x1="340" y1="0" x2="340" y2="320"/>
+    <line class="grid" x1="460" y1="0" x2="460" y2="320"/>
+    <line class="grid" x1="580" y1="0" x2="580" y2="320"/>
+
+    <line class="axis" x1="0" y1="320" x2="700" y2="320"/>
+    <line class="axis" x1="0" y1="320" x2="0" y2="0"/>
+    <path class="axis" d="M700 320 l-12 -7 v14 z"/>
+    <path class="axis" d="M0 0 l-7 12 h14 z"/>
+
+    <text class="label" x="292" y="380">输入特征 x</text>
+    <text class="label" x="-68" y="28">目标值 y</text>
+
+    <line class="line" x1="54" y1="274" x2="636" y2="55"/>
+
+    <circle class="point" cx="62" cy="288" r="8"/>
+    <circle class="point" cx="132" cy="246" r="8"/>
+    <circle class="point" cx="205" cy="240" r="8"/>
+    <circle class="point" cx="278" cy="200" r="8"/>
+    <circle class="point" cx="350" cy="175" r="8"/>
+    <circle class="point" cx="424" cy="151" r="8"/>
+    <circle class="point" cx="493" cy="128" r="8"/>
+    <circle class="point" cx="566" cy="92" r="8"/>
+    <circle class="point" cx="626" cy="82" r="8"/>
+
+    <rect x="410" y="18" width="210" height="70" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
+    <text class="formula" x="430" y="50">ŷ = wx + b</text>
+    <text class="small" x="430" y="76">学习 w 和 b，让直线贴近样本</text>
+
+    <g transform="translate(448 254)">
+      <circle class="point" cx="0" cy="0" r="7"/>
+      <line class="line" x1="36" y1="0" x2="88" y2="0"/>
+      <text class="legend" x="112" y="6">拟合直线</text>
+      <text class="legend" x="20" y="6">真实样本</text>
+    </g>
+  </g>
+</svg>
